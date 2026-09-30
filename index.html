@@ -68,6 +68,7 @@
     .score-box .status { font-size: .7rem; color: var(--muted); margin-top: 2px; }
     .score-box .status.live { color: var(--live); font-weight: 700; }
     .score-box .status.final { color: var(--final); }
+    .game-center-link { color: var(--accent); margin-left: .35rem; text-decoration: underline; white-space: nowrap; }
     .f1-picker { display: flex; flex-wrap: wrap; gap: .4rem; margin: .5rem 0; }
     .f1-chip {
       background: var(--bg3); border: 1px solid var(--border); color: var(--text);
@@ -101,6 +102,11 @@
     .loading, .empty { padding: 2rem; text-align: center; color: var(--muted); }
     .error { background: #3a1515; border: 1px solid #6b2222; color: #ff8a80; padding: .9rem 1rem; border-radius: 8px; margin: .75rem; font-size: .85rem; }
     footer { text-align: center; padding: 1.5rem; font-size: .75rem; color: var(--muted); }
+    .news-ticker { display: flex; align-items: center; gap: .75rem; overflow: hidden; padding: .5rem 1.25rem; background: #111923; border-bottom: 1px solid var(--border); font-size: .78rem; }
+    .news-ticker strong { color: var(--accent); font-size: .68rem; letter-spacing: .08em; white-space: nowrap; }
+    .ticker-window { overflow: hidden; flex: 1; white-space: nowrap; }
+    .ticker-track { display: inline-block; min-width: 100%; animation: tickerIn .45s ease-out; }
+    @keyframes tickerIn { from { transform: translateX(2rem); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
   </style>
 </head>
 <body>
@@ -112,6 +118,9 @@
       <button id="btnRefresh" style="background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:.3rem .7rem;border-radius:6px;cursor:pointer;font-size:.75rem;font-weight:600;">Aggiorna</button>
     </div>
   </header>
+  <div class="news-ticker" aria-label="Notizie sportive">
+    <strong>SPORT NEWS</strong><div class="ticker-window"><span class="ticker-track" id="newsTicker">Caricamento aggiornamenti sportivi…</span></div>
+  </div>
 
   <nav class="cats" id="navCats">
     <button data-panel="calcio" class="active">⚽ Calcio</button>
@@ -123,17 +132,17 @@
 
   <main>
     <div class="panel active" id="panel-calcio">
-      <div class="section-title">Calcio — Ultime 48 ore <span class="badge">LIVE</span></div>
+      <div class="section-title">Calcio — Oggi <span class="badge">LIVE</span></div>
       <div id="grid-calcio"><div class="loading">Caricamento…</div></div>
     </div>
 
     <div class="panel" id="panel-basket">
-      <div class="section-title">Basket — NBA · Eurolega · Serie A <span class="badge">LIVE</span></div>
+      <div class="section-title">Basket — LBA · Eurolega · NBA · Oggi <span class="badge">LIVE</span></div>
       <div id="grid-basket"><div class="loading">Caricamento…</div></div>
     </div>
 
     <div class="panel" id="panel-usa">
-      <div class="section-title">Sport USA — NFL · NHL · NBA <span class="badge">LIVE</span></div>
+      <div class="section-title">Sport USA — NFL · NHL · Oggi <span class="badge">LIVE</span></div>
       <div id="grid-usa"><div class="loading">Caricamento…</div></div>
     </div>
 
@@ -188,8 +197,31 @@
 
   <script>
     const PROXY = 'https://motogp-proxy.picchiandrea707.workers.dev/?url=';
+    // API ufficiale EuroLeague via proxy CORS; Game Center ufficiale come fallback visibile.
+    const EUROLEAGUE_CONFIG = {
+      apiBase: 'https://api-live.euroleague.net',
+      gameCenterBase: 'https://www.euroleaguebasketball.net/euroleague/game-center',
+      competition: 'E'
+    };
     const LIVE_URL = PROXY + encodeURIComponent('https://api.motogp.pulselive.com/motogp/v1/timing-gateway/livetiming-lite');
     const F1_REFRESH_MS = 60_000;
+    const TICKER_ITEMS = [
+      'Risultati e partite in programma: solo eventi della giornata corrente.',
+      'Formula 1 e MotoGP: livetiming per le sessioni attive e classifiche on demand.',
+      'Calcio: Serie A, Serie B, Serie C, coppe UEFA e competizioni internazionali.',
+      'Basket: Serie A LBA, Eurolega e NBA. Aggiornamento automatico dei punteggi.'
+    ];
+    let tickerIndex = 0;
+    function rotateTicker() {
+      const el = document.getElementById('newsTicker');
+      if (!el) return;
+      el.textContent = TICKER_ITEMS[tickerIndex++ % TICKER_ITEMS.length];
+      el.classList.remove('ticker-track');
+      void el.offsetWidth;
+      el.classList.add('ticker-track');
+    }
+    rotateTicker();
+    setInterval(rotateTicker, 7_000);
 
     function api(path) {
       return PROXY + encodeURIComponent('https://api.motogp.pulselive.com/motogp/v1' + path);
@@ -200,6 +232,14 @@
     function safeColor(value, fallback = '#555') {
       const color = String(value ?? '').replace('#', '');
       return /^[0-9a-f]{3,8}$/i.test(color) ? `#${color}` : fallback;
+    }
+    function euroleagueSlug(value) {
+      return String(value || '').toLowerCase().normalize('NFD').replace(/[\u0300-\u036f]/g, '')
+        .replace(/&/g, 'and').replace(/[^a-z0-9]+/g, '-').replace(/^-|-$/g, '');
+    }
+    function euroleagueGameCenterUrl(home, away, gameNumber, year = new Date().getFullYear()) {
+      if (!gameNumber) return '';
+      return `${EUROLEAGUE_CONFIG.gameCenterBase}/${year}-${String(year + 1).slice(-2)}/${euroleagueSlug(home)}-${euroleagueSlug(away)}/${EUROLEAGUE_CONFIG.competition}${year}/${gameNumber}/`;
     }
     function apiError(label, response) {
       return new Error(`${label}: HTTP ${response.status}`);
@@ -265,11 +305,12 @@
           const home = escapeHtml(m.home || '—');
           const away = escapeHtml(m.away || '—');
           const status = escapeHtml(m.status || '');
+          const gameCenter = m.gameCenterUrl ? `<a href="${escapeHtml(m.gameCenterUrl)}" target="_blank" rel="noopener" class="game-center-link">Game Center</a>` : '';
           const homeLogo = m.homeLogo ? `<img src="${escapeHtml(m.homeLogo)}" alt="" onerror="this.style.display='none'">` : '';
           const awayLogo = m.awayLogo ? `<img src="${escapeHtml(m.awayLogo)}" alt="" onerror="this.style.display='none'">` : '';
           html += `<div class="match">
             <div class="team home">${homeLogo}<span title="${home}">${home}</span></div>
-            <div class="score-box"><div class="score">${escapeHtml(scoreText)}</div><div class="status ${sc}">${status}</div></div>
+            <div class="score-box"><div class="score">${escapeHtml(scoreText)}</div><div class="status ${sc}">${status} ${gameCenter}</div></div>
             <div class="team away"><span title="${away}">${away}</span>${awayLogo}</div>
           </div>`;
         }
@@ -321,8 +362,15 @@
         competition: m.competition || ''
       };
     }
+    function isTodayMatch(m) {
+      if (!m.time) return true;
+      const parsed = typeof m.time === 'number' ? m.time : Date.parse(m.time);
+      if (!Number.isFinite(parsed)) return true;
+      const d = new Date(parsed), now = new Date();
+      return d.getFullYear() === now.getFullYear() && d.getMonth() === now.getMonth() && d.getDate() === now.getDate();
+    }
     function isLiveMatch(m) {
-      return /live|in progress|progress|1st|2nd|3rd|4th|quarter|half|period|ot|intermission/i.test(m.status || '');
+      return /live|in progress|progress|in corso|1st|2nd|3rd|4th|quarter|half|period|ot|intermission/i.test(m.status || '');
     }
     function sortLiveFirst(list) {
       return [...list].sort((a, b) => Number(isLiveMatch(b)) - Number(isLiveMatch(a)) || String(a.time || '').localeCompare(String(b.time || '')));
@@ -337,6 +385,8 @@
       const c = String(value || '').toLowerCase();
       if (/serie a( |$)|italian serie a/.test(c)) return 'Serie A';
       if (/serie b|italian serie b/.test(c)) return 'Serie B';
+      if (/serie c|italian serie c|c1-a/.test(c)) return 'Serie C';
+      if (/women.*serie a|serie a.*women|italian women/.test(c)) return 'Serie A Femminile';
       if (/women.*champions league|champions league.*women|uefa women/.test(c)) return 'Champions League Femminile';
       if (/women.*super league|super league.*women|english women/.test(c)) return 'Premier League Femminile';
       if (/premier league|english premier/.test(c)) return 'Premier League';
@@ -346,6 +396,8 @@
       if (/champions league/.test(c)) return 'Champions League';
       if (/europa league/.test(c)) return 'Europa League';
       if (/conference league/.test(c)) return 'Conference League';
+      if (/nations league/.test(c)) return 'UEFA Nations League';
+      if (/africa cup|caf nations|african cup/.test(c)) return 'Qualificazioni Coppa d’Africa';
       if (/coppa italia|italian cup/.test(c)) return 'Coppa Italia';
       return null;
     }
@@ -355,52 +407,86 @@
         return Array.isArray(data.matches) ? data.matches.map(sportScoreMatch) : [];
       } catch (_) { return []; }
     }
+    const euroleagueState = { matches: null, loadedAt: 0 };
     async function fetchEuroleagueSchedule() {
+      if (euroleagueState.matches && Date.now() - euroleagueState.loadedAt < 5 * 60_000) return euroleagueState.matches;
       try {
         const year = new Date().getFullYear();
-        const url = PROXY + encodeURIComponent(`https://api-live.euroleague.net/v1/schedules?seasonCode=E${year}`);
-        const xml = await fetch(url).then(async response => {
-          if (!response.ok) throw apiError('Calendario Eurolega', response);
+        const urls = ['schedules', 'results'].map(path => PROXY + encodeURIComponent(`${EUROLEAGUE_CONFIG.apiBase}/v1/${path}?seasonCode=${EUROLEAGUE_CONFIG.competition}${year}`));
+        const [scheduleXml, resultsXml] = await Promise.all(urls.map(url => fetch(url).then(async response => {
+          if (!response.ok) throw apiError('EuroLeague', response);
           return response.text();
-        });
-        const doc = new DOMParser().parseFromString(xml, 'application/xml');
-        if (doc.querySelector('parsererror')) throw new Error('Calendario Eurolega: XML non valido');
-        const start = Date.now() - 2 * 86_400_000;
+        })));
+        const doc = new DOMParser().parseFromString(scheduleXml, 'application/xml');
+        const resultsDoc = new DOMParser().parseFromString(resultsXml, 'application/xml');
+        if (doc.querySelector('parsererror') || resultsDoc.querySelector('parsererror')) throw new Error('EuroLeague: XML non valido');
+        const resultMap = new Map([...resultsDoc.querySelectorAll('game')].map(game => {
+          const get = tag => game.querySelector(tag)?.textContent?.trim() || '';
+          return [get('gamecode'), { homeScore: get('homescore'), awayScore: get('awayscore'), played: get('played') === 'true' }];
+        }));
+        // Mostra la giornata corrente e le prossime, non le partite già giocate ieri.
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+        const start = today.getTime();
         const end = Date.now() + 3 * 86_400_000;
-        return [...doc.querySelectorAll('item')].map(item => {
+        const matches = [...doc.querySelectorAll('item')].map(item => {
           const get = tag => item.querySelector(tag)?.textContent?.trim() || '';
           const date = get('date');
           const time = get('startime');
           const eventTime = Date.parse(`${date} ${time}`);
+          const result = resultMap.get(get('gamecode')) || {};
+          const hasScore = result.homeScore !== '' && result.awayScore !== '' && result.homeScore != null && result.awayScore != null;
           return {
             home: get('hometeam'), away: get('awayteam'),
-            homeLogo: '', awayLogo: '', homeScore: '', awayScore: '',
-            hasScore: false, competition: 'Eurolega',
-            status: get('played') === 'true' ? 'Finished' : `Ore ${time}`,
+            homeLogo: '', awayLogo: '', homeScore: result.homeScore || '', awayScore: result.awayScore || '',
+            hasScore, competition: 'Eurolega',
+            status: hasScore ? 'Finished' : (eventTime <= Date.now() ? 'In corso' : `Ore ${time}`),
             time: Number.isFinite(eventTime) ? eventTime : `${date} ${time}`,
+            gameNumber: get('game') || get('gamenumber'),
+            gameCenterUrl: euroleagueGameCenterUrl(get('hometeam'), get('awayteam'), get('game') || get('gamenumber'), year),
             eventTime
           };
         }).filter(m => m.home && m.away && m.eventTime >= start && m.eventTime <= end);
+        euroleagueState.matches = matches;
+        euroleagueState.loadedAt = Date.now();
+        return matches;
       } catch (_) { return []; }
+    }
+    async function fetchEuroleagueLiveScores(matches) {
+      return Promise.all(matches.map(async match => {
+        if (!match.gameNumber || match.hasScore) return match;
+        try {
+          const year = new Date().getFullYear();
+          const url = PROXY + encodeURIComponent(`${EUROLEAGUE_CONFIG.apiBase}/v3/competitions/${EUROLEAGUE_CONFIG.competition}/seasons/${EUROLEAGUE_CONFIG.competition}${year}/games/${match.gameNumber}/stats`);
+          const data = await fetchJson(url, 'EuroLeague live');
+          const homeScore = data?.local?.total?.points;
+          const awayScore = data?.road?.total?.points;
+          const hasScore = Number.isFinite(Number(homeScore)) && Number.isFinite(Number(awayScore)) && (Number(homeScore) > 0 || Number(awayScore) > 0);
+          return hasScore ? { ...match, homeScore, awayScore, hasScore: true, status: 'LIVE' } : match;
+        } catch (_) { return match; }
+      }));
     }
 
     // ===== CALCIO =====
     const CALCIO_LEAGUES = [
       { id: 'ita.1', name: 'Serie A' }, { id: 'ita.2', name: 'Serie B' },
-      { id: 'eng.1', name: 'Premier League' }, { id: 'eng.w.1', name: 'Premier League Femminile' },
+      { id: 'ita.3', name: 'Serie C' }, { id: 'ita.w.1', name: 'Serie A Femminile' },
+      { id: 'eng.1', name: 'Premier League' },
       { id: 'esp.1', name: 'La Liga' },
       { id: 'ger.1', name: 'Bundesliga' }, { id: 'fra.1', name: 'Ligue 1' },
       { id: 'uefa.champions', name: 'Champions League' }, { id: 'uefa.wchampions', name: 'Champions League Femminile' },
       { id: 'uefa.europa', name: 'Europa League' },
-      { id: 'uefa.europa.conf', name: 'Conference League' }, { id: 'ita.coppa_italia', name: 'Coppa Italia' }
+      { id: 'uefa.europa.conf', name: 'Conference League' }, { id: 'uefa.nations', name: 'UEFA Nations League' },
+      { id: 'caf.nations', name: 'Qualificazioni Coppa d’Africa' }, { id: 'ita.coppa_italia', name: 'Coppa Italia' }
     ];
 
     async function loadCalcio() {
-      const dates = dateRange(1, 1);
+      const dates = dateRange(0, 0);
       const [scoreFeed, ...leagueFeeds] = await Promise.all([
         fetchSportScore('football'),
         ...CALCIO_LEAGUES.map(lg => fetchEspnScoreboard('soccer', lg.id, dates))
       ]);
+      const todaysScoreFeed = scoreFeed.filter(isTodayMatch);
       const groups = [];
       const knownTeams = new Set();
       CALCIO_LEAGUES.forEach((lg, i) => {
@@ -412,7 +498,7 @@
       });
       const selectedFromFeed = new Map(CALCIO_LEAGUES.map(lg => [lg.name, []]));
       const other = [];
-      scoreFeed.forEach(m => {
+      todaysScoreFeed.forEach(m => {
         if (knownTeams.has(`${m.home}|${m.away}`)) return;
         const name = footballCompetitionName(m.competition);
         if (name && selectedFromFeed.has(name)) selectedFromFeed.get(name).push({ ...m, competition: name });
@@ -425,7 +511,6 @@
           else groups.push([name, sortLiveFirst(matches)]);
         }
       }
-      if (other.length) groups.push(['Altri eventi', sortLiveFirst(other)]);
       groups.sort((a, b) => Number(b[1].some(isLiveMatch)) - Number(a[1].some(isLiveMatch)) || b[1].length - a[1].length);
       renderMatches('grid-calcio', groups);
       touchUpdate();
@@ -435,16 +520,18 @@
     async function loadBasket() {
       const [scoreFeed, nba, euroleague, officialEuroleague] = await Promise.all([
         fetchSportScore('basketball'),
-        fetchEspnScoreboard('basketball', 'nba', dateRange(1, 2)),
+        fetchEspnScoreboard('basketball', 'nba', dateRange(0, 0)),
         // SportScore non restituisce sempre l'Eurolega nel suo elenco limitato a 50 eventi.
-        fetchEspnScoreboard('basketball', 'euroleague', dateRange(2, 3)),
+        fetchEspnScoreboard('basketball', 'euroleague', dateRange(0, 0)),
         fetchEuroleagueSchedule()
       ]);
+      const liveOfficialEuroleague = await fetchEuroleagueLiveScores(officialEuroleague);
+      const todaysScoreFeed = scoreFeed.filter(isTodayMatch);
       const groups = [
-        ['NBA', sortLiveFirst([...nba, ...scoreFeed.filter(m => /nba|wnba|national basketball association|women.s national basketball association/i.test(m.competition))])],
-        ['Eurolega', sortLiveFirst([...officialEuroleague, ...euroleague, ...scoreFeed.filter(m => /euroleague|eurolega|turkish airlines euroleague/i.test(m.competition) && !/eurocup/i.test(m.competition))])],
-        ['Serie A', sortLiveFirst(scoreFeed.filter(m => /(serie a|lega basket|\blba\b)/i.test(m.competition)))],
-        ['Altri eventi', sortLiveFirst(scoreFeed.filter(m => !/nba|wnba|national basketball association|women.s national basketball association|euroleague|eurolega|turkish airlines euroleague|eurocup|serie a|lega basket|\blba\b/i.test(m.competition)))]
+        ['NBA', sortLiveFirst([...nba, ...todaysScoreFeed.filter(m => /nba|wnba|national basketball association|women.s national basketball association/i.test(m.competition))])],
+        // Oggi: risultati conclusi/live con punteggio e gare ancora in programma.
+        ['Eurolega', sortLiveFirst([...liveOfficialEuroleague, ...euroleague, ...todaysScoreFeed.filter(m => /euroleague|eurolega|turkish airlines euroleague/i.test(m.competition) && !/eurocup/i.test(m.competition))])],
+        ['Serie A LBA', sortLiveFirst(todaysScoreFeed.filter(m => /(serie a|lega basket|\blba\b)/i.test(m.competition)))]
       ].filter(([, list]) => list.length);
       renderMatches('grid-basket', groups);
       touchUpdate();
@@ -452,7 +539,7 @@
 
     // ===== USA =====
     async function loadUsa() {
-      const dates = dateRange(1, 1);
+      const dates = dateRange(0, 0);
       const [nba, nfl, nhl] = await Promise.all([
         fetchEspnScoreboard('basketball', 'nba', dates),
         fetchEspnScoreboard('football', 'nfl', dates),
@@ -467,7 +554,7 @@
     }
 
     // ===== F1 (OpenF1) =====
-    const f1State = { inFlight: false, lastLoad: 0, sessions: null, sessionsAt: 0, drivers: new Map(), selectedSessionKey: null };
+    const f1State = { inFlight: false, lastLoad: 0, sessions: null, sessionsAt: 0, drivers: new Map(), positions: new Map(), selectedSessionKey: null };
 
     async function getF1Sessions(year) {
       const cacheValid = f1State.sessions && (Date.now() - f1State.sessionsAt < 10 * 60_000);
@@ -495,10 +582,21 @@
 
         // Una sola richiesta di posizione, con un secondo tentativo soltanto se la più recente è vuota.
         let session = pastSessions.find(s => String(s.session_key) === String(f1State.selectedSessionKey)) || pastSessions[0];
-        let positions = await fetchJson(`https://api.openf1.org/v1/position?session_key=${session.session_key}`, 'OpenF1 posizioni');
+        let positions = f1State.positions.get(session.session_key);
+        if (!positions || Date.now() - positions.loadedAt > F1_REFRESH_MS) {
+          try {
+            positions = { data: await fetchJson(`https://api.openf1.org/v1/position?session_key=${session.session_key}`, 'OpenF1 posizioni'), loadedAt: Date.now() };
+            f1State.positions.set(session.session_key, positions);
+          } catch (error) {
+            // Se OpenF1 risponde 429, mantiene l'ultima classifica valida invece di rompere il pannello.
+            if (!positions?.data) throw error;
+          }
+        }
+        positions = positions?.data || [];
         if ((!Array.isArray(positions) || !positions.length) && pastSessions[1]) {
           session = pastSessions[1];
-          positions = await fetchJson(`https://api.openf1.org/v1/position?session_key=${session.session_key}`, 'OpenF1 posizioni');
+          const cached = f1State.positions.get(session.session_key);
+          positions = cached?.data || await fetchJson(`https://api.openf1.org/v1/position?session_key=${session.session_key}`, 'OpenF1 posizioni');
         }
         if (!Array.isArray(positions)) throw new Error('OpenF1: dati posizione non validi');
 

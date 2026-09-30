@@ -3,167 +3,776 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sports Dashboard Live 24H</title>
+  <title>Sport Live — Risultati & Livetiming</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --bg: #0b0f19;
-      --card-bg: #131b2e;
-      --text: #f3f4f6;
-      --muted: #9ca3af;
-      --accent: #3b82f6;
-      --border: #1e293b;
-      --live: #ef4444;
+      --bg: #0b0f14; --bg3: #1a222c; --card: #161d27; --border: #2a3544;
+      --text: #e8eef6; --muted: #8b9bb0; --accent: #00e5a0; --live: #ef4444;
+      --final: #22c55e; --radius: 12px;
     }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
-    body { background-color: var(--bg); color: var(--text); padding-bottom: 40px; }
-
-    /* Ticker Notizie Personalizzato */
-    .ticker-container {
-      background: #1e293b;
-      border-bottom: 1px solid var(--border);
-      overflow: hidden;
-      height: 40px;
-      display: flex;
-      align-items: center;
-      position: sticky;
-      top: 0;
-      z-index: 100;
-    }
-    .ticker-badge {
-      background: var(--live);
-      color: white;
-      padding: 0 16px;
-      height: 100%;
-      display: flex;
-      align-items: center;
-      font-weight: bold;
-      font-size: 0.8rem;
-      letter-spacing: 1px;
-      white-space: nowrap;
-    }
-    .ticker-wrap {
-      display: inline-block;
-      white-space: nowrap;
-      animation: ticker 35s linear infinite;
-      padding-left: 100%;
-    }
-    .ticker-item {
-      display: inline-block;
-      padding: 0 30px;
-      font-size: 0.9rem;
-      color: var(--text);
-    }
-    @keyframes ticker {
-      0% { transform: translate3d(0, 0, 0); }
-      100% { transform: translate3d(-100%, 0, 0); }
-    }
-
-    /* Header */
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: 'Inter', system-ui, sans-serif; background: var(--bg); color: var(--text); min-height: 100vh; }
     header {
-      padding: 20px 24px;
-      background: var(--card-bg);
+      position: sticky; top: 0; z-index: 100;
+      background: rgba(11,15,20,.92); backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
+      padding: .75rem 1.25rem; display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap;
     }
-    .logo { font-size: 1.4rem; font-weight: 800; }
+    .logo { font-weight: 800; font-size: 1.25rem; }
     .logo span { color: var(--accent); }
-    .date-badge { font-size: 0.85rem; color: var(--muted); }
-
-    /* Layout Principale */
-    main {
-      max-width: 1200px;
-      margin: 20px auto;
-      padding: 0 16px;
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-      gap: 20px;
+    .status-bar { display: flex; align-items: center; gap: .75rem; font-size: .8rem; color: var(--muted); }
+    .dot { width: 8px; height: 8px; border-radius: 50%; background: var(--live); animation: pulse 1.4s infinite; }
+    @keyframes pulse { 0%,100%{opacity:1} 50%{opacity:.35} }
+    nav.cats {
+      display: flex; gap: .4rem; padding: .75rem 1.25rem;
+      overflow-x: auto; border-bottom: 1px solid var(--border);
     }
-
-    .widget-card {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      border-radius: 12px;
-      padding: 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 12px;
-      min-height: 480px;
+    nav.cats button {
+      background: var(--bg3); border: 1px solid var(--border); color: var(--text);
+      padding: .4rem .85rem; border-radius: 8px; font-size: .85rem; font-weight: 600;
+      cursor: pointer; white-space: nowrap;
     }
-
-    .widget-title {
-      font-size: 1.1rem;
-      font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      padding-bottom: 8px;
-      border-bottom: 1px solid var(--border);
+    nav.cats button.active { background: var(--accent); color: #04120c; border-color: var(--accent); }
+    main { padding: 1.25rem; max-width: 1200px; margin: 0 auto; }
+    .panel { display: none; }
+    .panel.active { display: block; }
+    .section-title {
+      font-size: 1.15rem; font-weight: 700; margin-bottom: 1rem;
+      display: flex; align-items: center; gap: .6rem; flex-wrap: wrap;
     }
-
-    iframe {
-      width: 100%;
-      height: 100%;
-      min-height: 420px;
-      border: none;
-      border-radius: 8px;
-      background: #ffffff;
+    .badge {
+      font-size: .7rem; font-weight: 700; padding: .2rem .5rem;
+      border-radius: 6px; background: var(--live); color: #fff;
     }
-
-    footer {
-      text-align: center;
-      padding: 20px;
-      font-size: 0.8rem;
-      color: var(--muted);
-      border-top: 1px solid var(--border);
-      margin-top: 40px;
+    .league-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: var(--radius); margin-bottom: 1rem; overflow: hidden;
     }
+    .league-head {
+      display: flex; justify-content: space-between; align-items: center;
+      padding: .75rem 1rem; background: var(--bg3); font-weight: 600; font-size: .9rem;
+    }
+    .count { font-size: .75rem; color: var(--muted); font-weight: 500; }
+    .match {
+      display: grid; grid-template-columns: 1fr auto 1fr;
+      gap: .5rem; align-items: center; padding: .7rem 1rem;
+      border-top: 1px solid var(--border); font-size: .9rem;
+    }
+    .match .team { display: flex; align-items: center; gap: .45rem; min-width: 0; }
+    .match .team.away { justify-content: flex-end; text-align: right; }
+    .match .team span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .match .team img { width: 22px; height: 22px; object-fit: contain; flex-shrink: 0; }
+    .score-box { text-align: center; min-width: 72px; }
+    .score-box .score { font-weight: 700; font-variant-numeric: tabular-nums; }
+    .score-box .status { font-size: .7rem; color: var(--muted); margin-top: 2px; }
+    .score-box .status.live { color: var(--live); font-weight: 700; }
+    .score-box .status.final { color: var(--final); }
+    .f1-picker { display: flex; flex-wrap: wrap; gap: .4rem; margin: .5rem 0; }
+    .f1-chip {
+      background: var(--bg3); border: 1px solid var(--border); color: var(--text);
+      padding: .3rem .7rem; border-radius: 8px; font-size: .8rem; font-weight: 600; cursor: pointer;
+    }
+    .f1-chip.active { background: var(--accent); color: #04120c; border-color: var(--accent); }
+    select {
+      background: var(--bg3); color: var(--text); border: 1px solid var(--border);
+      border-radius: 8px; padding: .4rem .6rem; font-size: .85rem; max-width: 100%;
+    }
+    .timing-table { width: 100%; border-collapse: collapse; font-size: .88rem; }
+    .timing-table th {
+      text-align: left; padding: .6rem .9rem; font-size: .72rem;
+      color: var(--muted); text-transform: uppercase; background: var(--bg3);
+    }
+    .timing-table td { padding: .55rem .9rem; border-top: 1px solid var(--border); }
+    .pos { font-weight: 700; width: 36px; text-align: center; }
+    .pos.p1 { color: #ffd700; } .pos.p2 { color: #c0c0c0; } .pos.p3 { color: #cd7f32; }
+    .driver { font-weight: 600; }
+    .gap { font-family: 'JetBrains Mono', monospace; font-size: .82rem; color: var(--muted); }
+    .num {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-width: 28px; height: 22px; border-radius: 4px; font-weight: 700; font-size: .8rem; color: #fff;
+    }
+    .pit { color: #f59e0b; font-size: .72rem; font-weight: 700; }
+    .session-info {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
+      gap: .75rem; padding: 1rem; font-size: .85rem;
+    }
+    .session-info label { display: block; font-size: .7rem; color: var(--muted); text-transform: uppercase; margin-bottom: 2px; }
+    .loading, .empty { padding: 2rem; text-align: center; color: var(--muted); }
+    .error { background: #3a1515; border: 1px solid #6b2222; color: #ff8a80; padding: .9rem 1rem; border-radius: 8px; margin: .75rem; font-size: .85rem; }
+    footer { text-align: center; padding: 1.5rem; font-size: .75rem; color: var(--muted); }
   </style>
 </head>
 <body>
-
-  <!-- Blocco Notizie Personalizzato -->
-  <div class="ticker-container">
-    <div class="ticker-badge">NOTIZIE LIVE</div>
-    <div class="ticker-wrap">
-      <div class="ticker-item">⚽ Calcio: Serie A, B, C, UWCL, Nations League • 🏀 Basket: LBA, Eurolega, NBA • 🏈 Sport USA: NFL, NHL • 🏎️ Motori: F1 & MotoGP Live Timing</div>
-    </div>
-  </div>
-
   <header>
-    <div class="logo">SPORTS<span>HUB24</span></div>
-    <div class="date-badge" id="live-date">Aggiornamento automatico in corso...</div>
+    <div class="logo">SPORT<span>LIVE</span></div>
+    <div class="status-bar">
+      <div class="dot" id="liveDot"></div>
+      <span id="lastUpdate">Connessione…</span>
+      <button id="btnRefresh" style="background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:.3rem .7rem;border-radius:6px;cursor:pointer;font-size:.75rem;font-weight:600;">Aggiorna</button>
+    </div>
   </header>
 
+  <nav class="cats" id="navCats">
+    <button data-panel="calcio" class="active">⚽ Calcio</button>
+    <button data-panel="basket">🏀 Basket</button>
+    <button data-panel="usa">🇺🇸 USA</button>
+    <button data-panel="f1">🏎️ Formula 1</button>
+    <button data-panel="moto">🏍️ MotoGP</button>
+  </nav>
+
   <main>
-
-    <!-- WIDGET 1: CALCIO LIVE & 24H -->
-    <div class="widget-card">
-      <div class="widget-title">⚽ Calcio (Italia, Coppe & Int.)</div>
-      <iframe src="https://www.scorebat.com/embed/livescore/" allowfullscreen></iframe>
+    <div class="panel active" id="panel-calcio">
+      <div class="section-title">Calcio — Ultime 48 ore <span class="badge">LIVE</span></div>
+      <div id="grid-calcio"><div class="loading">Caricamento…</div></div>
     </div>
 
-    <!-- WIDGET 2: BASKET & SPORT USA -->
-    <div class="widget-card">
-      <div class="widget-title">🏀 Basket (LBA, Eurolega, NBA) & 🏈 USA</div>
-      <iframe src="https://www.scorebat.com/embed/" allowfullscreen></iframe>
+    <div class="panel" id="panel-basket">
+      <div class="section-title">Basket — NBA · Eurolega · Serie A <span class="badge">LIVE</span></div>
+      <div id="grid-basket"><div class="loading">Caricamento…</div></div>
     </div>
 
-    <!-- WIDGET 3: FORMULA 1 & MOTOGP -->
-    <div class="widget-card">
-      <div class="widget-title">🏎️ Formula 1 & MotoGP (Live & Classifiche)</div>
-      <iframe src="https://widget.isportsapi.com/f1/livescore.html" allowfullscreen></iframe>
+    <div class="panel" id="panel-usa">
+      <div class="section-title">Sport USA — NFL · NHL · NBA <span class="badge">LIVE</span></div>
+      <div id="grid-usa"><div class="loading">Caricamento…</div></div>
     </div>
 
+    <div class="panel" id="panel-f1">
+      <div class="section-title">Formula 1 — Livetiming <span class="badge">LIVE</span></div>
+      <div id="f1-box"><div class="loading">Caricamento sessione F1…</div></div>
+    </div>
+
+    <div class="panel" id="panel-moto">
+      <div class="section-title">Motomondiale / MotoGP <span class="badge">LIVE</span></div>
+      <div class="league-card" style="max-width:1100px">
+        <div class="league-head">
+          <span id="liveTitle">Livetiming live</span>
+          <span class="count" id="liveStatus">—</span>
+        </div>
+        <div id="liveError" class="error" style="display:none"></div>
+        <div id="liveSessionInfo" class="session-info" style="display:none">
+          <div><label>Evento</label><strong id="liveEvent">—</strong></div>
+          <div><label>Circuito</label><strong id="liveCircuit">—</strong></div>
+          <div><label>Sessione</label><strong id="liveSession">—</strong></div>
+          <div><label>Categoria</label><strong id="liveCategory">—</strong></div>
+          <div><label>Rimanente</label><strong id="liveRemaining" style="color:#f59e0b">—</strong></div>
+          <div><label>Stato</label><strong id="liveSessionStatus">—</strong></div>
+        </div>
+        <div id="liveLoading" class="loading">Caricamento live timing…</div>
+        <div style="max-height:560px;overflow:auto">
+          <table class="timing-table" id="liveTable" style="display:none">
+            <thead>
+              <tr><th>Pos</th><th>#</th><th>Pilota</th><th>Team</th><th>Miglior</th><th>Ultimo</th><th>Gap 1°</th><th>Gap prec.</th><th></th></tr>
+            </thead>
+            <tbody id="liveBody"></tbody>
+          </table>
+        </div>
+      </div>
+      <div class="league-card" style="max-width:1100px;margin-top:1.25rem">
+        <div class="league-head"><span>Classifiche — on demand</span><span class="count">FINAL</span></div>
+        <div style="padding:.85rem 1rem">
+          <select id="motoEvent"><option value="">Caricamento eventi…</option></select>
+          <div class="f1-picker" id="motoClassPicker" style="margin-top:.5rem">
+            <button type="button" class="f1-chip active" data-class="e8c110ad-64aa-4e8e-8a86-f2f152f6a942">MotoGP</button>
+            <button type="button" class="f1-chip" data-class="549640b8-fd9c-4245-acfd-60e4bc38b25c">Moto2</button>
+            <button type="button" class="f1-chip" data-class="954f7e65-2ef2-4423-b949-4961cc603e45">Moto3</button>
+          </div>
+          <div class="f1-picker" id="motoSessPicker" style="margin-top:.4rem"></div>
+          <div id="odResults" style="margin-top:.75rem"></div>
+        </div>
+      </div>
+    </div>
   </main>
 
-  <footer>Dashboard Dinamica — Dati aggiornati in tempo reale dai provider esterni</footer>
+  <footer>Dati da fonti pubbliche: ESPN, SportScore, OpenF1, MotoGP PulseLive. Non affiliato.</footer>
 
   <script>
-    const options = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
-    document.getElementById('live-date').innerText = new Date().toLocaleDateString('it-IT', options);
+    const PROXY = 'https://motogp-proxy.picchiandrea707.workers.dev/?url=';
+    const LIVE_URL = PROXY + encodeURIComponent('https://api.motogp.pulselive.com/motogp/v1/timing-gateway/livetiming-lite');
+    const F1_REFRESH_MS = 60_000;
+
+    function api(path) {
+      return PROXY + encodeURIComponent('https://api.motogp.pulselive.com/motogp/v1' + path);
+    }
+    function escapeHtml(value) {
+      return String(value ?? '').replace(/[&<>"']/g, char => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[char]);
+    }
+    function safeColor(value, fallback = '#555') {
+      const color = String(value ?? '').replace('#', '');
+      return /^[0-9a-f]{3,8}$/i.test(color) ? `#${color}` : fallback;
+    }
+    function apiError(label, response) {
+      return new Error(`${label}: HTTP ${response.status}`);
+    }
+    async function fetchJson(url, label) {
+      const response = await fetch(url, { headers: { Accept: 'application/json' } });
+      const text = await response.text();
+      if (!response.ok) throw apiError(label, response);
+      if (/waf block/i.test(text)) throw new Error(`${label}: servizio temporaneamente non disponibile`);
+      try {
+        return JSON.parse(text);
+      } catch (_) {
+        throw new Error(`${label}: risposta non valida`);
+      }
+    }
+    function timeValue(value) {
+      const time = Date.parse(value || '');
+      return Number.isFinite(time) ? time : 0;
+    }
+
+    // ===== NAV =====
+    document.getElementById('navCats').addEventListener('click', e => {
+      const btn = e.target.closest('button[data-panel]');
+      if (!btn) return;
+      document.querySelectorAll('nav.cats button').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      document.querySelectorAll('.panel').forEach(p => p.classList.remove('active'));
+      document.getElementById('panel-' + btn.dataset.panel)?.classList.add('active');
+    });
+
+    function ymd(d) {
+      // ESPN usa una data locale: toISOString() poteva mostrare il giorno sbagliato vicino a mezzanotte.
+      return `${d.getFullYear()}${String(d.getMonth() + 1).padStart(2, '0')}${String(d.getDate()).padStart(2, '0')}`;
+    }
+    function dateRange(daysBack = 1, daysFwd = 1) {
+      const dates = [];
+      const t = new Date();
+      for (let i = -daysBack; i <= daysFwd; i++) {
+        const d = new Date(t);
+        d.setDate(d.getDate() + i);
+        dates.push(ymd(d));
+      }
+      return dates;
+    }
+    function statusClass(s) {
+      const t = (s || '').toLowerCase();
+      if (/live|in progress|1h|2h|ht|q[1-4]|ot|half/i.test(t)) return 'live';
+      if (/final|ft|ended|aet|full/i.test(t)) return 'final';
+      return '';
+    }
+    function renderMatches(containerId, groups) {
+      const el = document.getElementById(containerId);
+      let html = '';
+      let total = 0;
+      for (const [title, list] of groups) {
+        if (!list.length) continue;
+        total += list.length;
+        html += `<div class="league-card"><div class="league-head"><span>${escapeHtml(title)}</span><span class="count">${list.length} partite</span></div>`;
+        for (const m of list) {
+          const sc = statusClass(m.status);
+          const hasScore = m.hasScore !== false && m.homeScore !== '' && m.homeScore != null && m.homeScore !== undefined;
+          const scoreText = hasScore ? `${m.homeScore} – ${m.awayScore}` : displayMatchTime(m.time);
+          const home = escapeHtml(m.home || '—');
+          const away = escapeHtml(m.away || '—');
+          const status = escapeHtml(m.status || '');
+          const homeLogo = m.homeLogo ? `<img src="${escapeHtml(m.homeLogo)}" alt="" onerror="this.style.display='none'">` : '';
+          const awayLogo = m.awayLogo ? `<img src="${escapeHtml(m.awayLogo)}" alt="" onerror="this.style.display='none'">` : '';
+          html += `<div class="match">
+            <div class="team home">${homeLogo}<span title="${home}">${home}</span></div>
+            <div class="score-box"><div class="score">${escapeHtml(scoreText)}</div><div class="status ${sc}">${status}</div></div>
+            <div class="team away"><span title="${away}">${away}</span>${awayLogo}</div>
+          </div>`;
+        }
+        html += `</div>`;
+      }
+      el.innerHTML = html || '<div class="empty">Nessuna partita in programma</div>';
+      return total;
+    }
+
+    async function fetchEspnScoreboard(sport, league, dates) {
+      const out = [];
+      for (const date of dates) {
+        try {
+          const url = `https://site.web.api.espn.com/apis/site/v2/sports/${sport}/${league}/scoreboard?dates=${date}&limit=40`;
+          const res = await fetch(url);
+          if (!res.ok) continue;
+          const data = await res.json();
+          for (const ev of (data.events || [])) {
+            const comp = ev.competitions?.[0];
+            if (!comp) continue;
+            const home = comp.competitors?.find(c => c.homeAway === 'home');
+            const away = comp.competitors?.find(c => c.homeAway === 'away');
+            const st = ev.status?.type || {};
+            out.push({
+              home: home?.team?.displayName || home?.team?.name || '?',
+              away: away?.team?.displayName || away?.team?.name || '?',
+              homeLogo: home?.team?.logo || '',
+              awayLogo: away?.team?.logo || '',
+              // ESPN assegna spesso 0–0 anche alle partite non ancora iniziate.
+              homeScore: home?.score ?? '',
+              awayScore: away?.score ?? '',
+              hasScore: st.state !== 'pre',
+              status: st.shortDetail || st.description || '',
+              time: ''
+            });
+          }
+        } catch (_) {}
+      }
+      return out;
+    }
+
+    function sportScoreMatch(m) {
+      return {
+        home: m.home || '?', away: m.away || '?',
+        homeLogo: m.home_logo || '', awayLogo: m.away_logo || '',
+        homeScore: m.home_score ?? '', awayScore: m.away_score ?? '',
+        status: m.status_text || m.status || '', time: m.time || '',
+        hasScore: m.home_score != null && m.away_score != null,
+        competition: m.competition || ''
+      };
+    }
+    function isLiveMatch(m) {
+      return /live|in progress|progress|1st|2nd|3rd|4th|quarter|half|period|ot|intermission/i.test(m.status || '');
+    }
+    function sortLiveFirst(list) {
+      return [...list].sort((a, b) => Number(isLiveMatch(b)) - Number(isLiveMatch(a)) || String(a.time || '').localeCompare(String(b.time || '')));
+    }
+    function displayMatchTime(value) {
+      if (typeof value === 'number' && Number.isFinite(value)) {
+        return new Date(value).toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit' });
+      }
+      return String(value || '—');
+    }
+    function footballCompetitionName(value) {
+      const c = String(value || '').toLowerCase();
+      if (/serie a( |$)|italian serie a/.test(c)) return 'Serie A';
+      if (/serie b|italian serie b/.test(c)) return 'Serie B';
+      if (/women.*champions league|champions league.*women|uefa women/.test(c)) return 'Champions League Femminile';
+      if (/women.*super league|super league.*women|english women/.test(c)) return 'Premier League Femminile';
+      if (/premier league|english premier/.test(c)) return 'Premier League';
+      if (/la liga|spanish primera/.test(c)) return 'La Liga';
+      if (/bundesliga|german bundesliga/.test(c)) return 'Bundesliga';
+      if (/ligue 1|french ligue/.test(c)) return 'Ligue 1';
+      if (/champions league/.test(c)) return 'Champions League';
+      if (/europa league/.test(c)) return 'Europa League';
+      if (/conference league/.test(c)) return 'Conference League';
+      if (/coppa italia|italian cup/.test(c)) return 'Coppa Italia';
+      return null;
+    }
+    async function fetchSportScore(sport) {
+      try {
+        const data = await fetchJson(`https://sportscore.com/api/widget/matches/?sport=${sport}&limit=150`, `SportScore ${sport}`);
+        return Array.isArray(data.matches) ? data.matches.map(sportScoreMatch) : [];
+      } catch (_) { return []; }
+    }
+    async function fetchEuroleagueSchedule() {
+      try {
+        const year = new Date().getFullYear();
+        const url = PROXY + encodeURIComponent(`https://api-live.euroleague.net/v1/schedules?seasonCode=E${year}`);
+        const xml = await fetch(url).then(async response => {
+          if (!response.ok) throw apiError('Calendario Eurolega', response);
+          return response.text();
+        });
+        const doc = new DOMParser().parseFromString(xml, 'application/xml');
+        if (doc.querySelector('parsererror')) throw new Error('Calendario Eurolega: XML non valido');
+        const start = Date.now() - 2 * 86_400_000;
+        const end = Date.now() + 3 * 86_400_000;
+        return [...doc.querySelectorAll('item')].map(item => {
+          const get = tag => item.querySelector(tag)?.textContent?.trim() || '';
+          const date = get('date');
+          const time = get('startime');
+          const eventTime = Date.parse(`${date} ${time}`);
+          return {
+            home: get('hometeam'), away: get('awayteam'),
+            homeLogo: '', awayLogo: '', homeScore: '', awayScore: '',
+            hasScore: false, competition: 'Eurolega',
+            status: get('played') === 'true' ? 'Finished' : `Ore ${time}`,
+            time: Number.isFinite(eventTime) ? eventTime : `${date} ${time}`,
+            eventTime
+          };
+        }).filter(m => m.home && m.away && m.eventTime >= start && m.eventTime <= end);
+      } catch (_) { return []; }
+    }
+
+    // ===== CALCIO =====
+    const CALCIO_LEAGUES = [
+      { id: 'ita.1', name: 'Serie A' }, { id: 'ita.2', name: 'Serie B' },
+      { id: 'eng.1', name: 'Premier League' }, { id: 'eng.w.1', name: 'Premier League Femminile' },
+      { id: 'esp.1', name: 'La Liga' },
+      { id: 'ger.1', name: 'Bundesliga' }, { id: 'fra.1', name: 'Ligue 1' },
+      { id: 'uefa.champions', name: 'Champions League' }, { id: 'uefa.wchampions', name: 'Champions League Femminile' },
+      { id: 'uefa.europa', name: 'Europa League' },
+      { id: 'uefa.europa.conf', name: 'Conference League' }, { id: 'ita.coppa_italia', name: 'Coppa Italia' }
+    ];
+
+    async function loadCalcio() {
+      const dates = dateRange(1, 1);
+      const [scoreFeed, ...leagueFeeds] = await Promise.all([
+        fetchSportScore('football'),
+        ...CALCIO_LEAGUES.map(lg => fetchEspnScoreboard('soccer', lg.id, dates))
+      ]);
+      const groups = [];
+      const knownTeams = new Set();
+      CALCIO_LEAGUES.forEach((lg, i) => {
+        const matches = sortLiveFirst(leagueFeeds[i].map(m => ({ ...m, competition: lg.name })));
+        if (matches.length) {
+          matches.forEach(m => knownTeams.add(`${m.home}|${m.away}`));
+          groups.push([lg.name, matches]);
+        }
+      });
+      const selectedFromFeed = new Map(CALCIO_LEAGUES.map(lg => [lg.name, []]));
+      const other = [];
+      scoreFeed.forEach(m => {
+        if (knownTeams.has(`${m.home}|${m.away}`)) return;
+        const name = footballCompetitionName(m.competition);
+        if (name && selectedFromFeed.has(name)) selectedFromFeed.get(name).push({ ...m, competition: name });
+        else other.push(m);
+      });
+      for (const [name, matches] of selectedFromFeed) {
+        if (matches.length) {
+          const index = groups.findIndex(([title]) => title === name);
+          if (index >= 0) groups[index][1].push(...matches);
+          else groups.push([name, sortLiveFirst(matches)]);
+        }
+      }
+      if (other.length) groups.push(['Altri eventi', sortLiveFirst(other)]);
+      groups.sort((a, b) => Number(b[1].some(isLiveMatch)) - Number(a[1].some(isLiveMatch)) || b[1].length - a[1].length);
+      renderMatches('grid-calcio', groups);
+      touchUpdate();
+    }
+
+    // ===== BASKET =====
+    async function loadBasket() {
+      const [scoreFeed, nba, euroleague, officialEuroleague] = await Promise.all([
+        fetchSportScore('basketball'),
+        fetchEspnScoreboard('basketball', 'nba', dateRange(1, 2)),
+        // SportScore non restituisce sempre l'Eurolega nel suo elenco limitato a 50 eventi.
+        fetchEspnScoreboard('basketball', 'euroleague', dateRange(2, 3)),
+        fetchEuroleagueSchedule()
+      ]);
+      const groups = [
+        ['NBA', sortLiveFirst([...nba, ...scoreFeed.filter(m => /nba|wnba|national basketball association|women.s national basketball association/i.test(m.competition))])],
+        ['Eurolega', sortLiveFirst([...officialEuroleague, ...euroleague, ...scoreFeed.filter(m => /euroleague|eurolega|turkish airlines euroleague/i.test(m.competition) && !/eurocup/i.test(m.competition))])],
+        ['Serie A', sortLiveFirst(scoreFeed.filter(m => /(serie a|lega basket|\blba\b)/i.test(m.competition)))],
+        ['Altri eventi', sortLiveFirst(scoreFeed.filter(m => !/nba|wnba|national basketball association|women.s national basketball association|euroleague|eurolega|turkish airlines euroleague|eurocup|serie a|lega basket|\blba\b/i.test(m.competition)))]
+      ].filter(([, list]) => list.length);
+      renderMatches('grid-basket', groups);
+      touchUpdate();
+    }
+
+    // ===== USA =====
+    async function loadUsa() {
+      const dates = dateRange(1, 1);
+      const [nba, nfl, nhl] = await Promise.all([
+        fetchEspnScoreboard('basketball', 'nba', dates),
+        fetchEspnScoreboard('football', 'nfl', dates),
+        fetchEspnScoreboard('hockey', 'nhl', dates)
+      ]);
+      renderMatches('grid-usa', [
+        ['NBA', nba],
+        ['NFL', nfl],
+        ['NHL', nhl]
+      ]);
+      touchUpdate();
+    }
+
+    // ===== F1 (OpenF1) =====
+    const f1State = { inFlight: false, lastLoad: 0, sessions: null, sessionsAt: 0, drivers: new Map(), selectedSessionKey: null };
+
+    async function getF1Sessions(year) {
+      const cacheValid = f1State.sessions && (Date.now() - f1State.sessionsAt < 10 * 60_000);
+      if (cacheValid) return f1State.sessions;
+      const sessions = await fetchJson(`https://api.openf1.org/v1/sessions?year=${year}`, 'OpenF1');
+      if (!Array.isArray(sessions)) throw new Error('OpenF1: elenco sessioni non disponibile');
+      f1State.sessions = sessions;
+      f1State.sessionsAt = Date.now();
+      return sessions;
+    }
+
+    async function loadF1(force = false) {
+      const box = document.getElementById('f1-box');
+      if (f1State.inFlight || (!force && Date.now() - f1State.lastLoad < F1_REFRESH_MS - 1_000)) return;
+      f1State.inFlight = true;
+      try {
+        const sessions = await getF1Sessions(new Date().getFullYear());
+        const pastSessions = sessions
+          .filter(s => !s.is_cancelled && timeValue(s.date_start) <= Date.now())
+          .sort((a, b) => timeValue(b.date_start) - timeValue(a.date_start));
+        if (!pastSessions.length) {
+          box.innerHTML = '<div class="empty">Nessuna sessione F1 già iniziata</div>';
+          return;
+        }
+
+        // Una sola richiesta di posizione, con un secondo tentativo soltanto se la più recente è vuota.
+        let session = pastSessions.find(s => String(s.session_key) === String(f1State.selectedSessionKey)) || pastSessions[0];
+        let positions = await fetchJson(`https://api.openf1.org/v1/position?session_key=${session.session_key}`, 'OpenF1 posizioni');
+        if ((!Array.isArray(positions) || !positions.length) && pastSessions[1]) {
+          session = pastSessions[1];
+          positions = await fetchJson(`https://api.openf1.org/v1/position?session_key=${session.session_key}`, 'OpenF1 posizioni');
+        }
+        if (!Array.isArray(positions)) throw new Error('OpenF1: dati posizione non validi');
+
+        let drivers = f1State.drivers.get(session.session_key);
+        if (!drivers) {
+          drivers = await fetchJson(`https://api.openf1.org/v1/drivers?session_key=${session.session_key}`, 'OpenF1 piloti');
+          if (!Array.isArray(drivers)) drivers = [];
+          f1State.drivers.set(session.session_key, drivers);
+        }
+
+        const latest = {};
+        for (const p of positions) {
+          const id = p.driver_number;
+          if (id != null && (!latest[id] || (p.date || '') > (latest[id].date || ''))) latest[id] = p;
+        }
+        const drvMap = {};
+        for (const d of drivers) drvMap[d.driver_number] = d;
+        const rows = Object.values(latest).sort((a, b) => (a.position || 99) - (b.position || 99));
+        const now = Date.now();
+        const isLive = timeValue(session.date_start) <= now && (!session.date_end || timeValue(session.date_end) >= now);
+        const title = `${session.session_name || session.session_type || 'Sessione'} · ${session.circuit_short_name || session.location || session.country_name || ''}`;
+        const eventName = session.location || session.country_name || 'Formula 1';
+        const sessionStatus = isLive ? 'LIVE' : 'Terminata';
+        const sessionOptions = pastSessions.slice(0, 30).map(s =>
+          `<option value="${escapeHtml(s.session_key)}" ${String(s.session_key) === String(session.session_key) ? 'selected' : ''}>${escapeHtml(s.date_start?.slice(0, 10) || '')} · ${escapeHtml(s.session_name || s.session_type || 'Sessione')} · ${escapeHtml(s.location || '')}</option>`
+        ).join('');
+
+        let markup = `<div class="league-card" style="max-width:1100px">
+          <div class="league-head"><span>Livetiming · ${escapeHtml(eventName)}</span><span class="count" style="color:${isLive ? 'var(--live)' : 'var(--muted)'}">${sessionStatus}</span></div>
+          <div class="session-info">
+            <div><label>Evento</label><strong>${escapeHtml(eventName)}</strong></div>
+            <div><label>Circuito</label><strong>${escapeHtml(session.circuit_short_name || '—')}</strong></div>
+            <div><label>Sessione</label><strong>${escapeHtml(session.session_name || session.session_type || '—')}</strong></div>
+            <div><label>Categoria</label><strong>Formula 1</strong></div>
+            <div><label>Stato</label><strong style="color:${isLive ? 'var(--live)' : 'var(--muted)'}">${sessionStatus}</strong></div>
+          </div>
+          <div style="padding:.85rem 1rem;border-top:1px solid var(--border)">
+            <label style="display:block;font-size:.7rem;color:var(--muted);text-transform:uppercase;margin-bottom:.35rem">Sessioni F1 — on demand</label>
+            <select id="f1SessionPicker" style="width:100%;max-width:560px">${sessionOptions}</select>
+          </div>`;
+        if (!rows.length) {
+          markup += '<div class="empty">Nessun dato posizione disponibile per questa sessione</div></div>';
+        } else {
+          markup += '<div style="max-height:560px;overflow:auto"><table class="timing-table"><thead><tr><th>Pos</th><th>#</th><th>Pilota</th><th>Team</th></tr></thead><tbody>';
+          for (const r of rows) {
+            const d = drvMap[r.driver_number] || {};
+            const name = d.name_acronym || d.broadcast_name || `#${r.driver_number}`;
+            const team = d.team_name || '—';
+            const posClass = r.position === 1 ? 'p1' : r.position === 2 ? 'p2' : r.position === 3 ? 'p3' : '';
+            markup += `<tr>
+              <td class="pos ${posClass}">${escapeHtml(r.position ?? '—')}</td>
+              <td><span class="num" style="background:${safeColor(d.team_colour)}">${escapeHtml(r.driver_number ?? '—')}</span></td>
+              <td class="driver">${escapeHtml(name)}</td>
+              <td class="gap">${escapeHtml(team)}</td>
+            </tr>`;
+          }
+          markup += '</tbody></table></div></div>';
+        }
+        box.innerHTML = markup;
+        document.getElementById('f1SessionPicker')?.addEventListener('change', event => {
+          f1State.selectedSessionKey = event.target.value;
+          loadF1(true);
+        });
+      } catch (e) {
+        box.innerHTML = `<div class="error">Errore F1: ${escapeHtml(e.message || 'servizio non disponibile')}</div>`;
+      } finally {
+        f1State.lastLoad = Date.now();
+        f1State.inFlight = false;
+        touchUpdate();
+      }
+    }
+
+    // ===== MOTOGP =====
+    function formatRemaining(secStr) {
+      const s = parseInt(secStr, 10);
+      if (isNaN(s) || s < 0) return '—';
+      return `${Math.floor(s / 60)}:${(s % 60).toString().padStart(2, '0')}`;
+    }
+    function statusLabel(id) {
+      return { N: 'Non iniziata', S: 'In corso', F: 'Finita', R: 'Bandiera rossa', P: 'Sospesa' }[id] || id || '—';
+    }
+
+    async function fetchLive() {
+      try {
+        const res = await fetch(LIVE_URL);
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const data = await res.json();
+        const head = data.head || {};
+        const riders = Object.values(data.rider || {}).sort((a, b) => {
+          const pa = a.pos > 0 ? a.pos : 999;
+          const pb = b.pos > 0 ? b.pos : 999;
+          return pa - pb || (a.order || 0) - (b.order || 0);
+        });
+        document.getElementById('liveError').style.display = 'none';
+        document.getElementById('liveLoading').style.display = 'none';
+        document.getElementById('liveSessionInfo').style.display = 'grid';
+        document.getElementById('liveTable').style.display = 'table';
+        document.getElementById('liveEvent').textContent = head.event_tv_name || head.event_shortname || '—';
+        document.getElementById('liveCircuit').textContent = head.circuit_name || '—';
+        document.getElementById('liveSession').textContent = `${head.session_shortname || ''} · ${head.session_name || ''}`.trim();
+        document.getElementById('liveCategory').textContent = head.category || '—';
+        document.getElementById('liveRemaining').textContent = formatRemaining(head.remaining);
+        document.getElementById('liveSessionStatus').textContent = statusLabel(head.session_status_id);
+        document.getElementById('liveTitle').textContent = `Livetiming · ${head.category || 'MotoGP'}`;
+        document.getElementById('liveStatus').textContent = head.session_status_id === 'S' ? 'LIVE' : (head.session_status_id || '—');
+        document.getElementById('liveBody').innerHTML = riders.map(r => {
+          const posClass = r.pos === 1 ? 'p1' : r.pos === 2 ? 'p2' : r.pos === 3 ? 'p3' : '';
+          const bg = r.color ? `#${r.color}` : '#555';
+          const tc = r.text_color ? `#${r.text_color}` : '#fff';
+          return `<tr>
+            <td class="pos ${posClass}">${r.pos > 0 ? r.pos : '—'}</td>
+            <td><span class="num" style="background:${bg};color:${tc}">${r.rider_number || '—'}</span></td>
+            <td class="driver">${r.rider_shortname || r.rider_surname || '—'}
+              <div style="font-size:.75rem;color:var(--muted);font-weight:400">${r.rider_name || ''} ${r.rider_surname || ''}</div></td>
+            <td><div>${r.team_name || '—'}</div><div style="font-size:.75rem;color:var(--muted)">${r.bike_name || ''}</div></td>
+            <td class="gap">${r.lap_time || '—'}</td>
+            <td class="gap">${r.last_lap_time || '—'}</td>
+            <td class="gap">${r.gap_first || '—'}</td>
+            <td class="gap">${r.gap_prev || '—'}</td>
+            <td>${r.on_pit ? '<span class="pit">PIT</span>' : ''}</td>
+          </tr>`;
+        }).join('');
+        document.getElementById('liveDot').style.background = 'var(--live)';
+        touchUpdate();
+      } catch (e) {
+        document.getElementById('liveError').style.display = 'block';
+        document.getElementById('liveError').textContent = 'Errore live: ' + e.message;
+        document.getElementById('liveDot').style.background = '#666';
+      }
+    }
+
+    let currentClass = 'e8c110ad-64aa-4e8e-8a86-f2f152f6a942';
+    let currentEvent = null;
+    let currentSession = null;
+    let motoSeasonId = null;
+    let classificationRequest = 0;
+
+    function chooseMotoEvent(events) {
+      const ordered = [...events].sort((a, b) => timeValue(b.date_start) - timeValue(a.date_start));
+      const now = Date.now();
+      return ordered.find(e => timeValue(e.date_start) <= now && (!timeValue(e.date_end) || timeValue(e.date_end) >= now))
+        || ordered.find(e => timeValue(e.date_start) <= now)
+        || ordered.at(-1)
+        || null;
+    }
+
+    async function loadEvents() {
+      const sel = document.getElementById('motoEvent');
+      try {
+        const seasons = await fetchJson(api('/results/seasons'), 'Stagioni MotoGP');
+        if (!Array.isArray(seasons)) throw new Error('elenco stagioni non disponibile');
+        const year = new Date().getFullYear();
+        const season = seasons.find(s => s.current) || seasons.find(s => Number(s.year) === year);
+        if (!season?.id) throw new Error('stagione corrente non trovata');
+        motoSeasonId = season.id;
+
+        const events = await fetchJson(api(`/results/events?seasonUuid=${encodeURIComponent(motoSeasonId)}`), 'Eventi MotoGP');
+        if (!Array.isArray(events) || !events.length) throw new Error('nessun evento disponibile');
+        const ordered = [...events].sort((a, b) => timeValue(b.date_start) - timeValue(a.date_start));
+        const selected = chooseMotoEvent(ordered);
+        sel.innerHTML = ordered.map(e => {
+          const label = (e.short_name || e.name || 'Evento').slice(0, 40);
+          return `<option value="${escapeHtml(e.id)}">${escapeHtml(label)}</option>`;
+        }).join('');
+        currentEvent = selected?.id || null;
+        currentSession = null;
+        if (currentEvent) {
+          sel.value = currentEvent;
+          await loadSessions();
+        }
+      } catch (e) {
+        sel.innerHTML = '<option value="">Eventi non disponibili</option>';
+        document.getElementById('motoSessPicker').innerHTML = `<span style="color:#ff8a80">${escapeHtml(e.message || 'Errore eventi')}</span>`;
+      }
+    }
+
+    async function loadSessions() {
+      if (!currentEvent) return;
+      const eventAtRequest = currentEvent;
+      const classAtRequest = currentClass;
+      const picker = document.getElementById('motoSessPicker');
+      picker.innerHTML = '<span style="color:var(--muted);font-size:.8rem">Caricamento…</span>';
+      try {
+        const sessions = await fetchJson(api(`/results/sessions?eventUuid=${encodeURIComponent(eventAtRequest)}&categoryUuid=${encodeURIComponent(classAtRequest)}`), 'Sessioni MotoGP');
+        if (!Array.isArray(sessions)) throw new Error('risposta sessioni non valida');
+        if (eventAtRequest !== currentEvent || classAtRequest !== currentClass) return;
+        const ordered = [...sessions].sort((a, b) => timeValue(a.date) - timeValue(b.date));
+        const alreadyStarted = ordered.filter(s => timeValue(s.date) <= Date.now());
+        const preferred = ordered.find(s => s.id === currentSession) || alreadyStarted.at(-1) || ordered[0];
+        picker.innerHTML = ordered.map(s =>
+          `<button type="button" class="f1-chip ${s.id === preferred?.id ? 'active' : ''}" data-sess="${escapeHtml(s.id)}">${escapeHtml(s.type || s.name || 'Sess')}</button>`
+        ).join('') || '<span style="color:var(--muted)">Nessuna sessione</span>';
+        picker.querySelectorAll('.f1-chip').forEach(btn => {
+          btn.onclick = () => {
+            picker.querySelectorAll('.f1-chip').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            currentSession = btn.dataset.sess;
+            loadClassification(currentSession);
+          };
+        });
+        if (preferred?.id) {
+          currentSession = preferred.id;
+          loadClassification(currentSession);
+        }
+      } catch (e) {
+        picker.innerHTML = `<span style="color:#ff8a80">Errore sessioni: ${escapeHtml(e.message || 'servizio non disponibile')}</span>`;
+      }
+    }
+
+    async function loadClassification(sessionId) {
+      const requestId = ++classificationRequest;
+      const box = document.getElementById('odResults');
+      box.innerHTML = '<div class="loading">Caricamento classifica…</div>';
+      const url = api(`/results/session/${encodeURIComponent(sessionId)}/classification?test=false`);
+      for (let attempt = 1; attempt <= 3; attempt++) {
+        try {
+          if (attempt > 1) await new Promise(r => setTimeout(r, 1_000 * attempt));
+          const data = await fetchJson(url, 'Classifica MotoGP');
+          if (requestId !== classificationRequest) return;
+          const list = Array.isArray(data.classification) ? data.classification : [];
+          if (!list.length) {
+            box.innerHTML = '<div class="empty">Nessuna classifica disponibile per questa sessione</div>';
+            return;
+          }
+          box.innerHTML = `<div style="max-height:480px;overflow:auto"><table class="timing-table">
+            <thead><tr><th>Pos</th><th>Pilota</th><th>Gap</th><th>Giri</th></tr></thead>
+            <tbody>${list.map(r => `<tr>
+              <td class="pos">${escapeHtml(r.position ?? '—')}</td>
+              <td class="driver">${escapeHtml(r.rider?.full_name || '—')}</td>
+              <td class="gap">${escapeHtml(r.gap?.first || '—')}</td>
+              <td class="gap">${escapeHtml(r.total_laps ?? '—')}</td>
+            </tr>`).join('')}</tbody></table></div>`;
+          return;
+        } catch (e) {
+          if (attempt === 3 && requestId === classificationRequest) {
+            box.innerHTML = '<div class="error">Classifica momentaneamente non disponibile. Riprova tra poco.</div>';
+          }
+        }
+      }
+    }
+
+    document.getElementById('motoEvent').addEventListener('change', e => {
+      currentEvent = e.target.value;
+      currentSession = null;
+      loadSessions();
+    });
+    document.getElementById('motoClassPicker').addEventListener('click', e => {
+      const btn = e.target.closest('.f1-chip');
+      if (!btn) return;
+      document.querySelectorAll('#motoClassPicker .f1-chip').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      currentClass = btn.dataset.class;
+      currentSession = null;
+      loadSessions();
+    });
+
+    function touchUpdate() {
+      document.getElementById('lastUpdate').textContent = 'Aggiornato alle ' + new Date().toLocaleTimeString('it-IT');
+    }
+
+    document.getElementById('btnRefresh').onclick = () => {
+      loadCalcio(); loadBasket(); loadUsa(); loadF1(true); fetchLive();
+    };
+
+    // Avvio
+    loadCalcio();
+    loadBasket();
+    loadUsa();
+    loadF1();
+    fetchLive();
+    loadEvents();
+    setInterval(fetchLive, 6000);
+    setInterval(() => { loadCalcio(); loadBasket(); loadUsa(); }, 45000);
+    setInterval(loadF1, F1_REFRESH_MS);
   </script>
 </body>
 </html>

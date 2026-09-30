@@ -404,7 +404,7 @@
       if (/europa league/.test(c)) return 'Europa League';
       if (/conference league/.test(c)) return 'Conference League';
       if (/nations league/.test(c)) return 'UEFA Nations League';
-      if (/africa cup|caf nations|african cup/.test(c)) return 'Qualificazioni Coppa d’Africa';
+      if (/qualif.*(africa|afcon|nations)|(?:africa|afcon|nations).*qualif/.test(c)) return 'Qualificazioni Coppa d’Africa';
       if (/coppa italia|italian cup/.test(c)) return 'Coppa Italia';
       return null;
     }
@@ -484,7 +484,8 @@
       { id: 'uefa.champions', name: 'Champions League' }, { id: 'uefa.wchampions', name: 'Champions League Femminile' },
       { id: 'uefa.europa', name: 'Europa League' },
       { id: 'uefa.europa.conf', name: 'Conference League' }, { id: 'uefa.nations', name: 'UEFA Nations League' },
-      { id: 'caf.nations', name: 'Qualificazioni Coppa d’Africa' }, { id: 'ita.coppa_italia', name: 'Coppa Italia' }
+      { id: 'caf.nations_qual', name: 'Qualificazioni Coppa d’Africa' },
+      { id: 'ita.coppa_italia', name: 'Coppa Italia' }
     ];
 
     async function loadCalcio() {

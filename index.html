@@ -344,7 +344,7 @@
               awayScore: away?.score ?? '',
               hasScore: st.state !== 'pre',
               status: st.shortDetail || st.description || '',
-              time: ''
+              time: '', eventDate: ev.date || ''
             });
           }
         } catch (_) {}
@@ -362,12 +362,13 @@
         competition: m.competition || ''
       };
     }
-    function isTodayMatch(m) {
-      if (!m.time) return true;
-      const parsed = typeof m.time === 'number' ? m.time : Date.parse(m.time);
+    function isWithin24Hours(m) {
+      const raw = m.eventDate || m.time;
+      if (!raw) return true;
+      const parsed = typeof raw === 'number' ? raw : Date.parse(raw);
       if (!Number.isFinite(parsed)) return true;
-      const d = new Date(parsed), now = new Date();
-      return d.getFullYear() === now.getFullYear() && d.getMonth() === now.getMonth() && d.getDate() === now.getDate();
+      const now = Date.now();
+      return parsed >= now - 24 * 60 * 60 * 1000 && parsed <= now + 24 * 60 * 60 * 1000;
     }
     function isLiveMatch(m) {
       return /live|in progress|progress|in corso|1st|2nd|3rd|4th|quarter|half|period|ot|intermission/i.test(m.status || '');
@@ -427,8 +428,8 @@
         // Mostra la giornata corrente e le prossime, non le partite già giocate ieri.
         const today = new Date();
         today.setHours(0, 0, 0, 0);
-        const start = today.getTime();
-        const end = Date.now() + 3 * 86_400_000;
+        const start = Date.now() - 24 * 86_400_000;
+        const end = Date.now() + 24 * 86_400_000;
         const matches = [...doc.querySelectorAll('item')].map(item => {
           const get = tag => item.querySelector(tag)?.textContent?.trim() || '';
           const date = get('date');
@@ -481,12 +482,12 @@
     ];
 
     async function loadCalcio() {
-      const dates = dateRange(0, 0);
+      const dates = dateRange(1, 1);
       const [scoreFeed, ...leagueFeeds] = await Promise.all([
         fetchSportScore('football'),
         ...CALCIO_LEAGUES.map(lg => fetchEspnScoreboard('soccer', lg.id, dates))
       ]);
-      const todaysScoreFeed = scoreFeed.filter(isTodayMatch);
+      const todaysScoreFeed = scoreFeed.filter(isWithin24Hours);
       const groups = [];
       const knownTeams = new Set();
       CALCIO_LEAGUES.forEach((lg, i) => {
@@ -520,13 +521,13 @@
     async function loadBasket() {
       const [scoreFeed, nba, euroleague, officialEuroleague] = await Promise.all([
         fetchSportScore('basketball'),
-        fetchEspnScoreboard('basketball', 'nba', dateRange(0, 0)),
+        fetchEspnScoreboard('basketball', 'nba', dateRange(1, 1)),
         // SportScore non restituisce sempre l'Eurolega nel suo elenco limitato a 50 eventi.
-        fetchEspnScoreboard('basketball', 'euroleague', dateRange(0, 0)),
+        fetchEspnScoreboard('basketball', 'euroleague', dateRange(1, 1)),
         fetchEuroleagueSchedule()
       ]);
       const liveOfficialEuroleague = await fetchEuroleagueLiveScores(officialEuroleague);
-      const todaysScoreFeed = scoreFeed.filter(isTodayMatch);
+      const todaysScoreFeed = scoreFeed.filter(isWithin24Hours);
       const groups = [
         ['NBA', sortLiveFirst([...nba, ...todaysScoreFeed.filter(m => /nba|wnba|national basketball association|women.s national basketball association/i.test(m.competition))])],
         // Oggi: risultati conclusi/live con punteggio e gare ancora in programma.
@@ -539,7 +540,7 @@
 
     // ===== USA =====
     async function loadUsa() {
-      const dates = dateRange(0, 0);
+      const dates = dateRange(1, 1);
       const [nba, nfl, nhl] = await Promise.all([
         fetchEspnScoreboard('basketball', 'nba', dates),
         fetchEspnScoreboard('football', 'nfl', dates),

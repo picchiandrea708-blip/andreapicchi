@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SPORT LIVE — Calendario Automatico</title>
+  <title>SPORT LIVE — Portale Globale</title>
   <style>
     :root {
       --bg-color: #0b0f19;
@@ -13,6 +13,8 @@
       --accent: #3b82f6;
       --border: #1e293b;
       --live-red: #ef4444;
+      --basket-orange: #f59e0b;
+      --usa-color: #10b981;
       --ticker-bg: #1e293b;
     }
 
@@ -31,7 +33,7 @@
       align-items: center;
     }
     .ticker-label {
-      background: var(--accent);
+      background: var(--live-red);
       color: white;
       padding: 0 16px;
       height: 100%;
@@ -45,7 +47,7 @@
     .ticker-wrap {
       display: inline-block;
       white-space: nowrap;
-      animation: ticker 40s linear infinite;
+      animation: ticker 50s linear infinite;
       padding-left: 100%;
     }
     .ticker-item {
@@ -81,14 +83,14 @@
     .pulse-dot {
       width: 8px;
       height: 8px;
-      background-color: #10b981;
+      background-color: var(--live-red);
       border-radius: 50%;
-      box-shadow: 0 0 8px #10b981;
+      box-shadow: 0 0 8px var(--live-red);
       animation: pulse 2s infinite;
     }
     @keyframes pulse {
       0% { transform: scale(0.95); opacity: 0.8; }
-      50% { transform: scale(1.2); opacity: 1; }
+      50% { transform: scale(1.3); opacity: 1; }
       100% { transform: scale(0.95); opacity: 0.8; }
     }
 
@@ -150,24 +152,10 @@
       align-items: center;
       gap: 10px;
     }
-    .live-badge {
-      background: var(--live-red);
-      color: white;
-      font-size: 0.7rem;
-      padding: 2px 6px;
-      border-radius: 4px;
-      font-weight: bold;
-      text-transform: uppercase;
-    }
-    .tomorrow-badge {
-      background: #3b82f6;
-      color: white;
-      font-size: 0.7rem;
-      padding: 2px 6px;
-      border-radius: 4px;
-      font-weight: bold;
-      text-transform: uppercase;
-    }
+    .live-badge { background: var(--live-red); color: white; font-size: 0.7rem; padding: 2px 6px; border-radius: 4px; font-weight: bold; text-transform: uppercase; }
+    .basket-badge { background: var(--basket-orange); color: white; font-size: 0.7rem; padding: 2px 6px; border-radius: 4px; font-weight: bold; text-transform: uppercase; }
+    .motor-badge { background: #8b5cf6; color: white; font-size: 0.7rem; padding: 2px 6px; border-radius: 4px; font-weight: bold; text-transform: uppercase; }
+    .usa-badge { background: var(--usa-color); color: white; font-size: 0.7rem; padding: 2px 6px; border-radius: 4px; font-weight: bold; text-transform: uppercase; }
 
     /* Griglia Eventi */
     .event-grid {
@@ -183,8 +171,13 @@
       display: flex;
       flex-direction: column;
       gap: 8px;
-      border-left: 3px solid var(--accent);
+      border-left: 3px solid var(--live-red);
     }
+    .event-item.basket { border-left-color: var(--basket-orange); }
+    .event-item.motor { border-left-color: #8b5cf6; }
+    .event-item.usa { border-left-color: var(--usa-color); }
+    .event-item.future { border-left-color: var(--accent); }
+
     .event-league {
       font-size: 0.75rem;
       color: var(--accent);
@@ -203,8 +196,9 @@
       font-weight: bold;
       font-size: 1.05rem;
       background: var(--border);
-      padding: 2px 8px;
+      padding: 2px 10px;
       border-radius: 4px;
+      letter-spacing: 1px;
     }
     .event-status {
       font-size: 0.8rem;
@@ -227,10 +221,9 @@
 
   <!-- Barra Notizie Ticker -->
   <div class="news-ticker-container">
-    <div class="ticker-label">News Live</div>
+    <div class="ticker-label">PORTALE LIVE</div>
     <div class="ticker-wrap">
-      <div class="ticker-item">Sistema di rotazione automatica attivo: visualizzazione giornaliera e programmazione futuri match. <span class="source">Redazione</span></div>
-      <div class="ticker-item">Monitoraggio continuo 24 ore per risultati, coppe europee e campionati. <span class="source">Live Desk</span></div>
+      <div class="ticker-item">Copertura globale: Calcio, Champions, Basket (LBA, Eurolega, NBA), Motori (F1, MotoGP) e Sport USA (NFL, NHL, MLB). <span class="source">Live Desk</span></div>
     </div>
   </div>
 
@@ -238,80 +231,114 @@
     <div class="logo">SPORT<span>LIVE</span></div>
     <div class="connection-status">
       <div class="pulse-dot"></div>
-      <span id="current-date-label">Aggiornamento automatico</span>
+      <span id="current-date-label">Dashboard attiva</span>
     </div>
   </header>
 
   <nav>
-    <button class="nav-btn active" onclick="filterSection('all')">Tutti gli eventi</button>
-    <button class="nav-btn" onclick="filterSection('oggi')">In Corso / Oggi (24h)</button>
-    <button class="nav-btn" onclick="filterSection('domani')">Domani / Prossimi</button>
+    <button class="nav-btn active" onclick="filterSection('all')">Tutti gli sport</button>
+    <button class="nav-btn" onclick="filterSection('calcio')">⚽ Calcio</button>
+    <button class="nav-btn" onclick="filterSection('basket')">🏀 Basket</button>
+    <button class="nav-btn" onclick="filterSection('usa')">🏈 US Sports (NFL/NHL/MLB)</button>
+    <button class="nav-btn" onclick="filterSection('motori')">🏎️ Motori</button>
   </nav>
 
   <main>
-    <!-- Sezione Oggi (mantenuta attiva 24 ore) -->
-    <div class="section-card" id="sec-oggi">
+    <!-- Sezione Calcio -->
+    <div class="section-card" id="sec-calcio">
       <div class="section-header">
-        <div class="section-title">⚽ In Campo Oggi (Risultati & Match 24h) <span class="live-badge">Live 24H</span></div>
+        <div class="section-title">⚽ Calcio & Coppe Europee <span class="live-badge">Live / Oggi</span></div>
       </div>
       <div class="event-grid">
         <div class="event-item">
-          <span class="event-league">UEFA Women's Champions League</span>
-          <div class="event-details">
-            <span>AS Roma Femminile vs FC Barcelona</span>
-            <span class="event-score">1 - 2</span>
-          </div>
-          <div class="event-status"><span>Risultato finale / Storico 24h</span><span style="color:#10b981;">● Concluso</span></div>
+          <span class="event-league">UWCL • Fase a Gironi</span>
+          <div class="event-details"><span>AS Roma Femminile vs FC Barcelona</span><span class="event-score">0 - 3</span></div>
+          <div class="event-status"><span>Risultato ufficiale</span><span style="color:var(--live-red);">● Conclusa</span></div>
         </div>
         <div class="event-item">
-          <span class="event-league">UEFA Women's Champions League</span>
-          <div class="event-details">
-            <span>BK Häcken vs Juventus Women</span>
-            <span class="event-score">0 - 1</span>
-          </div>
-          <div class="event-status"><span>Risultato finale / Storico 24h</span><span style="color:#10b981;">● Concluso</span></div>
+          <span class="event-league">UWCL • Fase a Gironi</span>
+          <div class="event-details"><span>BK Häcken vs Juventus Women</span><span class="event-score">1 - 1</span></div>
+          <div class="event-status"><span>Risultato ufficiale</span><span style="color:var(--live-red);">● Conclusa</span></div>
         </div>
-        <div class="event-item">
-          <span class="event-league">UEFA Women's Champions League</span>
-          <div class="event-details">
-            <span>Paris FC vs Arsenal Women</span>
-            <span class="event-score">1 - 1</span>
-          </div>
-          <div class="event-status"><span>Risultato finale / Storico 24h</span><span style="color:#10b981;">● Concluso</span></div>
+        <div class="event-item future">
+          <span class="event-league">UEFA Champions League • Uomini</span>
+          <div class="event-details"><span>Turno di Champions League (Prossimi match)</span><span class="event-score">21:00</span></div>
+          <div class="event-status"><span>In arrivo in settimana</span><span style="color:var(--accent);">● Programmato</span></div>
         </div>
       </div>
     </div>
 
-    <!-- Sezione Domani / Futuri -->
-    <div class="section-card" id="sec-domani">
+    <!-- Sezione Basket -->
+    <div class="section-card" id="sec-basket">
       <div class="section-header">
-        <div class="section-title">📅 Programma di Domani & Prossimi Giorni <span class="tomorrow-badge">In Arrivo</span></div>
+        <div class="section-title">🏀 Basket (Serie A, Eurolega & NBA) <span class="basket-badge">Campionati & Preseason</span></div>
       </div>
       <div class="event-grid">
-        <div class="event-item" style="border-left-color: #3b82f6;">
-          <span class="event-league">UEFA Champions League • Turno Uomini</span>
-          <div class="event-details">
-            <span>Partite della fase a gironi (Champions League)</span>
-            <span class="event-score">21:00</span>
-          </div>
-          <div class="event-status"><span>Programmato per domani</span><span style="color:#3b82f6;">● In arrivo</span></div>
+        <div class="event-item basket">
+          <span class="event-league">Lega Basket Serie A</span>
+          <div class="event-details"><span>Avvio stagione e turni di campionato</span><span class="event-score">LBA</span></div>
+          <div class="event-status"><span>Calendario attivo</span><span style="color:var(--basket-orange);">● Monitorato</span></div>
         </div>
-        <div class="event-item" style="border-left-color: #3b82f6;">
-          <span class="event-league">Serie A / Premier League</span>
-          <div class="event-details">
-            <span>Anticipi e preparazione turno di campionato</span>
-            <span class="event-score">20:45</span>
-          </div>
-          <div class="event-status"><span>In calendario</span><span style="color:#3b82f6;">● In arrivo</span></div>
+        <div class="event-item basket">
+          <span class="event-league">Eurolega Basket</span>
+          <div class="event-details"><span>Regular Season & Top Club Europei</span><span class="event-score">Euroleague</span></div>
+          <div class="event-status"><span>Prossimi turni</span><span style="color:var(--basket-orange);">● In arrivo</span></div>
+        </div>
+        <div class="event-item basket">
+          <span class="event-league">NBA (Stati Uniti) • Preseason</span>
+          <div class="event-details"><span>Avvio training camps e preseason (Detroit Pistons & co.)</span><span class="event-score">Ottobre</span></div>
+          <div class="event-status"><span>Iniziano a breve</span><span style="color:var(--basket-orange);">● Al via</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sezione Sport USA (NFL, NHL, MLB) -->
+    <div class="section-card" id="sec-usa">
+      <div class="section-header">
+        <div class="section-title">🏈 Sport USA (NFL, NHL & MLB) <span class="usa-badge">Stagioni in corso</span></div>
+      </div>
+      <div class="event-grid">
+        <div class="event-item usa">
+          <span class="event-league">NFL • Regular Season</span>
+          <div class="event-details"><span>Turni autunnali e International Series</span><span class="event-score">NFL</span></div>
+          <div class="event-status"><span>Calendario attivo</span><span style="color:var(--usa-color);">● In corso</span></div>
+        </div>
+        <div class="event-item usa">
+          <span class="event-league">NHL • Hockey su ghiaccio</span>
+          <div class="event-details"><span>Avvio regular season e match inaugurali</span><span class="event-score">NHL</span></div>
+          <div class="event-status"><span>Ingresso in stagione</span><span style="color:var(--usa-color);">● Attivo</span></div>
+        </div>
+        <div class="event-item usa">
+          <span class="event-league">MLB • Baseball Playoff</span>
+          <div class="event-details"><span>Fasi calde della postseason / Wild Card</span><span class="event-score">MLB</span></div>
+          <div class="event-status"><span>Postseason attiva</span><span style="color:var(--usa-color);">● In corso</span></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Sezione Motori -->
+    <div class="section-card" id="sec-motori">
+      <div class="section-header">
+        <div class="section-title">🏎️ Formula 1 & MotoGP <span class="motor-badge">Motorsport</span></div>
+      </div>
+      <div class="event-grid">
+        <div class="event-item motor">
+          <span class="event-league">Formula 1 — Campionato Mondiale</span>
+          <div class="event-details"><span>Prossimo Gran Premio e sessioni di prove</span><span class="event-score">F1 Live</span></div>
+          <div class="event-status"><span>Calendario weekend</span><span style="color:#8b5cf6;">● Monitorato</span></div>
+        </div>
+        <div class="event-item motor">
+          <span class="event-league">MotoGP — Motomondiale</span>
+          <div class="event-details"><span>Sprint Race, Prove libere e Gara domenicale</span><span class="event-score">MotoGP</span></div>
+          <div class="event-status"><span>Prossimo appuntamento</span><span style="color:#8b5cf6;">● Monitorato</span></div>
         </div>
       </div>
     </div>
   </main>
 
-  <footer>Sistema automatico sincronizzato. Non affiliato.</footer>
+  <footer>Portale sportivo globale integrato. Non affiliato.</footer>
 
   <script>
-    // Inserisce automaticamente la data odierna formattata in italiano nell'header
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
     document.getElementById('current-date-label').innerText = "Oggi: " + new Date().toLocaleDateString('it-IT', options);
 
@@ -319,18 +346,36 @@
       document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
       event.target.classList.add('active');
 
-      const oggiEl = document.getElementById('sec-oggi');
-      const domaniEl = document.getElementById('sec-domani');
+      const calcioEl = document.getElementById('sec-calcio');
+      const basketEl = document.getElementById('sec-basket');
+      const usaEl = document.getElementById('sec-usa');
+      const motoriEl = document.getElementById('sec-motori');
 
       if (category === 'all') {
-        oggiEl.style.display = 'block';
-        domaniEl.style.display = 'block';
-      } else if (category === 'oggi') {
-        oggiEl.style.display = 'block';
-        domaniEl.style.display = 'none';
-      } else if (category === 'domani') {
-        oggiEl.style.display = 'none';
-        domaniEl.style.display = 'block';
+        calcioEl.style.display = 'block';
+        basketEl.style.display = 'block';
+        usaEl.style.display = 'block';
+        motoriEl.style.display = 'block';
+      } else if (category === 'calcio') {
+        calcioEl.style.display = 'block';
+        basketEl.style.display = 'none';
+        usaEl.style.display = 'none';
+        motoriEl.style.display = 'none';
+      } else if (category === 'basket') {
+        calcioEl.style.display = 'none';
+        basketEl.style.display = 'block';
+        usaEl.style.display = 'none';
+        motoriEl.style.display = 'none';
+      } else if (category === 'usa') {
+        calcioEl.style.display = 'none';
+        basketEl.style.display = 'none';
+        usaEl.style.display = 'block';
+        motoriEl.style.display = 'none';
+      } else if (category === 'motori') {
+        calcioEl.style.display = 'none';
+        basketEl.style.display = 'none';
+        usaEl.style.display = 'none';
+        motoriEl.style.display = 'block';
       }
     }
   </script>

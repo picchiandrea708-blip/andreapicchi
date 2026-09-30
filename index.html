@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SPORT LIVE — Portale Globale</title>
+  <title>Live Sport Dashboard — Calendario & Risultati</title>
   <style>
     :root {
       --bg-color: #0b0f19;
@@ -15,6 +15,7 @@
       --live-red: #ef4444;
       --basket-orange: #f59e0b;
       --usa-color: #10b981;
+      --italy-blue: #6366f1;
       --ticker-bg: #1e293b;
     }
 
@@ -94,117 +95,83 @@
       100% { transform: scale(0.95); opacity: 0.8; }
     }
 
-    /* Navigation */
-    nav {
-      display: flex;
-      gap: 10px;
-      padding: 16px 24px;
-      overflow-x: auto;
-      background: var(--bg-color);
-      border-bottom: 1px solid var(--border);
-    }
-    .nav-btn {
-      background: var(--card-bg);
-      border: 1px solid var(--border);
-      color: var(--text-muted);
-      padding: 8px 16px;
-      border-radius: 8px;
-      cursor: pointer;
-      font-size: 0.9rem;
-      font-weight: 500;
-      white-space: nowrap;
-      transition: all 0.2s;
-    }
-    .nav-btn:hover, .nav-btn.active {
-      background: var(--accent);
-      color: white;
-      border-color: var(--accent);
-    }
-
     /* Main Container */
     main {
-      max-width: 1200px;
+      max-width: 950px;
       margin: 24px auto;
       padding: 0 20px;
       display: grid;
       gap: 24px;
     }
 
-    .section-card {
+    .day-section {
       background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: 12px;
       padding: 20px;
       box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
     }
-    .section-header {
+    .day-header {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--accent);
+      margin-bottom: 16px;
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 8px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+    }
+
+    .category-group {
       margin-bottom: 16px;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 12px;
     }
-    .section-title {
-      font-size: 1.1rem;
+    .category-title {
+      font-size: 0.9rem;
       font-weight: 700;
-      display: flex;
-      align-items: center;
-      gap: 10px;
+      color: var(--text-muted);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-bottom: 8px;
+      margin-top: 12px;
     }
-    .live-badge { background: var(--live-red); color: white; font-size: 0.7rem; padding: 2px 6px; border-radius: 4px; font-weight: bold; text-transform: uppercase; }
-    .basket-badge { background: var(--basket-orange); color: white; font-size: 0.7rem; padding: 2px 6px; border-radius: 4px; font-weight: bold; text-transform: uppercase; }
-    .motor-badge { background: #8b5cf6; color: white; font-size: 0.7rem; padding: 2px 6px; border-radius: 4px; font-weight: bold; text-transform: uppercase; }
-    .usa-badge { background: var(--usa-color); color: white; font-size: 0.7rem; padding: 2px 6px; border-radius: 4px; font-weight: bold; text-transform: uppercase; }
 
     /* Griglia Eventi */
     .event-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-      gap: 12px;
+      gap: 10px;
     }
     .event-item {
       background: rgba(255, 255, 255, 0.02);
       border: 1px solid var(--border);
       border-radius: 8px;
-      padding: 14px 16px;
-      display: flex;
-      flex-direction: column;
-      gap: 8px;
-      border-left: 3px solid var(--live-red);
-    }
-    .event-item.basket { border-left-color: var(--basket-orange); }
-    .event-item.motor { border-left-color: #8b5cf6; }
-    .event-item.usa { border-left-color: var(--usa-color); }
-    .event-item.future { border-left-color: var(--accent); }
-
-    .event-league {
-      font-size: 0.75rem;
-      color: var(--accent);
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-    .event-details {
+      padding: 12px 16px;
       display: flex;
       justify-content: space-between;
       align-items: center;
+      border-left: 3px solid var(--accent);
+    }
+    .event-item.live { border-left-color: var(--live-red); }
+    .event-item.basket { border-left-color: var(--basket-orange); }
+    .event-item.usa { border-left-color: var(--usa-color); }
+    .event-item.italy { border-left-color: var(--italy-blue); }
+
+    .event-teams {
       font-size: 0.95rem;
       font-weight: 500;
     }
-    .event-score {
-      font-weight: bold;
-      font-size: 1.05rem;
-      background: var(--border);
-      padding: 2px 10px;
-      border-radius: 4px;
-      letter-spacing: 1px;
-    }
-    .event-status {
-      font-size: 0.8rem;
-      color: var(--text-muted);
+    .event-meta {
       display: flex;
-      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+    .event-time {
+      font-weight: bold;
+      font-size: 0.9rem;
+      background: var(--border);
+      padding: 4px 10px;
+      border-radius: 4px;
+      letter-spacing: 0.5px;
     }
 
     footer {
@@ -221,163 +188,119 @@
 
   <!-- Barra Notizie Ticker -->
   <div class="news-ticker-container">
-    <div class="ticker-label">PORTALE LIVE</div>
+    <div class="ticker-label">LIVE FEED</div>
     <div class="ticker-wrap">
-      <div class="ticker-item">Copertura globale: Calcio, Champions, Basket (LBA, Eurolega, NBA), Motori (F1, MotoGP) e Sport USA (NFL, NHL, MLB). <span class="source">Live Desk</span></div>
+      <div class="ticker-item">Palinsesto ufficiale aggiornato: UWCL, Eurolega, Nations League, Serie C, Serie A Women, Lega A Basket e NHL/NFL. <span class="source">Global Sports Desk</span></div>
     </div>
   </div>
 
   <header>
-    <div class="logo">SPORT<span>LIVE</span></div>
+    <div class="logo">SPORT<span>DASH</span></div>
     <div class="connection-status">
       <div class="pulse-dot"></div>
-      <span id="current-date-label">Dashboard attiva</span>
+      <span id="current-date-label">Calendario Aggiornato</span>
     </div>
   </header>
 
-  <nav>
-    <button class="nav-btn active" onclick="filterSection('all')">Tutti gli sport</button>
-    <button class="nav-btn" onclick="filterSection('calcio')">⚽ Calcio</button>
-    <button class="nav-btn" onclick="filterSection('basket')">🏀 Basket</button>
-    <button class="nav-btn" onclick="filterSection('usa')">🏈 US Sports (NFL/NHL/MLB)</button>
-    <button class="nav-btn" onclick="filterSection('motori')">🏎️ Motori</button>
-  </nav>
-
   <main>
-    <!-- Sezione Calcio -->
-    <div class="section-card" id="sec-calcio">
-      <div class="section-header">
-        <div class="section-title">⚽ Calcio & Coppe Europee <span class="live-badge">Live / Oggi</span></div>
-      </div>
+
+    <!-- OGGI - 30 SETTEMBRE -->
+    <div class="day-section">
+      <div class="day-header"><span>📅 Oggi — 30 Settembre</span></div>
+      
+      <div class="category-title">Africa Cup of Nations - Qualification</div>
       <div class="event-grid">
-        <div class="event-item">
-          <span class="event-league">UWCL • Fase a Gironi</span>
-          <div class="event-details"><span>AS Roma Femminile vs FC Barcelona</span><span class="event-score">0 - 3</span></div>
-          <div class="event-status"><span>Risultato ufficiale</span><span style="color:var(--live-red);">● Conclusa</span></div>
-        </div>
-        <div class="event-item">
-          <span class="event-league">UWCL • Fase a Gironi</span>
-          <div class="event-details"><span>BK Häcken vs Juventus Women</span><span class="event-score">1 - 1</span></div>
-          <div class="event-status"><span>Risultato ufficiale</span><span style="color:var(--live-red);">● Conclusa</span></div>
-        </div>
-        <div class="event-item future">
-          <span class="event-league">UEFA Champions League • Uomini</span>
-          <div class="event-details"><span>Turno di Champions League (Prossimi match)</span><span class="event-score">21:00</span></div>
-          <div class="event-status"><span>In arrivo in settimana</span><span style="color:var(--accent);">● Programmato</span></div>
-        </div>
+        <div class="event-item"><span class="event-teams">Eritrea vs South Africa</span><div class="event-meta"><span class="event-time">74'</span></div></div>
+      </div>
+
+      <div class="category-title">UEFA Champions League Women</div>
+      <div class="event-grid">
+        <div class="event-item live"><span class="event-teams">AS Roma W vs Barcelona W</span><div class="event-meta"><span class="event-time" style="color:var(--live-red);">0 - 2 (HT)</span></div></div>
+        <div class="event-item live"><span class="event-teams">Hacken W vs Juventus W</span><div class="event-meta"><span class="event-time" style="color:var(--live-red);">0 - 0 (HT)</span></div></div>
+        <div class="event-item live"><span class="event-teams">Paris FC W vs Arsenal W</span><div class="event-meta"><span class="event-time" style="color:var(--live-red);">0 - 1 (HT)</span></div></div>
+        <div class="event-item"><span class="event-teams">OL Lyonnes W vs Chelsea W</span><div class="event-meta"><span class="event-time">21:00</span></div></div>
+        <div class="event-item"><span class="event-teams">SL Benfica W vs Bayern Munich W</span><div class="event-meta"><span class="event-time">21:00</span></div></div>
+      </div>
+
+      <div class="category-title">Euroleague (Basketball)</div>
+      <div class="event-grid">
+        <div class="event-item basket"><span class="event-teams">Maccabi Tel Aviv vs Besiktas</span><div class="event-meta"><span class="event-time">20:05</span></div></div>
+        <div class="event-item basket"><span class="event-teams">Panathinaikos vs Lyon-Villeurbanne</span><div class="event-meta"><span class="event-time">20:15</span></div></div>
       </div>
     </div>
 
-    <!-- Sezione Basket -->
-    <div class="section-card" id="sec-basket">
-      <div class="section-header">
-        <div class="section-title">🏀 Basket (Serie A, Eurolega & NBA) <span class="basket-badge">Campionati & Preseason</span></div>
-      </div>
+    <!-- DOMANI - 1 OTTOBRE -->
+    <div class="day-section">
+      <div class="day-header"><span>📅 Domani — 1 Ottobre</span></div>
+      
+      <div class="category-title">NHL (Hockey) & Africa Cup</div>
       <div class="event-grid">
-        <div class="event-item basket">
-          <span class="event-league">Lega Basket Serie A</span>
-          <div class="event-details"><span>Avvio stagione e turni di campionato</span><span class="event-score">LBA</span></div>
-          <div class="event-status"><span>Calendario attivo</span><span style="color:var(--basket-orange);">● Monitorato</span></div>
-        </div>
-        <div class="event-item basket">
-          <span class="event-league">Eurolega Basket</span>
-          <div class="event-details"><span>Regular Season & Top Club Europei</span><span class="event-score">Euroleague</span></div>
-          <div class="event-status"><span>Prossimi turni</span><span style="color:var(--basket-orange);">● In arrivo</span></div>
-        </div>
-        <div class="event-item basket">
-          <span class="event-league">NBA (Stati Uniti) • Preseason</span>
-          <div class="event-details"><span>Avvio training camps e preseason (Detroit Pistons & co.)</span><span class="event-score">Ottobre</span></div>
-          <div class="event-status"><span>Iniziano a breve</span><span style="color:var(--basket-orange);">● Al via</span></div>
-        </div>
+        <div class="event-item usa"><span class="event-teams">Philadelphia Flyers vs Pittsburgh Penguins</span><div class="event-meta"><span class="event-time">01:30</span></div></div>
+        <div class="event-item usa"><span class="event-teams">Toronto Maple Leafs vs New York Islanders</span><div class="event-meta"><span class="event-time">01:30</span></div></div>
+        <div class="event-item usa"><span class="event-teams">Colorado Avalanche vs Los Angeles Kings</span><div class="event-meta"><span class="event-time">04:00</span></div></div>
+        <div class="event-item"><span class="event-teams">Guinea vs Kenya (Africa Cup)</span><div class="event-meta"><span class="event-time">18:00</span></div></div>
+      </div>
+
+      <div class="category-title">UEFA Nations League & UWCL</div>
+      <div class="event-grid">
+        <div class="event-item"><span class="event-teams">Azerbaijan vs Liechtenstein (League D)</span><div class="event-meta"><span class="event-time">18:00</span></div></div>
+        <div class="event-item"><span class="event-teams">Austria Vienna W vs Inter W</span><div class="event-meta"><span class="event-time">18:45</span></div></div>
+        <div class="event-item"><span class="event-teams">Koge W vs Servette Geneve FC W</span><div class="event-meta"><span class="event-time">18:45</span></div></div>
+        <div class="event-item basket"><span class="event-teams">Hapoel Tel Aviv vs Real Madrid (Euroleague)</span><div class="event-meta"><span class="event-time">18:00</span></div></div>
+        <div class="event-item basket"><span class="event-teams">Crvena Zvezda Meridianbet vs Anadolu Efes</span><div class="event-meta"><span class="event-time">20:00</span></div></div>
+        <div class="event-item basket"><span class="event-teams">Virtus Bologna vs Olympiacos</span><div class="event-meta"><span class="event-time">20:30</span></div></div>
+        <div class="event-item"><span class="event-teams">Denmark vs Portugal (Nations League A)</span><div class="event-meta"><span class="event-time">20:45</span></div></div>
+        <div class="event-item"><span class="event-teams">Germany vs Serbia (Nations League A)</span><div class="event-meta"><span class="event-time">20:45</span></div></div>
+        <div class="event-item"><span class="event-teams">Greece vs Netherlands (Nations League A)</span><div class="event-meta"><span class="event-time">20:45</span></div></div>
+        <div class="event-item"><span class="event-teams">Manchester City W vs Real Madrid W</span><div class="event-meta"><span class="event-time">21:00</span></div></div>
+        <div class="event-item"><span class="event-teams">PSG W vs Leuven W</span><div class="event-meta"><span class="event-time">21:00</span></div></div>
       </div>
     </div>
 
-    <!-- Sezione Sport USA (NFL, NHL, MLB) -->
-    <div class="section-card" id="sec-usa">
-      <div class="section-header">
-        <div class="section-title">🏈 Sport USA (NFL, NHL & MLB) <span class="usa-badge">Stagioni in corso</span></div>
-      </div>
+    <!-- VENERDÌ - 2 OTTOBRE -->
+    <div class="day-section">
+      <div class="day-header"><span>📅 Venerdì — 2 Ottobre</span></div>
       <div class="event-grid">
-        <div class="event-item usa">
-          <span class="event-league">NFL • Regular Season</span>
-          <div class="event-details"><span>Turni autunnali e International Series</span><span class="event-score">NFL</span></div>
-          <div class="event-status"><span>Calendario attivo</span><span style="color:var(--usa-color);">● In corso</span></div>
-        </div>
-        <div class="event-item usa">
-          <span class="event-league">NHL • Hockey su ghiaccio</span>
-          <div class="event-details"><span>Avvio regular season e match inaugurali</span><span class="event-score">NHL</span></div>
-          <div class="event-status"><span>Ingresso in stagione</span><span style="color:var(--usa-color);">● Attivo</span></div>
-        </div>
-        <div class="event-item usa">
-          <span class="event-league">MLB • Baseball Playoff</span>
-          <div class="event-details"><span>Fasi calde della postseason / Wild Card</span><span class="event-score">MLB</span></div>
-          <div class="event-status"><span>Postseason attiva</span><span style="color:var(--usa-color);">● In corso</span></div>
-        </div>
+        <div class="event-item usa"><span class="event-teams">New York Rangers vs Tampa Bay Lightning (NHL)</span><div class="event-meta"><span class="event-time">01:00</span></div></div>
+        <div class="event-item usa"><span class="event-teams">Cleveland Browns vs Pittsburgh Steelers (NFL)</span><div class="event-meta"><span class="event-time">02:15</span></div></div>
+        <div class="event-item basket"><span class="event-teams">Baskonia vs Olimpia Milano (Euroleague)</span><div class="event-meta"><span class="event-time">20:30</span></div></div>
+        <div class="event-item"><span class="event-teams">France vs Italy (Nations League A)</span><div class="event-meta"><span class="event-time">20:45</span></div></div>
       </div>
     </div>
 
-    <!-- Sezione Motori -->
-    <div class="section-card" id="sec-motori">
-      <div class="section-header">
-        <div class="section-title">🏎️ Formula 1 & MotoGP <span class="motor-badge">Motorsport</span></div>
-      </div>
+    <!-- SABATO - 3 OTTOBRE -->
+    <div class="day-section">
+      <div class="day-header"><span>📅 Sabato — 3 Ottobre</span></div>
       <div class="event-grid">
-        <div class="event-item motor">
-          <span class="event-league">Formula 1 — Campionato Mondiale</span>
-          <div class="event-details"><span>Prossimo Gran Premio e sessioni di prove</span><span class="event-score">F1 Live</span></div>
-          <div class="event-status"><span>Calendario weekend</span><span style="color:#8b5cf6;">● Monitorato</span></div>
-        </div>
-        <div class="event-item motor">
-          <span class="event-league">MotoGP — Motomondiale</span>
-          <div class="event-details"><span>Sprint Race, Prove libere e Gara domenicale</span><span class="event-score">MotoGP</span></div>
-          <div class="event-status"><span>Prossimo appuntamento</span><span style="color:#8b5cf6;">● Monitorato</span></div>
-        </div>
+        <div class="event-item usa"><span class="event-teams">Detroit Red Wings vs New York Rangers (NHL)</span><div class="event-meta"><span class="event-time">00:30</span></div></div>
+        <div class="event-item italy"><span class="event-teams">Parma W vs Ternana W (Serie A Women)</span><div class="event-meta"><span class="event-time">12:30</span></div></div>
+        <div class="event-item italy"><span class="event-teams">Gubbio vs Perugia (Serie C - B)</span><div class="event-meta"><span class="event-time">14:30</span></div></div>
+        <div class="event-item"><span class="event-teams">Croatia vs England (Nations League A)</span><div class="event-meta"><span class="event-time">18:00</span></div></div>
+        <div class="event-item italy"><span class="event-teams">AS Roma W vs Lazio W (Serie A Women)</span><div class="event-meta"><span class="event-time">18:00</span></div></div>
+        <div class="event-item basket"><span class="event-teams">Trento vs Treviso (Lega A Basket)</span><div class="event-meta"><span class="event-time">20:00</span></div></div>
+        <div class="event-item"><span class="event-teams">Spain vs Czech Republic (Nations League A)</span><div class="event-meta"><span class="event-time">20:45</span></div></div>
       </div>
     </div>
+
+    <!-- DOMENICA - 4 OTTOBRE -->
+    <div class="day-section">
+      <div class="day-header"><span>📅 Domenica — 4 Ottobre</span></div>
+      <div class="event-grid">
+        <div class="event-item italy"><span class="event-teams">AC Milan W vs Juventus W (Serie A Women)</span><div class="event-meta"><span class="event-time">15:00</span></div></div>
+        <div class="event-item usa"><span class="event-teams">Washington Commanders vs Indianapolis Colts (NFL)</span><div class="event-meta"><span class="event-time">15:30</span></div></div>
+        <div class="event-item italy"><span class="event-teams">Salernitana vs Bari (Serie C - C)</span><div class="event-meta"><span class="event-time">20:30</span></div></div>
+        <div class="event-item"><span class="event-teams">Greece vs Germany (Nations League A)</span><div class="event-meta"><span class="event-time">20:45</span></div></div>
+        <div class="event-item"><span class="event-teams">Netherlands vs Serbia (Nations League A)</span><div class="event-meta"><span class="event-time">20:45</span></div></div>
+      </div>
+    </div>
+
   </main>
 
-  <footer>Portale sportivo globale integrato. Non affiliato.</footer>
+  <footer>Dashboard Multidisciplinare Ufficiale • Tutti i diritti riservati</footer>
 
   <script>
     const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    document.getElementById('current-date-label').innerText = "Oggi: " + new Date().toLocaleDateString('it-IT', options);
-
-    function filterSection(category) {
-      document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
-      event.target.classList.add('active');
-
-      const calcioEl = document.getElementById('sec-calcio');
-      const basketEl = document.getElementById('sec-basket');
-      const usaEl = document.getElementById('sec-usa');
-      const motoriEl = document.getElementById('sec-motori');
-
-      if (category === 'all') {
-        calcioEl.style.display = 'block';
-        basketEl.style.display = 'block';
-        usaEl.style.display = 'block';
-        motoriEl.style.display = 'block';
-      } else if (category === 'calcio') {
-        calcioEl.style.display = 'block';
-        basketEl.style.display = 'none';
-        usaEl.style.display = 'none';
-        motoriEl.style.display = 'none';
-      } else if (category === 'basket') {
-        calcioEl.style.display = 'none';
-        basketEl.style.display = 'block';
-        usaEl.style.display = 'none';
-        motoriEl.style.display = 'none';
-      } else if (category === 'usa') {
-        calcioEl.style.display = 'none';
-        basketEl.style.display = 'none';
-        usaEl.style.display = 'block';
-        motoriEl.style.display = 'none';
-      } else if (category === 'motori') {
-        calcioEl.style.display = 'none';
-        basketEl.style.display = 'none';
-        usaEl.style.display = 'none';
-        motoriEl.style.display = 'block';
-      }
-    }
+    document.getElementById('current-date-label').innerText = "Aggiornato al: " + new Date().toLocaleDateString('it-IT', options);
   </script>
 </body>
 </html>

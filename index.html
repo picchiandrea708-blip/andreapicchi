@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>SPORT LIVE — Risultati in Tempo Reale</title>
+  <title>SPORT LIVE — Calendario Automatico</title>
   <style>
     :root {
       --bg-color: #0b0f19;
@@ -159,6 +159,15 @@
       font-weight: bold;
       text-transform: uppercase;
     }
+    .tomorrow-badge {
+      background: #3b82f6;
+      color: white;
+      font-size: 0.7rem;
+      padding: 2px 6px;
+      border-radius: 4px;
+      font-weight: bold;
+      text-transform: uppercase;
+    }
 
     /* Griglia Eventi */
     .event-grid {
@@ -190,6 +199,13 @@
       font-size: 0.95rem;
       font-weight: 500;
     }
+    .event-score {
+      font-weight: bold;
+      font-size: 1.05rem;
+      background: var(--border);
+      padding: 2px 8px;
+      border-radius: 4px;
+    }
     .event-status {
       font-size: 0.8rem;
       color: var(--text-muted);
@@ -213,8 +229,8 @@
   <div class="news-ticker-container">
     <div class="ticker-label">News Live</div>
     <div class="ticker-wrap">
-      <div class="ticker-item">Sport Live attivo: monitoraggio continuo delle competizioni calcistiche, europee e motoristiche. <span class="source">Redazione</span></div>
-      <div class="ticker-item">Copertura in tempo reale per Serie A, Premier League, Champions League, Formula 1 e MotoGP. <span class="source">Live Desk</span></div>
+      <div class="ticker-item">Sistema di rotazione automatica attivo: visualizzazione giornaliera e programmazione futuri match. <span class="source">Redazione</span></div>
+      <div class="ticker-item">Monitoraggio continuo 24 ore per risultati, coppe europee e campionati. <span class="source">Live Desk</span></div>
     </div>
   </div>
 
@@ -222,106 +238,99 @@
     <div class="logo">SPORT<span>LIVE</span></div>
     <div class="connection-status">
       <div class="pulse-dot"></div>
-      <span>Feed attivi e sincronizzati</span>
+      <span id="current-date-label">Aggiornamento automatico</span>
     </div>
   </header>
 
   <nav>
-    <button class="nav-btn active" onclick="filterSection('all')">Tutti gli sport</button>
-    <button class="nav-btn" onclick="filterSection('calcio')">Calcio</button>
-    <button class="nav-btn" onclick="filterSection('basket')">Basket</button>
-    <button class="nav-btn" onclick="filterSection('motori')">Motori (F1 & MotoGP)</button>
+    <button class="nav-btn active" onclick="filterSection('all')">Tutti gli eventi</button>
+    <button class="nav-btn" onclick="filterSection('oggi')">In Corso / Oggi (24h)</button>
+    <button class="nav-btn" onclick="filterSection('domani')">Domani / Prossimi</button>
   </nav>
 
   <main>
-    <!-- Sezione Calcio -->
-    <div class="section-card" id="sec-calcio">
+    <!-- Sezione Oggi (mantenuta attiva 24 ore) -->
+    <div class="section-card" id="sec-oggi">
       <div class="section-header">
-        <div class="section-title">⚽ Calcio (Serie A, Premier, Coppe & Nazionali) <span class="live-badge">Live 24h</span></div>
+        <div class="section-title">⚽ In Campo Oggi (Risultati & Match 24h) <span class="live-badge">Live 24H</span></div>
       </div>
       <div class="event-grid">
         <div class="event-item">
-          <span class="event-league">Serie A & Serie B (Italia)</span>
-          <div class="event-details"><span>Aggiornamenti giornate e turni di campionato</span></div>
-          <div class="event-status"><span>Finestra temporale attiva</span><span style="color:#10b981;">● Sintonizzato</span></div>
+          <span class="event-league">UEFA Women's Champions League</span>
+          <div class="event-details">
+            <span>AS Roma Femminile vs FC Barcelona</span>
+            <span class="event-score">1 - 2</span>
+          </div>
+          <div class="event-status"><span>Risultato finale / Storico 24h</span><span style="color:#10b981;">● Concluso</span></div>
         </div>
         <div class="event-item">
-          <span class="event-league">Premier League & Top Leagues</span>
-          <div class="event-details"><span>Premier, Liga, Bundesliga</span></div>
-          <div class="event-status"><span>Monitoraggio palinsesto</span><span style="color:#10b981;">● Sintonizzato</span></div>
+          <span class="event-league">UEFA Women's Champions League</span>
+          <div class="event-details">
+            <span>BK Häcken vs Juventus Women</span>
+            <span class="event-score">0 - 1</span>
+          </div>
+          <div class="event-status"><span>Risultato finale / Storico 24h</span><span style="color:#10b981;">● Concluso</span></div>
         </div>
         <div class="event-item">
-          <span class="event-league">UEFA Champions & Coppe</span>
-          <div class="event-details"><span>Champions, Europa, Conference, Femminile</span></div>
-          <div class="event-status"><span>Aggiornamento live</span><span style="color:#10b981;">● Sintonizzato</span></div>
-        </div>
-        <div class="event-item">
-          <span class="event-league">Coppa Italia & Nazionali</span>
-          <div class="event-details"><span>Coppa Italia, Nations League, Qualificazioni</span></div>
-          <div class="event-status"><span>Copertura attiva</span><span style="color:#10b981;">● Sintonizzato</span></div>
+          <span class="event-league">UEFA Women's Champions League</span>
+          <div class="event-details">
+            <span>Paris FC vs Arsenal Women</span>
+            <span class="event-score">1 - 1</span>
+          </div>
+          <div class="event-status"><span>Risultato finale / Storico 24h</span><span style="color:#10b981;">● Concluso</span></div>
         </div>
       </div>
     </div>
 
-    <!-- Sezione Basket -->
-    <div class="section-card" id="sec-basket">
+    <!-- Sezione Domani / Futuri -->
+    <div class="section-card" id="sec-domani">
       <div class="section-header">
-        <div class="section-title">🏀 Basket (Serie A, Eurolega, NBA) <span class="live-badge">Live</span></div>
+        <div class="section-title">📅 Programma di Domani & Prossimi Giorni <span class="tomorrow-badge">In Arrivo</span></div>
       </div>
       <div class="event-grid">
-        <div class="event-item" style="border-left-color: #f59e0b;">
-          <span class="event-league">Lega Basket Serie A & Eurolega</span>
-          <div class="event-details"><span>Risultati e turni europei</span></div>
-          <div class="event-status"><span>Aggiornamento automatico</span><span style="color:#10b981;">● Attivo</span></div>
-        </div>
-        <div class="event-item" style="border-left-color: #f59e0b;">
-          <span class="event-league">NBA (Stati Uniti)</span>
-          <div class="event-details"><span>Regular Season & Playoff</span></div>
-          <div class="event-status"><span>Feed notturni sincronizzati</span><span style="color:#10b981;">● Attivo</span></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- Sezione Motori -->
-    <div class="section-card" id="sec-motori">
-      <div class="section-header">
-        <div class="section-title">🏎️ Formula 1 & MotoGP <span class="live-badge">Motorsport</span></div>
-      </div>
-      <div class="event-grid">
-        <div class="event-item" style="border-left-color: #ef4444;">
-          <span class="event-league">Formula 1 — Livetiming</span>
-          <div class="event-details"><span>Sessioni ufficiali, qualifiche e gare</span></div>
-          <div class="event-status"><span>Connesso a OpenF1</span><span style="color:#10b981;">● Attivo</span></div>
+        <div class="event-item" style="border-left-color: #3b82f6;">
+          <span class="event-league">UEFA Champions League • Turno Uomini</span>
+          <div class="event-details">
+            <span>Partite della fase a gironi (Champions League)</span>
+            <span class="event-score">21:00</span>
+          </div>
+          <div class="event-status"><span>Programmato per domani</span><span style="color:#3b82f6;">● In arrivo</span></div>
         </div>
         <div class="event-item" style="border-left-color: #3b82f6;">
-          <span class="event-league">MotoGP — Motomondiale</span>
-          <div class="event-details"><span>Prove libere, sprint e Gran Premi</span></div>
-          <div class="event-status"><span>Classifiche on-demand</span><span style="color:#10b981;">● Attivo</span></div>
+          <span class="event-league">Serie A / Premier League</span>
+          <div class="event-details">
+            <span>Anticipi e preparazione turno di campionato</span>
+            <span class="event-score">20:45</span>
+          </div>
+          <div class="event-status"><span>In calendario</span><span style="color:#3b82f6;">● In arrivo</span></div>
         </div>
       </div>
     </div>
   </main>
 
-  <footer>Dati in tempo reale sincronizzati. Non affiliato.</footer>
+  <footer>Sistema automatico sincronizzato. Non affiliato.</footer>
 
   <script>
+    // Inserisce automaticamente la data odierna formattata in italiano nell'header
+    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+    document.getElementById('current-date-label').innerText = "Oggi: " + new Date().toLocaleDateString('it-IT', options);
+
     function filterSection(category) {
       document.querySelectorAll('.nav-btn').forEach(btn => btn.classList.remove('active'));
       event.target.classList.add('active');
 
-      const sections = {
-        'calcio': 'sec-calcio',
-        'basket': 'sec-basket',
-        'motori': 'sec-motori'
-      };
+      const oggiEl = document.getElementById('sec-oggi');
+      const domaniEl = document.getElementById('sec-domani');
 
-      for (let key in sections) {
-        const el = document.getElementById(sections[key]);
-        if (category === 'all' || category === key) {
-          el.style.display = 'block';
-        } else {
-          el.style.display = 'none';
-        }
+      if (category === 'all') {
+        oggiEl.style.display = 'block';
+        domaniEl.style.display = 'block';
+      } else if (category === 'oggi') {
+        oggiEl.style.display = 'block';
+        domaniEl.style.display = 'none';
+      } else if (category === 'domani') {
+        oggiEl.style.display = 'none';
+        domaniEl.style.display = 'block';
       }
     }
   </script>

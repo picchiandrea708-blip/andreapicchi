@@ -3,61 +3,57 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Sports Dashboard Live — 24H Central</title>
+  <title>Sports Dashboard Live 24H</title>
   <style>
     :root {
-      --bg-color: #0b0f19;
+      --bg: #0b0f19;
       --card-bg: #131b2e;
-      --text-main: #f3f4f6;
-      --text-muted: #9ca3af;
+      --text: #f3f4f6;
+      --muted: #9ca3af;
       --accent: #3b82f6;
       --border: #1e293b;
-      --live-red: #ef4444;
-      --basket-orange: #f59e0b;
-      --usa-green: #10b981;
-      --motors-purple: #8b5cf6;
-      --ticker-bg: #1e293b;
+      --live: #ef4444;
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; font-family: system-ui, -apple-system, sans-serif; }
-    body { background-color: var(--bg-color); color: var(--text-main); line-height: 1.5; padding-bottom: 40px; }
+    * { box-sizing: border-box; margin: 0; padding: 0; font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif; }
+    body { background-color: var(--bg); color: var(--text); padding-bottom: 40px; }
 
-    /* Blocco Notizie Personalizzato */
-    .news-ticker-container {
-      background-color: var(--ticker-bg);
+    /* Ticker Notizie Personalizzato */
+    .ticker-container {
+      background: #1e293b;
       border-bottom: 1px solid var(--border);
       overflow: hidden;
-      white-space: nowrap;
-      position: relative;
       height: 40px;
       display: flex;
       align-items: center;
+      position: sticky;
+      top: 0;
+      z-index: 100;
     }
-    .ticker-label {
-      background: var(--live-red);
+    .ticker-badge {
+      background: var(--live);
       color: white;
       padding: 0 16px;
       height: 100%;
       display: flex;
       align-items: center;
       font-weight: bold;
-      font-size: 0.85rem;
-      text-transform: uppercase;
-      z-index: 2;
+      font-size: 0.8rem;
+      letter-spacing: 1px;
+      white-space: nowrap;
     }
     .ticker-wrap {
       display: inline-block;
       white-space: nowrap;
-      animation: ticker 40s linear infinite;
+      animation: ticker 35s linear infinite;
       padding-left: 100%;
     }
     .ticker-item {
       display: inline-block;
       padding: 0 30px;
       font-size: 0.9rem;
-      color: var(--text-main);
+      color: var(--text);
     }
-    .ticker-item span.source { color: var(--text-muted); font-size: 0.8rem; margin-left: 8px; }
     @keyframes ticker {
       0% { transform: translate3d(0, 0, 0); }
       100% { transform: translate3d(-100%, 0, 0); }
@@ -65,248 +61,109 @@
 
     /* Header */
     header {
-      background: linear-gradient(135deg, #111827, #1f2937);
       padding: 20px 24px;
+      background: var(--card-bg);
       border-bottom: 1px solid var(--border);
       display: flex;
       justify-content: space-between;
       align-items: center;
     }
-    .logo { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.5px; }
+    .logo { font-size: 1.4rem; font-weight: 800; }
     .logo span { color: var(--accent); }
-    .connection-status {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 0.85rem;
-      color: var(--text-muted);
-    }
-    .pulse-dot {
-      width: 8px;
-      height: 8px;
-      background-color: var(--live-red);
-      border-radius: 50%;
-      box-shadow: 0 0 8px var(--live-red);
-      animation: pulse 2s infinite;
-    }
-    @keyframes pulse {
-      0% { transform: scale(0.95); opacity: 0.8; }
-      50% { transform: scale(1.3); opacity: 1; }
-      100% { transform: scale(0.95); opacity: 0.8; }
-    }
+    .date-badge { font-size: 0.85rem; color: var(--muted); }
 
-    /* Contenitore Principale */
+    /* Layout Principale */
     main {
-      max-width: 1000px;
-      margin: 24px auto;
-      padding: 0 20px;
+      max-width: 1200px;
+      margin: 20px auto;
+      padding: 0 16px;
       display: grid;
-      gap: 24px;
+      grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
+      gap: 20px;
     }
 
-    .section-card {
+    .widget-card {
       background: var(--card-bg);
       border: 1px solid var(--border);
       border-radius: 12px;
-      padding: 20px;
-      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
-    }
-    .section-header {
+      padding: 16px;
       display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 16px;
-      border-bottom: 1px solid var(--border);
-      padding-bottom: 12px;
+      flex-direction: column;
+      gap: 12px;
+      min-height: 480px;
     }
-    .section-title {
+
+    .widget-title {
       font-size: 1.1rem;
       font-weight: 700;
       display: flex;
       align-items: center;
-      gap: 10px;
-    }
-    
-    .badge { font-size: 0.7rem; padding: 2px 6px; border-radius: 4px; font-weight: bold; text-transform: uppercase; }
-    .badge-live { background: var(--live-red); color: white; }
-    .badge-basket { background: var(--basket-orange); color: white; }
-    .badge-usa { background: var(--usa-green); color: white; }
-    .badge-motors { background: var(--motors-purple); color: white; }
-
-    /* Griglia Eventi */
-    .event-grid { display: grid; gap: 12px; }
-    .event-item {
-      background: rgba(255, 255, 255, 0.02);
-      border: 1px solid var(--border);
-      border-radius: 8px;
-      padding: 14px 16px;
-      display: flex;
-      flex-direction: column;
       gap: 8px;
-      border-left: 3px solid var(--accent);
+      padding-bottom: 8px;
+      border-bottom: 1px solid var(--border);
     }
-    .event-item.live { border-left-color: var(--live-red); }
-    .event-item.basket { border-left-color: var(--basket-orange); }
-    .event-item.usa { border-left-color: var(--usa-green); }
-    .event-item.motors { border-left-color: var(--motors-purple); }
 
-    .event-league {
-      font-size: 0.75rem;
-      color: var(--accent);
-      font-weight: 700;
-      text-transform: uppercase;
-      letter-spacing: 0.5px;
-    }
-    .event-details {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      font-size: 0.95rem;
-      font-weight: 500;
-    }
-    .event-score {
-      font-weight: bold;
-      font-size: 1.05rem;
-      background: var(--border);
-      padding: 2px 10px;
-      border-radius: 4px;
-      letter-spacing: 1px;
-    }
-    .event-status {
-      font-size: 0.8rem;
-      color: var(--text-muted);
-      display: flex;
-      justify-content: space-between;
+    iframe {
+      width: 100%;
+      height: 100%;
+      min-height: 420px;
+      border: none;
+      border-radius: 8px;
+      background: #ffffff;
     }
 
     footer {
       text-align: center;
-      margin-top: 40px;
+      padding: 20px;
       font-size: 0.8rem;
-      color: var(--text-muted);
+      color: var(--muted);
       border-top: 1px solid var(--border);
-      padding-top: 20px;
+      margin-top: 40px;
     }
   </style>
 </head>
 <body>
 
   <!-- Blocco Notizie Personalizzato -->
-  <div class="news-ticker-container">
-    <div class="ticker-label">BREAKING NEWS</div>
+  <div class="ticker-container">
+    <div class="ticker-badge">NOTIZIE LIVE</div>
     <div class="ticker-wrap">
-      <div class="ticker-item">Palinsesto 24 Ore: Calcio (Serie A/B/C, UWCL, Nations League), Basket (LBA, Eurolega, NBA), Sport USA e Motori (F1/MotoGP). <span class="source">Personal Feed</span></div>
+      <div class="ticker-item">⚽ Calcio: Serie A, B, C, UWCL, Nations League • 🏀 Basket: LBA, Eurolega, NBA • 🏈 Sport USA: NFL, NHL • 🏎️ Motori: F1 & MotoGP Live Timing</div>
     </div>
   </div>
 
   <header>
-    <div class="logo">SPORTS<span>24H</span></div>
-    <div class="connection-status">
-      <div class="pulse-dot"></div>
-      <span id="current-date-label">Filtro 24 Ore Attivo</span>
-    </div>
+    <div class="logo">SPORTS<span>HUB24</span></div>
+    <div class="date-badge" id="live-date">Aggiornamento automatico in corso...</div>
   </header>
 
-  <main id="dashboard-content">
+  <main>
 
-    <!-- 1. SEZIONE CALCIO -->
-    <div class="section-card">
-      <div class="section-header">
-        <div class="section-title">⚽ Calcio <span class="badge badge-live">Live & 24H</span></div>
-      </div>
-      <div class="event-grid">
-        <div class="event-item live">
-          <span class="event-league">UEFA Women's Champions League</span>
-          <div class="event-details"><span>AS Roma Femminile vs FC Barcelona</span><span class="event-score">0 - 3</span></div>
-          <div class="event-status"><span>Fase a Gironi</span><span style="color:var(--live-red);">● Finale</span></div>
-        </div>
-        <div class="event-item live">
-          <span class="event-league">UEFA Women's Champions League</span>
-          <div class="event-details"><span>BK Häcken vs Juventus Women</span><span class="event-score">1 - 1</span></div>
-          <div class="event-status"><span>Fase a Gironi</span><span style="color:var(--live-red);">● Finale</span></div>
-        </div>
-        <div class="event-item live">
-          <span class="event-league">Qualificazioni Coppa d'Africa</span>
-          <div class="event-details"><span>Eritrea vs South Africa</span><span class="event-score">0 - 4</span></div>
-          <div class="event-status"><span>Fase a Gironi</span><span style="color:var(--live-red);">● Finale</span></div>
-        </div>
-        <div class="event-item">
-          <span class="event-league">UEFA Nations League</span>
-          <div class="event-details"><span>Germania vs Serbia</span><span class="event-score">20:45</span></div>
-          <div class="event-status"><span>League A</span><span>In Programma</span></div>
-        </div>
-      </div>
+    <!-- WIDGET 1: CALCIO LIVE & 24H -->
+    <div class="widget-card">
+      <div class="widget-title">⚽ Calcio (Italia, Coppe & Int.)</div>
+      <iframe src="https://www.scorebat.com/embed/livescore/" allowfullscreen></iframe>
     </div>
 
-    <!-- 2. SEZIONE BASKET -->
-    <div class="section-card">
-      <div class="section-header">
-        <div class="section-title">🏀 Basket <span class="badge badge-basket">Serie A, Eurolega & NBA</span></div>
-      </div>
-      <div class="event-grid">
-        <div class="event-item basket">
-          <span class="event-league">Euroleague</span>
-          <div class="event-details"><span>Maccabi Tel Aviv vs Beşiktaş</span><span class="event-score">20:05</span></div>
-          <div class="event-status"><span>Regular Season</span><span style="color:var(--basket-orange);">● Stasera</span></div>
-        </div>
-        <div class="event-item basket">
-          <span class="event-league">Euroleague</span>
-          <div class="event-details"><span>Panathinaikos vs ASVEL</span><span class="event-score">20:15</span></div>
-          <div class="event-status"><span>Regular Season</span><span style="color:var(--basket-orange);">● Stasera</span></div>
-        </div>
-        <div class="event-item basket">
-          <span class="event-league">NBA • Preseason</span>
-          <div class="event-details"><span>Training Camp & Match Inizio Ottobre</span><span class="event-score">NBA</span></div>
-          <div class="event-status"><span>USA</span><span>In Arrivo</span></div>
-        </div>
-      </div>
+    <!-- WIDGET 2: BASKET & SPORT USA -->
+    <div class="widget-card">
+      <div class="widget-title">🏀 Basket (LBA, Eurolega, NBA) & 🏈 USA</div>
+      <iframe src="https://www.scorebat.com/embed/" allowfullscreen></iframe>
     </div>
 
-    <!-- 3. SEZIONE SPORT USA -->
-    <div class="section-card">
-      <div class="section-header">
-        <div class="section-title">🏈 Sport USA <span class="badge badge-usa">NFL & NHL</span></div>
-      </div>
-      <div class="event-grid">
-        <div class="event-item usa">
-          <span class="event-league">NHL • Hockey</span>
-          <div class="event-details"><span>Toronto Maple Leafs vs Montreal Canadiens</span><span class="event-score">2 - 3</span></div>
-          <div class="event-status"><span>Preseason / Apertura</span><span style="color:var(--usa-green);">● Finale</span></div>
-        </div>
-        <div class="event-item usa">
-          <span class="event-league">NFL • Football Americano</span>
-          <div class="event-details"><span>Prossimo Turno Regular Season</span><span class="event-score">NFL</span></div>
-          <div class="event-status"><span>Finestra 24H</span><span>In Programma</span></div>
-        </div>
-      </div>
-    </div>
-
-    <!-- 4. SEZIONE MOTORSPORT -->
-    <div class="section-card">
-      <div class="section-header">
-        <div class="section-title">🏎️ Formula 1 & MotoGP <span class="badge badge-motors">Live Timing & Classifiche</span></div>
-      </div>
-      <div class="event-grid">
-        <div class="event-item motors">
-          <span class="event-league">Formula 1</span>
-          <div class="event-details"><span>Sessione Live / Standings On-Demand</span><span class="event-score">F1</span></div>
-          <div class="event-status"><span>Live Timing Sessioni Active</span><span style="color:var(--motors-purple);">● Monitorato</span></div>
-        </div>
-        <div class="event-item motors">
-          <span class="event-league">MotoGP</span>
-          <div class="event-details"><span>Sessione Live / Classifiche Gare</span><span class="event-score">MotoGP</span></div>
-          <div class="event-status"><span>Live Timing Sessioni Active</span><span style="color:var(--motors-purple);">● Monitorato</span></div>
-        </div>
-      </div>
+    <!-- WIDGET 3: FORMULA 1 & MOTOGP -->
+    <div class="widget-card">
+      <div class="widget-title">🏎️ Formula 1 & MotoGP (Live & Classifiche)</div>
+      <iframe src="https://widget.isportsapi.com/f1/livescore.html" allowfullscreen></iframe>
     </div>
 
   </main>
 
-  <footer>Sports Dashboard • Filtro 24 Ore Autonomo</footer>
+  <footer>Dashboard Dinamica — Dati aggiornati in tempo reale dai provider esterni</footer>
 
   <script>
-    const options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
-    document.getElementById('current-date-label').innerText = "Oggi: " + new Date().toLocaleDateString('it-IT', options);
+    const options = { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' };
+    document.getElementById('live-date').innerText = new Date().toLocaleDateString('it-IT', options);
   </script>
 </body>
 </html>

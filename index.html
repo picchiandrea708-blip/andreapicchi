@@ -132,17 +132,17 @@
 
   <main>
     <div class="panel active" id="panel-calcio">
-      <div class="section-title">Calcio — Oggi <span class="badge">LIVE</span></div>
+      <div class="section-title">Calcio — Finestra 24 ore <span class="badge">LIVE</span></div>
       <div id="grid-calcio"><div class="loading">Caricamento…</div></div>
     </div>
 
     <div class="panel" id="panel-basket">
-      <div class="section-title">Basket — LBA · Eurolega · NBA · Oggi <span class="badge">LIVE</span></div>
+      <div class="section-title">Basket — LBA · Eurolega · NBA · 24 ore <span class="badge">LIVE</span></div>
       <div id="grid-basket"><div class="loading">Caricamento…</div></div>
     </div>
 
     <div class="panel" id="panel-usa">
-      <div class="section-title">Sport USA — NFL · NHL · Oggi <span class="badge">LIVE</span></div>
+      <div class="section-title">Sport USA — NFL · NHL · 24 ore <span class="badge">LIVE</span></div>
       <div id="grid-usa"><div class="loading">Caricamento…</div></div>
     </div>
 
@@ -206,7 +206,7 @@
     const LIVE_URL = PROXY + encodeURIComponent('https://api.motogp.pulselive.com/motogp/v1/timing-gateway/livetiming-lite');
     const F1_REFRESH_MS = 60_000;
     const TICKER_ITEMS = [
-      'Risultati e partite in programma: solo eventi della giornata corrente.',
+      'Risultati e partite in programma: finestra mobile ultime/prossime 24 ore.',
       'Formula 1 e MotoGP: livetiming per le sessioni attive e classifiche on demand.',
       'Calcio: Serie A, Serie B, Serie C, coppe UEFA e competizioni internazionali.',
       'Basket: Serie A LBA, Eurolega e NBA. Aggiornamento automatico dei punteggi.'
@@ -301,7 +301,7 @@
         for (const m of list) {
           const sc = statusClass(m.status);
           const hasScore = m.hasScore !== false && m.homeScore !== '' && m.homeScore != null && m.homeScore !== undefined;
-          const scoreText = hasScore ? `${m.homeScore} – ${m.awayScore}` : displayMatchTime(m.time);
+          const scoreText = hasScore ? `${m.homeScore} – ${m.awayScore}` : displayMatchTime(m.time, m.originalTime);
           const home = escapeHtml(m.home || '—');
           const away = escapeHtml(m.away || '—');
           const status = escapeHtml(m.status || '');
@@ -343,8 +343,8 @@
               homeScore: home?.score ?? '',
               awayScore: away?.score ?? '',
               hasScore: st.state !== 'pre',
-              status: st.shortDetail || st.description || '',
-              time: '', eventDate: ev.date || ''
+              status: st.state === 'pre' ? 'In programma' : (st.shortDetail || st.description || ''),
+              time: ev.date || '', eventDate: ev.date || '', originalTime: st.shortDetail || ''
             });
           }
         } catch (_) {}
@@ -376,9 +376,15 @@
     function sortLiveFirst(list) {
       return [...list].sort((a, b) => Number(isLiveMatch(b)) - Number(isLiveMatch(a)) || String(a.time || '').localeCompare(String(b.time || '')));
     }
-    function displayMatchTime(value) {
+    function displayMatchTime(value, originalTime = '') {
       if (typeof value === 'number' && Number.isFinite(value)) {
-        return new Date(value).toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit' });
+        const local = new Date(value).toLocaleString('it-IT', { timeZone: 'Europe/Rome', day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
+        return originalTime && /\b[A-Z]{2,4}\b/.test(originalTime) ? `${local} (${originalTime})` : local;
+      }
+      const parsed = Date.parse(value || '');
+      if (Number.isFinite(parsed)) {
+        const local = new Date(parsed).toLocaleString('it-IT', { timeZone: 'Europe/Rome', day: '2-digit', month: '2-digit', hour: '2-digit', minute: '2-digit' });
+        return originalTime && /\b[A-Z]{2,4}\b/.test(originalTime) ? `${local} (${originalTime})` : local;
       }
       return String(value || '—');
     }

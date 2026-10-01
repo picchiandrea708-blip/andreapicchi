@@ -89,6 +89,7 @@
     .pos.p1 { color: #ffd700; } .pos.p2 { color: #c0c0c0; } .pos.p3 { color: #cd7f32; }
     .driver { font-weight: 600; }
     .gap { font-family: 'JetBrains Mono', monospace; font-size: .82rem; color: var(--muted); }
+    .f1-live-value { color: var(--live); font-weight: 700; }
     .num {
       display: inline-flex; align-items: center; justify-content: center;
       min-width: 28px; height: 22px; border-radius: 4px; font-weight: 700; font-size: .8rem; color: #fff;
@@ -227,6 +228,7 @@
     };
     const LIVE_URL = PROXY + encodeURIComponent('https://api.motogp.pulselive.com/motogp/v1/timing-gateway/livetiming-lite');
     const F1_REFRESH_MS = 60_000;
+    const F1_LIVE_REFRESH_MS = 10_000;
     // NEWS TICKER: modifica, aggiungi o rimuovi le frasi qui sotto.
     const TICKER_ITEMS = [
       'Risultati e partite in programma: finestra mobile ultime/prossime 24 ore.',
@@ -624,7 +626,7 @@
     }
 
     // ===== F1 (OpenF1) =====
-    const f1State = { inFlight: false, lastLoad: 0, sessions: null, sessionsAt: 0, drivers: new Map(), positions: new Map(), selectedSessionKey: null };
+    const f1State = { inFlight: false, lastLoad: 0, sessions: null, sessionsAt: 0, drivers: new Map(), positions: new Map(), intervals: new Map(), laps: new Map(), selectedSessionKey: null, active: false };
 
     async function getF1Sessions(year) {
       const cacheValid = f1State.sessions && (Date.now() - f1State.sessionsAt < 10 * 60_000);
@@ -638,7 +640,8 @@
 
     async function loadF1(force = false) {
       const box = document.getElementById('f1-box');
-      if (f1State.inFlight || (!force && Date.now() - f1State.lastLoad < F1_REFRESH_MS - 1_000)) return;
+      const refreshWindow = f1State.active ? F1_LIVE_REFRESH_MS - 1_000 : F1_REFRESH_MS - 1_000;
+      if (f1State.inFlight || (!force && Date.now() - f1State.lastLoad < refreshWindow)) return;
       f1State.inFlight = true;
       try {
         const sessions = await getF1Sessions(new Date().getFullYear());
@@ -652,8 +655,10 @@
 
         // Una sola richiesta di posizione, con un secondo tentativo soltanto se la più recente è vuota.
         let session = pastSessions.find(s => String(s.session_key) === String(f1State.selectedSessionKey)) || pastSessions[0];
+        const isLive = timeValue(session.date_start) <= Date.now() && (!session.date_end || timeValue(session.date_end) >= Date.now());
+        f1State.active = isLive;
         let positions = f1State.positions.get(session.session_key);
-        if (!positions || Date.now() - positions.loadedAt > F1_REFRESH_MS) {
+        if (!positions || Date.now() - positions.loadedAt > (isLive ? F1_LIVE_REFRESH_MS : F1_REFRESH_MS)) {
           try {
             positions = { data: await fetchJson(`https://api.openf1.org/v1/position?session_key=${session.session_key}`, 'OpenF1 posizioni'), loadedAt: Date.now() };
             f1State.positions.set(session.session_key, positions);
@@ -670,6 +675,19 @@
         }
         if (!Array.isArray(positions)) throw new Error('OpenF1: dati posizione non validi');
 
+        let intervals = f1State.intervals.get(session.session_key);
+        let laps = f1State.laps.get(session.session_key);
+        const timingRefresh = isLive ? F1_LIVE_REFRESH_MS : F1_REFRESH_MS;
+        if (!intervals || Date.now() - intervals.loadedAt > timingRefresh) {
+          const [intervalData, lapData] = await Promise.all([
+            fetchJson(`https://api.openf1.org/v1/intervals?session_key=${session.session_key}`, 'OpenF1 intervalli').catch(() => []),
+            fetchJson(`https://api.openf1.org/v1/laps?session_key=${session.session_key}`, 'OpenF1 giri').catch(() => [])
+          ]);
+          intervals = { data: Array.isArray(intervalData) ? intervalData : [], loadedAt: Date.now() };
+          laps = { data: Array.isArray(lapData) ? lapData : [], loadedAt: Date.now() };
+          f1State.intervals.set(session.session_key, intervals);
+          f1State.laps.set(session.session_key, laps);
+        }
         let drivers = f1State.drivers.get(session.session_key);
         if (!drivers) {
           drivers = await fetchJson(`https://api.openf1.org/v1/drivers?session_key=${session.session_key}`, 'OpenF1 piloti');
@@ -684,9 +702,18 @@
         }
         const drvMap = {};
         for (const d of drivers) drvMap[d.driver_number] = d;
+        const latestInterval = {};
+        for (const item of (intervals?.data || [])) {
+          const id = item.driver_number;
+          if (id != null && (!latestInterval[id] || (item.date || '') > (latestInterval[id].date || ''))) latestInterval[id] = item;
+        }
+        const latestLap = {};
+        for (const item of (laps?.data || [])) {
+          const id = item.driver_number;
+          if (id != null && (!latestLap[id] || (item.date_start || '') > (latestLap[id].date_start || ''))) latestLap[id] = item;
+        }
         const rows = Object.values(latest).sort((a, b) => (a.position || 99) - (b.position || 99));
         const now = Date.now();
-        const isLive = timeValue(session.date_start) <= now && (!session.date_end || timeValue(session.date_end) >= now);
         const title = `${session.session_name || session.session_type || 'Sessione'} · ${session.circuit_short_name || session.location || session.country_name || ''}`;
         const eventName = session.location || session.country_name || 'Formula 1';
         const sessionStatus = isLive ? 'LIVE' : 'Terminata';
@@ -701,7 +728,7 @@
             <div><label>Circuito</label><strong>${escapeHtml(session.circuit_short_name || '—')}</strong></div>
             <div><label>Sessione</label><strong>${escapeHtml(session.session_name || session.session_type || '—')}</strong></div>
             <div><label>Categoria</label><strong>Formula 1</strong></div>
-            <div><label>Stato</label><strong style="color:${isLive ? 'var(--live)' : 'var(--muted)'}">${sessionStatus}</strong></div>
+            <div><label>Stato</label><strong style="color:${isLive ? 'var(--live)' : 'var(--muted)'}">${sessionStatus}${isLive ? ' · auto 10s' : ''}</strong></div>
           </div>
           <div style="padding:.85rem 1rem;border-top:1px solid var(--border)">
             <label style="display:block;font-size:.7rem;color:var(--muted);text-transform:uppercase;margin-bottom:.35rem">Sessioni F1 — on demand</label>
@@ -710,17 +737,24 @@
         if (!rows.length) {
           markup += '<div class="empty">Nessun dato posizione disponibile per questa sessione</div></div>';
         } else {
-          markup += '<div style="max-height:560px;overflow:auto"><table class="timing-table"><thead><tr><th>Pos</th><th>#</th><th>Pilota</th><th>Team</th></tr></thead><tbody>';
+          markup += '<div style="max-height:560px;overflow:auto"><table class="timing-table"><thead><tr><th>Pos</th><th>#</th><th>Pilota</th><th>Team</th><th>Giro</th><th>Gap</th><th>Ultimo giro</th></tr></thead><tbody>';
           for (const r of rows) {
             const d = drvMap[r.driver_number] || {};
             const name = d.name_acronym || d.broadcast_name || `#${r.driver_number}`;
             const team = d.team_name || '—';
+            const interval = latestInterval[r.driver_number] || {};
+            const lap = latestLap[r.driver_number] || {};
+            const gap = interval.gap_to_leader != null ? `+${Number(interval.gap_to_leader).toFixed(3)}s` : (interval.interval != null ? `+${Number(interval.interval).toFixed(3)}s` : '—');
+            const lapTime = lap.lap_duration != null ? `${Number(lap.lap_duration).toFixed(3)}s` : '—';
             const posClass = r.position === 1 ? 'p1' : r.position === 2 ? 'p2' : r.position === 3 ? 'p3' : '';
             markup += `<tr>
               <td class="pos ${posClass}">${escapeHtml(r.position ?? '—')}</td>
               <td><span class="num" style="background:${safeColor(d.team_colour)}">${escapeHtml(r.driver_number ?? '—')}</span></td>
               <td class="driver">${escapeHtml(name)}</td>
               <td class="gap">${escapeHtml(team)}</td>
+              <td class="gap">${escapeHtml(lap.lap_number ?? '—')}</td>
+              <td class="gap">${escapeHtml(gap)}</td>
+              <td class="gap">${escapeHtml(lapTime)}</td>
             </tr>`;
           }
           markup += '</tbody></table></div></div>';
@@ -940,7 +974,8 @@
     loadEvents();
     setInterval(fetchLive, 6000);
     setInterval(() => { loadCalcio(); loadBasket(); loadUsa(); }, 45000);
-    setInterval(loadF1, F1_REFRESH_MS);
+    // Controllo frequente: loadF1 applica 10s durante una sessione LIVE e 60s altrimenti.
+    setInterval(loadF1, F1_LIVE_REFRESH_MS);
   </script>
 </body>
 </html>

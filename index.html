@@ -205,6 +205,7 @@
     };
     const LIVE_URL = PROXY + encodeURIComponent('https://api.motogp.pulselive.com/motogp/v1/timing-gateway/livetiming-lite');
     const F1_REFRESH_MS = 60_000;
+    // NEWS TICKER: modifica, aggiungi o rimuovi le frasi qui sotto.
     const TICKER_ITEMS = [
       'Risultati e partite in programma: finestra mobile ultime/prossime 24 ore.',
       'Formula 1 e MotoGP: livetiming per le sessioni attive e classifiche on demand.',
@@ -390,6 +391,7 @@
     }
     function footballCompetitionName(value) {
       const c = String(value || '').toLowerCase();
+      if (/mongol|mongolia|chinese|china/.test(c)) return null;
       if (/serie a( |$)|italian serie a/.test(c)) return 'Serie A';
       if (/serie b|italian serie b/.test(c)) return 'Serie B';
       if (/serie c|italian serie c|c1-a/.test(c)) return 'Serie C';
@@ -508,7 +510,12 @@
       const other = [];
       todaysScoreFeed.forEach(m => {
         if (knownTeams.has(`${m.home}|${m.away}`)) return;
+        const matchText = `${m.competition || ''} ${m.home || ''} ${m.away || ''}`.toLowerCase();
+        if (/mongol|mongolia|ulaangom|mylliem|khovd|chinese|china|guangzhou zhicheng|chongqing handa/.test(matchText)) return;
         const name = footballCompetitionName(m.competition);
+        // Per Premier e Champions usiamo solo i feed ESPN dedicati:
+        // SportScore riusa nomi generici per campionati di Kenya, India e Cina.
+        if (name === 'Premier League' || name === 'Champions League') return;
         if (name && selectedFromFeed.has(name)) selectedFromFeed.get(name).push({ ...m, competition: name });
         else other.push(m);
       });

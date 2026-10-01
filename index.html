@@ -690,7 +690,12 @@
         }
         let drivers = f1State.drivers.get(session.session_key);
         if (!drivers) {
-          drivers = await fetchJson(`https://api.openf1.org/v1/drivers?session_key=${session.session_key}`, 'OpenF1 piloti');
+          try {
+            drivers = await fetchJson(`https://api.openf1.org/v1/drivers?session_key=${session.session_key}`, 'OpenF1 piloti');
+          } catch (_) {
+            // Il rate limit OpenF1 sui metadati piloti non deve fermare il livetiming.
+            drivers = [];
+          }
           if (!Array.isArray(drivers)) drivers = [];
           f1State.drivers.set(session.session_key, drivers);
         }

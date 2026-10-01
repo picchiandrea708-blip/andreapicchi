@@ -107,6 +107,18 @@
     .ticker-window { overflow: hidden; flex: 1; white-space: nowrap; }
     .ticker-track { display: inline-block; min-width: 100%; animation: tickerIn .45s ease-out; }
     @keyframes tickerIn { from { transform: translateX(2rem); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
+    .my-news { max-width: 1200px; margin: .85rem auto 0; padding: 0 1.25rem; }
+    .my-news-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); padding: .8rem 1rem; }
+    .my-news-head { display: flex; justify-content: space-between; align-items: center; gap: .75rem; margin-bottom: .6rem; }
+    .my-news-head strong { font-size: .85rem; }
+    .my-news-head span { color: var(--muted); font-size: .72rem; }
+    .my-news-form { display: flex; gap: .5rem; align-items: stretch; }
+    .my-news-form textarea { flex: 1; min-height: 42px; resize: vertical; background: var(--bg3); color: var(--text); border: 1px solid var(--border); border-radius: 7px; padding: .6rem .7rem; font: inherit; font-size: .82rem; }
+    .my-news-form button, .news-delete { background: var(--accent); color: #04120c; border: 0; border-radius: 7px; padding: .5rem .75rem; font-weight: 700; cursor: pointer; }
+    .my-news-list { display: flex; flex-wrap: wrap; gap: .4rem; margin-top: .6rem; }
+    .my-news-item { display: flex; align-items: center; gap: .45rem; background: var(--bg3); border: 1px solid var(--border); border-radius: 7px; padding: .35rem .45rem .35rem .6rem; font-size: .76rem; }
+    .news-delete { background: transparent; color: #ff8a80; padding: .1rem .3rem; font-size: .9rem; }
+    @media (max-width: 560px) { .my-news-form { flex-direction: column; } }
   </style>
 </head>
 <body>
@@ -121,6 +133,16 @@
   <div class="news-ticker" aria-label="Notizie sportive">
     <strong>SPORT NEWS</strong><div class="ticker-window"><span class="ticker-track" id="newsTicker">Caricamento aggiornamenti sportivi…</span></div>
   </div>
+  <section class="my-news" aria-label="Le mie notizie">
+    <div class="my-news-card">
+      <div class="my-news-head"><strong>Le mie notizie</strong><span>Salvate solo in questo browser</span></div>
+      <form class="my-news-form" id="myNewsForm">
+        <textarea id="myNewsInput" maxlength="240" placeholder="Scrivi una notizia da mostrare nel ticker…" aria-label="Nuova notizia"></textarea>
+        <button type="submit">Pubblica nel ticker</button>
+      </form>
+      <div class="my-news-list" id="myNewsList"></div>
+    </div>
+  </section>
 
   <nav class="cats" id="navCats">
     <button data-panel="calcio" class="active">⚽ Calcio</button>
@@ -212,15 +234,48 @@
       'Calcio: Serie A, Serie B, Serie C, coppe UEFA e competizioni internazionali.',
       'Basket: Serie A LBA, Eurolega e NBA. Aggiornamento automatico dei punteggi.'
     ];
+    const MY_NEWS_KEY = 'sportlive.myNews.v1';
+    function loadMyNews() {
+      try {
+        const value = JSON.parse(localStorage.getItem(MY_NEWS_KEY) || '[]');
+        return Array.isArray(value) ? value.filter(item => typeof item === 'string').slice(0, 20) : [];
+      } catch (_) { return []; }
+    }
+    let myNews = loadMyNews();
     let tickerIndex = 0;
+    function saveMyNews() { try { localStorage.setItem(MY_NEWS_KEY, JSON.stringify(myNews)); } catch (_) {} }
+    function renderMyNews() {
+      const list = document.getElementById('myNewsList');
+      if (!list) return;
+      list.innerHTML = myNews.length ? myNews.map((item, index) =>
+        `<span class="my-news-item"><span>${escapeHtml(item)}</span><button type="button" class="news-delete" data-news-index="${index}" aria-label="Elimina notizia">×</button></span>`
+      ).join('') : '<span style="color:var(--muted);font-size:.75rem">Nessuna notizia personale: il ticker usa le notizie standard.</span>';
+    }
+    document.getElementById('myNewsForm')?.addEventListener('submit', event => {
+      event.preventDefault();
+      const input = document.getElementById('myNewsInput');
+      const text = input.value.trim();
+      if (!text) return;
+      if (myNews.length >= 20) myNews.shift();
+      myNews.push(text);
+      saveMyNews(); renderMyNews(); input.value = ''; tickerIndex = 0; rotateTicker();
+    });
+    document.getElementById('myNewsList')?.addEventListener('click', event => {
+      const button = event.target.closest('[data-news-index]');
+      if (!button) return;
+      myNews.splice(Number(button.dataset.newsIndex), 1);
+      saveMyNews(); renderMyNews(); tickerIndex = 0; rotateTicker();
+    });
     function rotateTicker() {
       const el = document.getElementById('newsTicker');
       if (!el) return;
-      el.textContent = TICKER_ITEMS[tickerIndex++ % TICKER_ITEMS.length];
+      const items = myNews.length ? myNews : TICKER_ITEMS;
+      el.textContent = items[tickerIndex++ % items.length];
       el.classList.remove('ticker-track');
       void el.offsetWidth;
       el.classList.add('ticker-track');
     }
+    renderMyNews();
     rotateTicker();
     setInterval(rotateTicker, 7_000);
 

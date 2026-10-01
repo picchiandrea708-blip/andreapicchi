@@ -120,6 +120,12 @@
     .my-news-item { display: flex; align-items: center; gap: .45rem; background: var(--bg3); border: 1px solid var(--border); border-radius: 7px; padding: .35rem .45rem .35rem .6rem; font-size: .76rem; }
     .news-delete { background: transparent; color: #ff8a80; padding: .1rem .3rem; font-size: .9rem; }
     @media (max-width: 560px) { .my-news-form { flex-direction: column; } }
+    .public-news { max-width: 1200px; margin: .9rem auto 0; padding: 0 1.25rem; }
+    .public-news-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
+    .public-news-title { padding: .7rem 1rem; background: var(--bg3); color: var(--accent); font-size: .85rem; font-weight: 800; letter-spacing: .08em; }
+    .public-news-list { display: grid; gap: 0; }
+    .public-news-item { padding: .7rem 1rem; border-top: 1px solid var(--border); font-size: .88rem; line-height: 1.4; }
+    .public-news-empty { padding: 1rem; color: var(--muted); font-size: .82rem; }
   </style>
 </head>
 <body>
@@ -142,6 +148,12 @@
         <button type="submit">Pubblica nel ticker</button>
       </form>
       <div class="my-news-list" id="myNewsList"></div>
+    </div>
+  </section>
+  <section class="public-news" aria-label="Notizie pubbliche">
+    <div class="public-news-card">
+      <div class="public-news-title">NEWS PUBBLICHE</div>
+      <div class="public-news-list" id="publicNewsList"><div class="public-news-empty">Caricamento notizie…</div></div>
     </div>
   </section>
 
@@ -237,6 +249,19 @@
       'Basket: Serie A LBA, Eurolega e NBA. Aggiornamento automatico dei punteggi.'
     ];
     const MY_NEWS_KEY = 'sportlive.myNews.v1';
+    // Dopo la distribuzione di Apps Script inserisci qui l'URL della Web App e il token.
+    // Se resta vuoto, SportLive usa il salvataggio locale come fallback.
+    const PUBLIC_NEWS_API_URL = '';
+    const PUBLIC_NEWS_TOKEN = '';
+    const PUBLIC_NEWS_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQjRds1NTcIHP2UVoqITB_coddMuBT7a6ekpRTXi86rReS7rviGoHEHnvEi4XDuntS5FubsiA7gYalS/pub?gid=0&single=true&output=csv';
+    const PUBLIC_NEWS_CACHE_KEY = 'sportlive.publicNews.cache.v1';
+    const PUBLIC_NEWS_FALLBACK = [
+      'Stanotte ore 2,00 scattano le libere seguite dalle prequalifiche a Motegi per il Motomondiale',
+      'Domani mattina alle 6,30 a Sepang scattano le libere della F1',
+      'Dirette su Sky Sport MotoGP e Sky Sport F1',
+      'In serata diretta Rai 1 alle 20,45: Francia-Italia, UEFA Nations League',
+      'Sempre in serata alle 23 (17 ora locale) la squadra di volley della NMU affronta Parkside, diretta su Flo College'
+    ];
     function loadMyNews() {
       try {
         const value = JSON.parse(localStorage.getItem(MY_NEWS_KEY) || '[]');
@@ -246,32 +271,103 @@
     let myNews = loadMyNews();
     let tickerIndex = 0;
     function saveMyNews() { try { localStorage.setItem(MY_NEWS_KEY, JSON.stringify(myNews)); } catch (_) {} }
+    async function publicNewsRequest(params, method = 'GET') {
+      if (!PUBLIC_NEWS_API_URL) return null;
+      const query = new URLSearchParams(params);
+      const response = await fetch(method === 'GET' ? `${PUBLIC_NEWS_API_URL}?${query}` : PUBLIC_NEWS_API_URL, {
+        method, body: method === 'GET' ? undefined : query
+      });
+      if (!response.ok) throw new Error(`Notizie online: HTTP ${response.status}`);
+      const data = await response.json();
+      if (!data.ok) throw new Error(data.error || 'Risposta Apps Script non valida');
+      return data;
+    }
+    async function loadPublicNews() {
+      if (!PUBLIC_NEWS_API_URL) return;
+      try {
+        const data = await publicNewsRequest({ action: 'list' });
+        myNews = (data.news || []).map(item => ({ id: item.id, text: item.text })).filter(item => item.text);
+        renderMyNews(); tickerIndex = 0; rotateTicker();
+      } catch (_) { /* fallback locale silenzioso */ }
+    }
+    function parseCsvRows(csv) {
+      const rows = []; let row = []; let cell = ''; let quoted = false;
+      for (let i = 0; i < csv.length; i++) {
+        const ch = csv[i], next = csv[i + 1];
+        if (ch === '"' && quoted && next === '"') { cell += '"'; i++; continue; }
+        if (ch === '"') { quoted = !quoted; continue; }
+        if (ch === ',' && !quoted) { row.push(cell.trim()); cell = ''; continue; }
+        if ((ch === '\n' || ch === '\r') && !quoted) {
+          if (ch === '\r' && next === '\n') i++;
+          row.push(cell.trim()); if (row.some(Boolean)) rows.push(row); row = []; cell = ''; continue;
+        }
+        cell += ch;
+      }
+      row.push(cell.trim()); if (row.some(Boolean)) rows.push(row);
+      return rows;
+    }
+    async function loadPublicNewsSection() {
+      const list = document.getElementById('publicNewsList');
+      if (!list) return;
+      const renderNews = rows => { list.innerHTML = rows.length ? rows.map(text => `<div class="public-news-item">${escapeHtml(text)}</div>`).join('') : '<div class="public-news-empty">Nessuna notizia pubblicata.</div>'; };
+      renderNews(PUBLIC_NEWS_FALLBACK);
+      try {
+        let response;
+        for (let attempt = 0; attempt < 3; attempt++) {
+          try {
+            response = await fetch(`${PUBLIC_NEWS_CSV_URL}&t=${Date.now()}`, { cache: 'no-store', mode: 'cors' });
+            if (response.ok) break;
+          } catch (_) { if (attempt === 2) throw _; }
+          await new Promise(resolve => setTimeout(resolve, 700 * (attempt + 1)));
+        }
+        if (!response.ok) throw new Error('HTTP ' + response.status);
+        const rows = parseCsvRows(await response.text()).map(row => row[0]).filter(Boolean).slice(0, 20);
+        try { localStorage.setItem(PUBLIC_NEWS_CACHE_KEY, JSON.stringify(rows)); } catch (_) {}
+        renderNews(rows);
+      } catch (_) {
+        try {
+          const cached = JSON.parse(localStorage.getItem(PUBLIC_NEWS_CACHE_KEY) || '[]');
+          renderNews(cached.length ? cached : PUBLIC_NEWS_FALLBACK);
+        } catch (_) { renderNews(PUBLIC_NEWS_FALLBACK); }
+      }
+    }
     function renderMyNews() {
       const list = document.getElementById('myNewsList');
       if (!list) return;
-      list.innerHTML = myNews.length ? myNews.map((item, index) =>
-        `<span class="my-news-item"><span>${escapeHtml(item)}</span><button type="button" class="news-delete" data-news-index="${index}" aria-label="Elimina notizia">×</button></span>`
-      ).join('') : '<span style="color:var(--muted);font-size:.75rem">Nessuna notizia personale: il ticker usa le notizie standard.</span>';
+      list.innerHTML = myNews.length ? myNews.map((item, index) => {
+        const text = typeof item === 'string' ? item : item.text;
+        const id = typeof item === 'string' ? '' : item.id;
+        return `<span class="my-news-item"><span>${escapeHtml(text)}</span><button type="button" class="news-delete" data-news-index="${index}" data-news-id="${escapeHtml(id)}" aria-label="Elimina notizia">×</button></span>`;
+      }).join('') : '<span style="color:var(--muted);font-size:.75rem">Nessuna notizia personale: il ticker usa le notizie standard.</span>';
     }
-    document.getElementById('myNewsForm')?.addEventListener('submit', event => {
+    document.getElementById('myNewsForm')?.addEventListener('submit', async event => {
       event.preventDefault();
       const input = document.getElementById('myNewsInput');
       const text = input.value.trim();
       if (!text) return;
+      if (PUBLIC_NEWS_API_URL) {
+        try {
+          await publicNewsRequest({ action: 'publish', token: PUBLIC_NEWS_TOKEN, text }, 'POST');
+          await loadPublicNews(); input.value = ''; return;
+        } catch (_) { /* fallback locale se Apps Script non è ancora configurato */ }
+      }
       if (myNews.length >= 20) myNews.shift();
-      myNews.push(text);
-      saveMyNews(); renderMyNews(); input.value = ''; tickerIndex = 0; rotateTicker();
+      myNews.push(text); saveMyNews(); renderMyNews(); input.value = ''; tickerIndex = 0; rotateTicker();
     });
-    document.getElementById('myNewsList')?.addEventListener('click', event => {
+    document.getElementById('myNewsList')?.addEventListener('click', async event => {
       const button = event.target.closest('[data-news-index]');
       if (!button) return;
-      myNews.splice(Number(button.dataset.newsIndex), 1);
-      saveMyNews(); renderMyNews(); tickerIndex = 0; rotateTicker();
+      const index = Number(button.dataset.newsIndex);
+      if (PUBLIC_NEWS_API_URL && button.dataset.newsId) {
+        try { await publicNewsRequest({ action: 'delete', token: PUBLIC_NEWS_TOKEN, id: button.dataset.newsId }, 'POST'); await loadPublicNews(); return; }
+        catch (_) { return; }
+      }
+      myNews.splice(index, 1); saveMyNews(); renderMyNews(); tickerIndex = 0; rotateTicker();
     });
     function rotateTicker() {
       const el = document.getElementById('newsTicker');
       if (!el) return;
-      const items = myNews.length ? myNews : TICKER_ITEMS;
+      const items = myNews.length ? myNews.map(item => typeof item === 'string' ? item : item.text) : TICKER_ITEMS;
       el.textContent = items[tickerIndex++ % items.length];
       el.classList.remove('ticker-track');
       void el.offsetWidth;
@@ -279,7 +375,10 @@
     }
     renderMyNews();
     rotateTicker();
+    loadPublicNews();
+    loadPublicNewsSection();
     setInterval(rotateTicker, 7_000);
+    setInterval(loadPublicNewsSection, 5 * 60_000);
 
     function api(path) {
       return PROXY + encodeURIComponent('https://api.motogp.pulselive.com/motogp/v1' + path);

@@ -90,6 +90,16 @@
     .driver { font-weight: 600; }
     .gap { font-family: 'JetBrains Mono', monospace; font-size: .82rem; color: var(--muted); }
     .f1-live-value { color: var(--live); font-weight: 700; }
+    .f1-actions { display:flex; flex-wrap:wrap; align-items:center; gap:.65rem; padding:.85rem 1rem; border-top:1px solid var(--border); }
+    .f1-official-link { display:inline-block; background:var(--accent); color:#04120c; border-radius:7px; padding:.5rem .75rem; font-size:.8rem; font-weight:800; text-decoration:none; }
+    .f1-official-link:hover { filter:brightness(1.08); }
+    .f1-source-note { color:var(--muted); font-size:.75rem; }
+    .f1-pulse-config { display:flex; flex-wrap:wrap; align-items:center; gap:.5rem; padding:.75rem 1rem; border-top:1px solid var(--border); background:#111923; }
+    .f1-pulse-config input { flex:1; min-width:220px; background:var(--bg3); color:var(--text); border:1px solid var(--border); border-radius:7px; padding:.45rem .6rem; font:inherit; font-size:.78rem; }
+    .f1-pulse-config button { background:var(--accent); color:#04120c; border:0; border-radius:7px; padding:.45rem .7rem; font-weight:800; cursor:pointer; }
+    .f1-pulse-status { color:var(--muted); font-size:.74rem; }
+    .f1-calendar-row { display:flex; justify-content:space-between; gap:1rem; padding:.6rem 1rem; border-top:1px solid var(--border); font-size:.82rem; }
+    .f1-calendar-row small { color:var(--muted); white-space:nowrap; }
     .num {
       display: inline-flex; align-items: center; justify-content: center;
       min-width: 28px; height: 22px; border-radius: 4px; font-weight: 700; font-size: .8rem; color: #fff;
@@ -183,6 +193,14 @@
 
     <div class="panel" id="panel-f1">
       <div class="section-title">Formula 1 — Livetiming <span class="badge">LIVE</span></div>
+      <div class="league-card" style="max-width:1100px;margin-bottom:1rem">
+        <div class="league-head"><span>Fonte live prioritaria: Formula Live Pulse</span><span class="count">RapidAPI · locale</span></div>
+        <div class="f1-pulse-config">
+          <input id="f1PulseKey" type="password" autocomplete="off" placeholder="Incolla qui la chiave RapidAPI (salvata solo in questo browser)" aria-label="Chiave RapidAPI Formula Live Pulse">
+          <button type="button" id="saveF1PulseKey">Salva chiave</button>
+          <span class="f1-pulse-status" id="f1PulseStatus">Non configurata · uso OpenF1</span>
+        </div>
+      </div>
       <div id="f1-box"><div class="loading">Caricamento sessione F1…</div></div>
     </div>
 
@@ -241,6 +259,10 @@
     const LIVE_URL = PROXY + encodeURIComponent('https://api.motogp.pulselive.com/motogp/v1/timing-gateway/livetiming-lite');
     const F1_REFRESH_MS = 60_000;
     const F1_LIVE_REFRESH_MS = 10_000;
+    const F1_OFFICIAL_TIMING_URL = 'https://www.formula1.com/en/timing/f1-live';
+    const F1_PULSE_KEY = 'sportlive.f1.livepulse.rapidapiKey.v1';
+    const F1_PULSE_URL = 'https://f1-live-pulse.p.rapidapi.com/timingData';
+    const F1_PULSE_HOST = 'f1-live-pulse.p.rapidapi.com';
     // NEWS TICKER: modifica, aggiungi o rimuovi le frasi qui sotto.
     const TICKER_ITEMS = [
       'Risultati e partite in programma: finestra mobile ultime/prossime 24 ore.',
@@ -764,9 +786,74 @@
       const snapshot = getF1LastValid();
       if (!snapshot?.markup) return false;
       const note = `<div class="empty" style="border-bottom:1px solid var(--border);border-radius:0">Ultimo dato valido del livetiming: ${escapeHtml(formatF1SnapshotAge(snapshot.savedAt))}. ${escapeHtml(reason)} Il pannello verrà aggiornato automaticamente.</div>`;
-      box.innerHTML = note + snapshot.markup;
+      box.innerHTML = note + snapshot.markup + f1OfficialActions();
       bindF1Picker();
       return true;
+    }
+
+    function getF1PulseKey() {
+      try { return localStorage.getItem(F1_PULSE_KEY) || ''; } catch (_) { return ''; }
+    }
+
+    function updateF1PulseStatus(text, ok = false) {
+      const el = document.getElementById('f1PulseStatus');
+      if (el) { el.textContent = text; el.style.color = ok ? 'var(--accent)' : 'var(--muted)'; }
+    }
+
+    function initF1PulseConfig() {
+      const input = document.getElementById('f1PulseKey');
+      const saved = getF1PulseKey();
+      if (input && saved) { input.value = saved; updateF1PulseStatus('Configurata · fonte primaria attiva', true); }
+      document.getElementById('saveF1PulseKey')?.addEventListener('click', () => {
+        const value = input?.value.trim() || '';
+        try { if (value) localStorage.setItem(F1_PULSE_KEY, value); else localStorage.removeItem(F1_PULSE_KEY); } catch (_) {}
+        updateF1PulseStatus(value ? 'Salvata solo in questo browser · fonte primaria attiva' : 'Non configurata · uso OpenF1', Boolean(value));
+        loadF1(true);
+      });
+    }
+
+    async function fetchF1PulseTiming() {
+      const key = getF1PulseKey();
+      if (!key) return null;
+      const response = await fetch(F1_PULSE_URL, { headers: { Accept: 'application/json', 'X-RapidAPI-Key': key, 'X-RapidAPI-Host': F1_PULSE_HOST } });
+      const text = await response.text();
+      if (!response.ok) throw new Error(`Formula Live Pulse HTTP ${response.status}`);
+      let data;
+      try { data = JSON.parse(text); } catch (_) { throw new Error('Formula Live Pulse: risposta non valida'); }
+      const lines = Array.isArray(data) ? data : (Array.isArray(data.lines) ? data.lines : []);
+      if (!lines.length) return null;
+      return lines;
+    }
+
+    function renderF1PulseTiming(box, lines, sessions = []) {
+      const session = [...sessions].filter(s => timeValue(s.date_start)).sort((a, b) => Math.abs(timeValue(a.date_start) - Date.now()) - Math.abs(timeValue(b.date_start) - Date.now()))[0] || {};
+      const eventName = session.location || session.country_name || 'Formula 1';
+      const sessionName = session.session_name || session.session_type || 'Sessione corrente';
+      const rows = [...lines].sort((a, b) => Number(a.position || 99) - Number(b.position || 99));
+      const markup = `<div class="league-card" style="max-width:1100px">
+        <div class="league-head"><span>Live timing · ${escapeHtml(eventName)}</span><span class="count" style="color:var(--live)">LIVE · Formula Live Pulse</span></div>
+        <div class="session-info"><div><label>Evento</label><strong>${escapeHtml(eventName)}</strong></div><div><label>Sessione</label><strong>${escapeHtml(sessionName)}</strong></div><div><label>Fonte</label><strong>Formula Live Pulse</strong></div><div><label>Aggiornamento</label><strong style="color:var(--live)">Tempo reale</strong></div></div>
+        <div style="max-height:560px;overflow:auto"><table class="timing-table"><thead><tr><th>Pos</th><th>#</th><th>Pilota</th><th>Team</th><th>Miglior</th><th>Ultimo</th><th>Gap</th><th>Gomme</th></tr></thead><tbody>${rows.map(r => { const d=r.driver||{}; const pos=Number(r.position||99); const gap=r.timeDiffToFastest || r.gapToLeader || r.timeDiffToPositionAhead || '—'; const pc=pos===1?'p1':pos===2?'p2':pos===3?'p3':''; return `<tr><td class="pos ${pc}">${escapeHtml(pos > 90 ? '—' : pos)}</td><td><span class="num" style="background:${safeColor(d.TeamColour)}">${escapeHtml(r.racingNumber || d.RacingNumber || '—')}</span></td><td class="driver">${escapeHtml(d.Tla || d.BroadcastName || d.FullName || '—')}</td><td class="gap">${escapeHtml(d.TeamName || '—')}</td><td class="gap">${escapeHtml(r.bestLapTime || '—')}</td><td class="gap">${escapeHtml(r.lastLapTime || '—')}</td><td class="gap">${escapeHtml(gap)}</td><td class="gap">${escapeHtml(r.compound || '—')}${r.inPit ? ' · PIT' : ''}</td></tr>`; }).join('')}</tbody></table></div>${f1OfficialActions()}</div>`;
+      box.innerHTML = markup;
+      saveF1LastValid(session.session_key || 'pulse-current', markup);
+    }
+
+    function f1OfficialActions() {
+      return `<div class="f1-actions"><a class="f1-official-link" href="${F1_OFFICIAL_TIMING_URL}" target="_blank" rel="noopener noreferrer">Apri Live Timing ufficiale F1</a><span class="f1-source-note">Il live ufficiale è la fonte più affidabile durante le sessioni attive.</span></div>`;
+    }
+
+    function renderF1Unavailable(box, message, sessions = f1State.sessions || []) {
+      const ordered = [...sessions].filter(s => !s.is_cancelled && timeValue(s.date_start))
+        .sort((a, b) => Math.abs(timeValue(a.date_start) - Date.now()) - Math.abs(timeValue(b.date_start) - Date.now()))
+        .slice(0, 8);
+      const formatter = new Intl.DateTimeFormat('it-IT', { dateStyle: 'short', timeStyle: 'short' });
+      const rows = ordered.map(s => {
+        const start = timeValue(s.date_start);
+        const status = start > Date.now() ? 'In programma' : (s.date_end && timeValue(s.date_end) < Date.now() ? 'Terminata' : 'In corso / stato non disponibile');
+        const label = `${s.session_name || s.session_type || 'Sessione'} · ${s.location || s.country_name || 'F1'}`;
+        return `<div class="f1-calendar-row"><span>${escapeHtml(label)}</span><small>${escapeHtml(formatter.format(new Date(start)))} · ${escapeHtml(status)}</small></div>`;
+      }).join('');
+      box.innerHTML = `<div class="league-card" style="max-width:1100px"><div class="league-head"><span>Formula 1 — stato e calendario</span><span class="count">OpenF1 non disponibile</span></div><div class="error" style="margin:.75rem">${escapeHtml(message)}</div><div class="session-info"><div><label>Live timing</label><strong>Non garantito dalla fonte gratuita</strong></div><div><label>Risultati</label><strong>Disponibili quando OpenF1 risponde</strong></div><div><label>Fallback</label><strong>Ultimo dato salvato in questo browser</strong></div></div>${rows ? `<div class="league-head"><span>Sessioni vicine</span><span class="count">Calendario</span></div>${rows}` : '<div class="empty">Calendario F1 momentaneamente non disponibile.</div>'}${f1OfficialActions()}</div>`;
     }
 
     async function getF1Sessions(year) {
@@ -779,13 +866,57 @@
       return sessions;
     }
 
+    async function getF1CalendarFallback(year) {
+      const payload = await fetchJson(`https://site.api.espn.com/apis/site/v2/sports/racing/f1/scoreboard?dates=${year}`, 'ESPN F1 calendario');
+      const sessions = [];
+      for (const event of (payload.events || [])) {
+        for (const competition of (event.competitions || [])) {
+          sessions.push({
+            session_key: `espn-${competition.id}`,
+            date_start: competition.date || event.date,
+            date_end: event.endDate || competition.date || event.date,
+            session_name: competition.type?.abbreviation || competition.type?.text || 'Sessione',
+            session_type: competition.type?.abbreviation || 'F1',
+            location: event.name || event.shortName || 'Formula 1',
+            circuit_short_name: event.shortName || event.name || '—',
+            country_name: 'F1',
+            is_cancelled: false
+          });
+        }
+      }
+      if (!sessions.length) throw new Error('ESPN F1: calendario vuoto');
+      return sessions;
+    }
+
     async function loadF1(force = false) {
       const box = document.getElementById('f1-box');
       const refreshWindow = f1State.active ? F1_LIVE_REFRESH_MS - 1_000 : F1_REFRESH_MS - 1_000;
       if (f1State.inFlight || (!force && Date.now() - f1State.lastLoad < refreshWindow)) return;
       f1State.inFlight = true;
+      let availableSessions = f1State.sessions || [];
       try {
-        const sessions = await getF1Sessions(new Date().getFullYear());
+        let pulseLines = null;
+        try { pulseLines = await fetchF1PulseTiming(); } catch (pulseError) { updateF1PulseStatus(`Formula Live Pulse non disponibile · fallback OpenF1 (${pulseError.message})`); }
+        if (pulseLines?.length) {
+          let pulseSessions = [];
+          try { pulseSessions = await getF1Sessions(new Date().getFullYear()); } catch (_) { try { pulseSessions = await getF1CalendarFallback(new Date().getFullYear()); } catch (_) {} }
+          f1State.active = true;
+          updateF1PulseStatus('Attiva · Formula Live Pulse', true);
+          renderF1PulseTiming(box, pulseLines, pulseSessions);
+          return;
+        }
+        let sessions;
+        try {
+          sessions = await getF1Sessions(new Date().getFullYear());
+        } catch (openF1Error) {
+          // ESPN mantiene almeno calendario e stato quando OpenF1 è irraggiungibile.
+          sessions = await getF1CalendarFallback(new Date().getFullYear());
+          availableSessions = sessions;
+          f1State.active = false;
+          renderF1Unavailable(box, 'OpenF1 non risponde. Calendario e stato sessioni caricati da ESPN.', sessions);
+          return;
+        }
+        availableSessions = sessions;
         const pastSessions = sessions
           .filter(s => !s.is_cancelled && timeValue(s.date_start) <= Date.now())
           .sort((a, b) => timeValue(b.date_start) - timeValue(a.date_start));
@@ -879,7 +1010,7 @@
           <div style="padding:.85rem 1rem;border-top:1px solid var(--border)">
             <label style="display:block;font-size:.7rem;color:var(--muted);text-transform:uppercase;margin-bottom:.35rem">Sessioni F1 — on demand</label>
             <select id="f1SessionPicker" style="width:100%;max-width:560px">${sessionOptions}</select>
-          </div>`;
+          </div>${f1OfficialActions()}`;
         if (!rows.length) {
           markup += '<div class="empty">Nessun dato posizione disponibile per questa sessione</div></div>';
         } else {
@@ -916,7 +1047,7 @@
           ? 'OpenF1 sta limitando temporaneamente l’accesso.'
           : `OpenF1 non è raggiungibile (${message}).`;
         if (!restoreF1LastValid(box, reason)) {
-          box.innerHTML = `<div class="${limited ? 'empty' : 'error'}">${limited ? 'Livetiming F1 temporaneamente non disponibile: OpenF1 sta limitando l’accesso. Non è ancora disponibile un dato precedente salvato in questo browser; appena OpenF1 risponde, il dato verrà memorizzato e riutilizzato ai prossimi blocchi. Riprovo automaticamente.' : `Errore F1: ${escapeHtml(message)}`}</div>`;
+          renderF1Unavailable(box, limited ? 'Livetiming dettagliato temporaneamente non disponibile. Il calendario e il collegamento ufficiale restano disponibili.' : `Errore F1: ${message}`, availableSessions);
         }
       } finally {
         f1State.lastLoad = Date.now();
@@ -1132,6 +1263,7 @@
     };
 
     // Avvio
+    initF1PulseConfig();
     loadCalcio();
     loadBasket();
     loadUsa();

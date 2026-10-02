@@ -231,6 +231,13 @@
         </div>
       </div>
       <div class="league-card" style="max-width:1100px;margin-top:1.25rem">
+        <div class="league-head"><span>TimingPass MotoGP — OnDemand</span><span class="count">UFFICIALE</span></div>
+        <div class="f1-actions">
+          <a class="f1-official-link" href="https://timingpass.motogp.com/fr/ondemand" target="_blank" rel="noopener noreferrer">Apri MotoGP TimingPass OnDemand</a>
+          <span class="f1-source-note">Archivio ufficiale dei dati e delle sessioni MotoGP.</span>
+        </div>
+      </div>
+      <div class="league-card" style="max-width:1100px;margin-top:1.25rem">
         <div class="league-head"><span>Classifiche — on demand</span><span class="count">FINAL</span></div>
         <div style="padding:.85rem 1rem">
           <select id="motoEvent"><option value="">Caricamento eventi…</option></select>
@@ -1077,12 +1084,11 @@
         const raw = await res.text();
         if (!raw.trim()) {
           document.getElementById('liveError').style.display = 'none';
-          document.getElementById('liveSessionInfo').style.display = 'none';
-          document.getElementById('liveTable').style.display = 'none';
           document.getElementById('liveLoading').style.display = 'block';
-          document.getElementById('liveLoading').textContent = 'Nessuna sessione MotoGP live in questo momento. Classifiche disponibili sotto.';
-          document.getElementById('liveStatus').textContent = 'Nessuna sessione live';
+          document.getElementById('liveLoading').textContent = 'Caricamento ultima sessione terminata…';
+          document.getElementById('liveStatus').textContent = 'Ultima sessione';
           document.getElementById('liveDot').style.background = '#666';
+          await renderLatestMotoSession();
           return;
         }
         const data = JSON.parse(raw);
@@ -1136,8 +1142,48 @@
     let currentClass = 'e8c110ad-64aa-4e8e-8a86-f2f152f6a942';
     let currentEvent = null;
     let currentSession = null;
+    let currentSessionMeta = null;
     let motoSeasonId = null;
     let classificationRequest = 0;
+
+    async function renderLatestMotoSession(attempt = 0) {
+      // fetchLive può arrivare prima del caricamento degli eventi: aspetta il selettore on demand.
+      if ((!currentEvent || !currentSession) && attempt < 5) {
+        setTimeout(() => renderLatestMotoSession(attempt + 1), 800);
+        return;
+      }
+      if (!currentEvent || !currentSession) {
+        document.getElementById('liveLoading').textContent = 'Nessuna sessione MotoGP disponibile.';
+        return;
+      }
+      try {
+        const data = await fetchJson(api(`/results/session/${encodeURIComponent(currentSession)}/classification?test=false`), 'Ultima sessione MotoGP');
+        const list = Array.isArray(data.classification) ? data.classification : [];
+        const eventName = document.querySelector('#motoEvent option:checked')?.textContent || 'MotoGP';
+        const sessionName = currentSessionMeta?.type || currentSessionMeta?.name || 'Sessione terminata';
+        document.getElementById('liveError').style.display = 'none';
+        document.getElementById('liveLoading').style.display = 'none';
+        document.getElementById('liveSessionInfo').style.display = 'grid';
+        document.getElementById('liveTable').style.display = 'table';
+        document.getElementById('liveTitle').textContent = `Ultima sessione · ${sessionName}`;
+        document.getElementById('liveStatus').textContent = 'TERMINATA';
+        document.getElementById('liveEvent').textContent = eventName;
+        document.getElementById('liveCircuit').textContent = '—';
+        document.getElementById('liveSession').textContent = sessionName;
+        document.getElementById('liveCategory').textContent = document.querySelector('#motoClassPicker .active')?.textContent || 'MotoGP';
+        document.getElementById('liveRemaining').textContent = '—';
+        document.getElementById('liveSessionStatus').textContent = 'Terminata';
+        document.getElementById('liveBody').innerHTML = list.map(r => {
+          const pos = Number(r.position || 0);
+          const posClass = pos === 1 ? 'p1' : pos === 2 ? 'p2' : pos === 3 ? 'p3' : '';
+          return `<tr><td class="pos ${posClass}">${escapeHtml(r.position ?? '—')}</td><td><span class="num" style="background:#555">${escapeHtml(r.rider?.rider_number || r.rider?.number || '—')}</span></td><td class="driver">${escapeHtml(r.rider?.full_name || '—')}</td><td>—</td><td class="gap">—</td><td class="gap">—</td><td class="gap">${escapeHtml(r.gap?.first || '—')}</td><td class="gap">${escapeHtml(r.total_laps ?? '—')}</td><td></td></tr>`;
+        }).join('');
+        if (!list.length) document.getElementById('liveLoading').textContent = 'Classifica dell’ultima sessione non disponibile.';
+      } catch (_) {
+        document.getElementById('liveLoading').textContent = 'Ultima sessione terminata non disponibile. Classifiche on demand sotto.';
+        document.getElementById('liveLoading').style.display = 'block';
+      }
+    }
 
     function chooseMotoEvent(events) {
       const ordered = [...events].sort((a, b) => timeValue(b.date_start) - timeValue(a.date_start));
@@ -1204,6 +1250,7 @@
         });
         if (preferred?.id) {
           currentSession = preferred.id;
+          currentSessionMeta = preferred;
           loadClassification(currentSession);
         }
       } catch (e) {

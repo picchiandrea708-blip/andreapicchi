@@ -267,7 +267,7 @@
     const TICKER_ITEMS = [
       'Risultati e partite in programma: finestra mobile ultime/prossime 24 ore.',
       'Formula 1 e MotoGP: livetiming per le sessioni attive e classifiche on demand.',
-      'Calcio: Serie A, Serie B, Serie C, coppe UEFA e competizioni internazionali.',
+      'Calcio: Serie A, Serie B italiana, Serie C, coppe UEFA e competizioni internazionali.',
       'Basket: Serie A LBA, Eurolega e NBA. Aggiornamento automatico dei punteggi.'
     ];
     const MY_NEWS_KEY = 'sportlive.myNews.v1';
@@ -655,6 +655,7 @@
     }
 
     // ===== CALCIO =====
+    // Campionati richiesti: tutti quelli selezionati, con la Serie B limitata all’Italia.
     const CALCIO_LEAGUES = [
       { id: 'ita.1', name: 'Serie A' }, { id: 'ita.2', name: 'Serie B' },
       { id: 'ita.3', name: 'Serie C' }, { id: 'ita.w.1', name: 'Serie A Femminile' },
@@ -694,6 +695,9 @@
         // Per Premier e Champions usiamo solo i feed ESPN dedicati:
         // SportScore riusa nomi generici per campionati di Kenya, India e Cina.
         if (name === 'Premier League' || name === 'Champions League') return;
+        // La Serie B italiana arriva dal feed ESPN ita.2: non reintrodurre
+        // omonime estere o non identificabili dal feed generico SportScore.
+        if (name === 'Serie B') return;
         if (name && selectedFromFeed.has(name)) selectedFromFeed.get(name).push({ ...m, competition: name });
         else other.push(m);
       });

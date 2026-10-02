@@ -725,7 +725,49 @@
     }
 
     // ===== F1 (OpenF1) =====
-    const f1State = { inFlight: false, lastLoad: 0, sessions: null, sessionsAt: 0, drivers: new Map(), positions: new Map(), intervals: new Map(), laps: new Map(), selectedSessionKey: null, active: false };
+    const F1_LAST_VALID_KEY = 'sportlive.f1.lastValid.v1';
+    const f1State = { inFlight: false, lastLoad: 0, sessions: null, sessionsAt: 0, drivers: new Map(), positions: new Map(), intervals: new Map(), laps: new Map(), selectedSessionKey: null, active: false, lastValid: null };
+
+    function saveF1LastValid(sessionKey, markup) {
+      if (!markup || !sessionKey) return;
+      const snapshot = { sessionKey: String(sessionKey), savedAt: Date.now(), markup };
+      f1State.lastValid = snapshot;
+      try { localStorage.setItem(F1_LAST_VALID_KEY, JSON.stringify(snapshot)); } catch (_) { /* storage pieno/bloccato: resta la cache in memoria */ }
+    }
+
+    function getF1LastValid() {
+      if (f1State.lastValid?.markup) return f1State.lastValid;
+      try {
+        const snapshot = JSON.parse(localStorage.getItem(F1_LAST_VALID_KEY) || 'null');
+        if (snapshot?.markup && snapshot?.savedAt) { f1State.lastValid = snapshot; return snapshot; }
+      } catch (_) { /* ignora una cache locale corrotta */ }
+      return null;
+    }
+
+    function formatF1SnapshotAge(savedAt) {
+      const minutes = Math.max(0, Math.round((Date.now() - savedAt) / 60000));
+      if (minutes < 1) return 'meno di 1 minuto fa';
+      if (minutes === 1) return '1 minuto fa';
+      if (minutes < 60) return `${minutes} minuti fa`;
+      const hours = Math.floor(minutes / 60);
+      return hours === 1 ? '1 ora fa' : `${hours} ore fa`;
+    }
+
+    function bindF1Picker() {
+      document.getElementById('f1SessionPicker')?.addEventListener('change', event => {
+        f1State.selectedSessionKey = event.target.value;
+        loadF1(true);
+      });
+    }
+
+    function restoreF1LastValid(box, reason) {
+      const snapshot = getF1LastValid();
+      if (!snapshot?.markup) return false;
+      const note = `<div class="empty" style="border-bottom:1px solid var(--border);border-radius:0">Ultimo dato valido del livetiming: ${escapeHtml(formatF1SnapshotAge(snapshot.savedAt))}. ${escapeHtml(reason)} Il pannello verrà aggiornato automaticamente.</div>`;
+      box.innerHTML = note + snapshot.markup;
+      bindF1Picker();
+      return true;
+    }
 
     async function getF1Sessions(year) {
       const cacheValid = f1State.sessions && (Date.now() - f1State.sessionsAt < 10 * 60_000);
@@ -864,12 +906,18 @@
           markup += '</tbody></table></div></div>';
         }
         box.innerHTML = markup;
-        document.getElementById('f1SessionPicker')?.addEventListener('change', event => {
-          f1State.selectedSessionKey = event.target.value;
-          loadF1(true);
-        });
+        bindF1Picker();
+        // Salva l'intero pannello già renderizzato: resta disponibile anche dopo un refresh.
+        saveF1LastValid(session.session_key, markup);
       } catch (e) {
-        box.innerHTML = `<div class="error">Errore F1: ${escapeHtml(e.message || 'servizio non disponibile')}</div>`;
+        const message = String(e.message || 'servizio non disponibile');
+        const limited = /401|429|Failed to fetch|NetworkError|network error|autenticat|restricted|rate limit/i.test(message);
+        const reason = limited
+          ? 'OpenF1 sta limitando temporaneamente l’accesso.'
+          : `OpenF1 non è raggiungibile (${message}).`;
+        if (!restoreF1LastValid(box, reason)) {
+          box.innerHTML = `<div class="${limited ? 'empty' : 'error'}">${limited ? 'Livetiming F1 temporaneamente non disponibile: OpenF1 sta limitando l’accesso. Non è ancora disponibile un dato precedente salvato in questo browser; appena OpenF1 risponde, il dato verrà memorizzato e riutilizzato ai prossimi blocchi. Riprovo automaticamente.' : `Errore F1: ${escapeHtml(message)}`}</div>`;
+        }
       } finally {
         f1State.lastLoad = Date.now();
         f1State.inFlight = false;
@@ -891,7 +939,18 @@
       try {
         const res = await fetch(LIVE_URL);
         if (!res.ok) throw new Error('HTTP ' + res.status);
-        const data = await res.json();
+        const raw = await res.text();
+        if (!raw.trim()) {
+          document.getElementById('liveError').style.display = 'none';
+          document.getElementById('liveSessionInfo').style.display = 'none';
+          document.getElementById('liveTable').style.display = 'none';
+          document.getElementById('liveLoading').style.display = 'block';
+          document.getElementById('liveLoading').textContent = 'Nessuna sessione MotoGP live in questo momento. Classifiche disponibili sotto.';
+          document.getElementById('liveStatus').textContent = 'Nessuna sessione live';
+          document.getElementById('liveDot').style.background = '#666';
+          return;
+        }
+        const data = JSON.parse(raw);
         const head = data.head || {};
         const riders = Object.values(data.rider || {}).sort((a, b) => {
           const pa = a.pos > 0 ? a.pos : 999;
@@ -930,8 +989,11 @@
         document.getElementById('liveDot').style.background = 'var(--live)';
         touchUpdate();
       } catch (e) {
+        const message = String(e.message || 'servizio non disponibile');
         document.getElementById('liveError').style.display = 'block';
-        document.getElementById('liveError').textContent = 'Errore live: ' + e.message;
+        document.getElementById('liveError').textContent = /Unexpected end of JSON|Failed to fetch|429/i.test(message)
+          ? 'Livetiming MotoGP momentaneamente non disponibile. Riprovo automaticamente; le classifiche restano disponibili.'
+          : 'Errore live: ' + message;
         document.getElementById('liveDot').style.background = '#666';
       }
     }

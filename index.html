@@ -152,16 +152,6 @@
   <div class="news-ticker" aria-label="Notizie sportive">
     <strong>SPORT NEWS</strong><div class="ticker-window"><span class="ticker-track" id="newsTicker">Caricamento aggiornamenti sportivi…</span></div>
   </div>
-  <section class="my-news" aria-label="Le mie notizie">
-    <div class="my-news-card">
-      <div class="my-news-head"><strong>Le mie notizie</strong><span>Salvate solo in questo browser</span></div>
-      <form class="my-news-form" id="myNewsForm">
-        <textarea id="myNewsInput" maxlength="240" placeholder="Scrivi una notizia da mostrare nel ticker…" aria-label="Nuova notizia"></textarea>
-        <button type="submit">Pubblica nel ticker</button>
-      </form>
-      <div class="my-news-list" id="myNewsList"></div>
-    </div>
-  </section>
   <section class="public-news" aria-label="Notizie pubbliche">
     <div class="public-news-card">
       <div class="public-news-title">NEWS PUBBLICHE</div>
@@ -269,48 +259,14 @@
       'Calcio: Serie A, Serie B italiana, Serie C, coppe UEFA e competizioni internazionali.',
       'Basket: Serie A LBA, Eurolega e NBA. Aggiornamento automatico dei punteggi.'
     ];
-    const MY_NEWS_KEY = 'sportlive.myNews.v1';
-    // Dopo la distribuzione di Apps Script inserisci qui l'URL della Web App e il token.
-    // Se resta vuoto, SportLive usa il salvataggio locale come fallback.
-    const PUBLIC_NEWS_API_URL = '';
-    const PUBLIC_NEWS_TOKEN = '';
     const PUBLIC_NEWS_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQjRds1NTcIHP2UVoqITB_coddMuBT7a6ekpRTXi86rReS7rviGoHEHnvEi4XDuntS5FubsiA7gYalS/pub?gid=0&single=true&output=csv';
     const PUBLIC_NEWS_CACHE_KEY = 'sportlive.publicNews.cache.v1';
     const PUBLIC_NEWS_FALLBACK = [
-      'Stanotte ore 2,00 scattano le libere seguite dalle prequalifiche a Motegi per il Motomondiale',
-      'Domani mattina alle 6,30 a Sepang scattano le libere della F1',
-      'Dirette su Sky Sport MotoGP e Sky Sport F1',
-      'In serata diretta Rai 1 alle 20,45: Francia-Italia, UEFA Nations League',
-      'Sempre in serata alle 23 (17 ora locale) la squadra di volley della NMU affronta Parkside, diretta su Flo College'
+      'Notizie sportive in aggiornamento',
+      'Segui risultati e sessioni live su SportLive'
     ];
-    function loadMyNews() {
-      try {
-        const value = JSON.parse(localStorage.getItem(MY_NEWS_KEY) || '[]');
-        return Array.isArray(value) ? value.filter(item => typeof item === 'string').slice(0, 20) : [];
-      } catch (_) { return []; }
-    }
-    let myNews = loadMyNews();
+    let publicTickerNews = [];
     let tickerIndex = 0;
-    function saveMyNews() { try { localStorage.setItem(MY_NEWS_KEY, JSON.stringify(myNews)); } catch (_) {} }
-    async function publicNewsRequest(params, method = 'GET') {
-      if (!PUBLIC_NEWS_API_URL) return null;
-      const query = new URLSearchParams(params);
-      const response = await fetch(method === 'GET' ? `${PUBLIC_NEWS_API_URL}?${query}` : PUBLIC_NEWS_API_URL, {
-        method, body: method === 'GET' ? undefined : query
-      });
-      if (!response.ok) throw new Error(`Notizie online: HTTP ${response.status}`);
-      const data = await response.json();
-      if (!data.ok) throw new Error(data.error || 'Risposta Apps Script non valida');
-      return data;
-    }
-    async function loadPublicNews() {
-      if (!PUBLIC_NEWS_API_URL) return;
-      try {
-        const data = await publicNewsRequest({ action: 'list' });
-        myNews = (data.news || []).map(item => ({ id: item.id, text: item.text })).filter(item => item.text);
-        renderMyNews(); tickerIndex = 0; rotateTicker();
-      } catch (_) { /* fallback locale silenzioso */ }
-    }
     function parseCsvRows(csv) {
       const rows = []; let row = []; let cell = ''; let quoted = false;
       for (let i = 0; i < csv.length; i++) {
@@ -330,7 +286,7 @@
     async function loadPublicNewsSection() {
       const list = document.getElementById('publicNewsList');
       if (!list) return;
-      const renderNews = rows => { list.innerHTML = rows.length ? rows.map(text => `<div class="public-news-item">${escapeHtml(text)}</div>`).join('') : '<div class="public-news-empty">Nessuna notizia pubblicata.</div>'; };
+      const renderNews = rows => { publicTickerNews = rows.filter(Boolean); list.innerHTML = rows.length ? rows.map(text => `<div class="public-news-item">${escapeHtml(text)}</div>`).join('') : '<div class="public-news-empty">Nessuna notizia pubblicata.</div>'; rotateTicker(); };
       renderNews(PUBLIC_NEWS_FALLBACK);
       try {
         let response;
@@ -352,49 +308,15 @@
         } catch (_) { renderNews(PUBLIC_NEWS_FALLBACK); }
       }
     }
-    function renderMyNews() {
-      const list = document.getElementById('myNewsList');
-      if (!list) return;
-      list.innerHTML = myNews.length ? myNews.map((item, index) => {
-        const text = typeof item === 'string' ? item : item.text;
-        const id = typeof item === 'string' ? '' : item.id;
-        return `<span class="my-news-item"><span>${escapeHtml(text)}</span><button type="button" class="news-delete" data-news-index="${index}" data-news-id="${escapeHtml(id)}" aria-label="Elimina notizia">×</button></span>`;
-      }).join('') : '<span style="color:var(--muted);font-size:.75rem">Nessuna notizia personale: il ticker usa le notizie standard.</span>';
-    }
-    document.getElementById('myNewsForm')?.addEventListener('submit', async event => {
-      event.preventDefault();
-      const input = document.getElementById('myNewsInput');
-      const text = input.value.trim();
-      if (!text) return;
-      if (PUBLIC_NEWS_API_URL) {
-        try {
-          await publicNewsRequest({ action: 'publish', token: PUBLIC_NEWS_TOKEN, text }, 'POST');
-          await loadPublicNews(); input.value = ''; return;
-        } catch (_) { /* fallback locale se Apps Script non è ancora configurato */ }
-      }
-      if (myNews.length >= 20) myNews.shift();
-      myNews.push(text); saveMyNews(); renderMyNews(); input.value = ''; tickerIndex = 0; rotateTicker();
-    });
-    document.getElementById('myNewsList')?.addEventListener('click', async event => {
-      const button = event.target.closest('[data-news-index]');
-      if (!button) return;
-      const index = Number(button.dataset.newsIndex);
-      if (PUBLIC_NEWS_API_URL && button.dataset.newsId) {
-        try { await publicNewsRequest({ action: 'delete', token: PUBLIC_NEWS_TOKEN, id: button.dataset.newsId }, 'POST'); await loadPublicNews(); return; }
-        catch (_) { return; }
-      }
-      myNews.splice(index, 1); saveMyNews(); renderMyNews(); tickerIndex = 0; rotateTicker();
-    });
     function rotateTicker() {
       const el = document.getElementById('newsTicker');
       if (!el) return;
-      const items = myNews.length ? myNews.map(item => typeof item === 'string' ? item : item.text) : TICKER_ITEMS;
+      const items = publicTickerNews.length ? publicTickerNews : TICKER_ITEMS;
       el.textContent = items[tickerIndex++ % items.length];
       el.classList.remove('ticker-track');
       void el.offsetWidth;
       el.classList.add('ticker-track');
     }
-    renderMyNews();
     rotateTicker();
     loadPublicNews();
     loadPublicNewsSection();

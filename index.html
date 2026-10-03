@@ -925,6 +925,13 @@
       }
       throw new Error('F1 ufficiale: nessun risultato on demand disponibile');
     }
+    async function fetchF1LastRaceResult() {
+      const payload = await fetchJson(`https://api.jolpi.ca/ergast/f1/${new Date().getFullYear()}/last/results.json`, 'F1 ultimo risultato');
+      const race = payload?.MRData?.RaceTable?.Races?.[0];
+      const results = race?.Results || [];
+      if (!results.length) throw new Error('F1: ultimo risultato non disponibile');
+      return { onDemand: true, info: { Key: `jolpica-${race.round || 'last'}`, Name: race.raceName || 'Ultimo Gran Premio', Type: 'Risultato gara', Meeting: { Name: race.raceName || 'Formula 1' } }, lines: results.map(r => ({ position: r.position || 99, racingNumber: r.number || '—', driver: { Tla: r.Driver?.code || '', BroadcastName: `${r.Driver?.givenName || ''} ${r.Driver?.familyName || ''}`.trim(), FullName: `${r.Driver?.givenName || ''} ${r.Driver?.familyName || ''}`.trim(), TeamName: r.Constructor?.name || '' }, bestLapTime: r.FastestLap?.Time?.time || '—', lastLapTime: '—', timeDiffToFastest: r.points ? `${r.points} pt` : '—', timeDiffToPositionAhead: r.status || '—', compound: '' })) };
+    }
     function renderF1OfficialTiming(box, official) {
       const info = official.info || {}, lines = official.lines || [];
       const eventName = info.Meeting?.Name || 'Formula 1';
@@ -969,7 +976,13 @@
           f1State.active = false;
           renderF1OfficialTiming(box, officialResult);
           return;
-        } catch (_) { /* usa ultimo dato locale o OpenF1 se l'archivio non risponde */ }
+        } catch (_) { /* prova l'ultimo risultato gara pubblico */ }
+        try {
+          const raceResult = await fetchF1LastRaceResult();
+          f1State.active = false;
+          renderF1OfficialTiming(box, raceResult);
+          return;
+        } catch (_) { /* usa ultimo dato locale o OpenF1 */ }
         let sessions;
         try {
           sessions = await getF1Sessions(new Date().getFullYear());

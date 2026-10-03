@@ -905,7 +905,7 @@
           timeDiffToFastest: row.TimeDiffToFastest || row.GapToLeader || '—', timeDiffToPositionAhead: row.TimeDiffToPositionAhead || row.IntervalToPositionAhead || '—', compound: officialF1Value(row.Compound) || officialF1Value(row.Tyre), inPit: Boolean(row.InPit) };
       }).filter(row => row.driver.FullName || row.driver.BroadcastName || row.racingNumber);
       if (!lines.length) throw new Error('F1 ufficiale: timing vuoto');
-      return { info: info || {}, lines, onDemand };
+      return { source: 'Formula 1 Live Timing', info: info || {}, lines, onDemand };
     }
     async function fetchF1OfficialTiming() {
       const info = await fetchJson(`${PROXY}${encodeURIComponent(F1_OFFICIAL_STATIC + 'SessionInfo.json')}`, 'F1 ufficiale sessione');
@@ -917,26 +917,29 @@
       const sessions = (index?.Meetings || []).flatMap(m => (m.Sessions || []).map(x => ({ ...x, meeting: m })))
         .filter(x => x.Path && x.EndDate && timeValue(x.EndDate) < Date.now())
         .sort((a,b) => timeValue(b.EndDate) - timeValue(a.EndDate));
-      for (const session of sessions.slice(0, 8)) {
+      const results = [];
+      for (const session of sessions.slice(0, 12)) {
         try {
           const info = { Name: session.Name, Type: session.Type, StartDate: session.StartDate, EndDate: session.EndDate, Path: session.Path, Meeting: session.meeting };
-          return await fetchF1OfficialSession(session.Path, info, true);
+          results.push(await fetchF1OfficialSession(session.Path, info, true));
+          if (results.length === 2) break;
         } catch (_) { /* prova la sessione archiviata precedente */ }
       }
-      throw new Error('F1 ufficiale: nessun risultato on demand disponibile');
+      if (!results.length) throw new Error('F1 ufficiale: nessun risultato on demand disponibile');
+      return results;
     }
     async function fetchF1LastRaceResult() {
       const payload = await fetchJson(`https://api.jolpi.ca/ergast/f1/${new Date().getFullYear()}/last/results.json`, 'F1 ultimo risultato');
       const race = payload?.MRData?.RaceTable?.Races?.[0];
       const results = race?.Results || [];
       if (!results.length) throw new Error('F1: ultimo risultato non disponibile');
-      return { onDemand: true, info: { Key: `jolpica-${race.round || 'last'}`, Name: race.raceName || 'Ultimo Gran Premio', Type: 'Risultato gara', Meeting: { Name: race.raceName || 'Formula 1' } }, lines: results.map(r => ({ position: r.position || 99, racingNumber: r.number || '—', driver: { Tla: r.Driver?.code || '', BroadcastName: `${r.Driver?.givenName || ''} ${r.Driver?.familyName || ''}`.trim(), FullName: `${r.Driver?.givenName || ''} ${r.Driver?.familyName || ''}`.trim(), TeamName: r.Constructor?.name || '' }, bestLapTime: r.FastestLap?.Time?.time || '—', lastLapTime: '—', timeDiffToFastest: r.points ? `${r.points} pt` : '—', timeDiffToPositionAhead: r.status || '—', compound: '' })) };
+      return { source: 'Jolpica F1', onDemand: true, info: { Key: `jolpica-${race.round || 'last'}`, Name: race.raceName || 'Ultimo Gran Premio', Type: 'Risultato gara', Meeting: { Name: race.raceName || 'Formula 1' } }, lines: results.map(r => ({ position: r.position || 99, racingNumber: r.number || '—', driver: { Tla: r.Driver?.code || '', BroadcastName: `${r.Driver?.givenName || ''} ${r.Driver?.familyName || ''}`.trim(), FullName: `${r.Driver?.givenName || ''} ${r.Driver?.familyName || ''}`.trim(), TeamName: r.Constructor?.name || '' }, bestLapTime: r.FastestLap?.Time?.time || '—', lastLapTime: '—', timeDiffToFastest: r.points ? `${r.points} pt` : '—', timeDiffToPositionAhead: r.status || '—', compound: '' })) };
     }
     function renderF1OfficialTiming(box, official) {
       const info = official.info || {}, lines = official.lines || [];
       const eventName = info.Meeting?.Name || 'Formula 1';
       const sessionName = info.Name || info.Type || 'Sessione ufficiale';
-      const markup = `<div class="league-card" style="max-width:1100px"><div class="league-head"><span>Live timing · ${escapeHtml(eventName)}</span><span class="count" style="color:${official.onDemand ? 'var(--accent)' : 'var(--live)'}">${official.onDemand ? 'ON DEMAND · UFFICIALE F1' : 'LIVE · UFFICIALE F1'}</span></div><div class="session-info"><div><label>Evento</label><strong>${escapeHtml(eventName)}</strong></div><div><label>Sessione</label><strong>${escapeHtml(sessionName)}</strong></div><div><label>Fonte</label><strong>Formula 1 Live Timing</strong></div><div><label>Aggiornamento</label><strong style="color:${official.onDemand ? 'var(--accent)' : 'var(--live)'}">${official.onDemand ? 'Risultato sessione terminata' : 'Feed ufficiale'}</strong></div></div><div style="max-height:560px;overflow:auto"><table class="timing-table"><thead><tr><th>Pos</th><th>#</th><th>Pilota</th><th>Team</th><th>Miglior</th><th>Ultimo</th><th>Gap 1°</th><th>Gap prec.</th></tr></thead><tbody>${lines.sort((a,b)=>Number(a.position||99)-Number(b.position||99)).map(r=>{const d=r.driver||{};const pos=Number(r.position||99);const pc=pos===1?'p1':pos===2?'p2':pos===3?'p3':'';return `<tr><td class="pos ${pc}">${escapeHtml(pos>90?'—':pos)}</td><td>${escapeHtml(r.racingNumber||'—')}</td><td class="driver">${escapeHtml(d.Tla||d.BroadcastName||d.FullName||'—')}</td><td class="gap">${escapeHtml(d.TeamName||'—')}</td><td class="gap">${escapeHtml(r.bestLapTime||'—')}</td><td class="gap">${escapeHtml(r.lastLapTime||'—')}</td><td class="gap">${escapeHtml(r.timeDiffToFastest||'—')}</td><td class="gap">${escapeHtml(r.timeDiffToPositionAhead||'—')}</td></tr>`;}).join('')}</tbody></table></div>${f1OfficialActions()}</div>`;
+      const markup = `<div class="league-card" style="max-width:1100px"><div class="league-head"><span>Live timing · ${escapeHtml(eventName)}</span><span class="count" style="color:${official.onDemand ? 'var(--accent)' : 'var(--live)'}">${official.onDemand ? 'ON DEMAND · UFFICIALE F1' : 'LIVE · UFFICIALE F1'}</span></div><div class="session-info"><div><label>Evento</label><strong>${escapeHtml(eventName)}</strong></div><div><label>Sessione</label><strong>${escapeHtml(sessionName)}</strong></div><div><label>Fonte</label><strong>${escapeHtml(official.source || 'Formula 1 Live Timing')}</strong></div><div><label>Aggiornamento</label><strong style="color:${official.onDemand ? 'var(--accent)' : 'var(--live)'}">${official.onDemand ? 'Risultato sessione terminata' : 'Feed ufficiale'}</strong></div></div><div style="max-height:560px;overflow:auto"><table class="timing-table"><thead><tr><th>Pos</th><th>#</th><th>Pilota</th><th>Team</th><th>Miglior</th><th>Ultimo</th><th>Gap 1°</th><th>Gap prec.</th></tr></thead><tbody>${lines.sort((a,b)=>Number(a.position||99)-Number(b.position||99)).map(r=>{const d=r.driver||{};const pos=Number(r.position||99);const pc=pos===1?'p1':pos===2?'p2':pos===3?'p3':'';return `<tr><td class="pos ${pc}">${escapeHtml(pos>90?'—':pos)}</td><td>${escapeHtml(r.racingNumber||'—')}</td><td class="driver">${escapeHtml(d.Tla||d.BroadcastName||d.FullName||'—')}</td><td class="gap">${escapeHtml(d.TeamName||'—')}</td><td class="gap">${escapeHtml(r.bestLapTime||'—')}</td><td class="gap">${escapeHtml(r.lastLapTime||'—')}</td><td class="gap">${escapeHtml(r.timeDiffToFastest||'—')}</td><td class="gap">${escapeHtml(r.timeDiffToPositionAhead||'—')}</td></tr>`;}).join('')}</tbody></table></div>${f1OfficialActions()}</div>`;
       box.innerHTML=markup;
       saveF1LastValid(info.Key || (official.onDemand ? 'official-ondemand' : 'official-current'), markup);
     }
@@ -969,12 +972,25 @@
           const official = await fetchF1OfficialTiming();
           f1State.active = true;
           renderF1OfficialTiming(box, official);
+          try {
+            const onDemandResults = await fetchF1OfficialOnDemand();
+            for (const result of onDemandResults) {
+              const resultBox = document.createElement('div');
+              renderF1OfficialTiming(resultBox, result);
+              box.insertAdjacentHTML('beforeend', resultBox.innerHTML);
+            }
+          } catch (_) { /* i risultati restano disponibili al prossimo refresh */ }
           return;
         } catch (_) { /* il feed live può essere chiuso fuori dalle sessioni */ }
         try {
-          const officialResult = await fetchF1OfficialOnDemand();
+          const onDemandResults = await fetchF1OfficialOnDemand();
           f1State.active = false;
-          renderF1OfficialTiming(box, officialResult);
+          box.innerHTML = '';
+          for (const result of onDemandResults) {
+            const resultBox = document.createElement('div');
+            renderF1OfficialTiming(resultBox, result);
+            box.insertAdjacentHTML('beforeend', resultBox.innerHTML);
+          }
           return;
         } catch (_) { /* prova l'ultimo risultato gara pubblico */ }
         try {

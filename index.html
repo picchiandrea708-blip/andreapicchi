@@ -195,14 +195,6 @@
 
     <div class="panel" id="panel-f1">
       <div class="section-title">Formula 1 — Livetiming <span class="badge">LIVE</span></div>
-      <div class="league-card" style="max-width:1100px;margin-bottom:1rem">
-        <div class="league-head"><span>Fonte live prioritaria: Formula Live Pulse</span><span class="count">RapidAPI · locale</span></div>
-        <div class="f1-pulse-config">
-          <input id="f1PulseKey" type="password" autocomplete="off" placeholder="Incolla qui la chiave RapidAPI (salvata solo in questo browser)" aria-label="Chiave RapidAPI Formula Live Pulse">
-          <button type="button" id="saveF1PulseKey">Salva chiave</button>
-          <span class="f1-pulse-status" id="f1PulseStatus">Non configurata · uso OpenF1</span>
-        </div>
-      </div>
       <div id="f1-box"><div class="loading">Caricamento sessione F1…</div></div>
     </div>
 
@@ -255,7 +247,7 @@
     </div>
   </main>
 
-  <footer>Dati da fonti pubbliche: ESPN, SportScore, OpenF1, MotoGP PulseLive. Non affiliato.</footer>
+  <footer>Dati da fonti pubbliche: Live Timing ufficiale F1, OpenF1, SportScore, MotoGP PulseLive. Non affiliato.</footer>
 
   <script>
     const PROXY = 'https://motogp-proxy.picchiandrea707.workers.dev/?url=';
@@ -269,9 +261,7 @@
     const F1_REFRESH_MS = 60_000;
     const F1_LIVE_REFRESH_MS = 10_000;
     const F1_OFFICIAL_TIMING_URL = 'https://www.formula1.com/en/timing/f1-live';
-    const F1_PULSE_KEY = 'sportlive.f1.livepulse.rapidapiKey.v1';
-    const F1_PULSE_URL = 'https://f1-live-pulse.p.rapidapi.com/timingData';
-    const F1_PULSE_HOST = 'f1-live-pulse.p.rapidapi.com';
+    const F1_OFFICIAL_STATIC = 'https://livetiming.formula1.com/static/';
     // NEWS TICKER: modifica, aggiungi o rimuovi le frasi qui sotto.
     const TICKER_ITEMS = [
       'Risultati e partite in programma: finestra mobile ultime/prossime 24 ore.',
@@ -782,19 +772,70 @@
       touchUpdate();
     }
 
+    // ===== GLIAC FEMMINILE — NCAA Division II =====
+    const NCAA_SCOREBOARD_API = PROXY;
+    function ncaaMatch(game, sportName) {
+      const g = game?.game || game || {};
+      const state = String(g.gameState || '').toLowerCase();
+      const isPre = state === 'pre' || state === 'scheduled';
+      const home = g.home || {}, away = g.away || {};
+      const epoch = Number(g.startTimeEpoch);
+      const time = Number.isFinite(epoch) && epoch > 0 ? epoch * 1000 : (g.startDate || '');
+      return {
+        home: home.names?.short || home.names?.full || '?', away: away.names?.short || away.names?.full || '?',
+        homeScore: home.score ?? '', awayScore: away.score ?? '', hasScore: !isPre && home.score !== '' && away.score !== '',
+        status: isPre ? `In programma · ${g.startTime || ''}` : (g.finalMessage || (state === 'live' ? 'LIVE' : g.currentPeriod || '')),
+        time, eventDate: time, originalTime: g.startTime || '', eventId: g.gameID,
+        gameCenterUrl: g.gameID ? `https://www.ncaa.com/game/${encodeURIComponent(g.gameID)}` : '', competition: sportName
+      };
+    }
+    function isGeliacGame(game) {
+      const g = game?.game || game || {};
+      const teams = [g.home, g.away];
+      return teams.some(t => (t?.conferences || []).some(c => String(c.conferenceSeo || '').toLowerCase() === 'gliac'));
+    }
+    async function fetchNcaageliac(sport, label, dates) {
+      const out = [];
+      for (const date of dates) {
+        try {
+          const y = date.slice(0, 4), mo = date.slice(4, 6), d = date.slice(6, 8);
+          const target = `https://ncaa-api.henrygd.me/scoreboard/${sport}/d2/${y}/${mo}/${d}`;
+          const response = await fetch(`${NCAA_SCOREBOARD_API}${encodeURIComponent(target)}`);
+          if (!response.ok) continue;
+          const data = await response.json();
+          for (const game of (data.games || [])) if (isGeliacGame(game)) out.push(ncaaMatch(game, label));
+        } catch (_) { /* un feed NCAA non disponibile non deve bloccare NBA/NFL/NHL */ }
+      }
+      return out;
+    }
+    async function loadGeliacWomen() {
+      const dates = dateRange(1, 1);
+      return Promise.all([
+        fetchNcaageliac('soccer-women', 'GLIAC · Calcio femminile', dates),
+        fetchNcaageliac('volleyball-women', 'GLIAC · Volley femminile', dates),
+        fetchNcaageliac('basketball-women', 'GLIAC · Basket femminile', dates)
+      ]).then(([soccer, volleyball, basketball]) => [
+        ['GLIAC · Calcio femminile', sortLiveFirst(soccer)],
+        ['GLIAC · Volley femminile', sortLiveFirst(volleyball)],
+        ['GLIAC · Basket femminile', sortLiveFirst(basketball)]
+      ].filter(([, list]) => list.length));
+    }
+
     // ===== USA =====
     async function loadUsa() {
       const dates = dateRange(1, 1);
-      const [nba, nfl, nhl] = await Promise.all([
+      const [nba, nfl, nhl, gliac] = await Promise.all([
         fetchEspnScoreboard('basketball', 'nba', dates),
         fetchEspnScoreboard('football', 'nfl', dates),
-        fetchEspnScoreboard('hockey', 'nhl', dates)
+        fetchEspnScoreboard('hockey', 'nhl', dates),
+        loadGeliacWomen()
       ]);
       renderMatches('grid-usa', [
         ['NBA', nba],
         ['NFL', nfl],
-        ['NHL', nhl]
-      ]);
+        ['NHL', nhl],
+        ...gliac
+      ].filter(([, list]) => list.length));
       touchUpdate();
     }
 
@@ -843,69 +884,61 @@
       return true;
     }
 
-    function getF1PulseKey() {
-      try { return localStorage.getItem(F1_PULSE_KEY) || ''; } catch (_) { return ''; }
+    function officialF1Value(value) {
+      if (value == null) return '';
+      if (typeof value === 'object') return value.DisplayName || value.Value || value.Text || value.Time || '';
+      return String(value);
     }
-
-    function updateF1PulseStatus(text, ok = false) {
-      const el = document.getElementById('f1PulseStatus');
-      if (el) { el.textContent = text; el.style.color = ok ? 'var(--accent)' : 'var(--muted)'; }
+    async function fetchF1OfficialSession(path, infoFallback = null, onDemand = false) {
+      const cleanPath = String(path || '').replace(/^\/+/, '');
+      if (!cleanPath) throw new Error('F1 ufficiale: percorso sessione mancante');
+      const [timing, drivers, info] = await Promise.all([
+        fetchJson(`${PROXY}${encodeURIComponent(F1_OFFICIAL_STATIC + cleanPath + 'TimingData.json')}`, 'F1 ufficiale timing'),
+        fetchJson(`${PROXY}${encodeURIComponent(F1_OFFICIAL_STATIC + cleanPath + 'DriverList.json')}`, 'F1 ufficiale piloti').catch(() => ({})),
+        infoFallback ? Promise.resolve(infoFallback) : fetchJson(`${PROXY}${encodeURIComponent(F1_OFFICIAL_STATIC + cleanPath + 'SessionInfo.json')}`, 'F1 ufficiale sessione')
+      ]);
+      const lines = Object.entries(timing?.Lines || {}).map(([number, row]) => {
+        const d = drivers?.[number] || {};
+        return { position: row.Line || row.Position || 99, racingNumber: row.RacingNumber || number,
+          driver: { Tla: d.Tla || row.Tla || '', BroadcastName: d.BroadcastName || row.BroadcastName || '', FullName: d.FullName || row.FullName || '', TeamName: d.TeamName || row.TeamName || '', TeamColour: d.TeamColour || '' },
+          bestLapTime: officialF1Value(row.BestLapTime), lastLapTime: officialF1Value(row.LastLapTime),
+          timeDiffToFastest: row.TimeDiffToFastest || row.GapToLeader || '—', timeDiffToPositionAhead: row.TimeDiffToPositionAhead || row.IntervalToPositionAhead || '—', compound: officialF1Value(row.Compound) || officialF1Value(row.Tyre), inPit: Boolean(row.InPit) };
+      }).filter(row => row.driver.FullName || row.driver.BroadcastName || row.racingNumber);
+      if (!lines.length) throw new Error('F1 ufficiale: timing vuoto');
+      return { info: info || {}, lines, onDemand };
     }
-
-    function initF1PulseConfig() {
-      const input = document.getElementById('f1PulseKey');
-      const saved = getF1PulseKey();
-      if (input && saved) { input.value = saved; updateF1PulseStatus('Configurata · fonte primaria attiva', true); }
-      document.getElementById('saveF1PulseKey')?.addEventListener('click', () => {
-        const value = input?.value.trim() || '';
-        try { if (value) localStorage.setItem(F1_PULSE_KEY, value); else localStorage.removeItem(F1_PULSE_KEY); } catch (_) {}
-        updateF1PulseStatus(value ? 'Salvata solo in questo browser · fonte primaria attiva' : 'Non configurata · uso OpenF1', Boolean(value));
-        loadF1(true);
-      });
+    async function fetchF1OfficialTiming() {
+      const info = await fetchJson(`${PROXY}${encodeURIComponent(F1_OFFICIAL_STATIC + 'SessionInfo.json')}`, 'F1 ufficiale sessione');
+      if (!info?.Path) throw new Error('F1 ufficiale: sessione non disponibile');
+      return fetchF1OfficialSession(info.Path, info, false);
     }
-
-    async function fetchF1PulseTiming() {
-      const key = getF1PulseKey();
-      if (!key) return null;
-      const response = await fetch(F1_PULSE_URL, { headers: { Accept: 'application/json', 'X-RapidAPI-Key': key, 'X-RapidAPI-Host': F1_PULSE_HOST } });
-      const text = await response.text();
-      if (!response.ok) throw new Error(`Formula Live Pulse HTTP ${response.status}`);
-      let data;
-      try { data = JSON.parse(text); } catch (_) { throw new Error('Formula Live Pulse: risposta non valida'); }
-      const lines = Array.isArray(data) ? data : (Array.isArray(data.lines) ? data.lines : []);
-      if (!lines.length) return null;
-      return lines;
+    async function fetchF1OfficialOnDemand() {
+      const index = await fetchJson(`${PROXY}${encodeURIComponent(F1_OFFICIAL_STATIC + new Date().getFullYear() + '/Index.json')}`, 'F1 ufficiale archivio');
+      const sessions = (index?.Meetings || []).flatMap(m => (m.Sessions || []).map(x => ({ ...x, meeting: m })))
+        .filter(x => x.Path && x.EndDate && timeValue(x.EndDate) < Date.now())
+        .sort((a,b) => timeValue(b.EndDate) - timeValue(a.EndDate));
+      for (const session of sessions.slice(0, 8)) {
+        try {
+          const info = { Name: session.Name, Type: session.Type, StartDate: session.StartDate, EndDate: session.EndDate, Path: session.Path, Meeting: session.meeting };
+          return await fetchF1OfficialSession(session.Path, info, true);
+        } catch (_) { /* prova la sessione archiviata precedente */ }
+      }
+      throw new Error('F1 ufficiale: nessun risultato on demand disponibile');
     }
-
-    function renderF1PulseTiming(box, lines, sessions = []) {
-      const session = [...sessions].filter(s => timeValue(s.date_start)).sort((a, b) => Math.abs(timeValue(a.date_start) - Date.now()) - Math.abs(timeValue(b.date_start) - Date.now()))[0] || {};
-      const eventName = session.location || session.country_name || 'Formula 1';
-      const sessionName = session.session_name || session.session_type || 'Sessione corrente';
-      const rows = [...lines].sort((a, b) => Number(a.position || 99) - Number(b.position || 99));
-      const markup = `<div class="league-card" style="max-width:1100px">
-        <div class="league-head"><span>Live timing · ${escapeHtml(eventName)}</span><span class="count" style="color:var(--live)">LIVE · Formula Live Pulse</span></div>
-        <div class="session-info"><div><label>Evento</label><strong>${escapeHtml(eventName)}</strong></div><div><label>Sessione</label><strong>${escapeHtml(sessionName)}</strong></div><div><label>Fonte</label><strong>Formula Live Pulse</strong></div><div><label>Aggiornamento</label><strong style="color:var(--live)">Tempo reale</strong></div></div>
-        <div style="max-height:560px;overflow:auto"><table class="timing-table"><thead><tr><th>Pos</th><th>#</th><th>Pilota</th><th>Team</th><th>Miglior</th><th>Ultimo</th><th>Gap</th><th>Gomme</th></tr></thead><tbody>${rows.map(r => { const d=r.driver||{}; const pos=Number(r.position||99); const gap=r.timeDiffToFastest || r.gapToLeader || r.timeDiffToPositionAhead || '—'; const pc=pos===1?'p1':pos===2?'p2':pos===3?'p3':''; return `<tr><td class="pos ${pc}">${escapeHtml(pos > 90 ? '—' : pos)}</td><td><span class="num" style="background:${safeColor(d.TeamColour)}">${escapeHtml(r.racingNumber || d.RacingNumber || '—')}</span></td><td class="driver">${escapeHtml(d.Tla || d.BroadcastName || d.FullName || '—')}</td><td class="gap">${escapeHtml(d.TeamName || '—')}</td><td class="gap">${escapeHtml(r.bestLapTime || '—')}</td><td class="gap">${escapeHtml(r.lastLapTime || '—')}</td><td class="gap">${escapeHtml(gap)}</td><td class="gap">${escapeHtml(r.compound || '—')}${r.inPit ? ' · PIT' : ''}</td></tr>`; }).join('')}</tbody></table></div>${f1OfficialActions()}</div>`;
-      box.innerHTML = markup;
-      saveF1LastValid(session.session_key || 'pulse-current', markup);
+    function renderF1OfficialTiming(box, official) {
+      const info = official.info || {}, lines = official.lines || [];
+      const eventName = info.Meeting?.Name || 'Formula 1';
+      const sessionName = info.Name || info.Type || 'Sessione ufficiale';
+      const markup = `<div class="league-card" style="max-width:1100px"><div class="league-head"><span>Live timing · ${escapeHtml(eventName)}</span><span class="count" style="color:${official.onDemand ? 'var(--accent)' : 'var(--live)'}">${official.onDemand ? 'ON DEMAND · UFFICIALE F1' : 'LIVE · UFFICIALE F1'}</span></div><div class="session-info"><div><label>Evento</label><strong>${escapeHtml(eventName)}</strong></div><div><label>Sessione</label><strong>${escapeHtml(sessionName)}</strong></div><div><label>Fonte</label><strong>Formula 1 Live Timing</strong></div><div><label>Aggiornamento</label><strong style="color:${official.onDemand ? 'var(--accent)' : 'var(--live)'}">${official.onDemand ? 'Risultato sessione terminata' : 'Feed ufficiale'}</strong></div></div><div style="max-height:560px;overflow:auto"><table class="timing-table"><thead><tr><th>Pos</th><th>#</th><th>Pilota</th><th>Team</th><th>Miglior</th><th>Ultimo</th><th>Gap 1°</th><th>Gap prec.</th></tr></thead><tbody>${lines.sort((a,b)=>Number(a.position||99)-Number(b.position||99)).map(r=>{const d=r.driver||{};const pos=Number(r.position||99);const pc=pos===1?'p1':pos===2?'p2':pos===3?'p3':'';return `<tr><td class="pos ${pc}">${escapeHtml(pos>90?'—':pos)}</td><td>${escapeHtml(r.racingNumber||'—')}</td><td class="driver">${escapeHtml(d.Tla||d.BroadcastName||d.FullName||'—')}</td><td class="gap">${escapeHtml(d.TeamName||'—')}</td><td class="gap">${escapeHtml(r.bestLapTime||'—')}</td><td class="gap">${escapeHtml(r.lastLapTime||'—')}</td><td class="gap">${escapeHtml(r.timeDiffToFastest||'—')}</td><td class="gap">${escapeHtml(r.timeDiffToPositionAhead||'—')}</td></tr>`;}).join('')}</tbody></table></div>${f1OfficialActions()}</div>`;
+      box.innerHTML=markup;
+      saveF1LastValid(info.Key || (official.onDemand ? 'official-ondemand' : 'official-current'), markup);
     }
-
     function f1OfficialActions() {
       return `<div class="f1-actions"><a class="f1-official-link" href="${F1_OFFICIAL_TIMING_URL}" target="_blank" rel="noopener noreferrer">Apri Live Timing ufficiale F1</a><span class="f1-source-note">Il live ufficiale è la fonte più affidabile durante le sessioni attive.</span></div>`;
     }
 
     function renderF1Unavailable(box, message, sessions = f1State.sessions || []) {
-      const ordered = [...sessions].filter(s => !s.is_cancelled && timeValue(s.date_start))
-        .sort((a, b) => Math.abs(timeValue(a.date_start) - Date.now()) - Math.abs(timeValue(b.date_start) - Date.now()))
-        .slice(0, 8);
-      const formatter = new Intl.DateTimeFormat('it-IT', { dateStyle: 'short', timeStyle: 'short' });
-      const rows = ordered.map(s => {
-        const start = timeValue(s.date_start);
-        const status = start > Date.now() ? 'In programma' : (s.date_end && timeValue(s.date_end) < Date.now() ? 'Terminata' : 'In corso / stato non disponibile');
-        const label = `${s.session_name || s.session_type || 'Sessione'} · ${s.location || s.country_name || 'F1'}`;
-        return `<div class="f1-calendar-row"><span>${escapeHtml(label)}</span><small>${escapeHtml(formatter.format(new Date(start)))} · ${escapeHtml(status)}</small></div>`;
-      }).join('');
-      box.innerHTML = `<div class="league-card" style="max-width:1100px"><div class="league-head"><span>Formula 1 — stato e calendario</span><span class="count">OpenF1 non disponibile</span></div><div class="error" style="margin:.75rem">${escapeHtml(message)}</div><div class="session-info"><div><label>Live timing</label><strong>Non garantito dalla fonte gratuita</strong></div><div><label>Risultati</label><strong>Disponibili quando OpenF1 risponde</strong></div><div><label>Fallback</label><strong>Ultimo dato salvato in questo browser</strong></div></div>${rows ? `<div class="league-head"><span>Sessioni vicine</span><span class="count">Calendario</span></div>${rows}` : '<div class="empty">Calendario F1 momentaneamente non disponibile.</div>'}${f1OfficialActions()}</div>`;
+      box.innerHTML = `<div class="league-card" style="max-width:1100px"><div class="league-head"><span>Formula 1 — risultati e livetiming</span><span class="count">DATI NON DISPONIBILI</span></div><div class="error" style="margin:.75rem">${escapeHtml(message)}</div><div class="session-info"><div><label>Live timing</label><strong>Disponibile durante le sessioni ufficiali</strong></div><div><label>On demand</label><strong>Ultima sessione terminata non raggiungibile</strong></div><div><label>Fallback</label><strong>Ultimo dato salvato in questo browser</strong></div></div>${f1OfficialActions()}</div>`;
     }
 
     async function getF1Sessions(year) {
@@ -918,28 +951,6 @@
       return sessions;
     }
 
-    async function getF1CalendarFallback(year) {
-      const payload = await fetchJson(`https://site.api.espn.com/apis/site/v2/sports/racing/f1/scoreboard?dates=${year}`, 'ESPN F1 calendario');
-      const sessions = [];
-      for (const event of (payload.events || [])) {
-        for (const competition of (event.competitions || [])) {
-          sessions.push({
-            session_key: `espn-${competition.id}`,
-            date_start: competition.date || event.date,
-            date_end: event.endDate || competition.date || event.date,
-            session_name: competition.type?.abbreviation || competition.type?.text || 'Sessione',
-            session_type: competition.type?.abbreviation || 'F1',
-            location: event.name || event.shortName || 'Formula 1',
-            circuit_short_name: event.shortName || event.name || '—',
-            country_name: 'F1',
-            is_cancelled: false
-          });
-        }
-      }
-      if (!sessions.length) throw new Error('ESPN F1: calendario vuoto');
-      return sessions;
-    }
-
     async function loadF1(force = false) {
       const box = document.getElementById('f1-box');
       const refreshWindow = f1State.active ? F1_LIVE_REFRESH_MS - 1_000 : F1_REFRESH_MS - 1_000;
@@ -947,25 +958,24 @@
       f1State.inFlight = true;
       let availableSessions = f1State.sessions || [];
       try {
-        let pulseLines = null;
-        try { pulseLines = await fetchF1PulseTiming(); } catch (pulseError) { updateF1PulseStatus(`Formula Live Pulse non disponibile · fallback OpenF1 (${pulseError.message})`); }
-        if (pulseLines?.length) {
-          let pulseSessions = [];
-          try { pulseSessions = await getF1Sessions(new Date().getFullYear()); } catch (_) { try { pulseSessions = await getF1CalendarFallback(new Date().getFullYear()); } catch (_) {} }
+        try {
+          const official = await fetchF1OfficialTiming();
           f1State.active = true;
-          updateF1PulseStatus('Attiva · Formula Live Pulse', true);
-          renderF1PulseTiming(box, pulseLines, pulseSessions);
+          renderF1OfficialTiming(box, official);
           return;
-        }
+        } catch (_) { /* il feed live può essere chiuso fuori dalle sessioni */ }
+        try {
+          const officialResult = await fetchF1OfficialOnDemand();
+          f1State.active = false;
+          renderF1OfficialTiming(box, officialResult);
+          return;
+        } catch (_) { /* usa ultimo dato locale o OpenF1 se l'archivio non risponde */ }
         let sessions;
         try {
           sessions = await getF1Sessions(new Date().getFullYear());
         } catch (openF1Error) {
-          // ESPN mantiene almeno calendario e stato quando OpenF1 è irraggiungibile.
-          sessions = await getF1CalendarFallback(new Date().getFullYear());
-          availableSessions = sessions;
           f1State.active = false;
-          renderF1Unavailable(box, 'OpenF1 non risponde. Calendario e stato sessioni caricati da ESPN.', sessions);
+          renderF1Unavailable(box, 'Nessun dato live o risultato on demand disponibile in questo momento. Riprovo automaticamente e lascio il collegamento al live timing ufficiale.', []);
           return;
         }
         availableSessions = sessions;
@@ -1355,7 +1365,6 @@
     };
 
     // Avvio
-    initF1PulseConfig();
     loadCalcio();
     loadBasket();
     loadUsa();

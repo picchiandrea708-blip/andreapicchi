@@ -910,17 +910,29 @@
     async function fetchF1OfficialTiming() {
       const info = await fetchJson(`${PROXY}${encodeURIComponent(F1_OFFICIAL_STATIC + 'SessionInfo.json')}`, 'F1 ufficiale sessione');
       if (!info?.Path) throw new Error('F1 ufficiale: sessione non disponibile');
+      const liveStatus = String(info.SessionStatus || '').toLowerCase();
+      if (!['active', 'started', 'running', 'live'].includes(liveStatus)) throw new Error('F1 ufficiale: nessuna sessione live');
       return fetchF1OfficialSession(info.Path, info, false);
     }
     async function fetchF1OfficialOnDemand() {
-      const index = await fetchJson(`${PROXY}${encodeURIComponent(F1_OFFICIAL_STATIC + new Date().getFullYear() + '/Index.json')}`, 'F1 ufficiale archivio');
+      const [index, currentInfo] = await Promise.all([
+        fetchJson(`${PROXY}${encodeURIComponent(F1_OFFICIAL_STATIC + new Date().getFullYear() + '/Index.json')}`, 'F1 ufficiale archivio'),
+        fetchJson(`${PROXY}${encodeURIComponent(F1_OFFICIAL_STATIC + 'SessionInfo.json')}`, 'F1 sessione corrente').catch(() => ({}))
+      ]);
+      const currentPath = String(currentInfo?.Path || '').replace(/^\/+/, '');
+      const currentStatus = String(currentInfo?.SessionStatus || '').toLowerCase();
+      const currentIsLive = ['active', 'started', 'running', 'live'].includes(currentStatus);
       const sessions = (index?.Meetings || []).flatMap(m => (m.Sessions || []).map(x => ({ ...x, meeting: m })))
-        .filter(x => x.Path && x.EndDate && timeValue(x.EndDate) < Date.now())
-        .sort((a,b) => timeValue(b.EndDate) - timeValue(a.EndDate));
+        .filter(x => x.Path)
+        .sort((a,b) => timeValue(b.StartDate || b.EndDate) - timeValue(a.StartDate || a.EndDate));
       const results = [];
       for (const session of sessions.slice(0, 12)) {
         try {
-          const info = { Name: session.Name, Type: session.Type, StartDate: session.StartDate, EndDate: session.EndDate, Path: session.Path, Meeting: session.meeting };
+          const sessionPath = String(session.Path || '').replace(/^\/+/, '');
+          if (currentIsLive && currentPath && sessionPath === currentPath) continue;
+          const archiveInfo = await fetchJson(`${PROXY}${encodeURIComponent(F1_OFFICIAL_STATIC + String(session.Path).replace(/^\/+/, '') + 'SessionInfo.json')}`, 'F1 archivio sessione');
+          if (String(archiveInfo?.SessionStatus || '').toLowerCase() === 'active') continue;
+          const info = { ...session, ...archiveInfo, Meeting: archiveInfo.Meeting || session.meeting };
           results.push(await fetchF1OfficialSession(session.Path, info, true));
           if (results.length === 2) break;
         } catch (_) { /* prova la sessione archiviata precedente */ }

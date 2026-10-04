@@ -1,7 +1,6 @@
 name: Update free sports feeds v2
 
 on:
-on:
   workflow_dispatch:
 
 

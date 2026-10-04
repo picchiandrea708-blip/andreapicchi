@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-04T19:23:13.268346+00:00",
+  "updatedAt": "2026-10-04T20:26:39.573370+00:00",
   "lba": [
     {
       "home": "Dolomiti Energia Trentino",
@@ -244,10 +244,10 @@
     {
       "home": "Alcione",
       "away": "Trento",
-      "homeScore": 1,
-      "awayScore": 1,
+      "homeScore": 2,
+      "awayScore": 2,
       "hasScore": true,
-      "status": "LIVE · 1H",
+      "status": "LIVE · 2H",
       "time": "2026-10-04T20:30:00+02:00",
       "competition": "Serie C",
       "group": "Serie C - Girone A",
@@ -256,16 +256,18 @@
       "fixtureId": 1608301,
       "scorers": [
         "L. Zini 13' · Alcione",
-        "J. I. Molina 25' · Trento (assist: R. D'Intino)"
+        "J. I. Molina 25' · Trento (assist: R. D'Intino)",
+        "C. Aucelli 57' · Trento (assist: R. D'Intino)",
+        "A. Rolfini 62' · Alcione (assist: P. Chierichetti)"
       ]
     },
     {
       "home": "Latina",
       "away": "Ostia Mare",
       "homeScore": 1,
-      "awayScore": 0,
+      "awayScore": 1,
       "hasScore": true,
-      "status": "LIVE · 1H",
+      "status": "LIVE · 2H",
       "time": "2026-10-04T20:30:00+02:00",
       "competition": "Serie C",
       "group": "Serie C - Girone B",
@@ -273,7 +275,8 @@
       "sourceUrl": "https://www.lega-pro.com/",
       "fixtureId": 1608686,
       "scorers": [
-        "V. Plescia 13' · Latina"
+        "V. Plescia 13' · Latina",
+        "M. Vagnoni 41' · Ostia Mare"
       ]
     },
     {
@@ -282,7 +285,7 @@
       "homeScore": 0,
       "awayScore": 0,
       "hasScore": true,
-      "status": "LIVE · 1H",
+      "status": "FT",
       "time": "2026-10-04T20:30:00+02:00",
       "competition": "Serie C",
       "group": "Serie C - Girone C",
@@ -293,10 +296,10 @@
     {
       "home": "Potenza",
       "away": "AZ Picerno",
-      "homeScore": 2,
-      "awayScore": 0,
+      "homeScore": 4,
+      "awayScore": 2,
       "hasScore": true,
-      "status": "LIVE · 1H",
+      "status": "LIVE · 2H",
       "time": "2026-10-04T20:30:00+02:00",
       "competition": "Serie C",
       "group": "Serie C - Girone C",
@@ -305,16 +308,20 @@
       "fixtureId": 1609068,
       "scorers": [
         "G. Loiacono 9' · Potenza",
-        "L. Russo 30' · Potenza (assist: A. De Marco)"
+        "L. Russo 30' · Potenza (assist: A. De Marco)",
+        "S. Pugliese 35' · AZ Picerno",
+        "S. Bianchi 48' · AZ Picerno (assist: P. Virgilio)",
+        "G. Selleri 63' · Potenza",
+        "G. D'Auria 66' · Potenza (assist: L. Petrungaro)"
       ]
     },
     {
       "home": "Salernitana",
       "away": "Bari",
-      "homeScore": 0,
+      "homeScore": 2,
       "awayScore": 1,
       "hasScore": true,
-      "status": "LIVE · 1H",
+      "status": "LIVE · 2H",
       "time": "2026-10-04T20:30:00+02:00",
       "competition": "Serie C",
       "group": "Serie C - Girone C",
@@ -322,7 +329,9 @@
       "sourceUrl": "https://www.lega-pro.com/",
       "fixtureId": 1609069,
       "scorers": [
-        "K. Butic 10' (rig.) · Bari"
+        "K. Butic 10' (rig.) · Bari",
+        "F. Lescano 83' · Salernitana (assist: M. Vitale)",
+        "M. Varela Djamanca 88' · Salernitana"
       ]
     },
     {
@@ -524,7 +533,7 @@
   ],
   "serieCApiCache": {
     "2026-10-04": {
-      "attemptedAt": "2026-10-04T19:02:57.340346+00:00",
+      "attemptedAt": "2026-10-04T20:26:39.573370+00:00",
       "matches": [
         {
           "home": "Lecco",
@@ -671,10 +680,10 @@
         {
           "home": "Alcione",
           "away": "Trento",
-          "homeScore": 1,
-          "awayScore": 1,
+          "homeScore": 2,
+          "awayScore": 2,
           "hasScore": true,
-          "status": "LIVE · 1H",
+          "status": "LIVE · 2H",
           "time": "2026-10-04T20:30:00+02:00",
           "competition": "Serie C",
           "group": "Serie C - Girone A",
@@ -683,16 +692,18 @@
           "fixtureId": 1608301,
           "scorers": [
             "L. Zini 13' · Alcione",
-            "J. I. Molina 25' · Trento (assist: R. D'Intino)"
+            "J. I. Molina 25' · Trento (assist: R. D'Intino)",
+            "C. Aucelli 57' · Trento (assist: R. D'Intino)",
+            "A. Rolfini 62' · Alcione (assist: P. Chierichetti)"
           ]
         },
         {
           "home": "Latina",
           "away": "Ostia Mare",
           "homeScore": 1,
-          "awayScore": 0,
+          "awayScore": 1,
           "hasScore": true,
-          "status": "LIVE · 1H",
+          "status": "LIVE · 2H",
           "time": "2026-10-04T20:30:00+02:00",
           "competition": "Serie C",
           "group": "Serie C - Girone B",
@@ -700,7 +711,8 @@
           "sourceUrl": "https://www.lega-pro.com/",
           "fixtureId": 1608686,
           "scorers": [
-            "V. Plescia 13' · Latina"
+            "V. Plescia 13' · Latina",
+            "M. Vagnoni 41' · Ostia Mare"
           ]
         },
         {
@@ -709,7 +721,7 @@
           "homeScore": 0,
           "awayScore": 0,
           "hasScore": true,
-          "status": "LIVE · 1H",
+          "status": "FT",
           "time": "2026-10-04T20:30:00+02:00",
           "competition": "Serie C",
           "group": "Serie C - Girone C",
@@ -720,10 +732,10 @@
         {
           "home": "Potenza",
           "away": "AZ Picerno",
-          "homeScore": 2,
-          "awayScore": 0,
+          "homeScore": 4,
+          "awayScore": 2,
           "hasScore": true,
-          "status": "LIVE · 1H",
+          "status": "LIVE · 2H",
           "time": "2026-10-04T20:30:00+02:00",
           "competition": "Serie C",
           "group": "Serie C - Girone C",
@@ -732,16 +744,20 @@
           "fixtureId": 1609068,
           "scorers": [
             "G. Loiacono 9' · Potenza",
-            "L. Russo 30' · Potenza (assist: A. De Marco)"
+            "L. Russo 30' · Potenza (assist: A. De Marco)",
+            "S. Pugliese 35' · AZ Picerno",
+            "S. Bianchi 48' · AZ Picerno (assist: P. Virgilio)",
+            "G. Selleri 63' · Potenza",
+            "G. D'Auria 66' · Potenza (assist: L. Petrungaro)"
           ]
         },
         {
           "home": "Salernitana",
           "away": "Bari",
-          "homeScore": 0,
+          "homeScore": 2,
           "awayScore": 1,
           "hasScore": true,
-          "status": "LIVE · 1H",
+          "status": "LIVE · 2H",
           "time": "2026-10-04T20:30:00+02:00",
           "competition": "Serie C",
           "group": "Serie C - Girone C",
@@ -749,7 +765,9 @@
           "sourceUrl": "https://www.lega-pro.com/",
           "fixtureId": 1609069,
           "scorers": [
-            "K. Butic 10' (rig.) · Bari"
+            "K. Butic 10' (rig.) · Bari",
+            "F. Lescano 83' · Salernitana (assist: M. Vitale)",
+            "M. Varela Djamanca 88' · Salernitana"
           ]
         }
       ]
@@ -961,6 +979,76 @@
     }
   },
   "serieCScorersCache": {
+    "1609068": {
+      "score": "4-2",
+      "scorers": [
+        "G. Loiacono 9' · Potenza",
+        "L. Russo 30' · Potenza (assist: A. De Marco)",
+        "S. Pugliese 35' · AZ Picerno",
+        "S. Bianchi 48' · AZ Picerno (assist: P. Virgilio)",
+        "G. Selleri 63' · Potenza",
+        "G. D'Auria 66' · Potenza (assist: L. Petrungaro)"
+      ],
+      "fetchedAt": "2026-10-04T20:26:39.573370+00:00",
+      "attempts": 1
+    },
+    "1608304": {
+      "score": "1-2",
+      "scorers": [
+        "L. Agosti 25' · Dolomiti Bellunesi (assist: M. Saccani)",
+        "F. Lorenzini 89' · Novara (assist: S. Lartey)",
+        "E. Zambataro 90' · Novara (assist: D. Zuppel)"
+      ],
+      "fetchedAt": "2026-10-04T19:12:25.314361+00:00",
+      "attempts": 1
+    },
+    "1609069": {
+      "score": "2-1",
+      "scorers": [
+        "K. Butic 10' (rig.) · Bari",
+        "F. Lescano 83' · Salernitana (assist: M. Vitale)",
+        "M. Varela Djamanca 88' · Salernitana"
+      ],
+      "fetchedAt": "2026-10-04T20:26:39.573370+00:00",
+      "attempts": 1
+    },
+    "1608685": {
+      "score": "1-0",
+      "scorers": [
+        "F. Ferrari 76' · Guidonia Montecelio 1937"
+      ],
+      "fetchedAt": "2026-10-04T19:12:25.314361+00:00",
+      "attempts": 1
+    },
+    "1608686": {
+      "score": "1-1",
+      "scorers": [
+        "V. Plescia 13' · Latina",
+        "M. Vagnoni 41' · Ostia Mare"
+      ],
+      "fetchedAt": "2026-10-04T20:26:39.573370+00:00",
+      "attempts": 1
+    },
+    "1609064": {
+      "score": "0-2",
+      "scorers": [
+        "M. Ravasio 54' · Foggia (assist: F. Zuccon)",
+        "F. Petito 90+6' · Foggia"
+      ],
+      "fetchedAt": "2026-10-04T19:12:25.314361+00:00",
+      "attempts": 1
+    },
+    "1608301": {
+      "score": "2-2",
+      "scorers": [
+        "L. Zini 13' · Alcione",
+        "J. I. Molina 25' · Trento (assist: R. D'Intino)",
+        "C. Aucelli 57' · Trento (assist: R. D'Intino)",
+        "A. Rolfini 62' · Alcione (assist: P. Chierichetti)"
+      ],
+      "fetchedAt": "2026-10-04T20:26:39.573370+00:00",
+      "attempts": 1
+    },
     "1608307": {
       "score": "2-2",
       "scorers": [
@@ -968,15 +1056,6 @@
         "T. Casasola 73' · Union Brescia (assist: B. Boci)",
         "M. Casarotto 90+2' · Lecco (assist: S. Bonaiti)",
         "A. Spagnoli 90+7' · Union Brescia (assist: T. Casasola)"
-      ],
-      "fetchedAt": "2026-10-04T19:12:25.314361+00:00",
-      "attempts": 1
-    },
-    "1608301": {
-      "score": "1-1",
-      "scorers": [
-        "L. Zini 13' · Alcione",
-        "J. I. Molina 25' · Trento (assist: R. D'Intino)"
       ],
       "fetchedAt": "2026-10-04T19:12:25.314361+00:00",
       "attempts": 1
@@ -990,6 +1069,14 @@
       "fetchedAt": "2026-10-04T19:12:25.314361+00:00",
       "attempts": 1
     },
+    "1608689": {
+      "score": "0-1",
+      "scorers": [
+        "D. Cazzadori 75' · Spezia (assist: A. Cardinali)"
+      ],
+      "fetchedAt": "2026-10-04T19:23:13.268346+00:00",
+      "attempts": 1
+    },
     "1608688": {
       "score": "2-1",
       "scorers": [
@@ -999,70 +1086,10 @@
       ],
       "fetchedAt": "2026-10-04T19:12:25.314361+00:00",
       "attempts": 1
-    },
-    "1609064": {
-      "score": "0-2",
-      "scorers": [
-        "M. Ravasio 54' · Foggia (assist: F. Zuccon)",
-        "F. Petito 90+6' · Foggia"
-      ],
-      "fetchedAt": "2026-10-04T19:12:25.314361+00:00",
-      "attempts": 1
-    },
-    "1609069": {
-      "score": "0-1",
-      "scorers": [
-        "K. Butic 10' (rig.) · Bari"
-      ],
-      "fetchedAt": "2026-10-04T19:12:25.314361+00:00",
-      "attempts": 1
-    },
-    "1608685": {
-      "score": "1-0",
-      "scorers": [
-        "F. Ferrari 76' · Guidonia Montecelio 1937"
-      ],
-      "fetchedAt": "2026-10-04T19:12:25.314361+00:00",
-      "attempts": 1
-    },
-    "1609068": {
-      "score": "2-0",
-      "scorers": [
-        "G. Loiacono 9' · Potenza",
-        "L. Russo 30' · Potenza (assist: A. De Marco)"
-      ],
-      "fetchedAt": "2026-10-04T19:23:13.268346+00:00",
-      "attempts": 2
-    },
-    "1608304": {
-      "score": "1-2",
-      "scorers": [
-        "L. Agosti 25' · Dolomiti Bellunesi (assist: M. Saccani)",
-        "F. Lorenzini 89' · Novara (assist: S. Lartey)",
-        "E. Zambataro 90' · Novara (assist: D. Zuppel)"
-      ],
-      "fetchedAt": "2026-10-04T19:12:25.314361+00:00",
-      "attempts": 1
-    },
-    "1608686": {
-      "score": "1-0",
-      "scorers": [
-        "V. Plescia 13' · Latina"
-      ],
-      "fetchedAt": "2026-10-04T19:23:13.268346+00:00",
-      "attempts": 2
-    },
-    "1608689": {
-      "score": "0-1",
-      "scorers": [
-        "D. Cazzadori 75' · Spezia (assist: A. Cardinali)"
-      ],
-      "fetchedAt": "2026-10-04T19:23:13.268346+00:00",
-      "attempts": 1
     }
   },
   "serieCScorerQuota": {
     "date": "2026-10-04",
-    "used": 15
+    "used": 19
   }
 }

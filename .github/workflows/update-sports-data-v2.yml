@@ -1,12 +1,9 @@
 name: Update free sports feeds v2
 
 on:
-  schedule:
-    - cron: "11,26,41,56 * * * *"
+on:
   workflow_dispatch:
-  push:
-    paths:
-      - .github/workflows/update-sports-data-v2.yml
+
 
 permissions:
   contents: write

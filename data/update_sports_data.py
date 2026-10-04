@@ -42,7 +42,7 @@ def lba_games():
             "away": m.get("v_team_name", "?"),
             "homeScore": m.get("home_final_score", ""),
             "awayScore": m.get("visitor_final_score", ""),
-            "hasScore": status == "2",
+           "hasScore": status in {"1", "2", "3"},
             "status": label,
             "time": m.get("match_datetime", ""),
             "competition": "Serie A LBA",

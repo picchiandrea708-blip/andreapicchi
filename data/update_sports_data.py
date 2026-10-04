@@ -183,24 +183,19 @@ def goal_scorers(events):
     return labels
 
 
-def fixture_goal_details(ids, key):
-    """L'endpoint fixtures?ids include eventi per massimo 20 partite in una chiamata."""
-    assert 1 <= len(ids) <= 20
-    query = urllib.parse.urlencode({"ids": "-".join(str(x) for x in ids)})
-    data = get_json(f"{API_FOOTBALL_URL}?{query}", {"x-apisports-key": key})
+def fixture_goal_details(fixture_id, key):
+    """L'endpoint fixtures/events?fixture restituisce i gol di una partita."""
+    query = urllib.parse.urlencode({"fixture": fixture_id})
+    data = get_json(f"{API_FOOTBALL_URL}/events?{query}", {"x-apisports-key": key})
     if data.get("errors"):
         raise RuntimeError(f"API-Football eventi: {data['errors']}")
     if not isinstance(data.get("response"), list):
         raise RuntimeError("API-Football eventi: risposta non valida")
-    return {
-        str((item.get("fixture") or {}).get("id")): goal_scorers(item.get("events") or [])
-        for item in data["response"]
-        if (item.get("fixture") or {}).get("id") is not None
-    }
+    return goal_scorers(data["response"])
 
 
 def enrich_serie_c_scorers(matches, key, previous, now):
-    """Aggiorna i marcatori solo quando cambia il risultato; tetto di 12 chiamate/giorno."""
+    """Aggiorna i marcatori per gara; massimo 20 richieste al giorno sul piano gratuito."""
     old_cache = previous.get("serieCScorersCache") or {}
     ids = {str(m["fixtureId"]) for m in matches if m.get("fixtureId")}
     cache = {match_id: old_cache[match_id] for match_id in ids if match_id in old_cache}
@@ -233,29 +228,26 @@ def enrich_serie_c_scorers(matches, key, previous, now):
                 pending.append(match)
 
     errors = []
-    for start in range(0, len(pending), 20):
-        if quota["used"] >= 12:
+    pending.sort(key=lambda m: (not str(m.get("status", "")).startswith("LIVE"), m.get("time", "")), reverse=False)
+    for match in pending:
+        if quota["used"] >= 20:
             break
-        batch = pending[start:start + 20]
         quota["used"] += 1  # Conta anche una richiesta fallita; protegge il piano gratuito.
         try:
-            details = fixture_goal_details([m["fixtureId"] for m in batch], key)
+            scorers = fixture_goal_details(match["fixtureId"], key)
         except Exception as exc:
             errors.append(str(exc))
             break
-        for match in batch:
-            match_id = str(match["fixtureId"])
-            if match_id not in details:
-                continue
-            score = f"{match['homeScore']}-{match['awayScore']}"
-            prior = cache.get(match_id) or {}
-            attempts = prior.get("attempts", 0) + 1 if prior.get("score") == score else 1
-            cache[match_id] = {
-                "score": score,
-                "scorers": details[match_id],
-                "fetchedAt": now.isoformat(),
-                "attempts": attempts,
-            }
+        match_id = str(match["fixtureId"])
+        score = f"{match['homeScore']}-{match['awayScore']}"
+        prior = cache.get(match_id) or {}
+        attempts = prior.get("attempts", 0) + 1 if prior.get("score") == score else 1
+        cache[match_id] = {
+            "score": score,
+            "scorers": scorers,
+            "fetchedAt": now.isoformat(),
+            "attempts": attempts,
+        }
     for match in matches:
         entry = cache.get(str(match.get("fixtureId"))) or {}
         if entry.get("scorers"):

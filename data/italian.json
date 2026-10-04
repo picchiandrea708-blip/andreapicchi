@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-04T20:48:14.061490+00:00",
+  "updatedAt": "2026-10-04T21:11:48.603736+00:00",
   "lba": [
     {
       "home": "Dolomiti Energia Trentino",
@@ -247,7 +247,7 @@
       "homeScore": 2,
       "awayScore": 2,
       "hasScore": true,
-      "status": "LIVE · 2H",
+      "status": "FT",
       "time": "2026-10-04T20:30:00+02:00",
       "competition": "Serie C",
       "group": "Serie C - Girone A",
@@ -267,7 +267,7 @@
       "homeScore": 1,
       "awayScore": 1,
       "hasScore": true,
-      "status": "LIVE · 2H",
+      "status": "FT",
       "time": "2026-10-04T20:30:00+02:00",
       "competition": "Serie C",
       "group": "Serie C - Girone B",
@@ -299,7 +299,7 @@
       "homeScore": 4,
       "awayScore": 2,
       "hasScore": true,
-      "status": "LIVE · 2H",
+      "status": "FT",
       "time": "2026-10-04T20:30:00+02:00",
       "competition": "Serie C",
       "group": "Serie C - Girone C",
@@ -321,7 +321,7 @@
       "homeScore": 2,
       "awayScore": 1,
       "hasScore": true,
-      "status": "LIVE · 2H",
+      "status": "FT",
       "time": "2026-10-04T20:30:00+02:00",
       "competition": "Serie C",
       "group": "Serie C - Girone C",
@@ -533,7 +533,7 @@
   ],
   "serieCApiCache": {
     "2026-10-04": {
-      "attemptedAt": "2026-10-04T20:26:39.573370+00:00",
+      "attemptedAt": "2026-10-04T21:11:48.603736+00:00",
       "matches": [
         {
           "home": "Lecco",
@@ -683,7 +683,7 @@
           "homeScore": 2,
           "awayScore": 2,
           "hasScore": true,
-          "status": "LIVE · 2H",
+          "status": "FT",
           "time": "2026-10-04T20:30:00+02:00",
           "competition": "Serie C",
           "group": "Serie C - Girone A",
@@ -703,7 +703,7 @@
           "homeScore": 1,
           "awayScore": 1,
           "hasScore": true,
-          "status": "LIVE · 2H",
+          "status": "FT",
           "time": "2026-10-04T20:30:00+02:00",
           "competition": "Serie C",
           "group": "Serie C - Girone B",
@@ -735,7 +735,7 @@
           "homeScore": 4,
           "awayScore": 2,
           "hasScore": true,
-          "status": "LIVE · 2H",
+          "status": "FT",
           "time": "2026-10-04T20:30:00+02:00",
           "competition": "Serie C",
           "group": "Serie C - Girone C",
@@ -757,7 +757,7 @@
           "homeScore": 2,
           "awayScore": 1,
           "hasScore": true,
-          "status": "LIVE · 2H",
+          "status": "FT",
           "time": "2026-10-04T20:30:00+02:00",
           "competition": "Serie C",
           "group": "Serie C - Girone C",
@@ -979,24 +979,6 @@
     }
   },
   "serieCScorersCache": {
-    "1609069": {
-      "score": "2-1",
-      "scorers": [
-        "K. Butic 10' (rig.) · Bari",
-        "F. Lescano 83' · Salernitana (assist: M. Vitale)",
-        "M. Varela Djamanca 88' · Salernitana"
-      ],
-      "fetchedAt": "2026-10-04T20:26:39.573370+00:00",
-      "attempts": 1
-    },
-    "1608685": {
-      "score": "1-0",
-      "scorers": [
-        "F. Ferrari 76' · Guidonia Montecelio 1937"
-      ],
-      "fetchedAt": "2026-10-04T19:12:25.314361+00:00",
-      "attempts": 1
-    },
     "1608301": {
       "score": "2-2",
       "scorers": [
@@ -1018,15 +1000,21 @@
       "fetchedAt": "2026-10-04T19:12:25.314361+00:00",
       "attempts": 1
     },
-    "1608307": {
-      "score": "2-2",
+    "1608689": {
+      "score": "0-1",
       "scorers": [
-        "A. Capello 13' · Lecco",
-        "T. Casasola 73' · Union Brescia (assist: B. Boci)",
-        "M. Casarotto 90+2' · Lecco (assist: S. Bonaiti)",
-        "A. Spagnoli 90+7' · Union Brescia (assist: T. Casasola)"
+        "D. Cazzadori 75' · Spezia (assist: A. Cardinali)"
       ],
-      "fetchedAt": "2026-10-04T19:12:25.314361+00:00",
+      "fetchedAt": "2026-10-04T19:23:13.268346+00:00",
+      "attempts": 1
+    },
+    "1608686": {
+      "score": "1-1",
+      "scorers": [
+        "V. Plescia 13' · Latina",
+        "M. Vagnoni 41' · Ostia Mare"
+      ],
+      "fetchedAt": "2026-10-04T20:26:39.573370+00:00",
       "attempts": 1
     },
     "1609068": {
@@ -1042,6 +1030,26 @@
       "fetchedAt": "2026-10-04T20:26:39.573370+00:00",
       "attempts": 1
     },
+    "1608307": {
+      "score": "2-2",
+      "scorers": [
+        "A. Capello 13' · Lecco",
+        "T. Casasola 73' · Union Brescia (assist: B. Boci)",
+        "M. Casarotto 90+2' · Lecco (assist: S. Bonaiti)",
+        "A. Spagnoli 90+7' · Union Brescia (assist: T. Casasola)"
+      ],
+      "fetchedAt": "2026-10-04T19:12:25.314361+00:00",
+      "attempts": 1
+    },
+    "1608682": {
+      "score": "1-1",
+      "scorers": [
+        "G. Corbo 45+2' · Campobasso FC (assist: M. Stoppa)",
+        "C. Celesia 66' (aut.) · Torres"
+      ],
+      "fetchedAt": "2026-10-04T19:12:25.314361+00:00",
+      "attempts": 1
+    },
     "1608304": {
       "score": "1-2",
       "scorers": [
@@ -1052,19 +1060,10 @@
       "fetchedAt": "2026-10-04T19:12:25.314361+00:00",
       "attempts": 1
     },
-    "1608689": {
-      "score": "0-1",
+    "1608685": {
+      "score": "1-0",
       "scorers": [
-        "D. Cazzadori 75' · Spezia (assist: A. Cardinali)"
-      ],
-      "fetchedAt": "2026-10-04T19:23:13.268346+00:00",
-      "attempts": 1
-    },
-    "1608682": {
-      "score": "1-1",
-      "scorers": [
-        "G. Corbo 45+2' · Campobasso FC (assist: M. Stoppa)",
-        "C. Celesia 66' (aut.) · Torres"
+        "F. Ferrari 76' · Guidonia Montecelio 1937"
       ],
       "fetchedAt": "2026-10-04T19:12:25.314361+00:00",
       "attempts": 1
@@ -1078,11 +1077,12 @@
       "fetchedAt": "2026-10-04T19:12:25.314361+00:00",
       "attempts": 1
     },
-    "1608686": {
-      "score": "1-1",
+    "1609069": {
+      "score": "2-1",
       "scorers": [
-        "V. Plescia 13' · Latina",
-        "M. Vagnoni 41' · Ostia Mare"
+        "K. Butic 10' (rig.) · Bari",
+        "F. Lescano 83' · Salernitana (assist: M. Vitale)",
+        "M. Varela Djamanca 88' · Salernitana"
       ],
       "fetchedAt": "2026-10-04T20:26:39.573370+00:00",
       "attempts": 1

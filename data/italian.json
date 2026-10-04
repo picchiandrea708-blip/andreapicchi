@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-04T19:02:57.340346+00:00",
+  "updatedAt": "2026-10-04T19:08:55.374796+00:00",
   "lba": [
     {
       "home": "Dolomiti Energia Trentino",
@@ -871,5 +871,11 @@
         }
       ]
     }
-  }
+  },
+  "serieCScorersCache": {},
+  "serieCScorerQuota": {
+    "date": "2026-10-04",
+    "used": 1
+  },
+  "serieCScorerError": "API-Football eventi: {'plan': 'Free plans do not have access to the Ids parameter.'}"
 }

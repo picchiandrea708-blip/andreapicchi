@@ -159,6 +159,110 @@ def api_football_games(key, previous, now):
     return list(unique.values()), cache, "; ".join(errors)
 
 
+def goal_scorers(events):
+    """Una voce leggibile per ogni rete; non confondere rigori sbagliati con gol."""
+    labels = []
+    for event in events:
+        if event.get("type") != "Goal" or event.get("detail") == "Missed Penalty":
+            continue
+        player = (event.get("player") or {}).get("name") or "Marcatore non indicato"
+        team = (event.get("team") or {}).get("name") or ""
+        time = event.get("time") or {}
+        minute = str(time["elapsed"]) if time.get("elapsed") is not None else "—"
+        if time.get("extra"):
+            minute += f"+{time['extra']}"
+        detail = (event.get("detail") or "").lower()
+        kind = " (aut.)" if "own goal" in detail else (" (rig.)" if "penalty" in detail else "")
+        assist = (event.get("assist") or {}).get("name")
+        label = f"{player} {minute}'{kind}"
+        if team:
+            label += f" · {team}"
+        if assist:
+            label += f" (assist: {assist})"
+        labels.append(label)
+    return labels
+
+
+def fixture_goal_details(ids, key):
+    """L'endpoint fixtures?ids include eventi per massimo 20 partite in una chiamata."""
+    assert 1 <= len(ids) <= 20
+    query = urllib.parse.urlencode({"ids": "-".join(str(x) for x in ids)})
+    data = get_json(f"{API_FOOTBALL_URL}?{query}", {"x-apisports-key": key})
+    if data.get("errors"):
+        raise RuntimeError(f"API-Football eventi: {data['errors']}")
+    if not isinstance(data.get("response"), list):
+        raise RuntimeError("API-Football eventi: risposta non valida")
+    return {
+        str((item.get("fixture") or {}).get("id")): goal_scorers(item.get("events") or [])
+        for item in data["response"]
+        if (item.get("fixture") or {}).get("id") is not None
+    }
+
+
+def enrich_serie_c_scorers(matches, key, previous, now):
+    """Aggiorna i marcatori solo quando cambia il risultato; tetto di 12 chiamate/giorno."""
+    old_cache = previous.get("serieCScorersCache") or {}
+    ids = {str(m["fixtureId"]) for m in matches if m.get("fixtureId")}
+    cache = {match_id: old_cache[match_id] for match_id in ids if match_id in old_cache}
+    day = now.astimezone(ZoneInfo("Europe/Rome")).date().isoformat()
+    old_quota = previous.get("serieCScorerQuota") or {}
+    quota = {"date": day, "used": old_quota.get("used", 0) if old_quota.get("date") == day else 0}
+    pending = []
+    for match in matches:
+        match_id = match.get("fixtureId")
+        if not match_id or match.get("source") != "API-Football":
+            continue
+        try:
+            event_time = dt.datetime.fromisoformat(match["time"])
+            goals = int(match["homeScore"]) + int(match["awayScore"])
+            recent = abs((now - event_time).total_seconds()) <= 24 * 3600
+        except (ValueError, TypeError, KeyError):
+            continue
+        if not recent or goals <= 0:
+            continue
+        entry = cache.get(str(match_id)) or {}
+        score = f"{match['homeScore']}-{match['awayScore']}"
+        if entry.get("score") != score:
+            pending.append(match)
+        elif len(entry.get("scorers") or []) < goals and entry.get("attempts", 0) < 2:
+            try:
+                age = (now - dt.datetime.fromisoformat(entry["fetchedAt"])).total_seconds()
+            except (ValueError, TypeError, KeyError):
+                age = float("inf")
+            if age >= 6 * 3600:
+                pending.append(match)
+
+    errors = []
+    for start in range(0, len(pending), 20):
+        if quota["used"] >= 12:
+            break
+        batch = pending[start:start + 20]
+        quota["used"] += 1  # Conta anche una richiesta fallita; protegge il piano gratuito.
+        try:
+            details = fixture_goal_details([m["fixtureId"] for m in batch], key)
+        except Exception as exc:
+            errors.append(str(exc))
+            break
+        for match in batch:
+            match_id = str(match["fixtureId"])
+            if match_id not in details:
+                continue
+            score = f"{match['homeScore']}-{match['awayScore']}"
+            prior = cache.get(match_id) or {}
+            attempts = prior.get("attempts", 0) + 1 if prior.get("score") == score else 1
+            cache[match_id] = {
+                "score": score,
+                "scorers": details[match_id],
+                "fetchedAt": now.isoformat(),
+                "attempts": attempts,
+            }
+    for match in matches:
+        entry = cache.get(str(match.get("fixtureId"))) or {}
+        if entry.get("scorers"):
+            match["scorers"] = entry["scorers"]
+    return cache, quota, "; ".join(errors)
+
+
 def serie_c_games():
     """ESPN gratuito come riserva se API-Football non restituisce Serie C."""
     out = []
@@ -209,6 +313,12 @@ def main():
         if error:
             result["serieCApiError"] = error
         result["serieC"] = matches
+        if matches:
+            scorers_cache, quota, scorer_error = enrich_serie_c_scorers(matches, key, old, now)
+            result["serieCScorersCache"] = scorers_cache
+            result["serieCScorerQuota"] = quota
+            if scorer_error:
+                result["serieCScorerError"] = scorer_error
     if not result["serieC"]:
         result["serieC"] = serie_c_games()
     DATA_FILE.parent.mkdir(parents=True, exist_ok=True)
@@ -219,3 +329,4 @@ def main():
 
 if __name__ == "__main__":
     main()
+

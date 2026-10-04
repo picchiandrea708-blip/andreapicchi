@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-04T16:10:58.267897+00:00",
+  "updatedAt": "2026-10-04T16:24:06.253037+00:00",
   "lba": [
     {
       "home": "Dolomiti Energia Trentino",
@@ -40,9 +40,9 @@
     {
       "home": "Longobardi Scafati Basket",
       "away": "Openjobmetis Varese",
-      "homeScore": 38,
-      "awayScore": 45,
-      "hasScore": false,
+      "homeScore": 50,
+      "awayScore": 58,
+      "hasScore": true,
       "status": "LIVE",
       "time": "2026-10-04T17:00:00.000+02:00",
       "competition": "Serie A LBA",
@@ -52,9 +52,9 @@
     {
       "home": "Pallacanestro Trieste",
       "away": "Umana Reyer Venezia",
-      "homeScore": 29,
-      "awayScore": 30,
-      "hasScore": false,
+      "homeScore": 42,
+      "awayScore": 39,
+      "hasScore": true,
       "status": "LIVE",
       "time": "2026-10-04T17:30:00.000+02:00",
       "competition": "Serie A LBA",
@@ -64,10 +64,10 @@
     {
       "home": "Virtus Costa Bologna",
       "away": "Maxima Roma",
-      "homeScore": 0,
-      "awayScore": 0,
-      "hasScore": false,
-      "status": "In programma",
+      "homeScore": 11,
+      "awayScore": 6,
+      "hasScore": true,
+      "status": "LIVE",
       "time": "2026-10-04T18:15:00.000+02:00",
       "competition": "Serie A LBA",
       "source": "LBA",

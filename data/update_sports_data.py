@@ -4,6 +4,7 @@ import datetime as dt
 import json
 import os
 import re
+import time
 import urllib.parse
 import urllib.request
 from pathlib import Path
@@ -159,12 +160,50 @@ def api_football_games(key, previous, now):
     return list(unique.values()), cache, "; ".join(errors)
 
 
-def goal_scorers(events):
-    """Una voce leggibile per ogni rete; non confondere rigori sbagliati con gol."""
+def goal_scorers(events, match=None):
+    """Mostra reti verificate dal punteggio, evitando rigori falliti e gol annullati."""
+    cancelled = [e for e in events if e.get("type") == "Var" and "goal cancelled" in str(e.get("detail") or "").lower()]
+
+    def is_cancelled(goal):
+        for var in cancelled:
+            var_team = var.get("team") or {}
+            goal_team = goal.get("team") or {}
+            same_team = (
+                var_team.get("id") == goal_team.get("id") if var_team.get("id") is not None and goal_team.get("id") is not None
+                else bool(var_team.get("name")) and str(var_team.get("name")).casefold() == str(goal_team.get("name") or "").casefold()
+            )
+            goal_player = goal.get("player") or {}
+            var_player = var.get("player") or {}
+            same_player = (goal_player.get("id") and goal_player.get("id") == var_player.get("id")) or (
+                goal_player.get("name") and goal_player.get("name") == var_player.get("name")
+            )
+            goal_minute = (goal.get("time") or {}).get("elapsed")
+            var_minute = (var.get("time") or {}).get("elapsed")
+            close = goal_minute is not None and var_minute is not None and abs(goal_minute - var_minute) <= 10
+            if same_team and (same_player or (not var_player.get("id") and not var_player.get("name") and close)):
+                return True
+        return False
+
+    goals = [
+        e for e in events
+        if e.get("type") == "Goal" and e.get("detail") != "Missed Penalty" and not is_cancelled(e)
+    ]
+    expected = {}
+    if match:
+        expected = {
+            str(match["home"]).casefold(): int(match["homeScore"]),
+            str(match["away"]).casefold(): int(match["awayScore"]),
+        }
+        counts = {}
+        for event in goals:
+            team_name = str((event.get("team") or {}).get("name") or "").casefold()
+            counts[team_name] = counts.get(team_name, 0) + 1
+        # Se il provider include reti annullate senza evento VAR, non attribuirle a un marcatore.
+        inconsistent = {team for team, count in counts.items() if team in expected and count > expected[team]}
+        goals = [e for e in goals if str((e.get("team") or {}).get("name") or "").casefold() not in inconsistent]
+
     labels = []
-    for event in events:
-        if event.get("type") != "Goal" or event.get("detail") == "Missed Penalty":
-            continue
+    for event in goals:
         player = (event.get("player") or {}).get("name") or "Marcatore non indicato"
         team = (event.get("team") or {}).get("name") or ""
         time = event.get("time") or {}
@@ -180,10 +219,12 @@ def goal_scorers(events):
         if assist:
             label += f" (assist: {assist})"
         labels.append(label)
+    if expected and labels and len(labels) < sum(expected.values()):
+        labels[0] = "Dati parziali — " + labels[0]
     return labels
 
 
-def fixture_goal_details(fixture_id, key):
+def fixture_goal_details(fixture_id, key, match=None):
     """L'endpoint fixtures/events?fixture restituisce i gol di una partita."""
     query = urllib.parse.urlencode({"fixture": fixture_id})
     data = get_json(f"{API_FOOTBALL_URL}/events?{query}", {"x-apisports-key": key})
@@ -191,7 +232,7 @@ def fixture_goal_details(fixture_id, key):
         raise RuntimeError(f"API-Football eventi: {data['errors']}")
     if not isinstance(data.get("response"), list):
         raise RuntimeError("API-Football eventi: risposta non valida")
-    return goal_scorers(data["response"])
+    return goal_scorers(data["response"], match)
 
 
 def enrich_serie_c_scorers(matches, key, previous, now):
@@ -219,6 +260,8 @@ def enrich_serie_c_scorers(matches, key, previous, now):
         score = f"{match['homeScore']}-{match['awayScore']}"
         if entry.get("score") != score:
             pending.append(match)
+        elif len(entry.get("scorers") or []) > goals:
+            pending.append(match)  # Cache precedente con gol annullati: correggi subito.
         elif len(entry.get("scorers") or []) < goals and entry.get("attempts", 0) < 2:
             try:
                 age = (now - dt.datetime.fromisoformat(entry["fetchedAt"])).total_seconds()
@@ -228,13 +271,17 @@ def enrich_serie_c_scorers(matches, key, previous, now):
                 pending.append(match)
 
     errors = []
-    pending.sort(key=lambda m: (not str(m.get("status", "")).startswith("LIVE"), m.get("time", "")), reverse=False)
+    pending.sort(key=lambda m: (not str(m.get("status", "")).startswith("LIVE"), -dt.datetime.fromisoformat(m["time"]).timestamp()))
+    calls_this_run = 0
     for match in pending:
         if quota["used"] >= 20:
             break
+        if calls_this_run:
+            time.sleep(10)  # Il piano gratuito limita anche le chiamate al minuto.
         quota["used"] += 1  # Conta anche una richiesta fallita; protegge il piano gratuito.
+        calls_this_run += 1
         try:
-            scorers = fixture_goal_details(match["fixtureId"], key)
+            scorers = fixture_goal_details(match["fixtureId"], key, match)
         except Exception as exc:
             errors.append(str(exc))
             break
@@ -250,7 +297,11 @@ def enrich_serie_c_scorers(matches, key, previous, now):
         }
     for match in matches:
         entry = cache.get(str(match.get("fixtureId"))) or {}
-        if entry.get("scorers"):
+        try:
+            score_total = int(match["homeScore"]) + int(match["awayScore"])
+        except (ValueError, TypeError, KeyError):
+            score_total = 0
+        if entry.get("scorers") and len(entry["scorers"]) <= score_total:
             match["scorers"] = entry["scorers"]
     return cache, quota, "; ".join(errors)
 

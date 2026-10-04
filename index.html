@@ -241,6 +241,10 @@
 
   <script>
     const PROXY = 'https://motogp-proxy.picchiandrea707.workers.dev/?url=';
+    const OFFICIAL_COMPETITION_URLS = {
+      'Serie C': 'https://www.lega-pro.com/',
+      'Serie A LBA': 'https://www.legabasket.it/calendario/1/serie-a'
+    };
     // API ufficiale EuroLeague via proxy CORS; Game Center ufficiale come fallback visibile.
     const EUROLEAGUE_CONFIG = {
       apiBase: 'https://api-live.euroleague.net',
@@ -345,7 +349,17 @@
       return new Error(`${label}: HTTP ${response.status}`);
     }
     async function fetchJson(url, label) {
-      const response = await fetch(url, { headers: { Accept: 'application/json' } });
+      const controller = new AbortController();
+      const timeout = setTimeout(() => controller.abort(), 12_000);
+      let response;
+      try {
+        response = await fetch(url, { headers: { Accept: 'application/json' }, signal: controller.signal });
+      } catch (error) {
+        if (error?.name === 'AbortError') throw new Error(`${label}: timeout dopo 12 secondi`);
+        throw error;
+      } finally {
+        clearTimeout(timeout);
+      }
       const text = await response.text();
       if (!response.ok) throw apiError(label, response);
       if (/waf block/i.test(text)) throw new Error(`${label}: servizio temporaneamente non disponibile`);
@@ -390,14 +404,19 @@
       if (/final|ft|ended|aet|full/i.test(t)) return 'final';
       return '';
     }
-    function renderMatches(containerId, groups) {
+    function renderMatches(containerId, groups, pinnedTitles = []) {
       const el = document.getElementById(containerId);
       let html = '';
       let total = 0;
       for (const [title, list] of groups) {
-        if (!list.length) continue;
+        if (!list.length && !pinnedTitles.includes(title)) continue;
         total += list.length;
         html += `<div class="league-card"><div class="league-head"><span>${escapeHtml(title)}</span><span class="count">${list.length} partite</span></div>`;
+        if (!list.length) {
+          const officialUrl = OFFICIAL_COMPETITION_URLS[title];
+          html += `<div class="empty">Nessuna gara disponibile nella finestra attuale.${officialUrl ? ` <a class="game-center-link" href="${officialUrl}" target="_blank" rel="noopener">Calendario ufficiale</a>` : ''}</div></div>`;
+          continue;
+        }
         for (const m of list) {
           const sc = statusClass(m.status);
           const hasScore = m.hasScore !== false && m.homeScore !== '' && m.homeScore != null && m.homeScore !== undefined;
@@ -427,7 +446,14 @@
       for (const date of dates) {
         try {
           const url = `https://site.web.api.espn.com/apis/site/v2/sports/${sport}/${league}/scoreboard?dates=${date}&limit=40`;
-          const res = await fetch(url);
+          const controller = new AbortController();
+          const timeout = setTimeout(() => controller.abort(), 8_000);
+          let res;
+          try {
+            res = await fetch(url, { signal: controller.signal });
+          } finally {
+            clearTimeout(timeout);
+          }
           if (!res.ok) continue;
           const data = await res.json();
           for (const ev of (data.events || [])) {
@@ -452,6 +478,20 @@
         } catch (_) {}
       }
       return out;
+    }
+    function showPanelLoadError(containerId, label, error) {
+      const el = document.getElementById(containerId);
+      if (!el) return;
+      const detail = String(error?.message || 'servizio non disponibile').replace(/^.*?:\s*/, '');
+      el.innerHTML = `<div class="error"><strong>${escapeHtml(label)} temporaneamente non disponibile.</strong><br><span>Riprova con “Aggiorna” tra poco. Dettaglio: ${escapeHtml(detail)}</span></div>`;
+    }
+    async function safePanelLoad(loader, containerId, label) {
+      try {
+        await loader();
+      } catch (error) {
+        console.warn(`${label} non disponibile`, error);
+        showPanelLoadError(containerId, label, error);
+      }
     }
 
     function extractSoccerScorers(summary) {
@@ -553,6 +593,13 @@
         return Array.isArray(data.matches) ? data.matches.map(sportScoreMatch) : [];
       } catch (_) { return []; }
     }
+    async function fetchItalianData() {
+      try {
+        return await fetchJson(`data/italian.json?t=${Date.now()}`, 'Feed italiano');
+      } catch (_) {
+        return { lba: [], serieC: [] };
+      }
+    }
     const euroleagueState = { matches: null, loadedAt: 0 };
     async function fetchEuroleagueSchedule() {
       if (euroleagueState.matches && Date.now() - euroleagueState.loadedAt < 5 * 60_000) return euroleagueState.matches;
@@ -630,7 +677,8 @@
 
     async function loadCalcio() {
       const dates = dateRange(1, 1);
-      const [scoreFeed, ...leagueFeeds] = await Promise.all([
+      const [italianData, scoreFeed, ...leagueFeeds] = await Promise.all([
+        fetchItalianData(),
         fetchSportScore('football'),
         ...CALCIO_LEAGUES.map(lg => fetchEspnScoreboard('soccer', lg.id, dates))
       ]);
@@ -668,14 +716,17 @@
           else groups.push([name, sortLiveFirst(matches)]);
         }
       }
+      const serieC = (italianData.serieC || []).filter(isWithin24Hours);
+      if (serieC.length) groups.push(['Serie C', serieC]);
       groups.sort((a, b) => Number(b[1].some(isLiveMatch)) - Number(a[1].some(isLiveMatch)) || b[1].length - a[1].length);
-      renderMatches('grid-calcio', groups);
+      renderMatches('grid-calcio', groups, ['Serie C']);
       touchUpdate();
     }
 
     // ===== BASKET =====
     async function loadBasket() {
-      const [scoreFeed, nba, euroleague, officialEuroleague] = await Promise.all([
+      const [italianData, scoreFeed, nba, euroleague, officialEuroleague] = await Promise.all([
+        fetchItalianData(),
         fetchSportScore('basketball'),
         fetchEspnScoreboard('basketball', 'nba', dateRange(1, 1)),
         // SportScore non restituisce sempre l'Eurolega nel suo elenco limitato a 50 eventi.
@@ -688,9 +739,9 @@
         ['NBA', sortLiveFirst([...nba, ...todaysScoreFeed.filter(m => /nba|wnba|national basketball association|women.s national basketball association/i.test(m.competition))])],
         // Oggi: risultati conclusi/live con punteggio e gare ancora in programma.
         ['Eurolega', sortLiveFirst([...liveOfficialEuroleague, ...euroleague, ...todaysScoreFeed.filter(m => /euroleague|eurolega|turkish airlines euroleague/i.test(m.competition) && !/eurocup/i.test(m.competition))])],
-        ['Serie A LBA', sortLiveFirst(todaysScoreFeed.filter(m => /(serie a|lega basket|\blba\b)/i.test(m.competition)))]
-      ].filter(([, list]) => list.length);
-      renderMatches('grid-basket', groups);
+        ['Serie A LBA', sortLiveFirst([...(italianData.lba || []).filter(isWithin24Hours), ...todaysScoreFeed.filter(m => /(serie a|lega basket|\blba\b)/i.test(m.competition))])]
+      ];
+      renderMatches('grid-basket', groups, ['Serie A LBA']);
       touchUpdate();
     }
 
@@ -1324,18 +1375,25 @@
     }
 
     document.getElementById('btnRefresh').onclick = () => {
-      loadCalcio(); loadBasket(); loadUsa(); loadF1(true); fetchLive();
+      safePanelLoad(loadCalcio, 'grid-calcio', 'Calcio');
+      safePanelLoad(loadBasket, 'grid-basket', 'Basket');
+      safePanelLoad(loadUsa, 'grid-usa', 'Sport USA');
+      loadF1(true); fetchLive();
     };
 
     // Avvio
-    loadCalcio();
-    loadBasket();
-    loadUsa();
+    safePanelLoad(loadCalcio, 'grid-calcio', 'Calcio');
+    safePanelLoad(loadBasket, 'grid-basket', 'Basket');
+    safePanelLoad(loadUsa, 'grid-usa', 'Sport USA');
     loadF1();
     fetchLive();
     loadEvents();
     setInterval(fetchLive, 6000);
-    setInterval(() => { loadCalcio(); loadBasket(); loadUsa(); }, 45000);
+    setInterval(() => {
+      safePanelLoad(loadCalcio, 'grid-calcio', 'Calcio');
+      safePanelLoad(loadBasket, 'grid-basket', 'Basket');
+      safePanelLoad(loadUsa, 'grid-usa', 'Sport USA');
+    }, 45000);
     // Controllo frequente: loadF1 applica 10s durante una sessione LIVE e 60s altrimenti.
     setInterval(loadF1, F1_LIVE_REFRESH_MS);
   </script>

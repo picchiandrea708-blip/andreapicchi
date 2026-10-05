@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-05T01:22:12.795369+00:00",
+  "updatedAt": "2026-10-05T01:49:03.653654+00:00",
   "lba": [
     {
       "home": "Dolomiti Energia Trentino",
@@ -585,34 +585,22 @@
     }
   },
   "serieCScorersCache": {
-    "1609068": {
-      "score": "4-2",
-      "scorers": [
-        "G. Loiacono 9' · Potenza",
-        "L. Russo 30' · Potenza (assist: A. De Marco)",
-        "S. Pugliese 35' · AZ Picerno",
-        "S. Bianchi 48' · AZ Picerno (assist: P. Virgilio)",
-        "G. Selleri 63' · Potenza",
-        "G. D'Auria 66' · Potenza (assist: L. Petrungaro)"
-      ],
-      "fetchedAt": "2026-10-04T20:26:39.573370+00:00",
-      "attempts": 1
-    },
-    "1609064": {
-      "score": "0-2",
-      "scorers": [
-        "M. Ravasio 54' · Foggia (assist: F. Zuccon)",
-        "F. Petito 90+6' · Foggia"
-      ],
-      "fetchedAt": "2026-10-04T19:12:25.314361+00:00",
-      "attempts": 1
-    },
     "1608689": {
       "score": "0-1",
       "scorers": [
         "D. Cazzadori 75' · Spezia (assist: A. Cardinali)"
       ],
       "fetchedAt": "2026-10-04T19:23:13.268346+00:00",
+      "attempts": 1
+    },
+    "1608688": {
+      "score": "2-1",
+      "scorers": [
+        "L. Bellini 16' · Pianese (assist: G. Morelli)",
+        "E. Soleri 19' · Ravenna (assist: C. Bani)",
+        "L. Bellini 58' · Pianese (assist: M. Bertini)"
+      ],
+      "fetchedAt": "2026-10-04T19:12:25.314361+00:00",
       "attempts": 1
     },
     "1608686": {
@@ -624,14 +612,12 @@
       "fetchedAt": "2026-10-04T20:26:39.573370+00:00",
       "attempts": 1
     },
-    "1609069": {
-      "score": "2-1",
+    "1608685": {
+      "score": "1-0",
       "scorers": [
-        "K. Butic 10' (rig.) · Bari",
-        "F. Lescano 83' · Salernitana (assist: M. Vitale)",
-        "M. Varela Djamanca 88' · Salernitana"
+        "F. Ferrari 76' · Guidonia Montecelio 1937"
       ],
-      "fetchedAt": "2026-10-04T20:26:39.573370+00:00",
+      "fetchedAt": "2026-10-04T19:12:25.314361+00:00",
       "attempts": 1
     },
     "1608682": {
@@ -643,12 +629,32 @@
       "fetchedAt": "2026-10-04T19:12:25.314361+00:00",
       "attempts": 1
     },
+    "1608301": {
+      "score": "2-2",
+      "scorers": [
+        "L. Zini 13' · Alcione",
+        "J. I. Molina 25' · Trento (assist: R. D'Intino)",
+        "C. Aucelli 57' · Trento (assist: R. D'Intino)",
+        "A. Rolfini 62' · Alcione (assist: P. Chierichetti)"
+      ],
+      "fetchedAt": "2026-10-04T20:26:39.573370+00:00",
+      "attempts": 1
+    },
     "1608304": {
       "score": "1-2",
       "scorers": [
         "L. Agosti 25' · Dolomiti Bellunesi (assist: M. Saccani)",
         "F. Lorenzini 89' · Novara (assist: S. Lartey)",
         "E. Zambataro 90' · Novara (assist: D. Zuppel)"
+      ],
+      "fetchedAt": "2026-10-04T19:12:25.314361+00:00",
+      "attempts": 1
+    },
+    "1609064": {
+      "score": "0-2",
+      "scorers": [
+        "M. Ravasio 54' · Foggia (assist: F. Zuccon)",
+        "F. Petito 90+6' · Foggia"
       ],
       "fetchedAt": "2026-10-04T19:12:25.314361+00:00",
       "attempts": 1
@@ -664,31 +670,25 @@
       "fetchedAt": "2026-10-04T19:12:25.314361+00:00",
       "attempts": 1
     },
-    "1608688": {
+    "1609068": {
+      "score": "4-2",
+      "scorers": [
+        "G. Loiacono 9' · Potenza",
+        "L. Russo 30' · Potenza (assist: A. De Marco)",
+        "S. Pugliese 35' · AZ Picerno",
+        "S. Bianchi 48' · AZ Picerno (assist: P. Virgilio)",
+        "G. Selleri 63' · Potenza",
+        "G. D'Auria 66' · Potenza (assist: L. Petrungaro)"
+      ],
+      "fetchedAt": "2026-10-04T20:26:39.573370+00:00",
+      "attempts": 1
+    },
+    "1609069": {
       "score": "2-1",
       "scorers": [
-        "L. Bellini 16' · Pianese (assist: G. Morelli)",
-        "E. Soleri 19' · Ravenna (assist: C. Bani)",
-        "L. Bellini 58' · Pianese (assist: M. Bertini)"
-      ],
-      "fetchedAt": "2026-10-04T19:12:25.314361+00:00",
-      "attempts": 1
-    },
-    "1608685": {
-      "score": "1-0",
-      "scorers": [
-        "F. Ferrari 76' · Guidonia Montecelio 1937"
-      ],
-      "fetchedAt": "2026-10-04T19:12:25.314361+00:00",
-      "attempts": 1
-    },
-    "1608301": {
-      "score": "2-2",
-      "scorers": [
-        "L. Zini 13' · Alcione",
-        "J. I. Molina 25' · Trento (assist: R. D'Intino)",
-        "C. Aucelli 57' · Trento (assist: R. D'Intino)",
-        "A. Rolfini 62' · Alcione (assist: P. Chierichetti)"
+        "K. Butic 10' (rig.) · Bari",
+        "F. Lescano 83' · Salernitana (assist: M. Vitale)",
+        "M. Varela Djamanca 88' · Salernitana"
       ],
       "fetchedAt": "2026-10-04T20:26:39.573370+00:00",
       "attempts": 1

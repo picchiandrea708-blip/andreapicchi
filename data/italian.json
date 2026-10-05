@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-05T02:22:40.952580+00:00",
+  "updatedAt": "2026-10-05T02:50:23.072242+00:00",
   "lba": [
     {
       "home": "Dolomiti Energia Trentino",
@@ -337,7 +337,7 @@
   ],
   "serieCApiCache": {
     "2026-10-05": {
-      "attemptedAt": "2026-10-05T02:01:34.637295+00:00",
+      "attemptedAt": "2026-10-05T02:50:23.072242+00:00",
       "matches": []
     },
     "2026-10-06": {
@@ -585,26 +585,13 @@
     }
   },
   "serieCScorersCache": {
-    "1608686": {
+    "1608682": {
       "score": "1-1",
       "scorers": [
-        "V. Plescia 13' · Latina",
-        "M. Vagnoni 41' · Ostia Mare"
+        "G. Corbo 45+2' · Campobasso FC (assist: M. Stoppa)",
+        "C. Celesia 66' (aut.) · Torres"
       ],
-      "fetchedAt": "2026-10-04T20:26:39.573370+00:00",
-      "attempts": 1
-    },
-    "1609068": {
-      "score": "4-2",
-      "scorers": [
-        "G. Loiacono 9' · Potenza",
-        "L. Russo 30' · Potenza (assist: A. De Marco)",
-        "S. Pugliese 35' · AZ Picerno",
-        "S. Bianchi 48' · AZ Picerno (assist: P. Virgilio)",
-        "G. Selleri 63' · Potenza",
-        "G. D'Auria 66' · Potenza (assist: L. Petrungaro)"
-      ],
-      "fetchedAt": "2026-10-04T20:26:39.573370+00:00",
+      "fetchedAt": "2026-10-04T19:12:25.314361+00:00",
       "attempts": 1
     },
     "1609064": {
@@ -626,15 +613,6 @@
       "fetchedAt": "2026-10-04T19:12:25.314361+00:00",
       "attempts": 1
     },
-    "1608682": {
-      "score": "1-1",
-      "scorers": [
-        "G. Corbo 45+2' · Campobasso FC (assist: M. Stoppa)",
-        "C. Celesia 66' (aut.) · Torres"
-      ],
-      "fetchedAt": "2026-10-04T19:12:25.314361+00:00",
-      "attempts": 1
-    },
     "1608301": {
       "score": "2-2",
       "scorers": [
@@ -646,23 +624,33 @@
       "fetchedAt": "2026-10-04T20:26:39.573370+00:00",
       "attempts": 1
     },
-    "1608307": {
-      "score": "2-2",
-      "scorers": [
-        "A. Capello 13' · Lecco",
-        "T. Casasola 73' · Union Brescia (assist: B. Boci)",
-        "M. Casarotto 90+2' · Lecco (assist: S. Bonaiti)",
-        "A. Spagnoli 90+7' · Union Brescia (assist: T. Casasola)"
-      ],
-      "fetchedAt": "2026-10-04T19:12:25.314361+00:00",
-      "attempts": 1
-    },
     "1609069": {
       "score": "2-1",
       "scorers": [
         "K. Butic 10' (rig.) · Bari",
         "F. Lescano 83' · Salernitana (assist: M. Vitale)",
         "M. Varela Djamanca 88' · Salernitana"
+      ],
+      "fetchedAt": "2026-10-04T20:26:39.573370+00:00",
+      "attempts": 1
+    },
+    "1608685": {
+      "score": "1-0",
+      "scorers": [
+        "F. Ferrari 76' · Guidonia Montecelio 1937"
+      ],
+      "fetchedAt": "2026-10-04T19:12:25.314361+00:00",
+      "attempts": 1
+    },
+    "1609068": {
+      "score": "4-2",
+      "scorers": [
+        "G. Loiacono 9' · Potenza",
+        "L. Russo 30' · Potenza (assist: A. De Marco)",
+        "S. Pugliese 35' · AZ Picerno",
+        "S. Bianchi 48' · AZ Picerno (assist: P. Virgilio)",
+        "G. Selleri 63' · Potenza",
+        "G. D'Auria 66' · Potenza (assist: L. Petrungaro)"
       ],
       "fetchedAt": "2026-10-04T20:26:39.573370+00:00",
       "attempts": 1
@@ -685,10 +673,22 @@
       "fetchedAt": "2026-10-04T19:23:13.268346+00:00",
       "attempts": 1
     },
-    "1608685": {
-      "score": "1-0",
+    "1608686": {
+      "score": "1-1",
       "scorers": [
-        "F. Ferrari 76' · Guidonia Montecelio 1937"
+        "V. Plescia 13' · Latina",
+        "M. Vagnoni 41' · Ostia Mare"
+      ],
+      "fetchedAt": "2026-10-04T20:26:39.573370+00:00",
+      "attempts": 1
+    },
+    "1608307": {
+      "score": "2-2",
+      "scorers": [
+        "A. Capello 13' · Lecco",
+        "T. Casasola 73' · Union Brescia (assist: B. Boci)",
+        "M. Casarotto 90+2' · Lecco (assist: S. Bonaiti)",
+        "A. Spagnoli 90+7' · Union Brescia (assist: T. Casasola)"
       ],
       "fetchedAt": "2026-10-04T19:12:25.314361+00:00",
       "attempts": 1

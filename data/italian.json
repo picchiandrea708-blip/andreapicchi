@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-06T22:21:58.660554+00:00",
+  "updatedAt": "2026-10-06T22:39:26.730231+00:00",
   "lba": [
     {
       "home": "Dolomiti Energia Trentino",
@@ -105,7 +105,10 @@
     },
     "2026-10-06": {
       "attemptedAt": "2026-10-06T21:38:42.481580+00:00"
+    },
+    "2026-10-08": {
+      "attemptedAt": "2026-10-06T22:39:26.730231+00:00"
     }
   },
-  "serieCApiError": "API-Football: {'access': 'Your account is suspended, check on https://dashboard.api-football.com.'}"
+  "serieCApiError": "API-Football: {'plan': 'Free plans do not have access to this date, try from 2026-10-05 to 2026-10-07.'}"
 }

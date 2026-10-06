@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-06T02:00:44.814705+00:00",
+  "updatedAt": "2026-10-06T02:22:51.859338+00:00",
   "lba": [
     {
       "home": "Dolomiti Energia Trentino",
@@ -99,6 +99,7 @@
     }
   ],
   "serieC": [],
+  "lbaError": "HTTP Error 504: Gateway Timeout",
   "serieCApiCache": {
     "2026-10-06": {
       "attemptedAt": "2026-10-06T02:00:44.814705+00:00"
@@ -110,6 +111,5 @@
       "attemptedAt": "2026-10-05T21:32:06.954935+00:00",
       "matches": []
     }
-  },
-  "serieCApiError": "API-Football: {'access': 'Your account is suspended, check on https://dashboard.api-football.com.'}"
+  }
 }

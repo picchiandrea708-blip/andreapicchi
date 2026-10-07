@@ -1,98 +1,98 @@
 {
-  "updatedAt": "2026-10-07T12:04:17.086536+00:00",
+  "updatedAt": "2026-10-07T12:32:22.871878+00:00",
   "lba": [
     {
-      "home": "Dolomiti Energia Trentino",
+      "home": "APU Old Wild West Udine",
+      "away": "Dolomiti Energia Trentino",
+      "homeScore": 0,
+      "awayScore": 0,
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-10T20:00:00.000+02:00",
+      "competition": "Serie A LBA",
+      "source": "LBA",
+      "sourceUrl": "https://www.legabasket.it/calendario/1/serie-a"
+    },
+    {
+      "home": "Openjobmetis Varese",
+      "away": "Pallacanestro Trieste",
+      "homeScore": 0,
+      "awayScore": 0,
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-10T20:30:00.000+02:00",
+      "competition": "Serie A LBA",
+      "source": "LBA",
+      "sourceUrl": "https://www.legabasket.it/calendario/1/serie-a"
+    },
+    {
+      "home": "Armani Olimpia Milano",
       "away": "Nutribullet Treviso Basket",
-      "homeScore": 90,
-      "awayScore": 93,
-      "hasScore": true,
-      "status": "Finale",
-      "time": "2026-10-03T20:00:00.000+02:00",
-      "competition": "Serie A LBA",
-      "source": "LBA",
-      "sourceUrl": "https://www.legabasket.it/calendario/1/serie-a"
-    },
-    {
-      "home": "Napoli Basketball",
-      "away": "UNA Hotels Reggio Emilia",
-      "homeScore": 99,
-      "awayScore": 93,
-      "hasScore": true,
-      "status": "Finale",
-      "time": "2026-10-03T20:30:00.000+02:00",
-      "competition": "Serie A LBA",
-      "source": "LBA",
-      "sourceUrl": "https://www.legabasket.it/calendario/1/serie-a"
-    },
-    {
-      "home": "BC Roma",
-      "away": "Bertram Derthona Tortona",
-      "homeScore": 108,
-      "awayScore": 70,
-      "hasScore": true,
-      "status": "Finale",
-      "time": "2026-10-04T16:00:00.000+02:00",
-      "competition": "Serie A LBA",
-      "source": "LBA",
-      "sourceUrl": "https://www.legabasket.it/calendario/1/serie-a"
-    },
-    {
-      "home": "Longobardi Scafati Basket",
-      "away": "Openjobmetis Varese",
-      "homeScore": 77,
-      "awayScore": 85,
-      "hasScore": true,
-      "status": "Finale",
-      "time": "2026-10-04T17:00:00.000+02:00",
-      "competition": "Serie A LBA",
-      "source": "LBA",
-      "sourceUrl": "https://www.legabasket.it/calendario/1/serie-a"
-    },
-    {
-      "home": "Pallacanestro Trieste",
-      "away": "Umana Reyer Venezia",
-      "homeScore": 82,
-      "awayScore": 87,
-      "hasScore": true,
-      "status": "Finale",
-      "time": "2026-10-04T17:30:00.000+02:00",
-      "competition": "Serie A LBA",
-      "source": "LBA",
-      "sourceUrl": "https://www.legabasket.it/calendario/1/serie-a"
-    },
-    {
-      "home": "Virtus Costa Bologna",
-      "away": "Maxima Roma",
-      "homeScore": 98,
-      "awayScore": 89,
-      "hasScore": true,
-      "status": "Finale",
-      "time": "2026-10-04T18:15:00.000+02:00",
+      "homeScore": 0,
+      "awayScore": 0,
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-11T16:00:00.000+02:00",
       "competition": "Serie A LBA",
       "source": "LBA",
       "sourceUrl": "https://www.legabasket.it/calendario/1/serie-a"
     },
     {
       "home": "Acqua S.Bernardo Cantù",
-      "away": "APU Old Wild West Udine",
-      "homeScore": 84,
-      "awayScore": 85,
-      "hasScore": true,
-      "status": "Finale",
-      "time": "2026-10-05T20:00:00.000+02:00",
+      "away": "Napoli Basketball",
+      "homeScore": 0,
+      "awayScore": 0,
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-11T17:00:00.000+02:00",
       "competition": "Serie A LBA",
       "source": "LBA",
       "sourceUrl": "https://www.legabasket.it/calendario/1/serie-a"
     },
     {
-      "home": "Tezenis Verona",
-      "away": "Armani Olimpia Milano",
-      "homeScore": 75,
-      "awayScore": 72,
-      "hasScore": true,
-      "status": "Finale",
-      "time": "2026-10-05T20:45:00.000+02:00",
+      "home": "UNA Hotels Reggio Emilia",
+      "away": "Bertram Derthona Tortona",
+      "homeScore": 0,
+      "awayScore": 0,
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-11T17:00:00.000+02:00",
+      "competition": "Serie A LBA",
+      "source": "LBA",
+      "sourceUrl": "https://www.legabasket.it/calendario/1/serie-a"
+    },
+    {
+      "home": "Longobardi Scafati Basket",
+      "away": "Tezenis Verona",
+      "homeScore": 0,
+      "awayScore": 0,
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-11T18:00:00.000+02:00",
+      "competition": "Serie A LBA",
+      "source": "LBA",
+      "sourceUrl": "https://www.legabasket.it/calendario/1/serie-a"
+    },
+    {
+      "home": "Maxima Roma",
+      "away": "BC Roma",
+      "homeScore": 0,
+      "awayScore": 0,
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-11T18:15:00.000+02:00",
+      "competition": "Serie A LBA",
+      "source": "LBA",
+      "sourceUrl": "https://www.legabasket.it/calendario/1/serie-a"
+    },
+    {
+      "home": "Umana Reyer Venezia",
+      "away": "Virtus Costa Bologna",
+      "homeScore": 0,
+      "awayScore": 0,
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-11T19:00:00.000+02:00",
       "competition": "Serie A LBA",
       "source": "LBA",
       "sourceUrl": "https://www.legabasket.it/calendario/1/serie-a"
@@ -101,7 +101,7 @@
   "serieC": [],
   "serieCApiCache": {
     "2026-10-07": {
-      "attemptedAt": "2026-10-07T11:50:18.025458+00:00"
+      "attemptedAt": "2026-10-07T12:32:22.871878+00:00"
     },
     "2026-10-08": {
       "attemptedAt": "2026-10-07T10:51:24.343123+00:00"
@@ -109,5 +109,6 @@
     "2026-10-06": {
       "attemptedAt": "2026-10-06T21:38:42.481580+00:00"
     }
-  }
+  },
+  "serieCApiError": "API-Football: {'access': 'Your account is suspended, check on https://dashboard.api-football.com.'}"
 }

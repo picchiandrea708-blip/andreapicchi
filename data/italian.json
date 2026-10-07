@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-07T22:20:51.712353+00:00",
+  "updatedAt": "2026-10-07T22:38:04.850176+00:00",
   "lba": [
     {
       "home": "APU Old Wild West Udine",
@@ -101,14 +101,14 @@
   "serieC": [],
   "serieCApiCache": {
     "2026-10-08": {
-      "attemptedAt": "2026-10-07T22:02:37.375886+00:00"
-    },
-    "2026-10-07": {
-      "attemptedAt": "2026-10-07T21:50:19.430587+00:00"
+      "attemptedAt": "2026-10-07T22:38:04.850176+00:00"
     },
     "2026-10-09": {
       "attemptedAt": "2026-10-07T22:20:51.712353+00:00"
+    },
+    "2026-10-07": {
+      "attemptedAt": "2026-10-07T21:50:19.430587+00:00"
     }
   },
-  "serieCApiError": "API-Football: {'plan': 'Free plans do not have access to this date, try from 2026-10-06 to 2026-10-08.'}"
+  "serieCApiError": "API-Football: {'access': 'Your account is suspended, check on https://dashboard.api-football.com.'}"
 }

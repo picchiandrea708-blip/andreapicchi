@@ -142,7 +142,7 @@
 </head>
 <body>
   <header>
-    <div class="logo">SPORT<span>LIVE</span><small style="opacity:.45;font-size:.65rem"> v35</small></div>
+    <div class="logo">SPORT<span>LIVE</span><small style="opacity:.45;font-size:.65rem"> v36</small></div>
     <div class="status-bar">
       <div class="dot" id="liveDot"></div>
       <span id="lastUpdate">Connessione…</span>
@@ -607,6 +607,7 @@
       if (/nations league/.test(c)) return 'UEFA Nations League';
       if (/qualif.*(africa|afcon|nations)|(?:africa|afcon|nations).*qualif/.test(c)) return 'Qualificazioni Coppa d’Africa';
       if (/coppa italia|italian cup/.test(c)) return 'Coppa Italia';
+      if (/africa|afcon|coppa d/.test(c) && /qualif|nations/.test(c)) return 'Qualificazioni Coppa d’Africa';
       return null;
     }
     async function fetchSportScore(sport) {
@@ -693,6 +694,7 @@
       { id: 'uefa.champions', name: 'Champions League' }, { id: 'uefa.wchampions', name: 'Champions League Femminile' },
       { id: 'uefa.europa', name: 'Europa League' },
       { id: 'uefa.europa.conf', name: 'Conference League' }, { id: 'uefa.nations', name: 'UEFA Nations League' },
+      { id: 'caf.nations_qual', name: 'Qualificazioni Coppa d’Africa' },
       { id: 'ita.coppa_italia', name: 'Coppa Italia' }
     ];
 

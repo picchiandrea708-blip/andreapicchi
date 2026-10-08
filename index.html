@@ -142,7 +142,7 @@
 </head>
 <body>
   <header>
-    <div class="logo">SPORT<span>LIVE</span><small style="opacity:.45;font-size:.65rem"> v32</small></div>
+    <div class="logo">SPORT<span>LIVE</span><small style="opacity:.45;font-size:.65rem"> v33</small></div>
     <div class="status-bar">
       <div class="dot" id="liveDot"></div>
       <span id="lastUpdate">Connessione…</span>
@@ -1162,7 +1162,52 @@
     }
 
     async function fetchLive() {
-      renderOfflineMotoLive();
+      try {
+        const res = await fetch(LIVE_URL);
+        if (!res.ok) throw new Error('HTTP ' + res.status);
+        const raw = await res.text();
+        if (!raw.trim() || raw.trim().startsWith('<')) throw new Error('vuoto');
+        const data = JSON.parse(raw);
+        const head = data.head || {};
+        const riders = Object.values(data.rider || {}).sort((a, b) => {
+          const pa = a.pos > 0 ? a.pos : 999;
+          const pb = b.pos > 0 ? b.pos : 999;
+          return pa - pb || (a.order || 0) - (b.order || 0);
+        });
+        if (!riders.length) throw new Error('vuoto');
+        document.getElementById('liveError').style.display = 'none';
+        document.getElementById('liveLoading').style.display = 'none';
+        document.getElementById('liveSessionInfo').style.display = 'grid';
+        document.getElementById('liveTable').style.display = 'table';
+        document.getElementById('liveEvent').textContent = head.event_tv_name || head.event_shortname || '—';
+        document.getElementById('liveCircuit').textContent = head.circuit_name || '—';
+        document.getElementById('liveSession').textContent = `${head.session_shortname || ''} · ${head.session_name || ''}`.trim();
+        document.getElementById('liveCategory').textContent = head.category || '—';
+        document.getElementById('liveRemaining').textContent = formatRemaining(head.remaining);
+        document.getElementById('liveSessionStatus').textContent = statusLabel(head.session_status_id);
+        document.getElementById('liveTitle').textContent = `Livetiming · ${head.category || 'MotoGP'}`;
+        document.getElementById('liveStatus').textContent = head.session_status_id === 'S' ? 'LIVE' : (head.session_status_id || '—');
+        document.getElementById('liveBody').innerHTML = riders.map(r => {
+          const posClass = r.pos === 1 ? 'p1' : r.pos === 2 ? 'p2' : r.pos === 3 ? 'p3' : '';
+          const bg = r.color ? `#${String(r.color).replace('#','')}` : '#555';
+          const tc = r.text_color ? `#${String(r.text_color).replace('#','')}` : '#fff';
+          return `<tr>
+            <td class="pos ${posClass}">${r.pos > 0 ? r.pos : '—'}</td>
+            <td><span class="num" style="background:${bg};color:${tc}">${r.rider_number || '—'}</span></td>
+            <td class="driver">${r.rider_shortname || r.rider_surname || '—'}</td>
+            <td>${r.team_name || '—'}</td>
+            <td class="gap">${r.lap_time || '—'}</td>
+            <td class="gap">${r.last_lap_time || '—'}</td>
+            <td class="gap">${r.gap_first || '—'}</td>
+            <td class="gap">${r.gap_prev || '—'}</td>
+            <td>${r.on_pit ? '<span class="pit">PIT</span>' : ''}</td>
+          </tr>`;
+        }).join('');
+        document.getElementById('liveDot').style.background = 'var(--live)';
+        touchUpdate();
+      } catch (e) {
+        renderOfflineMotoLive();
+      }
     }
 
     function offlineMotoPack() {

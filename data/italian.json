@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-08T00:32:15.769481+00:00",
+  "updatedAt": "2026-10-08T00:58:52.474039+00:00",
   "lba": [
     {
       "home": "APU Old Wild West Udine",
@@ -109,6 +109,5 @@
     "2026-10-07": {
       "attemptedAt": "2026-10-07T21:50:19.430587+00:00"
     }
-  },
-  "serieCApiError": "API-Football: {'access': 'Your account is suspended, check on https://dashboard.api-football.com.'}"
+  }
 }

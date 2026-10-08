@@ -142,7 +142,7 @@
 </head>
 <body>
   <header>
-    <div class="logo">SPORT<span>LIVE</span><small style="opacity:.45;font-size:.65rem"> v34</small></div>
+    <div class="logo">SPORT<span>LIVE</span><small style="opacity:.45;font-size:.65rem"> v35</small></div>
     <div class="status-bar">
       <div class="dot" id="liveDot"></div>
       <span id="lastUpdate">Connessione…</span>
@@ -169,12 +169,12 @@
 
   <main>
     <div class="panel active" id="panel-calcio">
-      <div class="section-title">Calcio — Finestra 24 ore <span class="badge">LIVE</span></div>
+      <div class="section-title">Calcio — Europa, ultime 24 ore</div>
       <div id="grid-calcio"><div class="loading">Caricamento…</div></div>
     </div>
 
     <div class="panel" id="panel-basket">
-      <div class="section-title">Basket — LBA · Eurolega · NBA · 24 ore <span class="badge">LIVE</span></div>
+      <div class="section-title">Basket — LBA · Eurolega · NBA · 24 ore</div>
       <div id="grid-basket"><div class="loading">Caricamento…</div></div>
     </div>
 
@@ -189,10 +189,11 @@
     </div>
 
     <div class="panel" id="panel-moto">
-      <div class="section-title">Motomondiale / MotoGP <span class="badge">LIVE</span></div>
+      <div class="section-title">Motomondiale / MotoGP — classifiche salvate</div>
+      <a href="https://www.motogp.com/en/timing" target="_blank" rel="noopener" style="display:inline-block;margin:0 0 1rem;background:#e10600;color:#fff;padding:.75rem 1.1rem;border-radius:10px;font-weight:800;text-decoration:none">Apri live ufficiale</a>
       <div class="league-card" style="max-width:1100px">
         <div class="league-head">
-          <span id="liveTitle">Livetiming live</span>
+          <span id="liveTitle">Ultima gara salvata · Giappone</span>
           <span class="count" id="liveStatus">—</span>
         </div>
         <div id="liveError" class="error" style="display:none"></div>
@@ -204,7 +205,7 @@
           <div><label>Rimanente</label><strong id="liveRemaining" style="color:#f59e0b">—</strong></div>
           <div><label>Stato</label><strong id="liveSessionStatus">—</strong></div>
         </div>
-        <div id="liveLoading" class="loading">Caricamento live timing…</div>
+        <div id="liveLoading" class="loading">Classifica salvata, non è la diretta.</div>
         <div style="max-height:560px;overflow:auto">
           <table class="timing-table" id="liveTable" style="display:none">
             <thead>
@@ -262,7 +263,8 @@
 
     const OFFICIAL_COMPETITION_URLS = {
       'Serie C': 'https://www.lega-pro.com/',
-      'Serie A LBA': 'https://www.legabasket.it/calendario/1/serie-a'
+      'Serie A LBA': 'https://www.legabasket.it/calendario/1/serie-a',
+      'Eurolega': 'https://www.euroleaguebasketball.net/euroleague/'
     };
     // API ufficiale EuroLeague via proxy CORS; Game Center ufficiale come fallback visibile.
     const EUROLEAGUE_CONFIG = {
@@ -587,14 +589,15 @@
     }
     function footballCompetitionName(value) {
       const c = String(value || '').toLowerCase();
-      if (/mongol|mongolia|chinese|china/.test(c)) return null;
+      if (/mongol|mongolia|chinese|china|kenya|india|nigeria|ghana|egypt|south africa|australia|usa|mexico|brazil|argentina|japan|korea|thailand|indonesia|uganda|zambia|zimbabwe|cameroon|senegal|morocco|tunisia|algeria|qatar|saudi|uae|iran/.test(c)) return null;
+      if (!/italy|italian|italia|england|english|spain|spanish|germany|german|france|french|uefa|europe|champions league|europa league|conference league|nations league|coppa italia|bundesliga|ligue 1|la liga|premier league|serie [abc]/.test(c)) return null;
       if (/serie a( |$)|italian serie a/.test(c)) return 'Serie A';
       if (/serie b|italian serie b/.test(c)) return 'Serie B';
       if (/serie c|italian serie c|c1-a/.test(c)) return 'Serie C';
       if (/women.*serie a|serie a.*women|italian women/.test(c)) return 'Serie A Femminile';
       if (/women.*champions league|champions league.*women|uefa women/.test(c)) return 'Champions League Femminile';
       if (/women.*super league|super league.*women|english women/.test(c)) return 'Premier League Femminile';
-      if (/premier league|english premier/.test(c)) return 'Premier League';
+      if (/english premier|premier league/.test(c) && /england|english|inghilterra/.test(c)) return 'Premier League';
       if (/la liga|spanish primera/.test(c)) return 'La Liga';
       if (/bundesliga|german bundesliga/.test(c)) return 'Bundesliga';
       if (/ligue 1|french ligue/.test(c)) return 'Ligue 1';
@@ -690,7 +693,6 @@
       { id: 'uefa.champions', name: 'Champions League' }, { id: 'uefa.wchampions', name: 'Champions League Femminile' },
       { id: 'uefa.europa', name: 'Europa League' },
       { id: 'uefa.europa.conf', name: 'Conference League' }, { id: 'uefa.nations', name: 'UEFA Nations League' },
-      { id: 'caf.nations_qual', name: 'Qualificazioni Coppa d’Africa' },
       { id: 'ita.coppa_italia', name: 'Coppa Italia' }
     ];
 
@@ -1185,7 +1187,7 @@
         document.getElementById('liveCategory').textContent = head.category || '—';
         document.getElementById('liveRemaining').textContent = formatRemaining(head.remaining);
         document.getElementById('liveSessionStatus').textContent = statusLabel(head.session_status_id);
-        document.getElementById('liveTitle').textContent = `Livetiming · ${head.category || 'MotoGP'}`;
+        document.getElementById('liveTitle').textContent = `Proxy · ${head.category || 'MotoGP'}`;
         document.getElementById('liveStatus').textContent = head.session_status_id === 'S' ? 'LIVE' : (head.session_status_id || '—');
         document.getElementById('liveBody').innerHTML = riders.map(r => {
           const posClass = r.pos === 1 ? 'p1' : r.pos === 2 ? 'p2' : r.pos === 3 ? 'p3' : '';

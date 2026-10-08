@@ -142,7 +142,7 @@
 </head>
 <body>
   <header>
-    <div class="logo">SPORT<span>LIVE</span><small style="opacity:.45;font-size:.65rem"> v31</small></div>
+    <div class="logo">SPORT<span>LIVE</span><small style="opacity:.45;font-size:.65rem"> v32</small></div>
     <div class="status-bar">
       <div class="dot" id="liveDot"></div>
       <span id="lastUpdate">Connessione…</span>
@@ -1162,65 +1162,37 @@
     }
 
     async function fetchLive() {
-      try {
-        const res = await fetch(LIVE_URL);
-        if (!res.ok) throw new Error('HTTP ' + res.status);
-        const raw = await res.text();
-        if (!raw.trim()) {
-          document.getElementById('liveError').style.display = 'none';
-          document.getElementById('liveLoading').style.display = 'block';
-          document.getElementById('liveLoading').textContent = 'Caricamento ultima sessione terminata…';
-          document.getElementById('liveStatus').textContent = 'Ultima sessione';
-          document.getElementById('liveDot').style.background = '#666';
-          await renderLatestMotoSession();
-          return;
-        }
-        const data = JSON.parse(raw);
-        const head = data.head || {};
-        const riders = Object.values(data.rider || {}).sort((a, b) => {
-          const pa = a.pos > 0 ? a.pos : 999;
-          const pb = b.pos > 0 ? b.pos : 999;
-          return pa - pb || (a.order || 0) - (b.order || 0);
-        });
-        document.getElementById('liveError').style.display = 'none';
-        document.getElementById('liveLoading').style.display = 'none';
-        document.getElementById('liveSessionInfo').style.display = 'grid';
-        document.getElementById('liveTable').style.display = 'table';
-        document.getElementById('liveEvent').textContent = head.event_tv_name || head.event_shortname || '—';
-        document.getElementById('liveCircuit').textContent = head.circuit_name || '—';
-        document.getElementById('liveSession').textContent = `${head.session_shortname || ''} · ${head.session_name || ''}`.trim();
-        document.getElementById('liveCategory').textContent = head.category || '—';
-        document.getElementById('liveRemaining').textContent = formatRemaining(head.remaining);
-        document.getElementById('liveSessionStatus').textContent = statusLabel(head.session_status_id);
-        document.getElementById('liveTitle').textContent = `Livetiming · ${head.category || 'MotoGP'}`;
-        document.getElementById('liveStatus').textContent = head.session_status_id === 'S' ? 'LIVE' : (head.session_status_id || '—');
-        document.getElementById('liveBody').innerHTML = riders.map(r => {
-          const posClass = r.pos === 1 ? 'p1' : r.pos === 2 ? 'p2' : r.pos === 3 ? 'p3' : '';
-          const bg = r.color ? `#${r.color}` : '#555';
-          const tc = r.text_color ? `#${r.text_color}` : '#fff';
-          return `<tr>
-            <td class="pos ${posClass}">${r.pos > 0 ? r.pos : '—'}</td>
-            <td><span class="num" style="background:${bg};color:${tc}">${r.rider_number || '—'}</span></td>
-            <td class="driver">${r.rider_shortname || r.rider_surname || '—'}
-              <div style="font-size:.75rem;color:var(--muted);font-weight:400">${r.rider_name || ''} ${r.rider_surname || ''}</div></td>
-            <td><div>${r.team_name || '—'}</div><div style="font-size:.75rem;color:var(--muted)">${r.bike_name || ''}</div></td>
-            <td class="gap">${r.lap_time || '—'}</td>
-            <td class="gap">${r.last_lap_time || '—'}</td>
-            <td class="gap">${r.gap_first || '—'}</td>
-            <td class="gap">${r.gap_prev || '—'}</td>
-            <td>${r.on_pit ? '<span class="pit">PIT</span>' : ''}</td>
-          </tr>`;
-        }).join('');
-        document.getElementById('liveDot').style.background = 'var(--live)';
-        touchUpdate();
-      } catch (e) {
-        const message = String(e.message || 'servizio non disponibile');
-        document.getElementById('liveError').style.display = 'block';
-        document.getElementById('liveError').textContent = /Unexpected end of JSON|Failed to fetch|429/i.test(message)
-          ? 'Livetiming MotoGP momentaneamente non disponibile. Riprovo automaticamente; le classifiche restano disponibili.'
-          : 'Errore live: ' + message;
-        document.getElementById('liveDot').style.background = '#666';
-      }
+      renderOfflineMotoLive();
+    }
+
+    function offlineMotoPack() {
+      return MOTO_OFFLINE.byClass[currentClass] || MOTO_OFFLINE.byClass[MOTO_GP];
+    }
+
+    function renderOfflineMotoLive() {
+      const pack = offlineMotoPack();
+      const session = (pack.sessions || []).find(s => s.type === 'RAC') || (pack.sessions || []).at(-1);
+      const list = (session && pack.rowsBy && pack.rowsBy[session.id]) || [];
+      const className = document.querySelector('#motoClassPicker .active')?.textContent || 'MotoGP';
+      document.getElementById('liveError').style.display = 'none';
+      document.getElementById('liveLoading').style.display = 'none';
+      document.getElementById('liveSessionInfo').style.display = 'grid';
+      document.getElementById('liveTable').style.display = 'table';
+      document.getElementById('liveTitle').textContent = `Ultima gara · ${className}`;
+      document.getElementById('liveStatus').textContent = 'GIAPPONE';
+      document.getElementById('liveEvent').textContent = 'JPN';
+      document.getElementById('liveCircuit').textContent = 'Motegi';
+      document.getElementById('liveSession').textContent = 'Gara';
+      document.getElementById('liveCategory').textContent = className;
+      document.getElementById('liveRemaining').textContent = '—';
+      document.getElementById('liveSessionStatus').textContent = 'Terminata';
+      document.getElementById('liveBody').innerHTML = list.map(r => {
+        const pos = Number(r.position || 0);
+        const posClass = pos === 1 ? 'p1' : pos === 2 ? 'p2' : pos === 3 ? 'p3' : '';
+        return `<tr><td class="pos ${posClass}">${escapeHtml(r.position ?? '—')}</td><td><span class="num" style="background:#555">—</span></td><td class="driver">${escapeHtml(r.rider?.full_name || '—')}</td><td>—</td><td class="gap">—</td><td class="gap">—</td><td class="gap">${escapeHtml(r.gap?.first || '—')}</td><td class="gap">${escapeHtml(r.total_laps ?? '—')}</td><td></td></tr>`;
+      }).join('');
+      document.getElementById('liveDot').style.background = '#666';
+      touchUpdate();
     }
 
     let currentClass = 'e8c110ad-64aa-4e8e-8a86-f2f152f6a942';
@@ -1318,13 +1290,13 @@
       picker.innerHTML = '<span style="color:var(--muted);font-size:.8rem">Caricamento…</span>';
       try {
         let sessions = [];
-        try {
+        const local = (MOTO_OFFLINE.byClass[classAtRequest] && eventAtRequest === MOTO_OFFLINE.eventId)
+          ? MOTO_OFFLINE.byClass[classAtRequest].sessions
+          : null;
+        if (local && local.length) {
+          sessions = local;
+        } else {
           sessions = await motoFetch(`/results/sessions?eventUuid=${encodeURIComponent(eventAtRequest)}&categoryUuid=${encodeURIComponent(classAtRequest)}`, 'Sessioni MotoGP');
-        } catch (e) {
-          sessions = (MOTO_OFFLINE.byClass[classAtRequest] && eventAtRequest === MOTO_OFFLINE.eventId)
-            ? MOTO_OFFLINE.byClass[classAtRequest].sessions
-            : [];
-          if (!sessions.length) throw e;
         }
         if (!Array.isArray(sessions)) throw new Error('risposta sessioni non valida');
         if (eventAtRequest !== currentEvent || classAtRequest !== currentClass) return;
@@ -1356,39 +1328,20 @@
       const requestId = ++classificationRequest;
       const box = document.getElementById('odResults');
       box.innerHTML = '<div class="loading">Caricamento classifica…</div>';
-      const url = `/results/session/${encodeURIComponent(sessionId)}/classification?test=false`;
-      for (let attempt = 1; attempt <= 2; attempt++) {
-        try {
-          if (attempt > 1) await new Promise(r => setTimeout(r, 600));
-          let data;
-          try { data = await motoFetch(url, 'Classifica MotoGP'); }
-          catch (e) {
-            const pack = MOTO_OFFLINE.byClass[currentClass];
-            const rows = pack && pack.rowsBy && pack.rowsBy[sessionId];
-            if (!rows) throw e;
-            data = { classification: rows };
-          }
-          if (requestId !== classificationRequest) return;
-          const list = Array.isArray(data.classification) ? data.classification : [];
-          if (!list.length) {
-            box.innerHTML = '<div class="empty">Nessuna classifica disponibile per questa sessione</div>';
-            return;
-          }
-          box.innerHTML = `<div style="max-height:480px;overflow:auto"><table class="timing-table">
+      const pack = MOTO_OFFLINE.byClass[currentClass];
+      const rows = pack && pack.rowsBy && pack.rowsBy[sessionId];
+      if (rows && rows.length) {
+        box.innerHTML = `<div style="max-height:480px;overflow:auto"><table class="timing-table">
             <thead><tr><th>Pos</th><th>Pilota</th><th>Gap</th><th>Giri</th></tr></thead>
-            <tbody>${list.map(r => `<tr>
+            <tbody>${rows.map(r => `<tr>
               <td class="pos">${escapeHtml(r.position ?? '—')}</td>
               <td class="driver">${escapeHtml(r.rider?.full_name || '—')}</td>
               <td class="gap">${escapeHtml(r.gap?.first || '—')}</td>
               <td class="gap">${escapeHtml(r.total_laps ?? '—')}</td>
             </tr>`).join('')}</tbody></table></div>`;
-          return;
-        } catch (e) {
-          if (attempt === 2 && requestId === classificationRequest) {
-            box.innerHTML = '<div class="error">Classifica momentaneamente non disponibile. Riprova tra poco.</div>';
-          }
-        }
+        return;
       }
+      box.innerHTML = '<div class="empty">Nessuna classifica salvata per questa sessione.</div>';
     }
 
     document.getElementById('motoEvent').addEventListener('change', e => {
@@ -1403,6 +1356,7 @@
       btn.classList.add('active');
       currentClass = btn.dataset.class;
       currentSession = null;
+      renderOfflineMotoLive();
       loadSessions();
     });
 

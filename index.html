@@ -142,7 +142,7 @@
 </head>
 <body>
   <header>
-    <div class="logo">SPORT<span>LIVE</span><small style="opacity:.45;font-size:.65rem"> v33</small></div>
+    <div class="logo">SPORT<span>LIVE</span><small style="opacity:.45;font-size:.65rem"> v34</small></div>
     <div class="status-bar">
       <div class="dot" id="liveDot"></div>
       <span id="lastUpdate">Connessione…</span>
@@ -1295,6 +1295,19 @@
         || null;
     }
 
+    async function loadSavedMoto() {
+      try {
+        const res = await fetch('moto-data.json?v=' + Date.now());
+        if (!res.ok) return;
+        const data = await res.json();
+        if (data && data.events && data.byClass) {
+          MOTO_OFFLINE.events = data.events;
+          MOTO_OFFLINE.eventId = data.eventId || MOTO_OFFLINE.eventId;
+          MOTO_OFFLINE.byClass = data.byClass;
+        }
+      } catch (e) {}
+    }
+
     async function loadEvents() {
       const sel = document.getElementById('motoEvent');
       try {
@@ -1422,7 +1435,7 @@
     safePanelLoad(loadUsa, 'grid-usa', 'Sport USA');
     loadF1();
     fetchLive();
-    loadEvents();
+    loadSavedMoto().then(loadEvents);
     setInterval(fetchLive, 6000);
     setInterval(() => {
       safePanelLoad(loadCalcio, 'grid-calcio', 'Calcio');

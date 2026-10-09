@@ -142,7 +142,7 @@
 </head>
 <body>
   <header>
-    <div class="logo">SPORT<span>LIVE</span><small style="opacity:.45;font-size:.65rem"> v37</small></div>
+    <div class="logo">SPORT<span>LIVE</span><small style="opacity:.45;font-size:.65rem"> v46</small></div>
     <div class="status-bar">
       <div class="dot" id="liveDot"></div>
       <span id="lastUpdate">Connessione…</span>
@@ -163,8 +163,6 @@
     <button data-panel="calcio" class="active">⚽ Calcio</button>
     <button data-panel="basket">🏀 Basket</button>
     <button data-panel="usa">🇺🇸 USA</button>
-    <button data-panel="f1">🏎️ Formula 1</button>
-    <button data-panel="moto">🏍️ MotoGP</button>
   </nav>
 
   <main>
@@ -183,59 +181,6 @@
       <div id="grid-usa"><div class="loading">Caricamento…</div></div>
     </div>
 
-    <div class="panel" id="panel-f1">
-      <div class="section-title">Formula 1 — Livetiming <span class="badge">LIVE</span></div>
-      <div id="f1-box"><div class="loading">Caricamento sessione F1…</div></div>
-    </div>
-
-    <div class="panel" id="panel-moto">
-      <div class="section-title">Motomondiale / MotoGP — classifiche salvate</div>
-      <a href="https://timingpass.motogp.com/" target="_blank" rel="noopener" style="display:inline-block;margin:0 0 1rem;background:#e10600;color:#fff;padding:.75rem 1.1rem;border-radius:10px;font-weight:800;text-decoration:none">Apri live ufficiale</a>
-      <div class="league-card" style="max-width:1100px">
-        <div class="league-head">
-          <span id="liveTitle">Ultima gara salvata · Giappone</span>
-          <span class="count" id="liveStatus">—</span>
-        </div>
-        <div id="liveError" class="error" style="display:none"></div>
-        <div id="liveSessionInfo" class="session-info" style="display:none">
-          <div><label>Evento</label><strong id="liveEvent">—</strong></div>
-          <div><label>Circuito</label><strong id="liveCircuit">—</strong></div>
-          <div><label>Sessione</label><strong id="liveSession">—</strong></div>
-          <div><label>Categoria</label><strong id="liveCategory">—</strong></div>
-          <div><label>Rimanente</label><strong id="liveRemaining" style="color:#f59e0b">—</strong></div>
-          <div><label>Stato</label><strong id="liveSessionStatus">—</strong></div>
-        </div>
-        <div id="liveLoading" class="loading">Classifica salvata, non è la diretta.</div>
-        <div style="max-height:560px;overflow:auto">
-          <table class="timing-table" id="liveTable" style="display:none">
-            <thead>
-              <tr><th>Pos</th><th>#</th><th>Pilota</th><th>Team</th><th>Miglior</th><th>Ultimo</th><th>Gap 1°</th><th>Gap prec.</th><th></th></tr>
-            </thead>
-            <tbody id="liveBody"></tbody>
-          </table>
-        </div>
-      </div>
-      <div class="league-card" style="max-width:1100px;margin-top:1.25rem">
-        <div class="league-head"><span>TimingPass MotoGP — OnDemand</span><span class="count">UFFICIALE</span></div>
-        <div class="f1-actions">
-          <a class="f1-official-link" href="https://timingpass.motogp.com/" target="_blank" rel="noopener noreferrer">Apri MotoGP TimingPass OnDemand</a>
-          <span class="f1-source-note">Archivio ufficiale dei dati e delle sessioni MotoGP.</span>
-        </div>
-      </div>
-      <div class="league-card" style="max-width:1100px;margin-top:1.25rem">
-        <div class="league-head"><span>Classifiche — on demand</span><span class="count">FINAL</span></div>
-        <div style="padding:.85rem 1rem">
-          <select id="motoEvent"><option value="">Caricamento eventi…</option></select>
-          <div class="f1-picker" id="motoClassPicker" style="margin-top:.5rem">
-            <button type="button" class="f1-chip active" data-class="e8c110ad-64aa-4e8e-8a86-f2f152f6a942">MotoGP</button>
-            <button type="button" class="f1-chip" data-class="549640b8-fd9c-4245-acfd-60e4bc38b25c">Moto2</button>
-            <button type="button" class="f1-chip" data-class="954f7e65-2ef2-4423-b949-4961cc603e45">Moto3</button>
-          </div>
-          <div class="f1-picker" id="motoSessPicker" style="margin-top:.4rem"></div>
-          <div id="odResults" style="margin-top:.75rem"></div>
-        </div>
-      </div>
-    </div>
   </main>
 
   <footer>Dati da fonti pubbliche: Live Timing ufficiale F1, OpenF1, SportScore, MotoGP PulseLive. Non affiliato.</footer>
@@ -1430,24 +1375,19 @@
       safePanelLoad(loadCalcio, 'grid-calcio', 'Calcio');
       safePanelLoad(loadBasket, 'grid-basket', 'Basket');
       safePanelLoad(loadUsa, 'grid-usa', 'Sport USA');
-      loadF1(true); fetchLive();
+      
     };
 
     // Avvio
     safePanelLoad(loadCalcio, 'grid-calcio', 'Calcio');
     safePanelLoad(loadBasket, 'grid-basket', 'Basket');
     safePanelLoad(loadUsa, 'grid-usa', 'Sport USA');
-    loadF1();
-    fetchLive();
-    loadSavedMoto().then(loadEvents);
-    setInterval(fetchLive, 6000);
     setInterval(() => {
       safePanelLoad(loadCalcio, 'grid-calcio', 'Calcio');
       safePanelLoad(loadBasket, 'grid-basket', 'Basket');
       safePanelLoad(loadUsa, 'grid-usa', 'Sport USA');
     }, 45000);
     // Controllo frequente: loadF1 applica 10s durante una sessione LIVE e 60s altrimenti.
-    setInterval(loadF1, F1_LIVE_REFRESH_MS);
   </script>
 </body>
 </html>

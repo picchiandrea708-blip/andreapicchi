@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-09T22:50:16.821480+00:00",
+  "updatedAt": "2026-10-09T23:03:03.291754+00:00",
   "lba": [
     {
       "home": "APU Old Wild West Udine",
@@ -142,8 +142,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "CASERTANA",
-      "away": "MONOPOLI",
+      "home": "SAVOIA",
+      "away": "INTER UNDER 23",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -170,8 +170,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "SAVOIA",
-      "away": "INTER UNDER 23",
+      "home": "BARI",
+      "away": "GIUGLIANO",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -184,8 +184,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "BARI",
-      "away": "GIUGLIANO",
+      "home": "CASERTANA",
+      "away": "MONOPOLI",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -194,6 +194,20 @@
       "eventDate": "2026-10-10T14:30:00+02:00",
       "competition": "Serie C",
       "group": "Girone C",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "NOVARA",
+      "away": "CITTADELLA",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-10T17:30:00+02:00",
+      "eventDate": "2026-10-10T17:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone A",
       "source": "Lega Pro",
       "sourceUrl": "https://www.seriec.com/calendario"
     },
@@ -240,22 +254,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "NOVARA",
-      "away": "CITTADELLA",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
-      "time": "2026-10-10T17:30:00+02:00",
-      "eventDate": "2026-10-10T17:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone A",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
-      "home": "OSTIAMARE",
-      "away": "PIANESE",
+      "home": "PINETO",
+      "away": "REGGIANA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -268,8 +268,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "PINETO",
-      "away": "REGGIANA",
+      "home": "OSTIAMARE",
+      "away": "PIANESE",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -297,5 +297,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-09T22:50:16.821480+00:00"
+  "serieCUpdatedAt": "2026-10-09T23:03:03.291754+00:00"
 }

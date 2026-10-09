@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-09T20:21:51.755277+00:00",
+  "updatedAt": "2026-10-09T20:41:31.025204+00:00",
   "lba": [
     {
       "home": "APU Old Wild West Udine",
@@ -105,7 +105,7 @@
       "homeScore": 2,
       "awayScore": 0,
       "hasScore": true,
-      "status": "LIVE",
+      "status": "Risultato ufficiale",
       "time": "2026-10-09T20:30:00+02:00",
       "eventDate": "2026-10-09T20:30:00+02:00",
       "competition": "Serie C",
@@ -297,5 +297,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-09T20:21:51.755277+00:00"
+  "serieCUpdatedAt": "2026-10-09T20:41:31.025204+00:00"
 }

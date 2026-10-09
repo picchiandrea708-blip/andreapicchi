@@ -144,7 +144,7 @@
 </head>
 <body>
   <header>
-    <div class="logo">SPORT<span>LIVE</span><small style="opacity:.45;font-size:.65rem"> v41</small></div>
+    <div class="logo">SPORT<span>LIVE</span><small style="opacity:.45;font-size:.65rem"> v42</small></div>
     <div class="status-bar">
       <div class="dot" id="liveDot"></div>
       <span id="lastUpdate">Connessione…</span>
@@ -940,14 +940,66 @@
       touchUpdate();
     }
 
+    // ===== GLIAC FEMMINILE — NCAA Division II =====
+    const NCAA_SCOREBOARD_API = PROXY;
+    function ncaaMatch(game, sportName) {
+      const g = game?.game || game || {};
+      const state = String(g.gameState || '').toLowerCase();
+      const isPre = state === 'pre' || state === 'scheduled';
+      const home = g.home || {}, away = g.away || {};
+      const epoch = Number(g.startTimeEpoch);
+      const time = Number.isFinite(epoch) && epoch > 0 ? epoch * 1000 : (g.startDate || '');
+      return {
+        home: home.names?.short || home.names?.full || '?', away: away.names?.short || away.names?.full || '?',
+        homeScore: home.score ?? '', awayScore: away.score ?? '', hasScore: !isPre && home.score !== '' && away.score !== '',
+        status: isPre ? `In programma · ${g.startTime || ''}` : (g.finalMessage || (state === 'live' ? 'LIVE' : g.currentPeriod || '')),
+        time, eventDate: time, originalTime: g.startTime || '', eventId: g.gameID,
+        gameCenterUrl: g.gameID ? `https://www.ncaa.com/game/${encodeURIComponent(g.gameID)}` : '', competition: sportName
+      };
+    }
+    function isGeliacGame(game) {
+      const g = game?.game || game || {};
+      const teams = [g.home, g.away];
+      return teams.some(t => (t?.conferences || []).some(c => String(c.conferenceSeo || '').toLowerCase() === 'gliac'));
+    }
+    async function fetchNcaageliac(sport, label, dates) {
+      const out = [];
+      for (const date of dates) {
+        try {
+          const y = date.slice(0, 4), mo = date.slice(4, 6), d = date.slice(6, 8);
+          const target = `https://ncaa-api.henrygd.me/scoreboard/${sport}/d2/${y}/${mo}/${d}`;
+          const response = await fetch(`${NCAA_SCOREBOARD_API}${encodeURIComponent(target)}`);
+          if (!response.ok) continue;
+          const data = await response.json();
+          for (const game of (data.games || [])) if (isGeliacGame(game)) out.push(ncaaMatch(game, label));
+        } catch (_) { /* un feed NCAA non disponibile non deve bloccare NBA/NFL/NHL */ }
+      }
+      return out;
+    }
+    async function loadGeliacWomen() {
+      const dates = dateRange(1, 1);
+      return Promise.all([
+        fetchNcaageliac('soccer-women', 'GLIAC · Calcio femminile', dates),
+        fetchNcaageliac('volleyball-women', 'GLIAC · Volley femminile', dates),
+        fetchNcaageliac('basketball-women', 'GLIAC · Basket femminile', dates)
+      ]).then(([soccer, volleyball, basketball]) => [
+        ['GLIAC · Calcio femminile', sortLiveFirst(soccer)],
+        ['GLIAC · Volley femminile', sortLiveFirst(volleyball)],
+        ['GLIAC · Basket femminile', sortLiveFirst(basketball)]
+      ].filter(([, list]) => list.length));
+    }
+
     // ===== USA: NFL e NHL =====
     async function loadUsa() {
       const dates = dateRange(1, 1);
-      const [nfl, nhl] = await Promise.all([
+      const [nfl, nhl, gliac] = await Promise.all([
         fetchEspnScoreboard('football', 'nfl', dates),
-        fetchEspnScoreboard('hockey', 'nhl', dates)
+        fetchEspnScoreboard('hockey', 'nhl', dates),
+        loadGeliacWomen().catch(() => [])
       ]);
-      renderMatches('grid-usa', [['NFL', sortLiveFirst(nfl)], ['NHL', sortLiveFirst(nhl)]]);
+      // Finestra di 24 ore anche per la GLIAC.
+      const gliacIn24h = gliac.map(([title, list]) => [title, list.filter(isWithin24Hours)]);
+      renderMatches('grid-usa', [['NFL', sortLiveFirst(nfl)], ['NHL', sortLiveFirst(nhl)], ...gliacIn24h]);
       touchUpdate();
     }
 

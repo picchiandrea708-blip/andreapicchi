@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-09T14:54:11.896514+00:00",
+  "updatedAt": "2026-10-09T15:23:31.143373+00:00",
   "lba": [
     {
       "home": "APU Old Wild West Udine",
@@ -142,6 +142,20 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
+      "home": "BARI",
+      "away": "GIUGLIANO",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-10T14:30:00+02:00",
+      "eventDate": "2026-10-10T14:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone C",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
       "home": "SAVOIA",
       "away": "INTER UNDER 23",
       "homeScore": "",
@@ -182,22 +196,8 @@
       "group": "Girone C",
       "source": "Lega Pro",
       "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
-      "home": "BARI",
-      "away": "GIUGLIANO",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
-      "time": "2026-10-10T14:30:00+02:00",
-      "eventDate": "2026-10-10T14:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone C",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-09T14:54:11.896514+00:00"
+  "serieCUpdatedAt": "2026-10-09T15:23:31.143373+00:00"
 }

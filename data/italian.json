@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-09T23:03:03.291754+00:00",
+  "updatedAt": "2026-10-09T23:22:16.693404+00:00",
   "lba": [
     {
       "home": "APU Old Wild West Udine",
@@ -142,20 +142,6 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "SAVOIA",
-      "away": "INTER UNDER 23",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
-      "time": "2026-10-10T14:30:00+02:00",
-      "eventDate": "2026-10-10T14:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone C",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
       "home": "CROTONE",
       "away": "AUDACE CERIGNOLA",
       "homeScore": "",
@@ -172,6 +158,20 @@
     {
       "home": "BARI",
       "away": "GIUGLIANO",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-10T14:30:00+02:00",
+      "eventDate": "2026-10-10T14:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone C",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "SAVOIA",
+      "away": "INTER UNDER 23",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -212,8 +212,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "DESENZANO",
-      "away": "DOLOMITI BELLUNESI",
+      "home": "LUMEZZANE",
+      "away": "ALBINOLEFFE",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -240,8 +240,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "LUMEZZANE",
-      "away": "ALBINOLEFFE",
+      "home": "DESENZANO",
+      "away": "DOLOMITI BELLUNESI",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -297,5 +297,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-09T23:03:03.291754+00:00"
+  "serieCUpdatedAt": "2026-10-09T23:22:16.693404+00:00"
 }

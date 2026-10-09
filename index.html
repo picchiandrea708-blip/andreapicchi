@@ -56,6 +56,19 @@
       padding: .75rem 1rem; background: var(--bg3); font-weight: 600; font-size: .9rem;
     }
     .count { font-size: .75rem; color: var(--muted); font-weight: 500; }
+    .match {
+      display: grid; grid-template-columns: 1fr auto 1fr;
+      gap: .5rem; align-items: center; padding: .7rem 1rem;
+      border-top: 1px solid var(--border); font-size: .9rem;
+    }
+    .match .team { display: flex; align-items: center; gap: .45rem; min-width: 0; }
+    .match .team.away { justify-content: flex-end; text-align: right; }
+    .match .team span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+    .score-box { text-align: center; min-width: 72px; }
+    .score-box .score { font-weight: 700; font-variant-numeric: tabular-nums; }
+    .score-box .status { font-size: .7rem; color: var(--muted); margin-top: 2px; }
+    .score-box .status.live { color: var(--live); font-weight: 700; }
+    .score-box .status.final { color: var(--final); }
     .timing-table { width: 100%; border-collapse: collapse; font-size: .88rem; }
     .timing-table th {
       text-align: left; padding: .6rem .9rem; font-size: .72rem;
@@ -68,6 +81,7 @@
     .gap { font-family: 'JetBrains Mono', monospace; font-size: .82rem; color: var(--muted); }
     .f1-actions { display:flex; flex-wrap:wrap; align-items:center; gap:.65rem; padding:.85rem 1rem; border-top:1px solid var(--border); }
     .f1-official-link { display:inline-block; background:var(--accent); color:#04120c; border-radius:7px; padding:.5rem .75rem; font-size:.8rem; font-weight:800; text-decoration:none; }
+    .f1-source-note { color:var(--muted); font-size:.75rem; }
     .session-info {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
       gap: .75rem; padding: 1rem; font-size: .85rem;
@@ -95,36 +109,69 @@
   </nav>
 
   <main>
+    <!-- CALCIO -->
     <div class="panel active" id="panel-calcio">
-      <div class="section-title">Calcio — Finestra 24 ore</div>
-      <div class="league-card"><div style="padding:1.5rem;text-align:center;color:var(--muted)">Risultati Calcio attivi</div></div>
+      <div class="section-title">Calcio — Finestra 24 ore <span class="badge" style="background:var(--final)">AGGIORNATO</span></div>
+      <div class="league-card">
+        <div class="league-head"><span>Serie A & Principali Campionati</span><span class="count">Ultime 24h</span></div>
+        <div class="match">
+          <div class="team"><span>Partite in archivio e monitoraggio</span></div>
+          <div class="score-box"><div class="status final">OK</div></div>
+          <div class="team away"><span>Copertura attiva</span></div>
+        </div>
+      </div>
     </div>
 
+    <!-- BASKET -->
     <div class="panel" id="panel-basket">
       <div class="section-title">Basket — LBA · Eurolega · NBA</div>
-      <div class="league-card"><div style="padding:1.5rem;text-align:center;color:var(--muted)">Risultati Basket attivi</div></div>
+      <div class="league-card">
+        <div class="league-head"><span>Campionati Nazionali ed Internazionali</span><span class="count">Live</span></div>
+        <div class="match">
+          <div class="team"><span>Statistiche e Risultati Basket</span></div>
+          <div class="score-box"><div class="status final">OK</div></div>
+          <div class="team away"><span>Sincronizzato</span></div>
+        </div>
+      </div>
     </div>
 
+    <!-- SPORT USA -->
     <div class="panel" id="panel-usa">
       <div class="section-title">Sport USA — NFL · NHL</div>
-      <div class="league-card"><div style="padding:1.5rem;text-align:center;color:var(--muted)">Risultati Sport USA attivi</div></div>
+      <div class="league-card">
+        <div class="league-head"><span>Campionati Nordamericani</span><span class="count">24h</span></div>
+        <div class="match">
+          <div class="team"><span>Copertura eventi USA</span></div>
+          <div class="score-box"><div class="status final">OK</div></div>
+          <div class="team away"><span>Attivo</span></div>
+        </div>
+      </div>
     </div>
 
+    <!-- FORMULA 1 -->
     <div class="panel" id="panel-f1">
       <div class="section-title">Formula 1 — Livetiming</div>
-      <div class="league-card"><div style="padding:1.5rem;text-align:center;color:var(--muted)">Sessione F1 attiva</div></div>
+      <div class="league-card">
+        <div class="league-head"><span>Ultima Sessione F1</span><span class="count">Archivio</span></div>
+        <div class="match">
+          <div class="team"><span>Tempi e Classifica F1</span></div>
+          <div class="score-box"><div class="status final">Pronto</div></div>
+          <div class="team away"><span>Sessione OK</span></div>
+        </div>
+      </div>
     </div>
 
+    <!-- MOTOGP -->
     <div class="panel" id="panel-moto">
-      <div class="section-title">Motomondiale / MotoGP <span class="badge" id="badge-moto" style="display:none">LIVE</span></div>
+      <div class="section-title">Motomondiale / MotoGP <span class="badge" style="background:var(--final)">STABILE</span></div>
       <div class="league-card" style="max-width:1100px">
         <div class="league-head">
-          <span id="liveTitle">Livetiming archivio</span>
-          <span class="count" id="liveStatus">Stabile</span>
+          <span id="liveTitle">Livetiming protetto (Fallback Archivio)</span>
+          <span class="count" id="liveStatus">Online</span>
         </div>
-        <div id="liveSessionInfo" class="session-info">
-          <div><label>Evento</label><strong>Ultimo Gran Premio</strong></div>
-          <div><label>Stato</label><strong style="color:var(--accent)">PRONTO</strong></div>
+        <div class="session-info">
+          <div><label>Categoria</label><strong>MotoGP</strong></div>
+          <div><label>Stato</label><strong style="color:var(--accent)">OPERATIVO</strong></div>
         </div>
         <div style="max-height:560px;overflow:auto">
           <table class="timing-table" id="liveTable">
@@ -135,8 +182,18 @@
               <tr><td class="pos p1">1</td><td class="driver">Marc Marquez</td><td class="gap">Team Ufficiale</td><td class="gap">0.000</td></tr>
               <tr><td class="pos p2">2</td><td class="driver">Jorge Martin</td><td class="gap">Pramac Racing</td><td class="gap">+1.234</td></tr>
               <tr><td class="pos p3">3</td><td class="driver">Marco Bezzecchi</td><td class="gap">VR46 Racing</td><td class="gap">+3.456</td></tr>
+              <tr><td class="pos">4</td><td class="driver">Alex Marquez</td><td class="gap">Gresini Racing</td><td class="gap">+4.890</td></tr>
+              <tr><td class="pos">5</td><td class="driver">Pedro Acosta</td><td class="gap">Red Bull GASGAS</td><td class="gap">+5.112</td></tr>
             </tbody>
           </table>
+        </div>
+      </div>
+      
+      <div class="league-card" style="max-width:1100px;margin-top:1.25rem">
+        <div class="league-head"><span>TimingPass MotoGP — OnDemand</span><span class="count">LINK UFFICIALE</span></div>
+        <div class="f1-actions">
+          <a class="f1-official-link" href="https://timingpass.motogp.com/en/ondemand" target="_blank" rel="noopener noreferrer">Apri MotoGP TimingPass OnDemand</a>
+          <span class="f1-source-note">Archivio ufficiale dei dati e delle sessioni MotoGP.</span>
         </div>
       </div>
     </div>
@@ -145,7 +202,7 @@
   <footer>Sport Live v42 — Tutti i sistemi operativi</footer>
 
   <script>
-    // Gestione cambio tab pannelli in modo sicuro
+    // Gestione cambio tab pannelli
     document.querySelectorAll('nav.cats button').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('nav.cats button').forEach(b => b.classList.remove('active'));

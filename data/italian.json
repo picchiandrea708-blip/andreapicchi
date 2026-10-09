@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-09T11:50:43.626613+00:00",
+  "updatedAt": "2026-10-09T12:01:43.158562+00:00",
   "lba": [
     {
       "home": "APU Old Wild West Udine",
@@ -98,16 +98,22 @@
       "sourceUrl": "https://www.legabasket.it/calendario/1/serie-a"
     }
   ],
-  "serieC": [],
-  "serieCApiCache": {
-    "2026-10-09": {
-      "attemptedAt": "2026-10-09T11:22:50.874419+00:00"
-    },
-    "2026-10-10": {
-      "attemptedAt": "2026-10-09T10:52:21.893057+00:00"
-    },
-    "2026-10-08": {
-      "attemptedAt": "2026-10-08T21:23:02.461621+00:00"
+  "serieC": [
+    {
+      "home": "UNION BRESCIA",
+      "away": "PRO VERCELLI",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-09T20:30:00+02:00",
+      "eventDate": "2026-10-09T20:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone A",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
     }
-  }
+  ],
+  "serieCSource": "Lega Pro",
+  "serieCUpdatedAt": "2026-10-09T12:01:43.158562+00:00"
 }

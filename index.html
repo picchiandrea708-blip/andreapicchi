@@ -184,7 +184,7 @@
     </div>
 
     <div class="panel" id="panel-f1">
-      <div class="section-title">Formula 1 — Livetiming <span class="badge">LIVE</span></div>
+      <div class="section-title">Formula 1 — Risultati e livetiming</div>
       <div id="f1-box"><div class="loading">Caricamento sessione F1…</div></div>
     </div>
 
@@ -193,7 +193,7 @@
       <a href="https://timingpass.motogp.com/" target="_blank" rel="noopener" style="display:inline-block;margin:0 0 1rem;background:#e10600;color:#fff;padding:.75rem 1.1rem;border-radius:10px;font-weight:800;text-decoration:none">Apri live ufficiale</a>
       <div class="league-card" style="max-width:1100px">
         <div class="league-head">
-          <span id="liveTitle">Ultima gara salvata · Giappone</span>
+          <span id="liveTitle">Ultimi risultati archiviati</span>
           <span class="count" id="liveStatus">—</span>
         </div>
         <div id="liveError" class="error" style="display:none"></div>
@@ -246,23 +246,11 @@
     const MOTO_GP = 'e8c110ad-64aa-4e8e-8a86-f2f152f6a942';
     async function motoFetch(path, label) {
       const direct = 'https://api.motogp.pulselive.com/motogp/v1' + path;
-      const urls = [
-        PROXY + encodeURIComponent(direct),
-        'https://api.allorigins.win/raw?url=' + encodeURIComponent(direct),
-        'https://corsproxy.io/?' + encodeURIComponent(direct),
-        direct
-      ];
-      let last = label + ': HTTP 403';
-      for (const url of urls) {
-        try {
-          return await fetchJson(url, label);
-        } catch (e) { last = e.message || last; }
-      }
-      throw new Error(last);
+      return fetchJson(PROXY + encodeURIComponent(direct), label);
     }
 
     const OFFICIAL_COMPETITION_URLS = {
-      'Serie C': 'https://www.lega-pro.com/',
+      'Serie C': 'https://www.seriec.com/calendario',
       'Serie A LBA': 'https://www.legabasket.it/calendario/1/serie-a',
       'Eurolega': 'https://www.euroleaguebasketball.net/euroleague/'
     };
@@ -421,8 +409,8 @@
     }
     function statusClass(s) {
       const t = (s || '').toLowerCase();
-      if (/live|in progress|1h|2h|ht|q[1-4]|ot|half/i.test(t)) return 'live';
-      if (/final|ft|ended|aet|full/i.test(t)) return 'final';
+      if (/live|in progress|in corso|1h|2h|ht|q[1-4]|ot|half/i.test(t)) return 'live';
+      if (/final|ft|ended|terminat|aet|full/i.test(t)) return 'final';
       return '';
     }
     function renderMatches(containerId, groups, pinnedTitles = []) {
@@ -434,7 +422,7 @@
         total += list.length;
         html += `<div class="league-card"><div class="league-head"><span>${escapeHtml(title)}</span><span class="count">${list.length} partite</span></div>`;
         if (!list.length) {
-          const officialUrl = OFFICIAL_COMPETITION_URLS[title];
+          const officialUrl = OFFICIAL_COMPETITION_URLS[title] || (title.startsWith('Serie C —') ? OFFICIAL_COMPETITION_URLS['Serie C'] : '');
           html += `<div class="empty">Nessuna gara disponibile nella finestra attuale.${officialUrl ? ` <a class="game-center-link" href="${officialUrl}" target="_blank" rel="noopener">Calendario ufficiale</a>` : ''}</div></div>`;
           continue;
         }
@@ -557,7 +545,7 @@
         homeLogo: m.home_logo || '', awayLogo: m.away_logo || '',
         homeScore: m.home_score ?? '', awayScore: m.away_score ?? '',
         status: m.status_text || m.status || '', time: m.time || '',
-        hasScore: m.home_score != null && m.away_score != null,
+        hasScore: m.home_score != null && m.away_score != null && m.home_score !== '' && m.away_score !== '',
         competition: m.competition || ''
       };
     }
@@ -589,25 +577,28 @@
     }
     function footballCompetitionName(value) {
       const c = String(value || '').toLowerCase();
-      if (/mongol|mongolia|chinese|china|kenya|india|nigeria|ghana|egypt|south africa|australia|usa|mexico|brazil|argentina|japan|korea|thailand|indonesia|uganda|zambia|zimbabwe|cameroon|senegal|morocco|tunisia|algeria|qatar|saudi|uae|iran/.test(c)) return null;
-      if (!/italy|italian|italia|england|english|spain|spanish|germany|german|france|french|uefa|europe|champions league|europa league|conference league|nations league|coppa italia|bundesliga|ligue 1|la liga|premier league|serie [abc]/.test(c)) return null;
-      if (/serie a( |$)|italian serie a/.test(c)) return 'Serie A';
-      if (/serie b|italian serie b/.test(c)) return 'Serie B';
-      if (/serie c|italian serie c|c1-a/.test(c)) return 'Serie C';
-      if (/women.*serie a|serie a.*women|italian women/.test(c)) return 'Serie A Femminile';
-      if (/women.*champions league|champions league.*women|uefa women/.test(c)) return 'Champions League Femminile';
-      if (/women.*super league|super league.*women|english women/.test(c)) return 'Premier League Femminile';
-      if (/english premier|premier league/.test(c) && /england|english|inghilterra/.test(c)) return 'Premier League';
-      if (/la liga|spanish primera/.test(c)) return 'La Liga';
-      if (/bundesliga|german bundesliga/.test(c)) return 'Bundesliga';
-      if (/ligue 1|french ligue/.test(c)) return 'Ligue 1';
-      if (/champions league/.test(c)) return 'Champions League';
-      if (/europa league/.test(c)) return 'Europa League';
-      if (/conference league/.test(c)) return 'Conference League';
-      if (/nations league/.test(c)) return 'UEFA Nations League';
-      if (/qualif.*(africa|afcon|nations)|(?:africa|afcon|nations).*qualif/.test(c)) return 'Qualificazioni Coppa d’Africa';
-      if (/coppa italia|italian cup/.test(c)) return 'Coppa Italia';
-      if (/africa|afcon|coppa d/.test(c) && /qualif|nations/.test(c)) return 'Qualificazioni Coppa d’Africa';
+      if (/afcon|africa cup of nations|african|qualif.*(africa|afcon)|(?:africa|afcon).*qualif|\b(caf|concacaf|conmebol|afc|ofc)\b|mongol|mongolia|china|kenya|india|nigeria|ghana|egypt|south africa|australia|\busa\b|mexico|brazil|argentina|japan|korea|thailand|indonesia|uganda|zambia|zimbabwe|cameroon|senegal|morocco|tunisia|algeria|qatar|saudi|uae|iran|guatemala|el salvador|honduras|nicaragua|costa rica|panama/.test(c)) return null;
+      const italy = /italy|italian|italia|\bita\b|coppa italia|c1-a/.test(c);
+      const england = /england|english|inghilterra|\beng\b/.test(c);
+      const spain = /spain|spanish|espana|españa/.test(c);
+      const germany = /germany|german|deutschland/.test(c);
+      const france = /france|french|français/.test(c);
+      const uefa = /\buefa\b|european|europe/.test(c);
+      if (/coppa italia|italian cup/.test(c) && italy) return 'Coppa Italia';
+      if (/serie a/.test(c) && italy && /women|femminile/.test(c)) return 'Serie A Femminile';
+      if (/serie a/.test(c) && italy) return 'Serie A';
+      if (/serie b/.test(c) && italy) return 'Serie B';
+      if (/serie c|c1-a/.test(c) && italy) return 'Serie C';
+      if (/premier league|super league/.test(c) && england && /women|femminile/.test(c)) return 'Premier League Femminile';
+      if (/champions league/.test(c) && uefa && /women|femminile/.test(c)) return 'Champions League Femminile';
+      if (/premier league/.test(c) && england) return 'Premier League';
+      if (/la liga|primera division/.test(c) && spain) return 'La Liga';
+      if (/bundesliga/.test(c) && germany) return 'Bundesliga';
+      if (/ligue 1/.test(c) && france) return 'Ligue 1';
+      if (/champions league/.test(c) && uefa) return 'Champions League';
+      if (/europa league/.test(c) && uefa) return 'Europa League';
+      if (/conference league/.test(c) && uefa) return 'Conference League';
+      if (/nations league/.test(c) && uefa) return 'UEFA Nations League';
       return null;
     }
     async function fetchSportScore(sport) {
@@ -684,19 +675,36 @@
     }
 
     // ===== CALCIO =====
-    // Campionati richiesti: tutti quelli selezionati, con la Serie B limitata all’Italia.
+    // Allowlist europea; la Serie C usa esclusivamente il calendario ufficiale Lega Pro.
     const CALCIO_LEAGUES = [
       { id: 'ita.1', name: 'Serie A' }, { id: 'ita.2', name: 'Serie B' },
-      { id: 'ita.3', name: 'Serie C' }, { id: 'ita.w.1', name: 'Serie A Femminile' },
+      { id: 'ita.w.1', name: 'Serie A Femminile' },
       { id: 'eng.1', name: 'Premier League' }, { id: 'eng.w.1', name: 'Premier League Femminile' },
       { id: 'esp.1', name: 'La Liga' },
       { id: 'ger.1', name: 'Bundesliga' }, { id: 'fra.1', name: 'Ligue 1' },
       { id: 'uefa.champions', name: 'Champions League' }, { id: 'uefa.wchampions', name: 'Champions League Femminile' },
       { id: 'uefa.europa', name: 'Europa League' },
       { id: 'uefa.europa.conf', name: 'Conference League' }, { id: 'uefa.nations', name: 'UEFA Nations League' },
-      { id: 'caf.nations_qual', name: 'Qualificazioni Coppa d’Africa' },
       { id: 'ita.coppa_italia', name: 'Coppa Italia' }
     ];
+
+    function normalizeTeamName(value) {
+      return String(value || '').normalize('NFD').replace(/[\u0300-\u036f]/g, '').toLowerCase()
+        .replace(/&/g, ' and ').replace(/\b(?:football club|soccer club|fc|cf|sc|ac|afc|as)\b/g, ' ')
+        .replace(/[^a-z0-9]+/g, ' ').trim().replace(/\s+/g, ' ');
+    }
+    function sameFixture(a, b) {
+      if (!a || !b || normalizeTeamName(a.competition) !== normalizeTeamName(b.competition)) return false;
+      const teamsA = [normalizeTeamName(a.home), normalizeTeamName(a.away)].sort();
+      const teamsB = [normalizeTeamName(b.home), normalizeTeamName(b.away)].sort();
+      if (!teamsA[0] || teamsA[0] !== teamsB[0] || teamsA[1] !== teamsB[1]) return false;
+      const timeA = typeof (a.eventDate || a.time) === 'number' ? (a.eventDate || a.time) : Date.parse(a.eventDate || a.time || '');
+      const timeB = typeof (b.eventDate || b.time) === 'number' ? (b.eventDate || b.time) : Date.parse(b.eventDate || b.time || '');
+      return Number.isFinite(timeA) && Number.isFinite(timeB) && Math.abs(timeA - timeB) <= 6 * 60 * 60 * 1000;
+    }
+    function containsFixture(list, candidate) {
+      return list.some(match => sameFixture(match, candidate));
+    }
 
     async function loadCalcio() {
       const dates = dateRange(1, 1);
@@ -705,44 +713,61 @@
         fetchSportScore('football'),
         ...CALCIO_LEAGUES.map(lg => fetchEspnScoreboard('soccer', lg.id, dates))
       ]);
-      await enrichSoccerScorers([...scoreFeed, ...leagueFeeds.flat()]);
       const todaysScoreFeed = scoreFeed.filter(isWithin24Hours);
+      const currentLeagueFeeds = leagueFeeds.map(feed => feed.filter(isWithin24Hours));
+      await enrichSoccerScorers([...todaysScoreFeed, ...currentLeagueFeeds.flat()]);
       const groups = [];
-      const knownTeams = new Set();
+      let serieCEspn = [];
       CALCIO_LEAGUES.forEach((lg, i) => {
-        const matches = sortLiveFirst(leagueFeeds[i].map(m => ({ ...m, competition: lg.name })));
+        const matches = [];
+        for (const raw of currentLeagueFeeds[i]) {
+          const match = { ...raw, competition: lg.name };
+          if (!containsFixture(matches, match)) matches.push(match);
+        }
+        if (lg.name === 'Serie C') {
+          serieCEspn = matches;
+          return;
+        }
         if (matches.length) {
-          matches.forEach(m => knownTeams.add(`${m.home}|${m.away}`));
-          groups.push([lg.name, matches]);
+          groups.push([lg.name, sortLiveFirst(matches)]);
         }
       });
       const selectedFromFeed = new Map(CALCIO_LEAGUES.map(lg => [lg.name, []]));
-      const other = [];
       todaysScoreFeed.forEach(m => {
-        if (knownTeams.has(`${m.home}|${m.away}`)) return;
-        const matchText = `${m.competition || ''} ${m.home || ''} ${m.away || ''}`.toLowerCase();
-        if (/mongol|mongolia|ulaangom|mylliem|khovd|chinese|china|guangzhou zhicheng|chongqing handa/.test(matchText)) return;
         const name = footballCompetitionName(m.competition);
-        // Per Premier e Champions usiamo solo i feed ESPN dedicati:
-        // SportScore riusa nomi generici per campionati di Kenya, India e Cina.
-        if (name === 'Premier League' || name === 'Champions League') return;
-        // La Serie B italiana arriva dal feed ESPN ita.2: non reintrodurre
-        // omonime estere o non identificabili dal feed generico SportScore.
-        if (name === 'Serie B') return;
-        if (name && selectedFromFeed.has(name)) selectedFromFeed.get(name).push({ ...m, competition: name });
-        else other.push(m);
+        if (!name || !selectedFromFeed.has(name)) return;
+        if (name === 'Premier League' || name === 'Champions League' || name === 'Serie B') return;
+        const match = { ...m, competition: name };
+        const direct = name === 'Serie C' ? serieCEspn : (groups.find(([title]) => title === name)?.[1] || []);
+        if (containsFixture(direct, match) || containsFixture(selectedFromFeed.get(name), match)) return;
+        selectedFromFeed.get(name).push(match);
       });
       for (const [name, matches] of selectedFromFeed) {
-        if (matches.length) {
-          const index = groups.findIndex(([title]) => title === name);
-          if (index >= 0) groups[index][1].push(...matches);
-          else groups.push([name, sortLiveFirst(matches)]);
+        if (name === 'Serie C' || !matches.length) continue;
+        const index = groups.findIndex(([title]) => title === name);
+        if (index >= 0) {
+          for (const match of matches) if (!containsFixture(groups[index][1], match)) groups[index][1].push(match);
+        } else {
+          groups.push([name, matches]);
         }
       }
-      const serieC = (italianData.serieC || []).filter(isWithin24Hours);
-      if (serieC.length) groups.push(['Serie C', serieC]);
+      const officialSerieC = (italianData.serieC || []).filter(isWithin24Hours);
+      const serieCFeeds = [...serieCEspn, ...(selectedFromFeed.get('Serie C') || [])];
+      const serieC = officialSerieC.map(base => {
+        const source = serieCFeeds.find(match => sameFixture(base, match) &&
+          (isLiveMatch(match) || (match.hasScore && !base.hasScore)));
+        return source ? { ...base, ...source, group: base.group, competition: 'Serie C' } : base;
+      });
+      for (const match of serieCFeeds) if (!containsFixture(serieC, match)) serieC.push(match);
+      const serieCByTitle = new Map();
+      for (const match of serieC) {
+        const title = match.group ? `Serie C — ${match.group}` : 'Serie C';
+        if (!serieCByTitle.has(title)) serieCByTitle.set(title, []);
+        if (!containsFixture(serieCByTitle.get(title), match)) serieCByTitle.get(title).push(match);
+      }
+      for (const [title, matches] of serieCByTitle) groups.push([title, sortLiveFirst(matches)]);
       groups.sort((a, b) => Number(b[1].some(isLiveMatch)) - Number(a[1].some(isLiveMatch)) || b[1].length - a[1].length);
-      renderMatches('grid-calcio', groups, ['Serie C']);
+      renderMatches('grid-calcio', groups, serieC.length ? [] : ['Serie C']);
       touchUpdate();
     }
 
@@ -839,9 +864,9 @@
     const F1_LAST_VALID_KEY = 'sportlive.f1.lastValid.v1';
     const f1State = { inFlight: false, lastLoad: 0, sessions: null, sessionsAt: 0, drivers: new Map(), positions: new Map(), intervals: new Map(), laps: new Map(), selectedSessionKey: null, active: false, lastValid: null };
 
-    function saveF1LastValid(sessionKey, markup) {
+    function saveF1LastValid(sessionKey, markup, mode = 'archive') {
       if (!markup || !sessionKey) return;
-      const snapshot = { sessionKey: String(sessionKey), savedAt: Date.now(), markup };
+      const snapshot = { sessionKey: String(sessionKey), savedAt: Date.now(), mode, markup };
       f1State.lastValid = snapshot;
       try { localStorage.setItem(F1_LAST_VALID_KEY, JSON.stringify(snapshot)); } catch (_) { /* storage pieno/bloccato: resta la cache in memoria */ }
     }
@@ -874,8 +899,15 @@
     function restoreF1LastValid(box, reason) {
       const snapshot = getF1LastValid();
       if (!snapshot?.markup) return false;
-      const note = `<div class="empty" style="border-bottom:1px solid var(--border);border-radius:0">Ultimo dato valido del livetiming: ${escapeHtml(formatF1SnapshotAge(snapshot.savedAt))}. ${escapeHtml(reason)} Il pannello verrà aggiornato automaticamente.</div>`;
-      box.innerHTML = note + snapshot.markup + f1OfficialActions();
+      const staleMarkup = snapshot.markup
+        .replace(/LIVE · UFFICIALE F1/g, 'DATO PRECEDENTE')
+        .replace(/<span>Livetiming ·/g, '<span>Dato salvato ·')
+        .replace(/(<span class="count"[^>]*>)LIVE(<\/span>)/g, '$1DATO PRECEDENTE$2')
+        .replace(/(<strong[^>]*>)LIVE(<\/strong>)/g, '$1DATO PRECEDENTE$2')
+        .replace(/ · auto 10s/g, '')
+        .replace(/>Feed ufficiale</g, '>Ultimo dato salvato</g');
+      const note = `<div class="empty" style="border-bottom:1px solid var(--border);border-radius:0">Ultimo dato salvato ${escapeHtml(formatF1SnapshotAge(snapshot.savedAt))}. ${escapeHtml(reason)} Il pannello verrà aggiornato automaticamente.</div>`;
+      box.innerHTML = note + staleMarkup + f1OfficialActions();
       bindF1Picker();
       return true;
     }
@@ -919,7 +951,7 @@
       const currentStatus = String(currentInfo?.SessionStatus || '').toLowerCase();
       const currentIsLive = ['active', 'started', 'running', 'live'].includes(currentStatus);
       const sessions = (index?.Meetings || []).flatMap(m => (m.Sessions || []).map(x => ({ ...x, meeting: m })))
-        .filter(x => x.Path)
+        .filter(x => x.Path && timeValue(x.StartDate || x.EndDate) <= Date.now())
         .sort((a,b) => timeValue(b.StartDate || b.EndDate) - timeValue(a.StartDate || a.EndDate));
       const results = [];
       for (const session of sessions.slice(0, 12)) {
@@ -927,7 +959,11 @@
           const sessionPath = String(session.Path || '').replace(/^\/+/, '');
           if (currentIsLive && currentPath && sessionPath === currentPath) continue;
           const archiveInfo = await fetchJson(`${PROXY}${encodeURIComponent(F1_OFFICIAL_STATIC + String(session.Path).replace(/^\/+/, '') + 'SessionInfo.json')}`, 'F1 archivio sessione');
-          if (String(archiveInfo?.SessionStatus || '').toLowerCase() === 'active') continue;
+          const archiveStatus = String(archiveInfo?.SessionStatus || '').toLowerCase();
+          if (['active', 'started', 'running', 'live'].includes(archiveStatus)) continue;
+          const endedBySchedule = Number.isFinite(Date.parse(session.EndDate || '')) && Date.parse(session.EndDate) <= Date.now();
+          const endedByStatus = ['finished', 'final', 'complete', 'completed', 'ended', 'archived'].includes(archiveStatus);
+          if (!endedBySchedule && !endedByStatus) continue;
           const info = { ...session, ...archiveInfo, Meeting: archiveInfo.Meeting || session.meeting };
           results.push(await fetchF1OfficialSession(session.Path, info, true));
           if (results.length === 2) break;
@@ -936,20 +972,54 @@
       if (!results.length) throw new Error('F1 ufficiale: nessun risultato on demand disponibile');
       return results;
     }
-    async function fetchF1LastRaceResult() {
-      const payload = await fetchJson(`https://api.jolpi.ca/ergast/f1/${new Date().getFullYear()}/last/results.json`, 'F1 ultimo risultato');
-      const race = payload?.MRData?.RaceTable?.Races?.[0];
-      const results = race?.Results || [];
-      if (!results.length) throw new Error('F1: ultimo risultato non disponibile');
-      return { source: 'Jolpica F1', onDemand: true, info: { Key: `jolpica-${race.round || 'last'}`, Name: race.raceName || 'Ultimo Gran Premio', Type: 'Risultato gara', Meeting: { Name: race.raceName || 'Formula 1' } }, lines: results.map(r => ({ position: r.position || 99, racingNumber: r.number || '—', driver: { Tla: r.Driver?.code || '', BroadcastName: `${r.Driver?.givenName || ''} ${r.Driver?.familyName || ''}`.trim(), FullName: `${r.Driver?.givenName || ''} ${r.Driver?.familyName || ''}`.trim(), TeamName: r.Constructor?.name || '' }, bestLapTime: r.FastestLap?.Time?.time || '—', lastLapTime: '—', timeDiffToFastest: r.points ? `${r.points} pt` : '—', timeDiffToPositionAhead: r.status || '—', compound: '' })) };
+    async function fetchF1LastCompletedSession() {
+      const sessions = await getF1Sessions(new Date().getFullYear());
+      const completed = sessions.filter(s => !s.is_cancelled && Number.isFinite(Date.parse(s.date_end || '')) && Date.parse(s.date_end) <= Date.now())
+        .sort((a, b) => Date.parse(b.date_end) - Date.parse(a.date_end));
+      for (const session of completed.slice(0, 8)) {
+        try {
+          const results = await fetchJson(`https://api.openf1.org/v1/session_result?session_key=${encodeURIComponent(session.session_key)}`, 'OpenF1 classifica sessione');
+          if (!Array.isArray(results) || !results.length) continue;
+          let drivers = [];
+          try { drivers = await fetchJson(`https://api.openf1.org/v1/drivers?session_key=${encodeURIComponent(session.session_key)}`, 'OpenF1 piloti'); } catch (_) {}
+          const byNumber = new Map((Array.isArray(drivers) ? drivers : []).map(d => [String(d.driver_number), d]));
+          const lines = results.map(r => {
+            const d = byNumber.get(String(r.driver_number)) || {};
+            const gap = Number(r.gap_to_leader);
+            return {
+              position: r.position == null ? 99 : Number(r.position),
+              racingNumber: r.driver_number ?? '—',
+              driver: { Tla: d.name_acronym || '', BroadcastName: d.broadcast_name || '', FullName: d.full_name || '', TeamName: d.team_name || '' },
+              laps: r.number_of_laps ?? '—',
+              gapToLeader: Number.isFinite(gap) ? (gap === 0 ? '—' : `+${gap.toFixed(3)}s`) : '—',
+              resultStatus: r.dsq ? 'DSQ' : (r.dns ? 'DNS' : (r.dnf ? 'DNF' : 'Classificato'))
+            };
+          }).sort((a, b) => a.position - b.position);
+          return { source: 'OpenF1 · session_result', session, lines };
+        } catch (_) { /* prova la sessione conclusa precedente se la classifica manca */ }
+      }
+      throw new Error('OpenF1: nessuna classifica completa di sessione conclusa disponibile');
     }
     function renderF1OfficialTiming(box, official) {
       const info = official.info || {}, lines = official.lines || [];
       const eventName = info.Meeting?.Name || 'Formula 1';
       const sessionName = info.Name || info.Type || 'Sessione ufficiale';
-      const markup = `<div class="league-card" style="max-width:1100px"><div class="league-head"><span>Live timing · ${escapeHtml(eventName)}</span><span class="count" style="color:${official.onDemand ? 'var(--accent)' : 'var(--live)'}">${official.onDemand ? 'ON DEMAND · UFFICIALE F1' : 'LIVE · UFFICIALE F1'}</span></div><div class="session-info"><div><label>Evento</label><strong>${escapeHtml(eventName)}</strong></div><div><label>Sessione</label><strong>${escapeHtml(sessionName)}</strong></div><div><label>Fonte</label><strong>${escapeHtml(official.source || 'Formula 1 Live Timing')}</strong></div><div><label>Aggiornamento</label><strong style="color:${official.onDemand ? 'var(--accent)' : 'var(--live)'}">${official.onDemand ? 'Risultato sessione terminata' : 'Feed ufficiale'}</strong></div></div><div style="max-height:560px;overflow:auto"><table class="timing-table"><thead><tr><th>Pos</th><th>#</th><th>Pilota</th><th>Team</th><th>Miglior</th><th>Ultimo</th><th>Gap 1°</th><th>Gap prec.</th></tr></thead><tbody>${lines.sort((a,b)=>Number(a.position||99)-Number(b.position||99)).map(r=>{const d=r.driver||{};const pos=Number(r.position||99);const pc=pos===1?'p1':pos===2?'p2':pos===3?'p3':'';return `<tr><td class="pos ${pc}">${escapeHtml(pos>90?'—':pos)}</td><td>${escapeHtml(r.racingNumber||'—')}</td><td class="driver">${escapeHtml(d.Tla||d.BroadcastName||d.FullName||'—')}</td><td class="gap">${escapeHtml(d.TeamName||'—')}</td><td class="gap">${escapeHtml(r.bestLapTime||'—')}</td><td class="gap">${escapeHtml(r.lastLapTime||'—')}</td><td class="gap">${escapeHtml(r.timeDiffToFastest||'—')}</td><td class="gap">${escapeHtml(r.timeDiffToPositionAhead||'—')}</td></tr>`;}).join('')}</tbody></table></div>${f1OfficialActions()}</div>`;
-      box.innerHTML=markup;
-      saveF1LastValid(info.Key || (official.onDemand ? 'official-ondemand' : 'official-current'), markup);
+      const heading = official.onDemand ? `Risultati sessione · ${eventName}` : `Live timing · ${eventName}`;
+      const badge = official.onDemand ? 'ON DEMAND · UFFICIALE F1' : 'LIVE · UFFICIALE F1';
+      const updateLabel = official.onDemand ? 'Risultato sessione conclusa' : 'Feed ufficiale attivo';
+      const markup = `<div class="league-card" style="max-width:1100px"><div class="league-head"><span>${escapeHtml(heading)}</span><span class="count" style="color:${official.onDemand ? 'var(--accent)' : 'var(--live)'}">${badge}</span></div><div class="session-info"><div><label>Evento</label><strong>${escapeHtml(eventName)}</strong></div><div><label>Sessione</label><strong>${escapeHtml(sessionName)}</strong></div><div><label>Fonte</label><strong>${escapeHtml(official.source || 'Formula 1 Live Timing')}</strong></div><div><label>Aggiornamento</label><strong style="color:${official.onDemand ? 'var(--accent)' : 'var(--live)'}">${updateLabel}</strong></div></div><div style="max-height:560px;overflow:auto"><table class="timing-table"><thead><tr><th>Pos</th><th>#</th><th>Pilota</th><th>Team</th><th>Miglior</th><th>Ultimo</th><th>Gap 1°</th><th>Gap prec.</th></tr></thead><tbody>${lines.sort((a,b)=>Number(a.position||99)-Number(b.position||99)).map(r=>{const d=r.driver||{};const pos=Number(r.position||99);const pc=pos===1?'p1':pos===2?'p2':pos===3?'p3':'';return `<tr><td class="pos ${pc}">${escapeHtml(pos>90?'—':pos)}</td><td>${escapeHtml(r.racingNumber||'—')}</td><td class="driver">${escapeHtml(d.Tla||d.BroadcastName||d.FullName||'—')}</td><td class="gap">${escapeHtml(d.TeamName||'—')}</td><td class="gap">${escapeHtml(r.bestLapTime||'—')}</td><td class="gap">${escapeHtml(r.lastLapTime||'—')}</td><td class="gap">${escapeHtml(r.timeDiffToFastest||'—')}</td><td class="gap">${escapeHtml(r.timeDiffToPositionAhead||'—')}</td></tr>`;}).join('')}</tbody></table></div>${f1OfficialActions()}</div>`;
+      box.innerHTML = markup;
+      saveF1LastValid(info.Key || (official.onDemand ? 'official-ondemand' : 'official-current'), markup, official.onDemand ? 'archive' : 'live');
+    }
+
+    function renderF1Classification(box, result) {
+      const session = result.session || {}, lines = result.lines || [];
+      const eventName = session.location || session.country_name || 'Formula 1';
+      const sessionName = session.session_name || session.session_type || 'Sessione';
+      const date = session.date_end ? new Date(session.date_end).toLocaleDateString('it-IT', { timeZone: 'Europe/Rome' }) : '—';
+      const markup = `<div class="league-card" style="max-width:1100px"><div class="league-head"><span>Risultati · ${escapeHtml(eventName)}</span><span class="count" style="color:var(--accent)">ON DEMAND · CLASSIFICA COMPLETA</span></div><div class="session-info"><div><label>Evento</label><strong>${escapeHtml(eventName)}</strong></div><div><label>Circuito</label><strong>${escapeHtml(session.circuit_short_name || '—')}</strong></div><div><label>Sessione</label><strong>${escapeHtml(sessionName)}</strong></div><div><label>Data</label><strong>${escapeHtml(date)}</strong></div><div><label>Fonte</label><strong>${escapeHtml(result.source || 'OpenF1')}</strong></div></div><div style="max-height:560px;overflow:auto"><table class="timing-table"><thead><tr><th>Pos</th><th>#</th><th>Pilota</th><th>Team</th><th>Giri</th><th>Gap 1°</th><th>Stato</th></tr></thead><tbody>${lines.map(r=>{const d=r.driver||{};const pos=Number(r.position||99);const pc=pos===1?'p1':pos===2?'p2':pos===3?'p3':'';return `<tr><td class="pos ${pc}">${escapeHtml(pos>90?'—':pos)}</td><td>${escapeHtml(r.racingNumber||'—')}</td><td class="driver">${escapeHtml(d.Tla||d.BroadcastName||d.FullName||'—')}</td><td class="gap">${escapeHtml(d.TeamName||'—')}</td><td class="gap">${escapeHtml(r.laps??'—')}</td><td class="gap">${escapeHtml(r.gapToLeader||'—')}</td><td class="gap">${escapeHtml(r.resultStatus||'—')}</td></tr>`;}).join('')}</tbody></table></div>${f1OfficialActions()}</div>`;
+      box.innerHTML = markup;
+      saveF1LastValid(`openf1-${session.session_key || 'last'}`, markup, 'archive');
     }
     function f1OfficialActions() {
       return `<div class="f1-actions"><a class="f1-official-link" href="${F1_OFFICIAL_TIMING_URL}" target="_blank" rel="noopener noreferrer">Apri Live Timing ufficiale F1</a><span class="f1-source-note">Il live ufficiale è la fonte più affidabile durante le sessioni attive.</span></div>`;
@@ -1000,13 +1070,13 @@
             box.insertAdjacentHTML('beforeend', resultBox.innerHTML);
           }
           return;
-        } catch (_) { /* prova l'ultimo risultato gara pubblico */ }
+        } catch (_) { /* passa al feed storico OpenF1 */ }
         try {
-          const raceResult = await fetchF1LastRaceResult();
+          const raceResult = await fetchF1LastCompletedSession();
           f1State.active = false;
-          renderF1OfficialTiming(box, raceResult);
+          renderF1Classification(box, raceResult);
           return;
-        } catch (_) { /* usa ultimo dato locale o OpenF1 */ }
+        } catch (_) { /* prova i campioni OpenF1 salvati o disponibili */ }
         let sessions;
         try {
           sessions = await getF1Sessions(new Date().getFullYear());
@@ -1017,7 +1087,7 @@
         }
         availableSessions = sessions;
         const pastSessions = sessions
-          .filter(s => !s.is_cancelled && timeValue(s.date_start) <= Date.now())
+          .filter(s => !s.is_cancelled && s.date_start && timeValue(s.date_start) <= Date.now())
           .sort((a, b) => timeValue(b.date_start) - timeValue(a.date_start));
         if (!pastSessions.length) {
           box.innerHTML = '<div class="empty">Nessuna sessione F1 già iniziata</div>';
@@ -1026,10 +1096,9 @@
 
         // Una sola richiesta di posizione, con un secondo tentativo soltanto se la più recente è vuota.
         let session = pastSessions.find(s => String(s.session_key) === String(f1State.selectedSessionKey)) || pastSessions[0];
-        const isLive = timeValue(session.date_start) <= Date.now() && (!session.date_end || timeValue(session.date_end) >= Date.now());
-        f1State.active = isLive;
+        let sessionWindowActive = Boolean(session.date_start && session.date_end && timeValue(session.date_start) <= Date.now() && timeValue(session.date_end) >= Date.now());
         let positions = f1State.positions.get(session.session_key);
-        if (!positions || Date.now() - positions.loadedAt > (isLive ? F1_LIVE_REFRESH_MS : F1_REFRESH_MS)) {
+        if (!positions || Date.now() - positions.loadedAt > (sessionWindowActive ? F1_LIVE_REFRESH_MS : F1_REFRESH_MS)) {
           try {
             positions = { data: await fetchJson(`https://api.openf1.org/v1/position?session_key=${session.session_key}`, 'OpenF1 posizioni'), loadedAt: Date.now() };
             f1State.positions.set(session.session_key, positions);
@@ -1041,6 +1110,7 @@
         positions = positions?.data || [];
         if ((!Array.isArray(positions) || !positions.length) && pastSessions[1]) {
           session = pastSessions[1];
+          sessionWindowActive = Boolean(session.date_start && session.date_end && timeValue(session.date_start) <= Date.now() && timeValue(session.date_end) >= Date.now());
           const cached = f1State.positions.get(session.session_key);
           positions = cached?.data || await fetchJson(`https://api.openf1.org/v1/position?session_key=${session.session_key}`, 'OpenF1 posizioni');
         }
@@ -1048,7 +1118,7 @@
 
         let intervals = f1State.intervals.get(session.session_key);
         let laps = f1State.laps.get(session.session_key);
-        const timingRefresh = isLive ? F1_LIVE_REFRESH_MS : F1_REFRESH_MS;
+        const timingRefresh = sessionWindowActive ? F1_LIVE_REFRESH_MS : F1_REFRESH_MS;
         if (!intervals || Date.now() - intervals.loadedAt > timingRefresh) {
           const [intervalData, lapData] = await Promise.all([
             fetchJson(`https://api.openf1.org/v1/intervals?session_key=${session.session_key}`, 'OpenF1 intervalli').catch(() => []),
@@ -1090,15 +1160,23 @@
         }
         const rows = Object.values(latest).sort((a, b) => (a.position || 99) - (b.position || 99));
         const now = Date.now();
+        const sampleTimes = [
+          ...positions.map(item => Date.parse(item.date || '')),
+          ...(intervals?.data || []).map(item => Date.parse(item.date || '')),
+          ...(laps?.data || []).map(item => Date.parse(item.date_start || ''))
+        ].filter(value => Number.isFinite(value) && value > 0 && value <= now + 5_000);
+        const latestSampleAt = sampleTimes.length ? Math.max(...sampleTimes) : 0;
+        const isLive = sessionWindowActive && latestSampleAt > 0 && now - latestSampleAt <= 120_000;
+        f1State.active = isLive;
         const title = `${session.session_name || session.session_type || 'Sessione'} · ${session.circuit_short_name || session.location || session.country_name || ''}`;
         const eventName = session.location || session.country_name || 'Formula 1';
-        const sessionStatus = isLive ? 'LIVE' : 'Terminata';
+        const sessionStatus = isLive ? 'LIVE' : (sessionWindowActive ? 'In corso · campioni non aggiornati' : 'Archivio');
         const sessionOptions = pastSessions.slice(0, 30).map(s =>
           `<option value="${escapeHtml(s.session_key)}" ${String(s.session_key) === String(session.session_key) ? 'selected' : ''}>${escapeHtml(s.date_start?.slice(0, 10) || '')} · ${escapeHtml(s.session_name || s.session_type || 'Sessione')} · ${escapeHtml(s.location || '')}</option>`
         ).join('');
 
         let markup = `<div class="league-card" style="max-width:1100px">
-          <div class="league-head"><span>Livetiming · ${escapeHtml(eventName)}</span><span class="count" style="color:${isLive ? 'var(--live)' : 'var(--muted)'}">${sessionStatus}</span></div>
+          <div class="league-head"><span>${isLive ? 'Livetiming' : 'Risultati salvati'} · ${escapeHtml(eventName)}</span><span class="count" style="color:${isLive ? 'var(--live)' : 'var(--muted)'}">${sessionStatus}</span></div>
           <div class="session-info">
             <div><label>Evento</label><strong>${escapeHtml(eventName)}</strong></div>
             <div><label>Circuito</label><strong>${escapeHtml(session.circuit_short_name || '—')}</strong></div>
@@ -1138,7 +1216,7 @@
         box.innerHTML = markup;
         bindF1Picker();
         // Salva l'intero pannello già renderizzato: resta disponibile anche dopo un refresh.
-        saveF1LastValid(session.session_key, markup);
+        saveF1LastValid(session.session_key, markup, isLive ? 'live' : 'archive');
       } catch (e) {
         const message = String(e.message || 'servizio non disponibile');
         const limited = /401|429|Failed to fetch|NetworkError|network error|autenticat|restricted|rate limit/i.test(message);
@@ -1218,23 +1296,43 @@
       return MOTO_OFFLINE.byClass[currentClass] || MOTO_OFFLINE.byClass[MOTO_GP];
     }
 
+    function motoEventFor(eventId) {
+      return (MOTO_OFFLINE.events || []).find(event => String(event.id) === String(eventId)) || null;
+    }
+    function motoSessionState(session, eventId = currentEvent) {
+      if (!session) return 'unknown';
+      const status = String(session.status || session.session_status || session.state || '').toUpperCase().replace(/[^A-Z]+/g, '_');
+      if (/CANCEL|POSTPON/.test(status)) return 'cancelled';
+      if (/^(FINISHED|FINISH|FINAL|COMPLETE|COMPLETED|ENDED|F)$/.test(status)) return 'finished';
+      if (/^(S|LIVE|IN_PROGRESS|RUNNING|STARTED|ACTIVE)$/.test(status)) return 'live';
+      if (/^(N|NOT_STARTED|SCHEDULED|PENDING|UPCOMING)$/.test(status)) return 'scheduled';
+      const start = Date.parse(session.date || session.date_start || '');
+      if (Number.isFinite(start) && start > Date.now()) return 'scheduled';
+      const event = motoEventFor(eventId);
+      const eventFinished = String(event?.status || '').toUpperCase() === 'FINISHED';
+      return eventFinished && Number.isFinite(start) && start <= Date.now() ? 'finished' : 'unknown';
+    }
+
     function renderOfflineMotoLive() {
       const pack = offlineMotoPack();
-      const session = (pack.sessions || []).find(s => s.type === 'RAC') || (pack.sessions || []).at(-1);
+      const completed = (pack.sessions || []).filter(s => motoSessionState(s, MOTO_OFFLINE.eventId) === 'finished')
+        .sort((a, b) => timeValue(a.date) - timeValue(b.date));
+      const session = completed.at(-1);
       const list = (session && pack.rowsBy && pack.rowsBy[session.id]) || [];
       const className = document.querySelector('#motoClassPicker .active')?.textContent || 'MotoGP';
+      const event = motoEventFor(MOTO_OFFLINE.eventId);
       document.getElementById('liveError').style.display = 'none';
       document.getElementById('liveLoading').style.display = 'none';
       document.getElementById('liveSessionInfo').style.display = 'grid';
       document.getElementById('liveTable').style.display = 'table';
-      document.getElementById('liveTitle').textContent = `Ultima gara · ${className}`;
-      document.getElementById('liveStatus').textContent = 'GIAPPONE';
-      document.getElementById('liveEvent').textContent = 'JPN';
-      document.getElementById('liveCircuit').textContent = 'Motegi';
-      document.getElementById('liveSession').textContent = 'Gara';
+      document.getElementById('liveTitle').textContent = `Ultimi risultati · ${event?.short_name || event?.name || 'MotoGP'} · ${className}`;
+      document.getElementById('liveStatus').textContent = list.length ? 'ARCHIVIO' : 'RISULTATI NON DISPONIBILI';
+      document.getElementById('liveEvent').textContent = event?.short_name || event?.name || '—';
+      document.getElementById('liveCircuit').textContent = event?.name || '—';
+      document.getElementById('liveSession').textContent = session?.type || 'Sessione terminata';
       document.getElementById('liveCategory').textContent = className;
       document.getElementById('liveRemaining').textContent = '—';
-      document.getElementById('liveSessionStatus').textContent = 'Terminata';
+      document.getElementById('liveSessionStatus').textContent = session ? 'Terminata' : '—';
       document.getElementById('liveBody').innerHTML = list.map(r => {
         const pos = Number(r.position || 0);
         const posClass = pos === 1 ? 'p1' : pos === 2 ? 'p2' : pos === 3 ? 'p3' : '';
@@ -1261,6 +1359,13 @@
         document.getElementById('liveLoading').textContent = 'Nessuna sessione MotoGP disponibile.';
         return;
       }
+      if (motoSessionState(currentSessionMeta, currentEvent) !== 'finished') {
+        const state = motoSessionState(currentSessionMeta, currentEvent);
+        document.getElementById('liveLoading').textContent = state === 'scheduled'
+          ? 'Sessione programmata: la classifica finale non è ancora disponibile.'
+          : (state === 'live' ? 'Sessione in corso: la classifica finale sarà disponibile al termine.' : 'Stato sessione non confermato: non mostro dati come risultato finale.');
+        return;
+      }
       try {
         const data = await fetchJson(api(`/results/session/${encodeURIComponent(currentSession)}/classification?test=false`), 'Ultima sessione MotoGP');
         const list = Array.isArray(data.classification) ? data.classification : [];
@@ -1271,7 +1376,7 @@
         document.getElementById('liveSessionInfo').style.display = 'grid';
         document.getElementById('liveTable').style.display = 'table';
         document.getElementById('liveTitle').textContent = `Ultima sessione · ${sessionName}`;
-        document.getElementById('liveStatus').textContent = 'TERMINATA';
+        document.getElementById('liveStatus').textContent = 'ARCHIVIO';
         document.getElementById('liveEvent').textContent = eventName;
         document.getElementById('liveCircuit').textContent = '—';
         document.getElementById('liveSession').textContent = sessionName;
@@ -1291,12 +1396,16 @@
     }
 
     function chooseMotoEvent(events) {
-      const ordered = [...events].sort((a, b) => timeValue(b.date_start) - timeValue(a.date_start));
       const now = Date.now();
-      return ordered.find(e => timeValue(e.date_start) <= now && (!timeValue(e.date_end) || timeValue(e.date_end) >= now))
-        || ordered.find(e => timeValue(e.date_start) <= now)
-        || ordered.at(-1)
-        || null;
+      const valid = (events || []).filter(e => e && !e.test);
+      const active = valid.find(e => String(e.status || '').toUpperCase() === 'CURRENT' && timeValue(e.date_start) <= now && timeValue(e.date_end) >= now);
+      if (active) return active;
+      const ongoingByDates = valid.find(e => timeValue(e.date_start) <= now && timeValue(e.date_end) >= now && !/FINISHED|NOT.?STARTED/i.test(String(e.status || '')));
+      if (ongoingByDates) return ongoingByDates;
+      const completed = valid.filter(e => String(e.status || '').toUpperCase() === 'FINISHED' || (e.date_end && timeValue(e.date_end) < now))
+        .sort((a, b) => timeValue(b.date_end) - timeValue(a.date_end));
+      if (completed.length) return completed[0];
+      return valid.filter(e => timeValue(e.date_start) > now).sort((a, b) => timeValue(a.date_start) - timeValue(b.date_start))[0] || null;
     }
 
     async function loadSavedMoto() {
@@ -1326,8 +1435,11 @@
         let events = [];
         try { events = await motoFetch(`/results/events?seasonUuid=${encodeURIComponent(motoSeasonId)}`, 'Eventi MotoGP'); } catch (e) { events = MOTO_OFFLINE.events; }
         if (!Array.isArray(events) || !events.length) throw new Error('nessun evento disponibile');
+        events = events.filter(event => event && !event.test);
+        MOTO_OFFLINE.events = events;
         const ordered = [...events].sort((a, b) => timeValue(b.date_start) - timeValue(a.date_start));
-        const selected = chooseMotoEvent(ordered);
+        const archivedEvent = ordered.find(event => String(event.id) === String(MOTO_OFFLINE.eventId));
+        const selected = archivedEvent || chooseMotoEvent(ordered);
         sel.innerHTML = ordered.map(e => {
           const label = (e.short_name || e.name || 'Evento').slice(0, 40);
           return `<option value="${escapeHtml(e.id)}">${escapeHtml(label)}</option>`;
@@ -1363,16 +1475,19 @@
         if (!Array.isArray(sessions)) throw new Error('risposta sessioni non valida');
         if (eventAtRequest !== currentEvent || classAtRequest !== currentClass) return;
         const ordered = [...sessions].sort((a, b) => timeValue(a.date) - timeValue(b.date));
-        const alreadyStarted = ordered.filter(s => timeValue(s.date) <= Date.now());
-        const preferred = ordered.find(s => s.id === currentSession) || alreadyStarted.at(-1) || ordered[0];
+        const currentSelection = ordered.find(s => String(s.id) === String(currentSession) && motoSessionState(s, eventAtRequest) !== 'cancelled');
+        const preferred = currentSelection || ordered.find(s => motoSessionState(s, eventAtRequest) === 'live') ||
+          ordered.filter(s => motoSessionState(s, eventAtRequest) === 'finished').at(-1) ||
+          ordered.find(s => motoSessionState(s, eventAtRequest) === 'scheduled') || ordered[0];
         picker.innerHTML = ordered.map(s =>
-          `<button type="button" class="f1-chip ${s.id === preferred?.id ? 'active' : ''}" data-sess="${escapeHtml(s.id)}">${escapeHtml(s.type || s.name || 'Sess')}</button>`
+          `<button type="button" class="f1-chip ${String(s.id) === String(preferred?.id) ? 'active' : ''}" data-sess="${escapeHtml(s.id)}">${escapeHtml(s.type || s.name || 'Sess')} · ${motoSessionState(s, eventAtRequest) === 'finished' ? 'RISULTATI' : (motoSessionState(s, eventAtRequest) === 'live' ? 'IN CORSO' : (motoSessionState(s, eventAtRequest) === 'scheduled' ? 'PROGRAMMATA' : 'STATO N/D'))}</button>`
         ).join('') || '<span style="color:var(--muted)">Nessuna sessione</span>';
         picker.querySelectorAll('.f1-chip').forEach(btn => {
           btn.onclick = () => {
             picker.querySelectorAll('.f1-chip').forEach(b => b.classList.remove('active'));
             btn.classList.add('active');
             currentSession = btn.dataset.sess;
+            currentSessionMeta = ordered.find(s => String(s.id) === String(currentSession)) || null;
             loadClassification(currentSession);
           };
         });
@@ -1382,7 +1497,7 @@
           loadClassification(currentSession);
         }
       } catch (e) {
-        picker.innerHTML = `<span style="color:#ff8a80">Errore sessioni: ${escapeHtml(e.message || 'servizio non disponibile')}</span>`;
+        picker.innerHTML = `<span style="color:#ff8a80">Sessioni online non disponibili per questa gara. L’archivio dell’ultimo evento concluso resta selezionabile; per il timing consulta il <a href="https://timingpass.motogp.com/" target="_blank" rel="noopener">live timing ufficiale</a>.</span>`;
       }
     }
 
@@ -1391,19 +1506,39 @@
       const box = document.getElementById('odResults');
       box.innerHTML = '<div class="loading">Caricamento classifica…</div>';
       const pack = MOTO_OFFLINE.byClass[currentClass];
-      const rows = pack && pack.rowsBy && pack.rowsBy[sessionId];
-      if (rows && rows.length) {
-        box.innerHTML = `<div style="max-height:480px;overflow:auto"><table class="timing-table">
-            <thead><tr><th>Pos</th><th>Pilota</th><th>Gap</th><th>Giri</th></tr></thead>
-            <tbody>${rows.map(r => `<tr>
-              <td class="pos">${escapeHtml(r.position ?? '—')}</td>
-              <td class="driver">${escapeHtml(r.rider?.full_name || '—')}</td>
-              <td class="gap">${escapeHtml(r.gap?.first || '—')}</td>
-              <td class="gap">${escapeHtml(r.total_laps ?? '—')}</td>
-            </tr>`).join('')}</tbody></table></div>`;
+      const session = (pack?.sessions || []).find(s => String(s.id) === String(sessionId)) ||
+        (String(currentSession) === String(sessionId) ? currentSessionMeta : null);
+      const state = motoSessionState(session, currentEvent);
+      if (state === 'scheduled' || state === 'live' || state === 'cancelled') {
+        box.innerHTML = `<div class="empty">${state === 'scheduled' ? 'Sessione programmata: la classifica finale non è ancora disponibile.' : (state === 'live' ? 'Sessione in corso: i risultati definitivi saranno mostrati al termine.' : 'Sessione annullata.')}</div>`;
         return;
       }
-      box.innerHTML = '<div class="empty">Nessuna classifica salvata per questa sessione.</div>';
+      let rows = pack?.rowsBy?.[sessionId] || [];
+      if (!rows.length) {
+        try {
+          const data = await motoFetch(`/results/session/${encodeURIComponent(sessionId)}/classification?test=false`, 'Classifica MotoGP');
+          if (requestId !== classificationRequest) return;
+          rows = Array.isArray(data.classification) ? data.classification : [];
+          if (pack) {
+            pack.rowsBy ||= {};
+            pack.rowsBy[sessionId] = rows;
+          }
+        } catch (_) { rows = []; }
+      }
+      if (requestId !== classificationRequest) return;
+      if (!rows.length) {
+        box.innerHTML = `<div class="empty">${state === 'finished' ? 'Classifica non disponibile per questa sessione conclusa.' : 'Stato sessione non confermato e classifica conclusiva non disponibile.'}</div>`;
+        return;
+      }
+      const statusLabel = state === 'finished' ? 'RISULTATO UFFICIALE' : 'CLASSIFICA DISPONIBILE · STATO NON CONFERMATO';
+      box.innerHTML = `<div class="league-card"><div class="league-head"><span>${escapeHtml(currentSessionMeta?.type || currentSessionMeta?.name || 'Classifica')}</span><span class="count">${statusLabel}</span></div><div style="max-height:480px;overflow:auto"><table class="timing-table">
+          <thead><tr><th>Pos</th><th>Pilota</th><th>Gap</th><th>Giri</th></tr></thead>
+          <tbody>${rows.map(r => `<tr>
+            <td class="pos">${escapeHtml(r.position ?? '—')}</td>
+            <td class="driver">${escapeHtml(r.rider?.full_name || '—')}</td>
+            <td class="gap">${escapeHtml(r.gap?.first || '—')}</td>
+            <td class="gap">${escapeHtml(r.total_laps ?? '—')}</td>
+          </tr>`).join('')}</tbody></table></div></div>`;
     }
 
     document.getElementById('motoEvent').addEventListener('change', e => {
@@ -1438,8 +1573,11 @@
     safePanelLoad(loadBasket, 'grid-basket', 'Basket');
     safePanelLoad(loadUsa, 'grid-usa', 'Sport USA');
     loadF1();
-    fetchLive();
-    loadSavedMoto().then(loadEvents);
+    loadSavedMoto().then(() => {
+      renderOfflineMotoLive();
+      fetchLive();
+      return loadEvents();
+    }).catch(() => fetchLive());
     setInterval(fetchLive, 6000);
     setInterval(() => {
       safePanelLoad(loadCalcio, 'grid-calcio', 'Calcio');
@@ -1451,5 +1589,3 @@
   </script>
 </body>
 </html>
-
-

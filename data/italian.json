@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-09T21:01:25.279280+00:00",
+  "updatedAt": "2026-10-09T21:22:24.353493+00:00",
   "lba": [
     {
       "home": "APU Old Wild West Udine",
@@ -142,34 +142,6 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "CASERTANA",
-      "away": "MONOPOLI",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
-      "time": "2026-10-10T14:30:00+02:00",
-      "eventDate": "2026-10-10T14:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone C",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
-      "home": "BARI",
-      "away": "GIUGLIANO",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
-      "time": "2026-10-10T14:30:00+02:00",
-      "eventDate": "2026-10-10T14:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone C",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
       "home": "CROTONE",
       "away": "AUDACE CERIGNOLA",
       "homeScore": "",
@@ -198,22 +170,36 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "NOVARA",
-      "away": "CITTADELLA",
+      "home": "BARI",
+      "away": "GIUGLIANO",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
       "status": "In programma",
-      "time": "2026-10-10T17:30:00+02:00",
-      "eventDate": "2026-10-10T17:30:00+02:00",
+      "time": "2026-10-10T14:30:00+02:00",
+      "eventDate": "2026-10-10T14:30:00+02:00",
       "competition": "Serie C",
-      "group": "Girone A",
+      "group": "Girone C",
       "source": "Lega Pro",
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "LUMEZZANE",
-      "away": "ALBINOLEFFE",
+      "home": "CASERTANA",
+      "away": "MONOPOLI",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-10T14:30:00+02:00",
+      "eventDate": "2026-10-10T14:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone C",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "NOVARA",
+      "away": "CITTADELLA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -242,6 +228,20 @@
     {
       "home": "ARZIGNANO V.",
       "away": "JUVENTUS NEXT GEN",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-10T17:30:00+02:00",
+      "eventDate": "2026-10-10T17:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone A",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "LUMEZZANE",
+      "away": "ALBINOLEFFE",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -297,5 +297,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-09T21:01:25.279280+00:00"
+  "serieCUpdatedAt": "2026-10-09T21:22:24.353493+00:00"
 }

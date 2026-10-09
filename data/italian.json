@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-09T12:04:56.366281+00:00",
+  "updatedAt": "2026-10-09T12:30:14.528026+00:00",
   "lba": [
     {
       "home": "APU Old Wild West Udine",
@@ -112,8 +112,92 @@
       "group": "Girone A",
       "source": "Lega Pro",
       "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "PERGOLETTESE",
+      "away": "CARPI",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-10T14:30:00+02:00",
+      "eventDate": "2026-10-10T14:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone A",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "VIS PESARO",
+      "away": "GROSSETO",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-10T14:30:00+02:00",
+      "eventDate": "2026-10-10T14:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone B",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "CROTONE",
+      "away": "AUDACE CERIGNOLA",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-10T14:30:00+02:00",
+      "eventDate": "2026-10-10T14:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone C",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "SAVOIA",
+      "away": "INTER UNDER 23",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-10T14:30:00+02:00",
+      "eventDate": "2026-10-10T14:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone C",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "BARI",
+      "away": "GIUGLIANO",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-10T14:30:00+02:00",
+      "eventDate": "2026-10-10T14:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone C",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "CASERTANA",
+      "away": "MONOPOLI",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-10T14:30:00+02:00",
+      "eventDate": "2026-10-10T14:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone C",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-09T12:04:56.366281+00:00"
+  "serieCUpdatedAt": "2026-10-09T12:30:14.528026+00:00"
 }

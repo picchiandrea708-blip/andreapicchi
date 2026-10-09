@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-09T17:21:35.325783+00:00",
+  "updatedAt": "2026-10-09T17:39:43.232846+00:00",
   "lba": [
     {
       "home": "APU Old Wild West Udine",
@@ -142,22 +142,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "CASERTANA",
-      "away": "MONOPOLI",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
-      "time": "2026-10-10T14:30:00+02:00",
-      "eventDate": "2026-10-10T14:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone C",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
-      "home": "SAVOIA",
-      "away": "INTER UNDER 23",
+      "home": "BARI",
+      "away": "GIUGLIANO",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -184,8 +170,22 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "BARI",
-      "away": "GIUGLIANO",
+      "home": "SAVOIA",
+      "away": "INTER UNDER 23",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-10T14:30:00+02:00",
+      "eventDate": "2026-10-10T14:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone C",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "CASERTANA",
+      "away": "MONOPOLI",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -226,8 +226,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "LUMEZZANE",
-      "away": "ALBINOLEFFE",
+      "home": "ARZIGNANO V.",
+      "away": "JUVENTUS NEXT GEN",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -240,8 +240,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "ARZIGNANO V.",
-      "away": "JUVENTUS NEXT GEN",
+      "home": "LUMEZZANE",
+      "away": "ALBINOLEFFE",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -283,5 +283,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-09T17:21:35.325783+00:00"
+  "serieCUpdatedAt": "2026-10-09T17:39:43.232846+00:00"
 }

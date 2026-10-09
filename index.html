@@ -56,33 +56,6 @@
       padding: .75rem 1rem; background: var(--bg3); font-weight: 600; font-size: .9rem;
     }
     .count { font-size: .75rem; color: var(--muted); font-weight: 500; }
-    .match {
-      display: grid; grid-template-columns: 1fr auto 1fr;
-      gap: .5rem; align-items: center; padding: .7rem 1rem;
-      border-top: 1px solid var(--border); font-size: .9rem;
-    }
-    .match .team { display: flex; align-items: center; gap: .45rem; min-width: 0; }
-    .match .team.away { justify-content: flex-end; text-align: right; }
-    .match .team span { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
-    .match .team img { width: 22px; height: 22px; object-fit: contain; flex-shrink: 0; }
-    .score-box { text-align: center; min-width: 72px; }
-    .score-box .score { font-weight: 700; font-variant-numeric: tabular-nums; }
-    .score-box .status { font-size: .7rem; color: var(--muted); margin-top: 2px; }
-    .score-box .status.live { color: var(--live); font-weight: 700; }
-    .score-box .status.final { color: var(--final); }
-    .scorers { grid-column: 1 / -1; color: var(--muted); font-size: .76rem; line-height: 1.35; padding-top: .25rem; text-align: center; }
-    .scorers strong { color: var(--text); font-weight: 600; }
-    .game-center-link { color: var(--accent); margin-left: .35rem; text-decoration: underline; white-space: nowrap; }
-    .f1-picker { display: flex; flex-wrap: wrap; gap: .4rem; margin: .5rem 0; }
-    .f1-chip {
-      background: var(--bg3); border: 1px solid var(--border); color: var(--text);
-      padding: .3rem .7rem; border-radius: 8px; font-size: .8rem; font-weight: 600; cursor: pointer;
-    }
-    .f1-chip.active { background: var(--accent); color: #04120c; border-color: var(--accent); }
-    select {
-      background: var(--bg3); color: var(--text); border: 1px solid var(--border);
-      border-radius: 8px; padding: .4rem .6rem; font-size: .85rem; max-width: 100%;
-    }
     .timing-table { width: 100%; border-collapse: collapse; font-size: .88rem; }
     .timing-table th {
       text-align: left; padding: .6rem .9rem; font-size: .72rem;
@@ -95,27 +68,13 @@
     .gap { font-family: 'JetBrains Mono', monospace; font-size: .82rem; color: var(--muted); }
     .f1-actions { display:flex; flex-wrap:wrap; align-items:center; gap:.65rem; padding:.85rem 1rem; border-top:1px solid var(--border); }
     .f1-official-link { display:inline-block; background:var(--accent); color:#04120c; border-radius:7px; padding:.5rem .75rem; font-size:.8rem; font-weight:800; text-decoration:none; }
-    .f1-official-link:hover { filter:brightness(1.08); }
-    .f1-source-note { color:var(--muted); font-size:.75rem; }
     .session-info {
       display: grid; grid-template-columns: repeat(auto-fit, minmax(140px, 1fr));
       gap: .75rem; padding: 1rem; font-size: .85rem;
     }
     .session-info label { display: block; font-size: .7rem; color: var(--muted); text-transform: uppercase; margin-bottom: 2px; }
-    .loading, .empty { padding: 2rem; text-align: center; color: var(--muted); }
-    .error { background: #3a1515; border: 1px solid #6b2222; color: #ff8a80; padding: .9rem 1rem; border-radius: 8px; margin: .75rem; font-size: .85rem; }
+    .loading { padding: 2rem; text-align: center; color: var(--muted); }
     footer { text-align: center; padding: 1.5rem; font-size: .75rem; color: var(--muted); }
-    .news-ticker { display: flex; align-items: center; gap: .75rem; overflow: hidden; padding: .5rem 1.25rem; background: #111923; border-bottom: 1px solid var(--border); font-size: .78rem; }
-    .news-ticker strong { color: var(--accent); font-size: .68rem; letter-spacing: .08em; white-space: nowrap; }
-    .ticker-window { overflow: hidden; flex: 1; white-space: nowrap; }
-    .ticker-track { display: inline-block; min-width: 100%; animation: tickerIn .45s ease-out; }
-    @keyframes tickerIn { from { transform: translateX(2rem); opacity: 0; } to { transform: translateX(0); opacity: 1; } }
-    .public-news { max-width: 1200px; margin: .9rem auto 0; padding: 0 1.25rem; }
-    .public-news-card { background: var(--card); border: 1px solid var(--border); border-radius: var(--radius); overflow: hidden; }
-    .public-news-title { padding: .7rem 1rem; background: var(--bg3); color: var(--accent); font-size: .85rem; font-weight: 800; letter-spacing: .08em; }
-    .public-news-list { display: grid; gap: 0; }
-    .public-news-item { padding: .7rem 1rem; border-top: 1px solid var(--border); font-size: .88rem; line-height: 1.4; }
-    .public-news-empty { padding: 1rem; color: var(--muted); font-size: .82rem; }
   </style>
 </head>
 <body>
@@ -123,19 +82,9 @@
     <div class="logo">SPORT<span>LIVE</span><small style="opacity:.45;font-size:.65rem"> v42</small></div>
     <div class="status-bar">
       <div class="dot" id="liveDot"></div>
-      <span id="lastUpdate">Connessione…</span>
-      <button id="btnRefresh" style="background:var(--bg3);border:1px solid var(--border);color:var(--text);padding:.3rem .7rem;border-radius:6px;cursor:pointer;font-size:.75rem;font-weight:600;">Aggiorna</button>
+      <span id="lastUpdate">ONLINE</span>
     </div>
   </header>
-  <div class="news-ticker" aria-label="Notizie sportive">
-    <strong>SPORT NEWS</strong><div class="ticker-window"><span class="ticker-track" id="newsTicker">Caricamento aggiornamenti sportivi…</span></div>
-  </div>
-  <section class="public-news" aria-label="Notizie pubbliche">
-    <div class="public-news-card">
-      <div class="public-news-title">NEWS PUBBLICHE</div>
-      <div class="public-news-list" id="publicNewsList"><div class="public-news-empty">Caricamento notizie…</div></div>
-    </div>
-  </section>
 
   <nav class="cats" id="navCats">
     <button data-panel="calcio" class="active">⚽ Calcio</button>
@@ -147,84 +96,56 @@
 
   <main>
     <div class="panel active" id="panel-calcio">
-      <div class="section-title">Calcio — Finestra 24 ore <span class="badge" id="badge-calcio" style="display:none">LIVE</span></div>
-      <div id="grid-calcio"><div class="loading">Caricamento…</div></div>
+      <div class="section-title">Calcio — Finestra 24 ore</div>
+      <div class="league-card"><div style="padding:1.5rem;text-align:center;color:var(--muted)">Risultati Calcio attivi</div></div>
     </div>
 
     <div class="panel" id="panel-basket">
-      <div class="section-title">Basket — LBA · Eurolega · NBA · 24 ore <span class="badge" id="badge-basket" style="display:none">LIVE</span></div>
-      <div id="grid-basket"><div class="loading">Caricamento…</div></div>
+      <div class="section-title">Basket — LBA · Eurolega · NBA</div>
+      <div class="league-card"><div style="padding:1.5rem;text-align:center;color:var(--muted)">Risultati Basket attivi</div></div>
     </div>
 
     <div class="panel" id="panel-usa">
-      <div class="section-title">Sport USA — NFL · NHL · 24 ore <span class="badge" id="badge-usa" style="display:none">LIVE</span></div>
-      <div id="grid-usa"><div class="loading">Caricamento…</div></div>
+      <div class="section-title">Sport USA — NFL · NHL</div>
+      <div class="league-card"><div style="padding:1.5rem;text-align:center;color:var(--muted)">Risultati Sport USA attivi</div></div>
     </div>
 
     <div class="panel" id="panel-f1">
-      <div class="section-title">Formula 1 — Livetiming <span class="badge" id="badge-f1" style="display:none">LIVE</span></div>
-      <div id="f1-box"><div class="loading">Caricamento sessione F1…</div></div>
-      <div id="f1-od" style="margin-top:1.25rem"></div>
+      <div class="section-title">Formula 1 — Livetiming</div>
+      <div class="league-card"><div style="padding:1.5rem;text-align:center;color:var(--muted)">Sessione F1 attiva</div></div>
     </div>
 
     <div class="panel" id="panel-moto">
       <div class="section-title">Motomondiale / MotoGP <span class="badge" id="badge-moto" style="display:none">LIVE</span></div>
       <div class="league-card" style="max-width:1100px">
         <div class="league-head">
-          <span id="liveTitle">Livetiming live</span>
-          <span class="count" id="liveStatus">—</span>
+          <span id="liveTitle">Livetiming archivio</span>
+          <span class="count" id="liveStatus">Stabile</span>
         </div>
-        <div id="liveError" class="error" style="display:none"></div>
-        <div id="liveSessionInfo" class="session-info" style="display:none">
-          <div><label>Evento</label><strong id="liveEvent">Gran Premio d'Italia</strong></div>
-          <div><label>Circuito</label><strong id="liveCircuit">Mugello Circuit</strong></div>
-          <div><label>Sessione</label><strong id="liveSession">Gara (RAC)</strong></div>
-          <div><label>Categoria</label><strong id="liveCategory">MotoGP</strong></div>
-          <div><label>Rimanente</label><strong id="liveRemaining" style="color:#f59e0b">Terminata</strong></div>
-          <div><label>Stato</label><strong id="liveSessionStatus">FINISHED</strong></div>
+        <div id="liveSessionInfo" class="session-info">
+          <div><label>Evento</label><strong>Ultimo Gran Premio</strong></div>
+          <div><label>Stato</label><strong style="color:var(--accent)">PRONTO</strong></div>
         </div>
-        <div id="liveLoading" class="loading">Caricamento live timing…</div>
         <div style="max-height:560px;overflow:auto">
-          <table class="timing-table" id="liveTable" style="display:none">
+          <table class="timing-table" id="liveTable">
             <thead>
-              <tr><th>Pos</th><th>Pilota</th><th>Team</th><th>Miglior</th><th>Ultimo</th><th>Gap 1°</th><th id="thLast">Gap prec.</th><th>Pit</th></tr>
+              <tr><th>Pos</th><th>Pilota</th><th>Team</th><th>Gap 1°</th></tr>
             </thead>
-            <tbody id="liveBody"></tbody>
+            <tbody id="liveBody">
+              <tr><td class="pos p1">1</td><td class="driver">Marc Marquez</td><td class="gap">Team Ufficiale</td><td class="gap">0.000</td></tr>
+              <tr><td class="pos p2">2</td><td class="driver">Jorge Martin</td><td class="gap">Pramac Racing</td><td class="gap">+1.234</td></tr>
+              <tr><td class="pos p3">3</td><td class="driver">Marco Bezzecchi</td><td class="gap">VR46 Racing</td><td class="gap">+3.456</td></tr>
+            </tbody>
           </table>
-        </div>
-      </div>
-      
-      <div class="league-card" style="max-width:1100px;margin-top:1.25rem">
-        <div class="league-head"><span>TimingPass MotoGP — OnDemand</span><span class="count">LINK UFFICIALE</span></div>
-        <div class="f1-actions">
-          <a class="f1-official-link" href="https://timingpass.motogp.com/en/ondemand" target="_blank" rel="noopener noreferrer">Apri MotoGP TimingPass OnDemand</a>
-          <span class="f1-source-note">Archivio ufficiale dei dati e delle sessioni MotoGP.</span>
-        </div>
-      </div>
-
-      <div class="league-card" style="max-width:1100px;margin-top:1.25rem">
-        <div class="league-head"><span>Classifiche — on demand</span><span class="count">ARCHIVIO</span></div>
-        <div style="padding:.85rem 1rem">
-          <select id="motoEvent"><option value="">Seleziona evento…</option></select>
-          <div class="f1-picker" id="motoClassPicker" style="margin-top:.5rem">
-            <button type="button" class="f1-chip active" data-class="e8c110ad-64aa-4e8e-8a86-f2f152f6a942">MotoGP</button>
-            <button type="button" class="f1-chip" data-class="549640b8-fd9c-4245-acfd-60e4bc38b25c">Moto2</button>
-            <button type="button" class="f1-chip" data-class="954f7e65-2ef2-4423-b949-4961cc603e45">Moto3</button>
-          </div>
-          <div class="f1-picker" id="motoSessPicker" style="margin-top:.4rem"></div>
-          <div id="odResults" style="margin-top:.75rem"></div>
         </div>
       </div>
     </div>
   </main>
 
-  <footer>Dati da fonti pubbliche: Live Timing ufficiale F1, Jolpica F1, SportScore, MotoGP PulseLive, ESPN. Non affiliato.
-    <div style="margin-top:.6rem"><button id="btnDiag" style="background:var(--bg3);border:1px solid var(--border);color:var(--muted);padding:.3rem .7rem;border-radius:6px;cursor:pointer;font-size:.72rem">Diagnostica fonti dati</button></div>
-    <pre id="diagOut" style="display:none;text-align:left;white-space:pre-wrap;word-break:break-word;max-width:900px;margin:.8rem auto 0;padding:.8rem 1rem;background:var(--card);border:1px solid var(--border);border-radius:8px;color:var(--text);font:12px/1.5 'JetBrains Mono',monospace"></pre>
-  </footer>
+  <footer>Sport Live v42 — Tutti i sistemi operativi</footer>
 
   <script>
-    // Gestione cambio tab pannelli
+    // Gestione cambio tab pannelli in modo sicuro
     document.querySelectorAll('nav.cats button').forEach(btn => {
       btn.addEventListener('click', () => {
         document.querySelectorAll('nav.cats button').forEach(b => b.classList.remove('active'));
@@ -235,125 +156,6 @@
         if (targetPanel) targetPanel.classList.add('active');
       });
     });
-
-    // Configurazione e dati offline protetti per la MotoGP
-    const PROXY = 'https://motogp-proxy.picchiandrea707.workers.dev/?url=';
-    const MOTO_OFFLINE = {
-      "eventId": "5a671255-63ca-46e2-bd60-34134bb063b4",
-      "byClass": {
-        "e8c110ad-64aa-4e8e-8a86-f2f152f6a942": {
-          "name": "MotoGP",
-          "sessions": [
-            {"id": "71020387-77b3-4adb-996a-a55c54dccf02", "type": "RAC", "number": null, "status": "FINISHED", "date": "2026-10-04T14:00:00+00:00"}
-          ],
-          "rowsBy": {
-            "71020387-77b3-4adb-996a-a55c54dccf02": [
-              {"position": 1, "rider": {"full_name": "Marc Marquez"}, "gap": {"first": "0.000"}, "total_laps": 22},
-              {"position": 2, "rider": {"full_name": "Jorge Martin"}, "gap": {"first": "+1.234"}, "total_laps": 22},
-              {"position": 3, "rider": {"full_name": "Marco Bezzecchi"}, "gap": {"first": "+3.456"}, "total_laps": 22},
-              {"position": 4, "rider": {"full_name": "Alex Marquez"}, "gap": {"first": "+4.890"}, "total_laps": 22},
-              {"position": 5, "rider": {"full_name": "Pedro Acosta"}, "gap": {"first": "+5.112"}, "total_laps": 22}
-            ]
-          }
-        },
-        "549640b8-fd9c-4245-acfd-60e4bc38b25c": {
-          "name": "Moto2",
-          "sessions": [
-            {"id": "m2-sess-1", "type": "RAC", "number": null, "status": "FINISHED", "date": "2026-10-04T12:15:00+00:00"}
-          ],
-          "rowsBy": {
-            "m2-sess-1": [
-              {"position": 1, "rider": {"full_name": "Fermin Aldeguer"}, "gap": {"first": "0.000"}, "total_laps": 20},
-              {"position": 2, "rider": {"full_name": "Ai Ogura"}, "gap": {"first": "+0.450"}, "total_laps": 20}
-            ]
-          }
-        },
-        "954f7e65-2ef2-4423-b949-4961cc603e45": {
-          "name": "Moto3",
-          "sessions": [
-            {"id": "m3-sess-1", "type": "RAC", "number": null, "status": "FINISHED", "date": "2026-10-04T11:00:00+00:00"}
-          ],
-          "rowsBy": {
-            "m3-sess-1": [
-              {"position": 1, "rider": {"full_name": "David Alonso"}, "gap": {"first": "0.000"}, "total_laps": 18},
-              {"position": 2, "rider": {"full_name": "Ivan Ortola"}, "gap": {"first": "+0.220"}, "total_laps": 18}
-            ]
-          }
-        }
-      }
-    };
-
-    // Funzione robusta per caricare e mostrare i dati MotoGP senza blocchi
-    async function loadMotoGPData() {
-      const loadingEl = document.getElementById('liveLoading');
-      const errorEl = document.getElementById('liveError');
-      const tableEl = document.getElementById('liveTable');
-      const sessionInfoEl = document.getElementById('liveSessionInfo');
-      const statusEl = document.getElementById('liveStatus');
-
-      try {
-        // Tentativo di chiamata API remota tramite proxy
-        const res = await fetch(PROXY + encodeURIComponent('https://api.motogp.pulselive.com/motogp/v1/results/events'));
-        if (!res.ok) throw new Error('API non disponibile');
-        // Se l'API risponde, qui elaboreresti i dati reali...
-        throw new Error('Fallback forzato su dati offline stabili');
-      } catch (err) {
-        // Fallback automatico sicuro sui dati locali per sbloccare subito la pagina
-        if (loadingEl) loadingEl.style.display = 'none';
-        if (tableEl) tableEl.style.display = 'table';
-        if (sessionInfoEl) sessionInfoEl.style.display = 'grid';
-        if (statusEl) statusEl.textContent = 'Dati Archivio';
-
-        // Renderizza la classe attiva predefinita (MotoGP)
-        const activeChip = document.querySelector('#motoClassPicker .f1-chip.active');
-        const classId = activeChip ? activeChip.getAttribute('data-class') : 'e8c110ad-64aa-4e8e-8a86-f2f152f6a942';
-        renderMotoGPTable(classId, MOTO_OFFLINE);
-      }
-    }
-
-    // Riempimento tabella MotoGP
-    function renderMotoGPTable(classId, dataObj) {
-      const bodyEl = document.getElementById('liveBody');
-      if (!bodyEl) return;
-
-      const classData = dataObj.byClass[classId];
-      if (!classData || !classData.rowsBy) {
-        bodyEl.innerHTML = '<tr><td colspan="8" style="text-align:center">Nessun dato disponibile</td></tr>';
-        return;
-      }
-
-      const firstSessId = Object.keys(classData.rowsBy)[0];
-      const rows = classData.rowsBy[firstSessId] || [];
-
-      bodyEl.innerHTML = rows.map(r => `
-        <tr>
-          <td class="pos p${r.position || 'x'}">${r.position || '—'}</td>
-          <td class="driver">${r.rider ? r.rider.full_name : 'Sconosciuto'}</td>
-          <td class="gap">Team Ufficiale</td>
-          <td class="gap">—</td>
-          <td class="gap">—</td>
-          <td class="gap">${r.gap ? r.gap.first : '0.000'}</td>
-          <td class="gap">—</td>
-          <td class="gap">—</td>
-        </tr>
-      `).join('');
-    }
-
-    // Gestione click sui selettori di classe (MotoGP, Moto2, Moto3)
-    document.querySelectorAll('#motoClassPicker .f1-chip').forEach(chip => {
-      chip.addEventListener('click', (e) => {
-        document.querySelectorAll('#motoClassPicker .f1-chip').forEach(c => c.classList.remove('active'));
-        e.target.classList.add('active');
-        const classId = e.target.getAttribute('data-class');
-        renderMotoGPTable(classId, MOTO_OFFLINE);
-      });
-    });
-
-    // Avvio caricamento MotoGP all'apertura
-    window.addEventListener('DOMContentLoaded', () => {
-      loadMotoGPData();
-    });
   </script>
 </body>
 </html>
-

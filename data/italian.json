@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-10T20:59:43.283381+00:00",
+  "updatedAt": "2026-10-10T21:20:38.031494+00:00",
   "lba": [
     {
       "home": "APU Old Wild West Udine",
@@ -128,6 +128,20 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
+      "home": "CROTONE",
+      "away": "AUDACE CERIGNOLA",
+      "homeScore": 2,
+      "awayScore": 3,
+      "hasScore": true,
+      "status": "FT",
+      "time": "2026-10-10T14:30:00+02:00",
+      "eventDate": "2026-10-10T14:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone C",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
       "home": "SAVOIA",
       "away": "INTER UNDER 23",
       "homeScore": 2,
@@ -170,24 +184,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "CROTONE",
-      "away": "AUDACE CERIGNOLA",
-      "homeScore": 2,
-      "awayScore": 3,
-      "hasScore": true,
-      "status": "FT",
-      "time": "2026-10-10T14:30:00+02:00",
-      "eventDate": "2026-10-10T14:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone C",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
-      "home": "ARZIGNANO V.",
-      "away": "JUVENTUS NEXT GEN",
-      "homeScore": 2,
-      "awayScore": 1,
+      "home": "NOVARA",
+      "away": "CITTADELLA",
+      "homeScore": 0,
+      "awayScore": 2,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-10T17:30:00+02:00",
@@ -198,10 +198,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "LUMEZZANE",
-      "away": "ALBINOLEFFE",
-      "homeScore": 3,
-      "awayScore": 2,
+      "home": "ARZIGNANO V.",
+      "away": "JUVENTUS NEXT GEN",
+      "homeScore": 2,
+      "awayScore": 1,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-10T17:30:00+02:00",
@@ -226,9 +226,9 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "NOVARA",
-      "away": "CITTADELLA",
-      "homeScore": 0,
+      "home": "LUMEZZANE",
+      "away": "ALBINOLEFFE",
+      "homeScore": 3,
       "awayScore": 2,
       "hasScore": true,
       "status": "FT",
@@ -240,12 +240,12 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "OSTIAMARE",
-      "away": "PIANESE",
-      "homeScore": 0,
-      "awayScore": 0,
-      "hasScore": true,
-      "status": "FT",
+      "home": "PINETO",
+      "away": "REGGIANA",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "Dati non aggiornati",
       "time": "2026-10-10T17:30:00+02:00",
       "eventDate": "2026-10-10T17:30:00+02:00",
       "competition": "Serie C",
@@ -254,12 +254,12 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "PINETO",
-      "away": "REGGIANA",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "Dati non aggiornati",
+      "home": "OSTIAMARE",
+      "away": "PIANESE",
+      "homeScore": 0,
+      "awayScore": 0,
+      "hasScore": true,
+      "status": "FT",
       "time": "2026-10-10T17:30:00+02:00",
       "eventDate": "2026-10-10T17:30:00+02:00",
       "competition": "Serie C",
@@ -352,8 +352,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "SCAFATESE",
-      "away": "SORRENTO",
+      "home": "FOGGIA",
+      "away": "POTENZA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -366,8 +366,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "FOGGIA",
-      "away": "POTENZA",
+      "home": "SCAFATESE",
+      "away": "SORRENTO",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -394,6 +394,20 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
+      "home": "LECCO",
+      "away": "ALCIONE MILANO",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-11T17:30:00+02:00",
+      "eventDate": "2026-10-11T17:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone A",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
       "home": "TREVISO",
       "away": "OSPITALETTO F.",
       "homeScore": "",
@@ -410,20 +424,6 @@
     {
       "home": "TRENTO",
       "away": "FOLGORE CARATESE",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
-      "time": "2026-10-11T17:30:00+02:00",
-      "eventDate": "2026-10-11T17:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone A",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
-      "home": "LECCO",
-      "away": "ALCIONE MILANO",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -465,5 +465,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-10T20:59:43.283381+00:00"
+  "serieCUpdatedAt": "2026-10-10T21:20:38.031494+00:00"
 }

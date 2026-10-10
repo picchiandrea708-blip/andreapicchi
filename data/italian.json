@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-10T11:37:49.753647+00:00",
+  "updatedAt": "2026-10-10T11:59:51.802203+00:00",
   "lba": [
     {
       "home": "APU Old Wild West Udine",
@@ -156,6 +156,20 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
+      "home": "BARI",
+      "away": "GIUGLIANO",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-10T14:30:00+02:00",
+      "eventDate": "2026-10-10T14:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone C",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
       "home": "CROTONE",
       "away": "AUDACE CERIGNOLA",
       "homeScore": "",
@@ -184,34 +198,6 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "BARI",
-      "away": "GIUGLIANO",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
-      "time": "2026-10-10T14:30:00+02:00",
-      "eventDate": "2026-10-10T14:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone C",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
-      "home": "DESENZANO",
-      "away": "DOLOMITI BELLUNESI",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
-      "time": "2026-10-10T17:30:00+02:00",
-      "eventDate": "2026-10-10T17:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone A",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
       "home": "ARZIGNANO V.",
       "away": "JUVENTUS NEXT GEN",
       "homeScore": "",
@@ -228,6 +214,20 @@
     {
       "home": "LUMEZZANE",
       "away": "ALBINOLEFFE",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-10T17:30:00+02:00",
+      "eventDate": "2026-10-10T17:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone A",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "DESENZANO",
+      "away": "DOLOMITI BELLUNESI",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -325,5 +325,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-10T11:37:49.753647+00:00"
+  "serieCUpdatedAt": "2026-10-10T11:59:51.802203+00:00"
 }

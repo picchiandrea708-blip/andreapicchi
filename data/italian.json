@@ -1,11 +1,11 @@
 {
-  "updatedAt": "2026-10-10T18:52:23.124772+00:00",
+  "updatedAt": "2026-10-10T19:20:19.224347+00:00",
   "lba": [
     {
       "home": "APU Old Wild West Udine",
       "away": "Dolomiti Energia Trentino",
-      "homeScore": 33,
-      "awayScore": 38,
+      "homeScore": 45,
+      "awayScore": 48,
       "hasScore": true,
       "status": "LIVE",
       "time": "2026-10-10T20:00:00.000+02:00",
@@ -16,8 +16,8 @@
     {
       "home": "Openjobmetis Varese",
       "away": "Pallacanestro Trieste",
-      "homeScore": 17,
-      "awayScore": 14,
+      "homeScore": 38,
+      "awayScore": 38,
       "hasScore": true,
       "status": "LIVE",
       "time": "2026-10-10T20:30:00.000+02:00",
@@ -128,38 +128,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "CASERTANA",
-      "away": "MONOPOLI",
-      "homeScore": 3,
-      "awayScore": 1,
-      "hasScore": true,
-      "status": "FT",
-      "time": "2026-10-10T14:30:00+02:00",
-      "eventDate": "2026-10-10T14:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone C",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
       "home": "SAVOIA",
       "away": "INTER UNDER 23",
       "homeScore": 2,
       "awayScore": 1,
-      "hasScore": true,
-      "status": "FT",
-      "time": "2026-10-10T14:30:00+02:00",
-      "eventDate": "2026-10-10T14:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone C",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
-      "home": "BARI",
-      "away": "GIUGLIANO",
-      "homeScore": 2,
-      "awayScore": 0,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-10T14:30:00+02:00",
@@ -184,30 +156,30 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "DESENZANO",
-      "away": "DOLOMITI BELLUNESI",
+      "home": "BARI",
+      "away": "GIUGLIANO",
       "homeScore": 2,
       "awayScore": 0,
       "hasScore": true,
       "status": "FT",
-      "time": "2026-10-10T17:30:00+02:00",
-      "eventDate": "2026-10-10T17:30:00+02:00",
+      "time": "2026-10-10T14:30:00+02:00",
+      "eventDate": "2026-10-10T14:30:00+02:00",
       "competition": "Serie C",
-      "group": "Girone A",
+      "group": "Girone C",
       "source": "Lega Pro",
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "ARZIGNANO V.",
-      "away": "JUVENTUS NEXT GEN",
-      "homeScore": 2,
+      "home": "CASERTANA",
+      "away": "MONOPOLI",
+      "homeScore": 3,
       "awayScore": 1,
       "hasScore": true,
       "status": "FT",
-      "time": "2026-10-10T17:30:00+02:00",
-      "eventDate": "2026-10-10T17:30:00+02:00",
+      "time": "2026-10-10T14:30:00+02:00",
+      "eventDate": "2026-10-10T14:30:00+02:00",
       "competition": "Serie C",
-      "group": "Girone A",
+      "group": "Girone C",
       "source": "Lega Pro",
       "sourceUrl": "https://www.seriec.com/calendario"
     },
@@ -230,6 +202,34 @@
       "away": "ALBINOLEFFE",
       "homeScore": 3,
       "awayScore": 2,
+      "hasScore": true,
+      "status": "FT",
+      "time": "2026-10-10T17:30:00+02:00",
+      "eventDate": "2026-10-10T17:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone A",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "DESENZANO",
+      "away": "DOLOMITI BELLUNESI",
+      "homeScore": 2,
+      "awayScore": 0,
+      "hasScore": true,
+      "status": "FT",
+      "time": "2026-10-10T17:30:00+02:00",
+      "eventDate": "2026-10-10T17:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone A",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "ARZIGNANO V.",
+      "away": "JUVENTUS NEXT GEN",
+      "homeScore": 2,
+      "awayScore": 1,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-10T17:30:00+02:00",
@@ -270,7 +270,7 @@
     {
       "home": "SPEZIA",
       "away": "GUBBIO",
-      "homeScore": 1,
+      "homeScore": 2,
       "awayScore": 0,
       "hasScore": true,
       "status": "LIVE",
@@ -408,20 +408,6 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "LECCO",
-      "away": "ALCIONE MILANO",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
-      "time": "2026-10-11T17:30:00+02:00",
-      "eventDate": "2026-10-11T17:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone A",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
       "home": "TRENTO",
       "away": "FOLGORE CARATESE",
       "homeScore": "",
@@ -436,8 +422,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "PERUGIA",
-      "away": "VADO",
+      "home": "LECCO",
+      "away": "ALCIONE MILANO",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -445,7 +431,7 @@
       "time": "2026-10-11T17:30:00+02:00",
       "eventDate": "2026-10-11T17:30:00+02:00",
       "competition": "Serie C",
-      "group": "Girone B",
+      "group": "Girone A",
       "source": "Lega Pro",
       "sourceUrl": "https://www.seriec.com/calendario"
     },
@@ -462,8 +448,22 @@
       "group": "Girone B",
       "source": "Lega Pro",
       "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "PERUGIA",
+      "away": "VADO",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-11T17:30:00+02:00",
+      "eventDate": "2026-10-11T17:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone B",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-10T18:52:23.124772+00:00"
+  "serieCUpdatedAt": "2026-10-10T19:20:19.224347+00:00"
 }

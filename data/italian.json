@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-10T20:21:18.878239+00:00",
+  "updatedAt": "2026-10-10T20:39:10.415075+00:00",
   "lba": [
     {
       "home": "APU Old Wild West Udine",
@@ -16,8 +16,8 @@
     {
       "home": "Openjobmetis Varese",
       "away": "Pallacanestro Trieste",
-      "homeScore": 78,
-      "awayScore": 68,
+      "homeScore": 83,
+      "awayScore": 81,
       "hasScore": true,
       "status": "LIVE",
       "time": "2026-10-10T20:30:00.000+02:00",
@@ -184,10 +184,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "DESENZANO",
-      "away": "DOLOMITI BELLUNESI",
-      "homeScore": 2,
-      "awayScore": 0,
+      "home": "NOVARA",
+      "away": "CITTADELLA",
+      "homeScore": 0,
+      "awayScore": 2,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-10T17:30:00+02:00",
@@ -198,9 +198,9 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "NOVARA",
-      "away": "CITTADELLA",
-      "homeScore": 0,
+      "home": "LUMEZZANE",
+      "away": "ALBINOLEFFE",
+      "homeScore": 3,
       "awayScore": 2,
       "hasScore": true,
       "status": "FT",
@@ -226,30 +226,16 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "LUMEZZANE",
-      "away": "ALBINOLEFFE",
-      "homeScore": 3,
-      "awayScore": 2,
+      "home": "DESENZANO",
+      "away": "DOLOMITI BELLUNESI",
+      "homeScore": 2,
+      "awayScore": 0,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-10T17:30:00+02:00",
       "eventDate": "2026-10-10T17:30:00+02:00",
       "competition": "Serie C",
       "group": "Girone A",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
-      "home": "PINETO",
-      "away": "REGGIANA",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "Dati non aggiornati",
-      "time": "2026-10-10T17:30:00+02:00",
-      "eventDate": "2026-10-10T17:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone B",
       "source": "Lega Pro",
       "sourceUrl": "https://www.seriec.com/calendario"
     },
@@ -268,12 +254,26 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
+      "home": "PINETO",
+      "away": "REGGIANA",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "Dati non aggiornati",
+      "time": "2026-10-10T17:30:00+02:00",
+      "eventDate": "2026-10-10T17:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone B",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
       "home": "SPEZIA",
       "away": "GUBBIO",
       "homeScore": 2,
       "awayScore": 0,
       "hasScore": true,
-      "status": "LIVE",
+      "status": "Risultato ufficiale",
       "time": "2026-10-10T20:30:00+02:00",
       "eventDate": "2026-10-10T20:30:00+02:00",
       "competition": "Serie C",
@@ -408,8 +408,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "TRENTO",
-      "away": "FOLGORE CARATESE",
+      "home": "TREVISO",
+      "away": "OSPITALETTO F.",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -422,8 +422,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "TREVISO",
-      "away": "OSPITALETTO F.",
+      "home": "TRENTO",
+      "away": "FOLGORE CARATESE",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -465,5 +465,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-10T20:21:18.878239+00:00"
+  "serieCUpdatedAt": "2026-10-10T20:39:10.415075+00:00"
 }

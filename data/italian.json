@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-10T01:50:31.751212+00:00",
+  "updatedAt": "2026-10-10T02:03:50.180939+00:00",
   "lba": [
     {
       "home": "APU Old Wild West Udine",
@@ -198,20 +198,6 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "LUMEZZANE",
-      "away": "ALBINOLEFFE",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
-      "time": "2026-10-10T17:30:00+02:00",
-      "eventDate": "2026-10-10T17:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone A",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
       "home": "DESENZANO",
       "away": "DOLOMITI BELLUNESI",
       "homeScore": "",
@@ -254,8 +240,22 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "OSTIAMARE",
-      "away": "PIANESE",
+      "home": "LUMEZZANE",
+      "away": "ALBINOLEFFE",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-10T17:30:00+02:00",
+      "eventDate": "2026-10-10T17:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone A",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "PINETO",
+      "away": "REGGIANA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -268,8 +268,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "PINETO",
-      "away": "REGGIANA",
+      "home": "OSTIAMARE",
+      "away": "PIANESE",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -297,5 +297,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-10T01:50:31.751212+00:00"
+  "serieCUpdatedAt": "2026-10-10T02:03:50.180939+00:00"
 }

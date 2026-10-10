@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-10T10:21:24.796575+00:00",
+  "updatedAt": "2026-10-10T10:38:48.559758+00:00",
   "lba": [
     {
       "home": "APU Old Wild West Udine",
@@ -294,8 +294,36 @@
       "group": "Girone B",
       "source": "Lega Pro",
       "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "TORRES",
+      "away": "ATALANTA UNDER 23",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-11T12:30:00+02:00",
+      "eventDate": "2026-10-11T12:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone B",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "ALTAMURA",
+      "away": "CATANIA",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-11T12:30:00+02:00",
+      "eventDate": "2026-10-11T12:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone C",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-10T10:21:24.796575+00:00"
+  "serieCUpdatedAt": "2026-10-10T10:38:48.559758+00:00"
 }

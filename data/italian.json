@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-10T15:38:43.944215+00:00",
+  "updatedAt": "2026-10-10T15:59:17.795219+00:00",
   "lba": [
     {
       "home": "APU Old Wild West Udine",
@@ -142,38 +142,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "CASERTANA",
-      "away": "MONOPOLI",
-      "homeScore": 3,
-      "awayScore": 1,
-      "hasScore": true,
-      "status": "FT",
-      "time": "2026-10-10T14:30:00+02:00",
-      "eventDate": "2026-10-10T14:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone C",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
       "home": "BARI",
       "away": "GIUGLIANO",
       "homeScore": 2,
       "awayScore": 0,
-      "hasScore": true,
-      "status": "FT",
-      "time": "2026-10-10T14:30:00+02:00",
-      "eventDate": "2026-10-10T14:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone C",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
-      "home": "CROTONE",
-      "away": "AUDACE CERIGNOLA",
-      "homeScore": 2,
-      "awayScore": 3,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-10T14:30:00+02:00",
@@ -198,22 +170,36 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "ARZIGNANO V.",
-      "away": "JUVENTUS NEXT GEN",
-      "homeScore": 0,
-      "awayScore": 0,
+      "home": "CASERTANA",
+      "away": "MONOPOLI",
+      "homeScore": 3,
+      "awayScore": 1,
       "hasScore": true,
-      "status": "LIVE",
-      "time": "2026-10-10T17:30:00+02:00",
-      "eventDate": "2026-10-10T17:30:00+02:00",
+      "status": "FT",
+      "time": "2026-10-10T14:30:00+02:00",
+      "eventDate": "2026-10-10T14:30:00+02:00",
       "competition": "Serie C",
-      "group": "Girone A",
+      "group": "Girone C",
       "source": "Lega Pro",
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "DESENZANO",
-      "away": "DOLOMITI BELLUNESI",
+      "home": "CROTONE",
+      "away": "AUDACE CERIGNOLA",
+      "homeScore": 2,
+      "awayScore": 3,
+      "hasScore": true,
+      "status": "FT",
+      "time": "2026-10-10T14:30:00+02:00",
+      "eventDate": "2026-10-10T14:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone C",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "LUMEZZANE",
+      "away": "ALBINOLEFFE",
       "homeScore": 1,
       "awayScore": 0,
       "hasScore": true,
@@ -240,9 +226,23 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "LUMEZZANE",
-      "away": "ALBINOLEFFE",
-      "homeScore": 0,
+      "home": "DESENZANO",
+      "away": "DOLOMITI BELLUNESI",
+      "homeScore": 1,
+      "awayScore": 0,
+      "hasScore": true,
+      "status": "LIVE",
+      "time": "2026-10-10T17:30:00+02:00",
+      "eventDate": "2026-10-10T17:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone A",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "ARZIGNANO V.",
+      "away": "JUVENTUS NEXT GEN",
+      "homeScore": 1,
       "awayScore": 0,
       "hasScore": true,
       "status": "LIVE",
@@ -256,7 +256,7 @@
     {
       "home": "PINETO",
       "away": "REGGIANA",
-      "homeScore": 0,
+      "homeScore": 1,
       "awayScore": 0,
       "hasScore": true,
       "status": "LIVE",
@@ -366,8 +366,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "SCAFATESE",
-      "away": "SORRENTO",
+      "home": "FOGGIA",
+      "away": "POTENZA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -380,8 +380,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "FOGGIA",
-      "away": "POTENZA",
+      "home": "SCAFATESE",
+      "away": "SORRENTO",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -408,8 +408,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "TRENTO",
-      "away": "FOLGORE CARATESE",
+      "home": "TREVISO",
+      "away": "OSPITALETTO F.",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -422,8 +422,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "TREVISO",
-      "away": "OSPITALETTO F.",
+      "home": "TRENTO",
+      "away": "FOLGORE CARATESE",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -450,8 +450,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "FORLÌ",
-      "away": "LIVORNO",
+      "home": "PERUGIA",
+      "away": "VADO",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -464,8 +464,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "PERUGIA",
-      "away": "VADO",
+      "home": "FORLÌ",
+      "away": "LIVORNO",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -479,5 +479,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-10T15:38:43.944215+00:00"
+  "serieCUpdatedAt": "2026-10-10T15:59:17.795219+00:00"
 }

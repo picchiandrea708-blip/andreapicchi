@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-10T15:59:17.795219+00:00",
+  "updatedAt": "2026-10-10T16:21:29.095943+00:00",
   "lba": [
     {
       "home": "APU Old Wild West Udine",
@@ -156,6 +156,20 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
+      "home": "CROTONE",
+      "away": "AUDACE CERIGNOLA",
+      "homeScore": 2,
+      "awayScore": 3,
+      "hasScore": true,
+      "status": "FT",
+      "time": "2026-10-10T14:30:00+02:00",
+      "eventDate": "2026-10-10T14:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone C",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
       "home": "SAVOIA",
       "away": "INTER UNDER 23",
       "homeScore": 2,
@@ -184,37 +198,9 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "CROTONE",
-      "away": "AUDACE CERIGNOLA",
-      "homeScore": 2,
-      "awayScore": 3,
-      "hasScore": true,
-      "status": "FT",
-      "time": "2026-10-10T14:30:00+02:00",
-      "eventDate": "2026-10-10T14:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone C",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
-      "home": "LUMEZZANE",
-      "away": "ALBINOLEFFE",
+      "home": "ARZIGNANO V.",
+      "away": "JUVENTUS NEXT GEN",
       "homeScore": 1,
-      "awayScore": 0,
-      "hasScore": true,
-      "status": "LIVE",
-      "time": "2026-10-10T17:30:00+02:00",
-      "eventDate": "2026-10-10T17:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone A",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
-      "home": "NOVARA",
-      "away": "CITTADELLA",
-      "homeScore": 0,
       "awayScore": 0,
       "hasScore": true,
       "status": "LIVE",
@@ -240,10 +226,24 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "ARZIGNANO V.",
-      "away": "JUVENTUS NEXT GEN",
-      "homeScore": 1,
-      "awayScore": 0,
+      "home": "LUMEZZANE",
+      "away": "ALBINOLEFFE",
+      "homeScore": 2,
+      "awayScore": 1,
+      "hasScore": true,
+      "status": "LIVE",
+      "time": "2026-10-10T17:30:00+02:00",
+      "eventDate": "2026-10-10T17:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone A",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "NOVARA",
+      "away": "CITTADELLA",
+      "homeScore": 0,
+      "awayScore": 1,
       "hasScore": true,
       "status": "LIVE",
       "time": "2026-10-10T17:30:00+02:00",
@@ -256,7 +256,7 @@
     {
       "home": "PINETO",
       "away": "REGGIANA",
-      "homeScore": 1,
+      "homeScore": 2,
       "awayScore": 0,
       "hasScore": true,
       "status": "LIVE",
@@ -338,20 +338,6 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "SAMBENEDETTESE",
-      "away": "LATINA",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
-      "time": "2026-10-11T14:30:00+02:00",
-      "eventDate": "2026-10-11T14:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone B",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
       "home": "RAVENNA",
       "away": "CAMPOBASSO",
       "homeScore": "",
@@ -366,8 +352,22 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "FOGGIA",
-      "away": "POTENZA",
+      "home": "SAMBENEDETTESE",
+      "away": "LATINA",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-11T14:30:00+02:00",
+      "eventDate": "2026-10-11T14:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone B",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "SCAFATESE",
+      "away": "SORRENTO",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -380,8 +380,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "SCAFATESE",
-      "away": "SORRENTO",
+      "home": "FOGGIA",
+      "away": "POTENZA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -408,8 +408,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "TREVISO",
-      "away": "OSPITALETTO F.",
+      "home": "LECCO",
+      "away": "ALCIONE MILANO",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -436,8 +436,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "LECCO",
-      "away": "ALCIONE MILANO",
+      "home": "TREVISO",
+      "away": "OSPITALETTO F.",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -446,20 +446,6 @@
       "eventDate": "2026-10-11T17:30:00+02:00",
       "competition": "Serie C",
       "group": "Girone A",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
-      "home": "PERUGIA",
-      "away": "VADO",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
-      "time": "2026-10-11T17:30:00+02:00",
-      "eventDate": "2026-10-11T17:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone B",
       "source": "Lega Pro",
       "sourceUrl": "https://www.seriec.com/calendario"
     },
@@ -476,8 +462,22 @@
       "group": "Girone B",
       "source": "Lega Pro",
       "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "PERUGIA",
+      "away": "VADO",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-11T17:30:00+02:00",
+      "eventDate": "2026-10-11T17:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone B",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-10T15:59:17.795219+00:00"
+  "serieCUpdatedAt": "2026-10-10T16:21:29.095943+00:00"
 }

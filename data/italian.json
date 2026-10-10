@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-10T10:00:12.784045+00:00",
+  "updatedAt": "2026-10-10T10:21:24.796575+00:00",
   "lba": [
     {
       "home": "APU Old Wild West Udine",
@@ -198,22 +198,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "DESENZANO",
-      "away": "DOLOMITI BELLUNESI",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
-      "time": "2026-10-10T17:30:00+02:00",
-      "eventDate": "2026-10-10T17:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone A",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
-      "home": "NOVARA",
-      "away": "CITTADELLA",
+      "home": "LUMEZZANE",
+      "away": "ALBINOLEFFE",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -240,8 +226,22 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "LUMEZZANE",
-      "away": "ALBINOLEFFE",
+      "home": "DESENZANO",
+      "away": "DOLOMITI BELLUNESI",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-10T17:30:00+02:00",
+      "eventDate": "2026-10-10T17:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone A",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "NOVARA",
+      "away": "CITTADELLA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -296,7 +296,6 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     }
   ],
-  "lbaError": "LBA: HTTP Error 504: Gateway Timeout",
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-10T10:00:12.784045+00:00"
+  "serieCUpdatedAt": "2026-10-10T10:21:24.796575+00:00"
 }

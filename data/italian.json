@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-10T06:00:18.342587+00:00",
+  "updatedAt": "2026-10-10T06:27:04.405113+00:00",
   "lba": [
     {
       "home": "APU Old Wild West Udine",
@@ -198,8 +198,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "NOVARA",
-      "away": "CITTADELLA",
+      "home": "LUMEZZANE",
+      "away": "ALBINOLEFFE",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -226,8 +226,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "LUMEZZANE",
-      "away": "ALBINOLEFFE",
+      "home": "NOVARA",
+      "away": "CITTADELLA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -297,5 +297,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-10T06:00:18.342587+00:00"
+  "serieCUpdatedAt": "2026-10-10T06:27:04.405113+00:00"
 }

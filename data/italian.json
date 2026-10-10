@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-10T09:40:24.295384+00:00",
+  "updatedAt": "2026-10-10T10:00:12.784045+00:00",
   "lba": [
     {
       "home": "APU Old Wild West Udine",
@@ -142,8 +142,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "SAVOIA",
-      "away": "INTER UNDER 23",
+      "home": "CASERTANA",
+      "away": "MONOPOLI",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -184,8 +184,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "CASERTANA",
-      "away": "MONOPOLI",
+      "home": "SAVOIA",
+      "away": "INTER UNDER 23",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -226,8 +226,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "LUMEZZANE",
-      "away": "ALBINOLEFFE",
+      "home": "ARZIGNANO V.",
+      "away": "JUVENTUS NEXT GEN",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -240,8 +240,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "ARZIGNANO V.",
-      "away": "JUVENTUS NEXT GEN",
+      "home": "LUMEZZANE",
+      "away": "ALBINOLEFFE",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -296,6 +296,7 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     }
   ],
+  "lbaError": "LBA: HTTP Error 504: Gateway Timeout",
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-10T09:40:24.295384+00:00"
+  "serieCUpdatedAt": "2026-10-10T10:00:12.784045+00:00"
 }

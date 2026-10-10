@@ -1,0 +1,28 @@
+name: Aggiorna MotoGP
+on:
+  schedule:
+    - cron: '*/15 * * * 5,6,0'   # venerdì, sabato, domenica (UTC): ogni 15 minuti
+    - cron: '15 */3 * * 1-4'     # resto della settimana: ogni 3 ore
+  workflow_dispatch:
+concurrency:
+  group: motogp
+  cancel-in-progress: false
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: node update-motogp.mjs
+      - run: |
+          git config user.name "motogp-bot"
+          git config user.email "motogp-bot@users.noreply.github.com"
+          git add moto-data.json moto-archive
+          git diff --staged --quiet || git commit -m "aggiorna classifiche MotoGP"
+          git pull --rebase --autostash
+          git push

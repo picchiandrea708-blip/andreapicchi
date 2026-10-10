@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-10T14:59:39.951031+00:00",
+  "updatedAt": "2026-10-10T15:20:57.180425+00:00",
   "lba": [
     {
       "home": "APU Old Wild West Udine",
@@ -142,24 +142,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "BARI",
-      "away": "GIUGLIANO",
+      "home": "SAVOIA",
+      "away": "INTER UNDER 23",
       "homeScore": 2,
-      "awayScore": 0,
-      "hasScore": true,
-      "status": "Risultato ufficiale",
-      "time": "2026-10-10T14:30:00+02:00",
-      "eventDate": "2026-10-10T14:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone C",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
-      "home": "CROTONE",
-      "away": "AUDACE CERIGNOLA",
-      "homeScore": 2,
-      "awayScore": 3,
+      "awayScore": 1,
       "hasScore": true,
       "status": "Risultato ufficiale",
       "time": "2026-10-10T14:30:00+02:00",
@@ -184,10 +170,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "SAVOIA",
-      "away": "INTER UNDER 23",
+      "home": "CROTONE",
+      "away": "AUDACE CERIGNOLA",
       "homeScore": 2,
-      "awayScore": 1,
+      "awayScore": 3,
       "hasScore": true,
       "status": "Risultato ufficiale",
       "time": "2026-10-10T14:30:00+02:00",
@@ -198,16 +184,16 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "DESENZANO",
-      "away": "DOLOMITI BELLUNESI",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
-      "time": "2026-10-10T17:30:00+02:00",
-      "eventDate": "2026-10-10T17:30:00+02:00",
+      "home": "BARI",
+      "away": "GIUGLIANO",
+      "homeScore": 2,
+      "awayScore": 0,
+      "hasScore": true,
+      "status": "Risultato ufficiale",
+      "time": "2026-10-10T14:30:00+02:00",
+      "eventDate": "2026-10-10T14:30:00+02:00",
       "competition": "Serie C",
-      "group": "Girone A",
+      "group": "Girone C",
       "source": "Lega Pro",
       "sourceUrl": "https://www.seriec.com/calendario"
     },
@@ -226,8 +212,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "NOVARA",
-      "away": "CITTADELLA",
+      "home": "DESENZANO",
+      "away": "DOLOMITI BELLUNESI",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -254,8 +240,22 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "OSTIAMARE",
-      "away": "PIANESE",
+      "home": "NOVARA",
+      "away": "CITTADELLA",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-10T17:30:00+02:00",
+      "eventDate": "2026-10-10T17:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone A",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "PINETO",
+      "away": "REGGIANA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -268,8 +268,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "PINETO",
-      "away": "REGGIANA",
+      "home": "OSTIAMARE",
+      "away": "PIANESE",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -366,8 +366,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "SCAFATESE",
-      "away": "SORRENTO",
+      "home": "FOGGIA",
+      "away": "POTENZA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -380,8 +380,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "FOGGIA",
-      "away": "POTENZA",
+      "home": "SCAFATESE",
+      "away": "SORRENTO",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -409,5 +409,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-10T14:59:39.951031+00:00"
+  "serieCUpdatedAt": "2026-10-10T15:20:57.180425+00:00"
 }

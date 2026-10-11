@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-10T23:50:47.015320+00:00",
+  "updatedAt": "2026-10-11T00:03:36.601116+00:00",
   "lba": [
     {
       "home": "APU Old Wild West Udine",
@@ -128,10 +128,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "CROTONE",
-      "away": "AUDACE CERIGNOLA",
+      "home": "SAVOIA",
+      "away": "INTER UNDER 23",
       "homeScore": 2,
-      "awayScore": 3,
+      "awayScore": 1,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-10T14:30:00+02:00",
@@ -156,9 +156,9 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "SAVOIA",
-      "away": "INTER UNDER 23",
-      "homeScore": 2,
+      "home": "CASERTANA",
+      "away": "MONOPOLI",
+      "homeScore": 3,
       "awayScore": 1,
       "hasScore": true,
       "status": "FT",
@@ -170,10 +170,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "CASERTANA",
-      "away": "MONOPOLI",
-      "homeScore": 3,
-      "awayScore": 1,
+      "home": "CROTONE",
+      "away": "AUDACE CERIGNOLA",
+      "homeScore": 2,
+      "awayScore": 3,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-10T14:30:00+02:00",
@@ -198,10 +198,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "DESENZANO",
-      "away": "DOLOMITI BELLUNESI",
-      "homeScore": 2,
-      "awayScore": 0,
+      "home": "NOVARA",
+      "away": "CITTADELLA",
+      "homeScore": 0,
+      "awayScore": 2,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-10T17:30:00+02:00",
@@ -212,10 +212,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "NOVARA",
-      "away": "CITTADELLA",
-      "homeScore": 0,
-      "awayScore": 2,
+      "home": "DESENZANO",
+      "away": "DOLOMITI BELLUNESI",
+      "homeScore": 2,
+      "awayScore": 0,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-10T17:30:00+02:00",
@@ -394,8 +394,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "TRENTO",
-      "away": "FOLGORE CARATESE",
+      "home": "TREVISO",
+      "away": "OSPITALETTO F.",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -422,8 +422,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "TREVISO",
-      "away": "OSPITALETTO F.",
+      "home": "TRENTO",
+      "away": "FOLGORE CARATESE",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -465,5 +465,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-10T23:50:47.015320+00:00"
+  "serieCUpdatedAt": "2026-10-11T00:03:36.601116+00:00"
 }

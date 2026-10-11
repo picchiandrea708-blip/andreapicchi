@@ -1,0 +1,28 @@
+name: MotoGP live
+on:
+  schedule:
+    - cron: '*/5 * * * 5,6,0'   # venerdì, sabato, domenica (UTC): controlla ogni 5 minuti se c'è una sessione
+  workflow_dispatch:
+    inputs:
+      test:
+        description: 'Prova: controlla MotoGP e pubblica un file di prova (anche senza sessioni)'
+        type: boolean
+        default: false
+concurrency:
+  group: motogp-live
+  cancel-in-progress: false
+jobs:
+  live:
+    runs-on: ubuntu-latest
+    timeout-minutes: 62
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: '20'
+      - run: node live-motogp.mjs
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          TEST_PUBLISH: ${{ inputs.test && '1' || '' }}

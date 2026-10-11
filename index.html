@@ -144,7 +144,7 @@
 </head>
 <body>
   <header>
-    <div class="logo">SPORT<span>LIVE</span><small style="opacity:.45;font-size:.65rem"> v52</small></div>
+    <div class="logo">SPORT<span>LIVE</span><small style="opacity:.45;font-size:.65rem"> v53</small></div>
     <div class="status-bar">
       <div class="dot" id="liveDot"></div>
       <span id="lastUpdate">Connessione…</span>
@@ -345,6 +345,13 @@
           }
         } catch (e) { lines.push('INFO   F1 TimingData.jsonStream NON leggibile: ' + e.message); }
       } catch (e) { lines.push('INFO   F1 sessione corrente non leggibile'); }
+      try {
+        const pr = await (await fetch('https://raw.githubusercontent.com/picchiandrea708-blip/andreapicchi/f1probe/f1-probe.json?t=' + Date.now())).json();
+        const ageMin = Math.round((Date.now() - Date.parse(pr.generatedAt)) / 60000);
+        lines.push(`INFO   Prova F1 da GitHub (eseguita ${ageMin} min fa):`);
+        lines.push('INFO      ' + (pr.legacy && pr.legacy.summary || '?'));
+        lines.push('INFO      ' + (pr.core && pr.core.summary || '?'));
+      } catch (_) { lines.push('INFO   Prova F1 da GitHub: non ancora eseguita'); }
       // --- Dettaglio Serie C: cosa vede ogni fonte ---
       try {
         const counts = []; let leagueName = '';

@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-11T17:38:36.408517+00:00",
+  "updatedAt": "2026-10-11T17:59:32.345248+00:00",
   "lba": [
     {
       "home": "APU Old Wild West Udine",
@@ -64,8 +64,8 @@
     {
       "home": "Longobardi Scafati Basket",
       "away": "Tezenis Verona",
-      "homeScore": 34,
-      "awayScore": 40,
+      "homeScore": 46,
+      "awayScore": 54,
       "hasScore": true,
       "status": "LIVE",
       "time": "2026-10-11T18:00:00.000+02:00",
@@ -76,8 +76,8 @@
     {
       "home": "Maxima Roma",
       "away": "BC Roma",
-      "homeScore": 72,
-      "awayScore": 68,
+      "homeScore": 87,
+      "awayScore": 81,
       "hasScore": true,
       "status": "LIVE",
       "time": "2026-10-11T18:15:00.000+02:00",
@@ -88,8 +88,8 @@
     {
       "home": "Umana Reyer Venezia",
       "away": "Virtus Costa Bologna",
-      "homeScore": 41,
-      "awayScore": 37,
+      "homeScore": 51,
+      "awayScore": 45,
       "hasScore": true,
       "status": "LIVE",
       "time": "2026-10-11T19:00:00.000+02:00",
@@ -226,9 +226,9 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "TREVISO",
-      "away": "OSPITALETTO F.",
-      "homeScore": 0,
+      "home": "LECCO",
+      "away": "ALCIONE MILANO",
+      "homeScore": 1,
       "awayScore": 1,
       "hasScore": true,
       "status": "Risultato ufficiale",
@@ -254,9 +254,9 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "LECCO",
-      "away": "ALCIONE MILANO",
-      "homeScore": 1,
+      "home": "TREVISO",
+      "away": "OSPITALETTO F.",
+      "homeScore": 0,
       "awayScore": 1,
       "hasScore": true,
       "status": "Risultato ufficiale",
@@ -273,7 +273,7 @@
       "homeScore": 0,
       "awayScore": 2,
       "hasScore": true,
-      "status": "LIVE",
+      "status": "Risultato ufficiale",
       "time": "2026-10-11T17:30:00+02:00",
       "eventDate": "2026-10-11T17:30:00+02:00",
       "competition": "Serie C",
@@ -297,5 +297,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-11T17:38:36.408517+00:00"
+  "serieCUpdatedAt": "2026-10-11T17:59:32.345248+00:00"
 }

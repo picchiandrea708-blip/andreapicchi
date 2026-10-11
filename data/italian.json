@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-11T14:01:39.496605+00:00",
+  "updatedAt": "2026-10-11T14:21:56.711530+00:00",
   "lba": [
     {
       "home": "APU Old Wild West Udine",
@@ -28,8 +28,8 @@
     {
       "home": "Armani Olimpia Milano",
       "away": "Nutribullet Treviso Basket",
-      "homeScore": 0,
-      "awayScore": 0,
+      "homeScore": 30,
+      "awayScore": 28,
       "hasScore": true,
       "status": "LIVE",
       "time": "2026-10-11T16:00:00.000+02:00",
@@ -114,10 +114,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "ARZIGNANO V.",
-      "away": "JUVENTUS NEXT GEN",
-      "homeScore": 2,
-      "awayScore": 1,
+      "home": "LUMEZZANE",
+      "away": "ALBINOLEFFE",
+      "homeScore": 3,
+      "awayScore": 2,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-10T17:30:00+02:00",
@@ -142,10 +142,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "LUMEZZANE",
-      "away": "ALBINOLEFFE",
-      "homeScore": 3,
-      "awayScore": 2,
+      "home": "ARZIGNANO V.",
+      "away": "JUVENTUS NEXT GEN",
+      "homeScore": 2,
+      "awayScore": 1,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-10T17:30:00+02:00",
@@ -156,12 +156,12 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "OSTIAMARE",
-      "away": "PIANESE",
-      "homeScore": 0,
-      "awayScore": 0,
-      "hasScore": true,
-      "status": "FT",
+      "home": "PINETO",
+      "away": "REGGIANA",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "Dati non aggiornati",
       "time": "2026-10-10T17:30:00+02:00",
       "eventDate": "2026-10-10T17:30:00+02:00",
       "competition": "Serie C",
@@ -170,12 +170,12 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "PINETO",
-      "away": "REGGIANA",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "Dati non aggiornati",
+      "home": "OSTIAMARE",
+      "away": "PIANESE",
+      "homeScore": 0,
+      "awayScore": 0,
+      "hasScore": true,
+      "status": "FT",
       "time": "2026-10-10T17:30:00+02:00",
       "eventDate": "2026-10-10T17:30:00+02:00",
       "competition": "Serie C",
@@ -228,8 +228,8 @@
     {
       "home": "RENATE",
       "away": "GIANA ERMINIO",
-      "homeScore": 1,
-      "awayScore": 1,
+      "homeScore": 2,
+      "awayScore": 2,
       "hasScore": true,
       "status": "LIVE",
       "time": "2026-10-11T14:30:00+02:00",
@@ -256,8 +256,8 @@
     {
       "home": "RAVENNA",
       "away": "CAMPOBASSO",
-      "homeScore": 2,
-      "awayScore": 0,
+      "homeScore": 3,
+      "awayScore": 1,
       "hasScore": true,
       "status": "LIVE",
       "time": "2026-10-11T14:30:00+02:00",
@@ -268,10 +268,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "FOGGIA",
-      "away": "POTENZA",
-      "homeScore": 0,
-      "awayScore": 3,
+      "home": "SCAFATESE",
+      "away": "SORRENTO",
+      "homeScore": 3,
+      "awayScore": 1,
       "hasScore": true,
       "status": "LIVE",
       "time": "2026-10-11T14:30:00+02:00",
@@ -282,10 +282,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "SCAFATESE",
-      "away": "SORRENTO",
-      "homeScore": 3,
-      "awayScore": 0,
+      "home": "FOGGIA",
+      "away": "POTENZA",
+      "homeScore": 0,
+      "awayScore": 3,
       "hasScore": true,
       "status": "LIVE",
       "time": "2026-10-11T14:30:00+02:00",
@@ -310,8 +310,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "TREVISO",
-      "away": "OSPITALETTO F.",
+      "home": "TRENTO",
+      "away": "FOLGORE CARATESE",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -324,8 +324,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "TRENTO",
-      "away": "FOLGORE CARATESE",
+      "home": "TREVISO",
+      "away": "OSPITALETTO F.",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -352,8 +352,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "FORLÌ",
-      "away": "LIVORNO",
+      "home": "PERUGIA",
+      "away": "VADO",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -366,8 +366,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "PERUGIA",
-      "away": "VADO",
+      "home": "FORLÌ",
+      "away": "LIVORNO",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -381,5 +381,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-11T14:01:39.496605+00:00"
+  "serieCUpdatedAt": "2026-10-11T14:21:56.711530+00:00"
 }

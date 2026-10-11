@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-11T21:00:57.906720+00:00",
+  "updatedAt": "2026-10-11T21:21:54.729494+00:00",
   "lba": [
     {
       "home": "APU Old Wild West Udine",
@@ -170,10 +170,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "SCAFATESE",
-      "away": "SORRENTO",
-      "homeScore": 3,
-      "awayScore": 2,
+      "home": "FOGGIA",
+      "away": "POTENZA",
+      "homeScore": 1,
+      "awayScore": 3,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-11T14:30:00+02:00",
@@ -184,10 +184,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "FOGGIA",
-      "away": "POTENZA",
-      "homeScore": 1,
-      "awayScore": 3,
+      "home": "SCAFATESE",
+      "away": "SORRENTO",
+      "homeScore": 3,
+      "awayScore": 2,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-11T14:30:00+02:00",
@@ -226,20 +226,6 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "LECCO",
-      "away": "ALCIONE MILANO",
-      "homeScore": 1,
-      "awayScore": 1,
-      "hasScore": true,
-      "status": "FT",
-      "time": "2026-10-11T17:30:00+02:00",
-      "eventDate": "2026-10-11T17:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone A",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
       "home": "TRENTO",
       "away": "FOLGORE CARATESE",
       "homeScore": 1,
@@ -254,10 +240,24 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "FORLÌ",
-      "away": "LIVORNO",
+      "home": "LECCO",
+      "away": "ALCIONE MILANO",
       "homeScore": 1,
       "awayScore": 1,
+      "hasScore": true,
+      "status": "FT",
+      "time": "2026-10-11T17:30:00+02:00",
+      "eventDate": "2026-10-11T17:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone A",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "PERUGIA",
+      "away": "VADO",
+      "homeScore": 0,
+      "awayScore": 2,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-11T17:30:00+02:00",
@@ -268,10 +268,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "PERUGIA",
-      "away": "VADO",
-      "homeScore": 0,
-      "awayScore": 2,
+      "home": "FORLÌ",
+      "away": "LIVORNO",
+      "homeScore": 1,
+      "awayScore": 1,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-11T17:30:00+02:00",
@@ -325,5 +325,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-11T21:00:57.906720+00:00"
+  "serieCUpdatedAt": "2026-10-11T21:21:54.729494+00:00"
 }

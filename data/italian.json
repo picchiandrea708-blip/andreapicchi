@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-11T17:59:32.345248+00:00",
+  "updatedAt": "2026-10-11T18:24:43.311514+00:00",
   "lba": [
     {
       "home": "APU Old Wild West Udine",
@@ -64,8 +64,8 @@
     {
       "home": "Longobardi Scafati Basket",
       "away": "Tezenis Verona",
-      "homeScore": 46,
-      "awayScore": 54,
+      "homeScore": 47,
+      "awayScore": 52,
       "hasScore": true,
       "status": "LIVE",
       "time": "2026-10-11T18:00:00.000+02:00",
@@ -76,8 +76,8 @@
     {
       "home": "Maxima Roma",
       "away": "BC Roma",
-      "homeScore": 87,
-      "awayScore": 81,
+      "homeScore": 96,
+      "awayScore": 95,
       "hasScore": true,
       "status": "LIVE",
       "time": "2026-10-11T18:15:00.000+02:00",
@@ -88,8 +88,8 @@
     {
       "home": "Umana Reyer Venezia",
       "away": "Virtus Costa Bologna",
-      "homeScore": 51,
-      "awayScore": 45,
+      "homeScore": 69,
+      "awayScore": 62,
       "hasScore": true,
       "status": "LIVE",
       "time": "2026-10-11T19:00:00.000+02:00",
@@ -184,10 +184,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "SCAFATESE",
-      "away": "SORRENTO",
-      "homeScore": 3,
-      "awayScore": 2,
+      "home": "FOGGIA",
+      "away": "POTENZA",
+      "homeScore": 1,
+      "awayScore": 3,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-11T14:30:00+02:00",
@@ -198,10 +198,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "FOGGIA",
-      "away": "POTENZA",
-      "homeScore": 1,
-      "awayScore": 3,
+      "home": "SCAFATESE",
+      "away": "SORRENTO",
+      "homeScore": 3,
+      "awayScore": 2,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-11T14:30:00+02:00",
@@ -240,10 +240,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "TRENTO",
-      "away": "FOLGORE CARATESE",
-      "homeScore": 1,
-      "awayScore": 0,
+      "home": "TREVISO",
+      "away": "OSPITALETTO F.",
+      "homeScore": 0,
+      "awayScore": 1,
       "hasScore": true,
       "status": "Risultato ufficiale",
       "time": "2026-10-11T17:30:00+02:00",
@@ -254,10 +254,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "TREVISO",
-      "away": "OSPITALETTO F.",
-      "homeScore": 0,
-      "awayScore": 1,
+      "home": "TRENTO",
+      "away": "FOLGORE CARATESE",
+      "homeScore": 1,
+      "awayScore": 0,
       "hasScore": true,
       "status": "Risultato ufficiale",
       "time": "2026-10-11T17:30:00+02:00",
@@ -297,5 +297,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-11T17:59:32.345248+00:00"
+  "serieCUpdatedAt": "2026-10-11T18:24:43.311514+00:00"
 }

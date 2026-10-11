@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-11T16:50:01.147751+00:00",
+  "updatedAt": "2026-10-11T17:02:08.943703+00:00",
   "lba": [
     {
       "home": "APU Old Wild West Udine",
@@ -40,8 +40,8 @@
     {
       "home": "Acqua S.Bernardo Cantù",
       "away": "Napoli Basketball",
-      "homeScore": 67,
-      "awayScore": 80,
+      "homeScore": 80,
+      "awayScore": 99,
       "hasScore": true,
       "status": "LIVE",
       "time": "2026-10-11T17:00:00.000+02:00",
@@ -52,10 +52,10 @@
     {
       "home": "UNA Hotels Reggio Emilia",
       "away": "Bertram Derthona Tortona",
-      "homeScore": 86,
-      "awayScore": 80,
+      "homeScore": 93,
+      "awayScore": 86,
       "hasScore": true,
-      "status": "LIVE",
+      "status": "Finale",
       "time": "2026-10-11T17:00:00.000+02:00",
       "competition": "Serie A LBA",
       "source": "LBA",
@@ -64,10 +64,10 @@
     {
       "home": "Longobardi Scafati Basket",
       "away": "Tezenis Verona",
-      "homeScore": 0,
-      "awayScore": 0,
-      "hasScore": false,
-      "status": "In programma",
+      "homeScore": 6,
+      "awayScore": 2,
+      "hasScore": true,
+      "status": "LIVE",
       "time": "2026-10-11T18:00:00.000+02:00",
       "competition": "Serie A LBA",
       "source": "LBA",
@@ -76,8 +76,8 @@
     {
       "home": "Maxima Roma",
       "away": "BC Roma",
-      "homeScore": 33,
-      "awayScore": 37,
+      "homeScore": 52,
+      "awayScore": 57,
       "hasScore": true,
       "status": "LIVE",
       "time": "2026-10-11T18:15:00.000+02:00",
@@ -156,20 +156,6 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "SAMBENEDETTESE",
-      "away": "LATINA",
-      "homeScore": 1,
-      "awayScore": 1,
-      "hasScore": true,
-      "status": "FT",
-      "time": "2026-10-11T14:30:00+02:00",
-      "eventDate": "2026-10-11T14:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone B",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
       "home": "RAVENNA",
       "away": "CAMPOBASSO",
       "homeScore": 3,
@@ -184,10 +170,24 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "SCAFATESE",
-      "away": "SORRENTO",
-      "homeScore": 3,
-      "awayScore": 2,
+      "home": "SAMBENEDETTESE",
+      "away": "LATINA",
+      "homeScore": 1,
+      "awayScore": 1,
+      "hasScore": true,
+      "status": "FT",
+      "time": "2026-10-11T14:30:00+02:00",
+      "eventDate": "2026-10-11T14:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone B",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "FOGGIA",
+      "away": "POTENZA",
+      "homeScore": 1,
+      "awayScore": 3,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-11T14:30:00+02:00",
@@ -198,10 +198,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "FOGGIA",
-      "away": "POTENZA",
-      "homeScore": 1,
-      "awayScore": 3,
+      "home": "SCAFATESE",
+      "away": "SORRENTO",
+      "homeScore": 3,
+      "awayScore": 2,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-11T14:30:00+02:00",
@@ -226,20 +226,6 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "LECCO",
-      "away": "ALCIONE MILANO",
-      "homeScore": 1,
-      "awayScore": 1,
-      "hasScore": true,
-      "status": "LIVE",
-      "time": "2026-10-11T17:30:00+02:00",
-      "eventDate": "2026-10-11T17:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone A",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
       "home": "TREVISO",
       "away": "OSPITALETTO F.",
       "homeScore": 0,
@@ -254,9 +240,23 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
+      "home": "LECCO",
+      "away": "ALCIONE MILANO",
+      "homeScore": 1,
+      "awayScore": 1,
+      "hasScore": true,
+      "status": "LIVE",
+      "time": "2026-10-11T17:30:00+02:00",
+      "eventDate": "2026-10-11T17:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone A",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
       "home": "TRENTO",
       "away": "FOLGORE CARATESE",
-      "homeScore": 0,
+      "homeScore": 1,
       "awayScore": 0,
       "hasScore": true,
       "status": "LIVE",
@@ -285,7 +285,7 @@
       "home": "PERUGIA",
       "away": "VADO",
       "homeScore": 0,
-      "awayScore": 1,
+      "awayScore": 2,
       "hasScore": true,
       "status": "LIVE",
       "time": "2026-10-11T17:30:00+02:00",
@@ -297,5 +297,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-11T16:50:01.147751+00:00"
+  "serieCUpdatedAt": "2026-10-11T17:02:08.943703+00:00"
 }

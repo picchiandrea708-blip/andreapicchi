@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-11T10:02:33.854110+00:00",
+  "updatedAt": "2026-10-11T10:22:19.781022+00:00",
   "lba": [
     {
       "home": "APU Old Wild West Udine",
@@ -128,34 +128,6 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "BARI",
-      "away": "GIUGLIANO",
-      "homeScore": 2,
-      "awayScore": 0,
-      "hasScore": true,
-      "status": "FT",
-      "time": "2026-10-10T14:30:00+02:00",
-      "eventDate": "2026-10-10T14:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone C",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
-      "home": "SAVOIA",
-      "away": "INTER UNDER 23",
-      "homeScore": 2,
-      "awayScore": 1,
-      "hasScore": true,
-      "status": "FT",
-      "time": "2026-10-10T14:30:00+02:00",
-      "eventDate": "2026-10-10T14:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone C",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
       "home": "CASERTANA",
       "away": "MONOPOLI",
       "homeScore": 3,
@@ -184,10 +156,38 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "DESENZANO",
-      "away": "DOLOMITI BELLUNESI",
+      "home": "SAVOIA",
+      "away": "INTER UNDER 23",
+      "homeScore": 2,
+      "awayScore": 1,
+      "hasScore": true,
+      "status": "FT",
+      "time": "2026-10-10T14:30:00+02:00",
+      "eventDate": "2026-10-10T14:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone C",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "BARI",
+      "away": "GIUGLIANO",
       "homeScore": 2,
       "awayScore": 0,
+      "hasScore": true,
+      "status": "FT",
+      "time": "2026-10-10T14:30:00+02:00",
+      "eventDate": "2026-10-10T14:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone C",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "ARZIGNANO V.",
+      "away": "JUVENTUS NEXT GEN",
+      "homeScore": 2,
+      "awayScore": 1,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-10T17:30:00+02:00",
@@ -212,20 +212,6 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "ARZIGNANO V.",
-      "away": "JUVENTUS NEXT GEN",
-      "homeScore": 2,
-      "awayScore": 1,
-      "hasScore": true,
-      "status": "FT",
-      "time": "2026-10-10T17:30:00+02:00",
-      "eventDate": "2026-10-10T17:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone A",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
       "home": "NOVARA",
       "away": "CITTADELLA",
       "homeScore": 0,
@@ -240,16 +226,16 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "OSTIAMARE",
-      "away": "PIANESE",
-      "homeScore": 0,
+      "home": "DESENZANO",
+      "away": "DOLOMITI BELLUNESI",
+      "homeScore": 2,
       "awayScore": 0,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-10T17:30:00+02:00",
       "eventDate": "2026-10-10T17:30:00+02:00",
       "competition": "Serie C",
-      "group": "Girone B",
+      "group": "Girone A",
       "source": "Lega Pro",
       "sourceUrl": "https://www.seriec.com/calendario"
     },
@@ -260,6 +246,20 @@
       "awayScore": "",
       "hasScore": false,
       "status": "Dati non aggiornati",
+      "time": "2026-10-10T17:30:00+02:00",
+      "eventDate": "2026-10-10T17:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone B",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "OSTIAMARE",
+      "away": "PIANESE",
+      "homeScore": 0,
+      "awayScore": 0,
+      "hasScore": true,
+      "status": "FT",
       "time": "2026-10-10T17:30:00+02:00",
       "eventDate": "2026-10-10T17:30:00+02:00",
       "competition": "Serie C",
@@ -394,8 +394,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "LECCO",
-      "away": "ALCIONE MILANO",
+      "home": "TREVISO",
+      "away": "OSPITALETTO F.",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -422,8 +422,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "TREVISO",
-      "away": "OSPITALETTO F.",
+      "home": "LECCO",
+      "away": "ALCIONE MILANO",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -465,5 +465,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-11T10:02:33.854110+00:00"
+  "serieCUpdatedAt": "2026-10-11T10:22:19.781022+00:00"
 }

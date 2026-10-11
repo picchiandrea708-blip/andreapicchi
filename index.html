@@ -144,7 +144,7 @@
 </head>
 <body>
   <header>
-    <div class="logo">SPORT<span>LIVE</span><small style="opacity:.45;font-size:.65rem"> v51</small></div>
+    <div class="logo">SPORT<span>LIVE</span><small style="opacity:.45;font-size:.65rem"> v52</small></div>
     <div class="status-bar">
       <div class="dot" id="liveDot"></div>
       <span id="lastUpdate">Connessione…</span>
@@ -1138,8 +1138,10 @@
       const info = await fetchJson(`${PROXY}${encodeURIComponent(F1_OFFICIAL_STATIC + 'SessionInfo.json')}`, 'F1 ufficiale sessione');
       if (!info?.Path) throw new Error('F1 ufficiale: sessione non disponibile');
       const liveStatus = String(info.SessionStatus || '').toLowerCase();
-      // Se il feed indica lo stato della sessione ci si fida di quello; l'orario serve solo come ripiego.
-      const live = liveStatus ? ['active', 'started', 'running', 'live', 'aborted', 'finished'].includes(liveStatus) : f1SessionIsLive(info);
+      // Lo stato nel file non si aggiorna in tempo reale (resta "Inactive" anche a gara in corso):
+      // si considera live se lo stato lo dice, oppure se siamo nella finestra oraria e l'archivio è ancora in scrittura.
+      const live = ['active', 'started', 'running', 'live', 'aborted', 'finished'].includes(liveStatus)
+        || (!['finalised', 'ends'].includes(liveStatus) && f1SessionIsLive(info));
       if (!live) { const err = new Error('F1 ufficiale: nessuna sessione live'); err.noLive = true; err.info = info; throw err; }
       return fetchF1OfficialSession(info.Path, info, false);
     }
@@ -1184,7 +1186,12 @@
             f1State.active = true;
           } else {
             const detail = String(e?.message || 'servizio non disponibile').replace(/^.*?:\s*/, '');
-            renderF1NoLive(box, `Live timing non raggiungibile in questo momento (${detail}). Le classifiche delle gare precedenti sono qui sotto.`);
+            if (/403/.test(detail)) {
+              f1State.active = true;   // sessione in corso: il badge LIVE resta acceso anche se F1 non dà i dati
+              renderF1NoLive(box, 'Sessione di Formula 1 in corso, ma durante la sessione F1 non rende pubblici i dati di timing (errore 403). La classifica compare dopo la fine; le gare precedenti sono qui sotto.');
+            } else {
+              renderF1NoLive(box, `Live timing non raggiungibile in questo momento (${detail}). Le classifiche delle gare precedenti sono qui sotto.`);
+            }
           }
         }
       } finally {

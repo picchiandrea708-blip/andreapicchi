@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-11T18:24:43.311514+00:00",
+  "updatedAt": "2026-10-11T18:53:07.364264+00:00",
   "lba": [
     {
       "home": "APU Old Wild West Udine",
@@ -64,8 +64,8 @@
     {
       "home": "Longobardi Scafati Basket",
       "away": "Tezenis Verona",
-      "homeScore": 47,
-      "awayScore": 52,
+      "homeScore": 74,
+      "awayScore": 72,
       "hasScore": true,
       "status": "LIVE",
       "time": "2026-10-11T18:00:00.000+02:00",
@@ -79,7 +79,7 @@
       "homeScore": 96,
       "awayScore": 95,
       "hasScore": true,
-      "status": "LIVE",
+      "status": "Finale",
       "time": "2026-10-11T18:15:00.000+02:00",
       "competition": "Serie A LBA",
       "source": "LBA",
@@ -88,8 +88,8 @@
     {
       "home": "Umana Reyer Venezia",
       "away": "Virtus Costa Bologna",
-      "homeScore": 69,
-      "awayScore": 62,
+      "homeScore": 86,
+      "awayScore": 91,
       "hasScore": true,
       "status": "LIVE",
       "time": "2026-10-11T19:00:00.000+02:00",
@@ -99,20 +99,6 @@
     }
   ],
   "serieC": [
-    {
-      "home": "SPEZIA",
-      "away": "GUBBIO",
-      "homeScore": 2,
-      "awayScore": 0,
-      "hasScore": true,
-      "status": "FT",
-      "time": "2026-10-10T20:30:00+02:00",
-      "eventDate": "2026-10-10T20:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone B",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
     {
       "home": "TORRES",
       "away": "ATALANTA UNDER 23",
@@ -184,10 +170,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "FOGGIA",
-      "away": "POTENZA",
-      "homeScore": 1,
-      "awayScore": 3,
+      "home": "SCAFATESE",
+      "away": "SORRENTO",
+      "homeScore": 3,
+      "awayScore": 2,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-11T14:30:00+02:00",
@@ -198,10 +184,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "SCAFATESE",
-      "away": "SORRENTO",
-      "homeScore": 3,
-      "awayScore": 2,
+      "home": "FOGGIA",
+      "away": "POTENZA",
+      "homeScore": 1,
+      "awayScore": 3,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-11T14:30:00+02:00",
@@ -226,12 +212,12 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "LECCO",
-      "away": "ALCIONE MILANO",
+      "home": "TRENTO",
+      "away": "FOLGORE CARATESE",
       "homeScore": 1,
-      "awayScore": 1,
+      "awayScore": 0,
       "hasScore": true,
-      "status": "Risultato ufficiale",
+      "status": "FT",
       "time": "2026-10-11T17:30:00+02:00",
       "eventDate": "2026-10-11T17:30:00+02:00",
       "competition": "Serie C",
@@ -245,7 +231,7 @@
       "homeScore": 0,
       "awayScore": 1,
       "hasScore": true,
-      "status": "Risultato ufficiale",
+      "status": "FT",
       "time": "2026-10-11T17:30:00+02:00",
       "eventDate": "2026-10-11T17:30:00+02:00",
       "competition": "Serie C",
@@ -254,30 +240,16 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "TRENTO",
-      "away": "FOLGORE CARATESE",
+      "home": "LECCO",
+      "away": "ALCIONE MILANO",
       "homeScore": 1,
-      "awayScore": 0,
+      "awayScore": 1,
       "hasScore": true,
-      "status": "Risultato ufficiale",
+      "status": "FT",
       "time": "2026-10-11T17:30:00+02:00",
       "eventDate": "2026-10-11T17:30:00+02:00",
       "competition": "Serie C",
       "group": "Girone A",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
-      "home": "PERUGIA",
-      "away": "VADO",
-      "homeScore": 0,
-      "awayScore": 2,
-      "hasScore": true,
-      "status": "Risultato ufficiale",
-      "time": "2026-10-11T17:30:00+02:00",
-      "eventDate": "2026-10-11T17:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone B",
       "source": "Lega Pro",
       "sourceUrl": "https://www.seriec.com/calendario"
     },
@@ -287,15 +259,71 @@
       "homeScore": 1,
       "awayScore": 1,
       "hasScore": true,
-      "status": "Risultato ufficiale",
+      "status": "FT",
       "time": "2026-10-11T17:30:00+02:00",
       "eventDate": "2026-10-11T17:30:00+02:00",
       "competition": "Serie C",
       "group": "Girone B",
       "source": "Lega Pro",
       "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "PERUGIA",
+      "away": "VADO",
+      "homeScore": 0,
+      "awayScore": 2,
+      "hasScore": true,
+      "status": "FT",
+      "time": "2026-10-11T17:30:00+02:00",
+      "eventDate": "2026-10-11T17:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone B",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "PESCARA",
+      "away": "GUIDONIA M.",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-12T20:30:00+02:00",
+      "eventDate": "2026-10-12T20:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone B",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "BARLETTA",
+      "away": "CAVESE",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-12T20:30:00+02:00",
+      "eventDate": "2026-10-12T20:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone C",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "PICERNO",
+      "away": "COSENZA",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-12T20:30:00+02:00",
+      "eventDate": "2026-10-12T20:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone C",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-11T18:24:43.311514+00:00"
+  "serieCUpdatedAt": "2026-10-11T18:53:07.364264+00:00"
 }

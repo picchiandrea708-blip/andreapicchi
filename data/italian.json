@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-12T18:30:59.039577+00:00",
+  "updatedAt": "2026-10-12T18:57:05.560426+00:00",
   "lba": [
     {
       "home": "APU Old Wild West Udine",
@@ -102,10 +102,10 @@
     {
       "home": "PESCARA",
       "away": "GUIDONIA M.",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "Risultato non disponibile",
+      "homeScore": 0,
+      "awayScore": 0,
+      "hasScore": true,
+      "status": "LIVE",
       "time": "2026-10-12T20:30:00+02:00",
       "eventDate": "2026-10-12T20:30:00+02:00",
       "competition": "Serie C",
@@ -114,12 +114,12 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "BARLETTA",
-      "away": "CAVESE",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "Risultato non disponibile",
+      "home": "PICERNO",
+      "away": "COSENZA",
+      "homeScore": 0,
+      "awayScore": 0,
+      "hasScore": true,
+      "status": "LIVE",
       "time": "2026-10-12T20:30:00+02:00",
       "eventDate": "2026-10-12T20:30:00+02:00",
       "competition": "Serie C",
@@ -128,12 +128,12 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "PICERNO",
-      "away": "COSENZA",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "Risultato non disponibile",
+      "home": "BARLETTA",
+      "away": "CAVESE",
+      "homeScore": 0,
+      "awayScore": 0,
+      "hasScore": true,
+      "status": "LIVE",
       "time": "2026-10-12T20:30:00+02:00",
       "eventDate": "2026-10-12T20:30:00+02:00",
       "competition": "Serie C",
@@ -171,5 +171,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-12T18:30:59.039577+00:00"
+  "serieCUpdatedAt": "2026-10-12T18:57:05.560426+00:00"
 }

@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-12T00:00:14.440431+00:00",
+  "updatedAt": "2026-10-12T00:34:53.721197+00:00",
   "lba": [
     {
       "home": "APU Old Wild West Udine",
@@ -170,10 +170,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "FOGGIA",
-      "away": "POTENZA",
-      "homeScore": 1,
-      "awayScore": 3,
+      "home": "SCAFATESE",
+      "away": "SORRENTO",
+      "homeScore": 3,
+      "awayScore": 2,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-11T14:30:00+02:00",
@@ -184,10 +184,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "SCAFATESE",
-      "away": "SORRENTO",
-      "homeScore": 3,
-      "awayScore": 2,
+      "home": "FOGGIA",
+      "away": "POTENZA",
+      "homeScore": 1,
+      "awayScore": 3,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-11T14:30:00+02:00",
@@ -296,8 +296,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "PICERNO",
-      "away": "COSENZA",
+      "home": "BARLETTA",
+      "away": "CAVESE",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -310,8 +310,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "BARLETTA",
-      "away": "CAVESE",
+      "home": "PICERNO",
+      "away": "COSENZA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -325,5 +325,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-12T00:00:14.440431+00:00"
+  "serieCUpdatedAt": "2026-10-12T00:34:53.721197+00:00"
 }

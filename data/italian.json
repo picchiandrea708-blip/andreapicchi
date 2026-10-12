@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-12T14:29:53.759583+00:00",
+  "updatedAt": "2026-10-12T14:58:08.788196+00:00",
   "lba": [
     {
       "home": "APU Old Wild West Udine",
@@ -184,8 +184,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "PICERNO",
-      "away": "COSENZA",
+      "home": "BARLETTA",
+      "away": "CAVESE",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -198,8 +198,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "BARLETTA",
-      "away": "CAVESE",
+      "home": "PICERNO",
+      "away": "COSENZA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -241,5 +241,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-12T14:29:53.759583+00:00"
+  "serieCUpdatedAt": "2026-10-12T14:58:08.788196+00:00"
 }

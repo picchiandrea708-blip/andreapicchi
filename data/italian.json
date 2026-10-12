@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-12T14:58:08.788196+00:00",
+  "updatedAt": "2026-10-12T15:25:01.459711+00:00",
   "lba": [
     {
       "home": "APU Old Wild West Udine",
@@ -114,9 +114,9 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "TREVISO",
-      "away": "OSPITALETTO F.",
-      "homeScore": 0,
+      "home": "LECCO",
+      "away": "ALCIONE MILANO",
+      "homeScore": 1,
       "awayScore": 1,
       "hasScore": true,
       "status": "FT",
@@ -128,9 +128,9 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "LECCO",
-      "away": "ALCIONE MILANO",
-      "homeScore": 1,
+      "home": "TREVISO",
+      "away": "OSPITALETTO F.",
+      "homeScore": 0,
       "awayScore": 1,
       "hasScore": true,
       "status": "FT",
@@ -241,5 +241,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-12T14:58:08.788196+00:00"
+  "serieCUpdatedAt": "2026-10-12T15:25:01.459711+00:00"
 }

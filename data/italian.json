@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-12T20:06:45.666802+00:00",
+  "updatedAt": "2026-10-12T20:29:16.599854+00:00",
   "lba": [
     {
       "home": "APU Old Wild West Udine",
@@ -102,8 +102,8 @@
     {
       "home": "PESCARA",
       "away": "GUIDONIA M.",
-      "homeScore": 0,
-      "awayScore": 0,
+      "homeScore": 1,
+      "awayScore": 1,
       "hasScore": true,
       "status": "LIVE",
       "time": "2026-10-12T20:30:00+02:00",
@@ -133,7 +133,7 @@
       "homeScore": 1,
       "awayScore": 1,
       "hasScore": true,
-      "status": "LIVE",
+      "status": "Risultato ufficiale",
       "time": "2026-10-12T20:30:00+02:00",
       "eventDate": "2026-10-12T20:30:00+02:00",
       "competition": "Serie C",
@@ -171,5 +171,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-12T20:06:45.666802+00:00"
+  "serieCUpdatedAt": "2026-10-12T20:29:16.599854+00:00"
 }

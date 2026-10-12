@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-12T12:41:02.157150+00:00",
+  "updatedAt": "2026-10-12T13:22:52.646038+00:00",
   "lba": [
     {
       "home": "APU Old Wild West Udine",
@@ -100,16 +100,16 @@
   ],
   "serieC": [
     {
-      "home": "CASARANO",
-      "away": "SALERNITANA",
+      "home": "TREVISO",
+      "away": "OSPITALETTO F.",
       "homeScore": 0,
-      "awayScore": 0,
+      "awayScore": 1,
       "hasScore": true,
       "status": "FT",
-      "time": "2026-10-11T15:00:00+02:00",
-      "eventDate": "2026-10-11T15:00:00+02:00",
+      "time": "2026-10-11T17:30:00+02:00",
+      "eventDate": "2026-10-11T17:30:00+02:00",
       "competition": "Serie C",
-      "group": "Girone C",
+      "group": "Girone A",
       "source": "Lega Pro",
       "sourceUrl": "https://www.seriec.com/calendario"
     },
@@ -142,24 +142,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "TREVISO",
-      "away": "OSPITALETTO F.",
-      "homeScore": 0,
+      "home": "FORLÌ",
+      "away": "LIVORNO",
+      "homeScore": 1,
       "awayScore": 1,
-      "hasScore": true,
-      "status": "FT",
-      "time": "2026-10-11T17:30:00+02:00",
-      "eventDate": "2026-10-11T17:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone A",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
-      "home": "PERUGIA",
-      "away": "VADO",
-      "homeScore": 0,
-      "awayScore": 2,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-11T17:30:00+02:00",
@@ -170,10 +156,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "FORLÌ",
-      "away": "LIVORNO",
-      "homeScore": 1,
-      "awayScore": 1,
+      "home": "PERUGIA",
+      "away": "VADO",
+      "homeScore": 0,
+      "awayScore": 2,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-11T17:30:00+02:00",
@@ -224,8 +210,22 @@
       "group": "Girone C",
       "source": "Lega Pro",
       "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "GIUGLIANO",
+      "away": "INTER UNDER 23",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-13T15:00:00+02:00",
+      "eventDate": "2026-10-13T15:00:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone C",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-12T12:41:02.157150+00:00"
+  "serieCUpdatedAt": "2026-10-12T13:22:52.646038+00:00"
 }

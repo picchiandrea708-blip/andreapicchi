@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-12T07:56:04.705917+00:00",
+  "updatedAt": "2026-10-12T08:28:15.861570+00:00",
   "lba": [
     {
       "home": "APU Old Wild West Udine",
@@ -212,20 +212,6 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "LECCO",
-      "away": "ALCIONE MILANO",
-      "homeScore": 1,
-      "awayScore": 1,
-      "hasScore": true,
-      "status": "FT",
-      "time": "2026-10-11T17:30:00+02:00",
-      "eventDate": "2026-10-11T17:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone A",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
       "home": "TRENTO",
       "away": "FOLGORE CARATESE",
       "homeScore": 1,
@@ -243,6 +229,20 @@
       "home": "TREVISO",
       "away": "OSPITALETTO F.",
       "homeScore": 0,
+      "awayScore": 1,
+      "hasScore": true,
+      "status": "FT",
+      "time": "2026-10-11T17:30:00+02:00",
+      "eventDate": "2026-10-11T17:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone A",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "LECCO",
+      "away": "ALCIONE MILANO",
+      "homeScore": 1,
       "awayScore": 1,
       "hasScore": true,
       "status": "FT",
@@ -325,5 +325,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-12T07:56:04.705917+00:00"
+  "serieCUpdatedAt": "2026-10-12T08:28:15.861570+00:00"
 }

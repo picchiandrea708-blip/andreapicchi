@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-12T01:02:48.580396+00:00",
+  "updatedAt": "2026-10-12T01:26:00.876566+00:00",
   "lba": [
     {
       "home": "APU Old Wild West Udine",
@@ -142,20 +142,6 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "SAMBENEDETTESE",
-      "away": "LATINA",
-      "homeScore": 1,
-      "awayScore": 1,
-      "hasScore": true,
-      "status": "FT",
-      "time": "2026-10-11T14:30:00+02:00",
-      "eventDate": "2026-10-11T14:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone B",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
       "home": "RAVENNA",
       "away": "CAMPOBASSO",
       "homeScore": 3,
@@ -170,10 +156,24 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "FOGGIA",
-      "away": "POTENZA",
+      "home": "SAMBENEDETTESE",
+      "away": "LATINA",
       "homeScore": 1,
-      "awayScore": 3,
+      "awayScore": 1,
+      "hasScore": true,
+      "status": "FT",
+      "time": "2026-10-11T14:30:00+02:00",
+      "eventDate": "2026-10-11T14:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone B",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "SCAFATESE",
+      "away": "SORRENTO",
+      "homeScore": 3,
+      "awayScore": 2,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-11T14:30:00+02:00",
@@ -184,10 +184,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "SCAFATESE",
-      "away": "SORRENTO",
-      "homeScore": 3,
-      "awayScore": 2,
+      "home": "FOGGIA",
+      "away": "POTENZA",
+      "homeScore": 1,
+      "awayScore": 3,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-11T14:30:00+02:00",
@@ -226,9 +226,9 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "LECCO",
-      "away": "ALCIONE MILANO",
-      "homeScore": 1,
+      "home": "TREVISO",
+      "away": "OSPITALETTO F.",
+      "homeScore": 0,
       "awayScore": 1,
       "hasScore": true,
       "status": "FT",
@@ -240,9 +240,9 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "TREVISO",
-      "away": "OSPITALETTO F.",
-      "homeScore": 0,
+      "home": "LECCO",
+      "away": "ALCIONE MILANO",
+      "homeScore": 1,
       "awayScore": 1,
       "hasScore": true,
       "status": "FT",
@@ -325,5 +325,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-12T01:02:48.580396+00:00"
+  "serieCUpdatedAt": "2026-10-12T01:26:00.876566+00:00"
 }

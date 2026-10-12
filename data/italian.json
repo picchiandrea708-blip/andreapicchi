@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-12T03:25:27.658446+00:00",
+  "updatedAt": "2026-10-12T03:56:22.285204+00:00",
   "lba": [
     {
       "home": "APU Old Wild West Udine",
@@ -142,9 +142,9 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "RAVENNA",
-      "away": "CAMPOBASSO",
-      "homeScore": 3,
+      "home": "SAMBENEDETTESE",
+      "away": "LATINA",
+      "homeScore": 1,
       "awayScore": 1,
       "hasScore": true,
       "status": "FT",
@@ -156,9 +156,9 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "SAMBENEDETTESE",
-      "away": "LATINA",
-      "homeScore": 1,
+      "home": "RAVENNA",
+      "away": "CAMPOBASSO",
+      "homeScore": 3,
       "awayScore": 1,
       "hasScore": true,
       "status": "FT",
@@ -212,10 +212,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "TRENTO",
-      "away": "FOLGORE CARATESE",
-      "homeScore": 1,
-      "awayScore": 0,
+      "home": "TREVISO",
+      "away": "OSPITALETTO F.",
+      "homeScore": 0,
+      "awayScore": 1,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-11T17:30:00+02:00",
@@ -240,10 +240,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "TREVISO",
-      "away": "OSPITALETTO F.",
-      "homeScore": 0,
-      "awayScore": 1,
+      "home": "TRENTO",
+      "away": "FOLGORE CARATESE",
+      "homeScore": 1,
+      "awayScore": 0,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-11T17:30:00+02:00",
@@ -325,5 +325,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-12T03:25:27.658446+00:00"
+  "serieCUpdatedAt": "2026-10-12T03:56:22.285204+00:00"
 }

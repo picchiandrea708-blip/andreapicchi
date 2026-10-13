@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-13T18:09:54.344771+00:00",
+  "updatedAt": "2026-10-13T18:48:51.200423+00:00",
   "lba": [
     {
       "home": "APU Old Wild West Udine",
@@ -100,48 +100,6 @@
   ],
   "serieC": [
     {
-      "home": "PESCARA",
-      "away": "GUIDONIA M.",
-      "homeScore": 1,
-      "awayScore": 1,
-      "hasScore": true,
-      "status": "FT",
-      "time": "2026-10-12T20:30:00+02:00",
-      "eventDate": "2026-10-12T20:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone B",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
-      "home": "PICERNO",
-      "away": "COSENZA",
-      "homeScore": 1,
-      "awayScore": 2,
-      "hasScore": true,
-      "status": "FT",
-      "time": "2026-10-12T20:30:00+02:00",
-      "eventDate": "2026-10-12T20:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone C",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
-      "home": "BARLETTA",
-      "away": "CAVESE",
-      "homeScore": 1,
-      "awayScore": 1,
-      "hasScore": true,
-      "status": "FT",
-      "time": "2026-10-12T20:30:00+02:00",
-      "eventDate": "2026-10-12T20:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone C",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
       "home": "GIUGLIANO",
       "away": "INTER UNDER 23",
       "homeScore": 0,
@@ -185,5 +143,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-13T18:09:54.344771+00:00"
+  "serieCUpdatedAt": "2026-10-13T18:48:51.200423+00:00"
 }

@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-13T14:27:22.185088+00:00",
+  "updatedAt": "2026-10-13T14:56:50.670607+00:00",
   "lba": [
     {
       "home": "APU Old Wild West Udine",
@@ -145,9 +145,9 @@
       "home": "GIUGLIANO",
       "away": "INTER UNDER 23",
       "homeScore": 0,
-      "awayScore": 0,
+      "awayScore": 4,
       "hasScore": true,
-      "status": "LIVE",
+      "status": "Risultato ufficiale",
       "time": "2026-10-13T15:00:00+02:00",
       "eventDate": "2026-10-13T15:00:00+02:00",
       "competition": "Serie C",
@@ -185,5 +185,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-13T14:27:22.185088+00:00"
+  "serieCUpdatedAt": "2026-10-13T14:56:50.670607+00:00"
 }

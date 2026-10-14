@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-14T14:54:37.635650+00:00",
+  "updatedAt": "2026-10-14T15:40:19.718748+00:00",
   "lba": [
     {
       "home": "BC Roma",
@@ -105,7 +105,7 @@
       "homeScore": 2,
       "awayScore": 0,
       "hasScore": true,
-      "status": "LIVE",
+      "status": "Risultato ufficiale",
       "time": "2026-10-14T15:00:00+02:00",
       "eventDate": "2026-10-14T15:00:00+02:00",
       "competition": "Serie C",
@@ -115,5 +115,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-14T14:54:37.635650+00:00"
+  "serieCUpdatedAt": "2026-10-14T15:40:19.718748+00:00"
 }

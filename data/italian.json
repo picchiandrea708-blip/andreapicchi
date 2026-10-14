@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-14T12:47:23.365330+00:00",
+  "updatedAt": "2026-10-14T13:22:29.789644+00:00",
   "lba": [
     {
       "home": "BC Roma",
@@ -100,20 +100,6 @@
   ],
   "serieC": [
     {
-      "home": "GIUGLIANO",
-      "away": "INTER UNDER 23",
-      "homeScore": 0,
-      "awayScore": 4,
-      "hasScore": true,
-      "status": "FT",
-      "time": "2026-10-13T15:00:00+02:00",
-      "eventDate": "2026-10-13T15:00:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone C",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
       "home": "JUVENTUS NEXT GEN",
       "away": "LUMEZZANE",
       "homeScore": 0,
@@ -130,10 +116,10 @@
     {
       "home": "LATINA",
       "away": "ATALANTA UNDER 23",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
+      "homeScore": 0,
+      "awayScore": 0,
+      "hasScore": true,
+      "status": "LIVE",
       "time": "2026-10-14T15:00:00+02:00",
       "eventDate": "2026-10-14T15:00:00+02:00",
       "competition": "Serie C",
@@ -143,5 +129,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-14T12:47:23.365330+00:00"
+  "serieCUpdatedAt": "2026-10-14T13:22:29.789644+00:00"
 }

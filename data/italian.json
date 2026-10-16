@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-16T21:16:37.728150+00:00",
+  "updatedAt": "2026-10-16T21:50:15.754749+00:00",
   "lba": [
     {
       "home": "BC Roma",
@@ -105,7 +105,7 @@
       "homeScore": 0,
       "awayScore": 5,
       "hasScore": true,
-      "status": "Risultato ufficiale",
+      "status": "FT",
       "time": "2026-10-16T20:30:00+02:00",
       "eventDate": "2026-10-16T20:30:00+02:00",
       "competition": "Serie C",
@@ -119,7 +119,7 @@
       "homeScore": 4,
       "awayScore": 4,
       "hasScore": true,
-      "status": "Risultato ufficiale",
+      "status": "FT",
       "time": "2026-10-16T20:30:00+02:00",
       "eventDate": "2026-10-16T20:30:00+02:00",
       "competition": "Serie C",
@@ -142,8 +142,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "GUIDONIA M.",
-      "away": "FORLÌ",
+      "home": "VADO",
+      "away": "SAMBENEDETTESE",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -156,8 +156,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "VADO",
-      "away": "SAMBENEDETTESE",
+      "home": "GUIDONIA M.",
+      "away": "FORLÌ",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -255,5 +255,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-16T21:16:37.728150+00:00"
+  "serieCUpdatedAt": "2026-10-16T21:50:15.754749+00:00"
 }

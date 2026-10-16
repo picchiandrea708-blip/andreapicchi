@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-16T21:50:15.754749+00:00",
+  "updatedAt": "2026-10-16T22:14:31.099791+00:00",
   "lba": [
     {
       "home": "BC Roma",
@@ -142,8 +142,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "VADO",
-      "away": "SAMBENEDETTESE",
+      "home": "GUIDONIA M.",
+      "away": "FORLÌ",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -156,8 +156,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "GUIDONIA M.",
-      "away": "FORLÌ",
+      "home": "VADO",
+      "away": "SAMBENEDETTESE",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -226,8 +226,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "POTENZA",
-      "away": "CATANIA",
+      "home": "SALERNITANA",
+      "away": "SCAFATESE",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -240,8 +240,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "SALERNITANA",
-      "away": "SCAFATESE",
+      "home": "POTENZA",
+      "away": "CATANIA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -255,5 +255,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-16T21:50:15.754749+00:00"
+  "serieCUpdatedAt": "2026-10-16T22:14:31.099791+00:00"
 }

@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-16T14:54:52.863197+00:00",
+  "updatedAt": "2026-10-16T15:33:34.617194+00:00",
   "lba": [
     {
       "home": "BC Roma",
@@ -210,8 +210,50 @@
       "group": "Girone C",
       "source": "Lega Pro",
       "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "FOLGORE CARATESE",
+      "away": "TREVISO",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-17T17:30:00+02:00",
+      "eventDate": "2026-10-17T17:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone A",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "SALERNITANA",
+      "away": "SCAFATESE",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-17T17:30:00+02:00",
+      "eventDate": "2026-10-17T17:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone C",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "POTENZA",
+      "away": "CATANIA",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-17T17:30:00+02:00",
+      "eventDate": "2026-10-17T17:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone C",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-16T14:54:52.863197+00:00"
+  "serieCUpdatedAt": "2026-10-16T15:33:34.617194+00:00"
 }

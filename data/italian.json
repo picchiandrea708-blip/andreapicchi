@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-16T19:16:27.845612+00:00",
+  "updatedAt": "2026-10-16T19:48:06.907718+00:00",
   "lba": [
     {
       "home": "BC Roma",
@@ -103,7 +103,7 @@
       "home": "PRO VERCELLI",
       "away": "LECCO",
       "homeScore": 0,
-      "awayScore": 1,
+      "awayScore": 4,
       "hasScore": true,
       "status": "LIVE",
       "time": "2026-10-16T20:30:00+02:00",
@@ -116,8 +116,8 @@
     {
       "home": "LIVORNO",
       "away": "GROSSETO",
-      "homeScore": 2,
-      "awayScore": 1,
+      "homeScore": 3,
+      "awayScore": 3,
       "hasScore": true,
       "status": "LIVE",
       "time": "2026-10-16T20:30:00+02:00",
@@ -255,5 +255,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-16T19:16:27.845612+00:00"
+  "serieCUpdatedAt": "2026-10-16T19:48:06.907718+00:00"
 }

@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-16T19:48:06.907718+00:00",
+  "updatedAt": "2026-10-16T20:08:32.994073+00:00",
   "lba": [
     {
       "home": "BC Roma",
@@ -117,7 +117,7 @@
       "home": "LIVORNO",
       "away": "GROSSETO",
       "homeScore": 3,
-      "awayScore": 3,
+      "awayScore": 4,
       "hasScore": true,
       "status": "LIVE",
       "time": "2026-10-16T20:30:00+02:00",
@@ -156,8 +156,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "REGGIANA",
-      "away": "TORRES",
+      "home": "VADO",
+      "away": "SAMBENEDETTESE",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -170,8 +170,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "VADO",
-      "away": "SAMBENEDETTESE",
+      "home": "REGGIANA",
+      "away": "TORRES",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -226,8 +226,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "POTENZA",
-      "away": "CATANIA",
+      "home": "SALERNITANA",
+      "away": "SCAFATESE",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -240,8 +240,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "SALERNITANA",
-      "away": "SCAFATESE",
+      "home": "POTENZA",
+      "away": "CATANIA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -255,5 +255,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-16T19:48:06.907718+00:00"
+  "serieCUpdatedAt": "2026-10-16T20:08:32.994073+00:00"
 }

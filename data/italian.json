@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-10-17T13:47:02.374986+00:00",
+  "updatedAt": "2026-10-17T14:08:25.403424+00:00",
   "lba": [
     {
       "home": "BC Roma",
       "away": "Umana Reyer Venezia",
-      "homeScore": 0,
-      "awayScore": 0,
-      "hasScore": false,
-      "status": "In programma",
+      "homeScore": 6,
+      "awayScore": 4,
+      "hasScore": true,
+      "status": "LIVE",
       "time": "2026-10-17T16:00:00.000+02:00",
       "competition": "Serie A LBA",
       "source": "LBA",
@@ -142,10 +142,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "REGGIANA",
-      "away": "TORRES",
+      "home": "VADO",
+      "away": "SAMBENEDETTESE",
       "homeScore": 2,
-      "awayScore": 0,
+      "awayScore": 1,
       "hasScore": true,
       "status": "LIVE",
       "time": "2026-10-17T14:30:00+02:00",
@@ -159,7 +159,7 @@
       "home": "GUIDONIA M.",
       "away": "FORLÌ",
       "homeScore": 2,
-      "awayScore": 0,
+      "awayScore": 1,
       "hasScore": true,
       "status": "LIVE",
       "time": "2026-10-17T14:30:00+02:00",
@@ -170,10 +170,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "VADO",
-      "away": "SAMBENEDETTESE",
-      "homeScore": 0,
-      "awayScore": 1,
+      "home": "REGGIANA",
+      "away": "TORRES",
+      "homeScore": 2,
+      "awayScore": 0,
       "hasScore": true,
       "status": "LIVE",
       "time": "2026-10-17T14:30:00+02:00",
@@ -282,20 +282,6 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "RAVENNA",
-      "away": "SPEZIA",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
-      "time": "2026-10-18T14:30:00+02:00",
-      "eventDate": "2026-10-18T14:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone B",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
       "home": "GUBBIO",
       "away": "ATALANTA UNDER 23",
       "homeScore": "",
@@ -310,8 +296,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "AUDACE CERIGNOLA",
-      "away": "SAVOIA",
+      "home": "RAVENNA",
+      "away": "SPEZIA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -319,7 +305,7 @@
       "time": "2026-10-18T14:30:00+02:00",
       "eventDate": "2026-10-18T14:30:00+02:00",
       "competition": "Serie C",
-      "group": "Girone C",
+      "group": "Girone B",
       "source": "Lega Pro",
       "sourceUrl": "https://www.seriec.com/calendario"
     },
@@ -352,6 +338,20 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
+      "home": "AUDACE CERIGNOLA",
+      "away": "SAVOIA",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-18T14:30:00+02:00",
+      "eventDate": "2026-10-18T14:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone C",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
       "home": "BARI",
       "away": "CROTONE",
       "homeScore": "",
@@ -367,5 +367,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-17T13:47:02.374986+00:00"
+  "serieCUpdatedAt": "2026-10-17T14:08:25.403424+00:00"
 }

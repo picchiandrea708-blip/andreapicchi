@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-17T16:48:05.378259+00:00",
+  "updatedAt": "2026-10-17T17:09:09.828394+00:00",
   "lba": [
     {
       "home": "BC Roma",
@@ -215,7 +215,7 @@
       "home": "FOLGORE CARATESE",
       "away": "TREVISO",
       "homeScore": 0,
-      "awayScore": 1,
+      "awayScore": 2,
       "hasScore": true,
       "status": "LIVE",
       "time": "2026-10-17T17:30:00+02:00",
@@ -228,7 +228,7 @@
     {
       "home": "POTENZA",
       "away": "CATANIA",
-      "homeScore": 1,
+      "homeScore": 2,
       "awayScore": 0,
       "hasScore": true,
       "status": "LIVE",
@@ -242,7 +242,7 @@
     {
       "home": "SALERNITANA",
       "away": "SCAFATESE",
-      "homeScore": 1,
+      "homeScore": 2,
       "awayScore": 1,
       "hasScore": true,
       "status": "LIVE",
@@ -250,6 +250,20 @@
       "eventDate": "2026-10-17T17:30:00+02:00",
       "competition": "Serie C",
       "group": "Girone C",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "CAMPOBASSO",
+      "away": "PERUGIA",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-18T12:30:00+02:00",
+      "eventDate": "2026-10-18T12:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone B",
       "source": "Lega Pro",
       "sourceUrl": "https://www.seriec.com/calendario"
     },
@@ -268,14 +282,14 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "CAMPOBASSO",
-      "away": "PERUGIA",
+      "home": "RAVENNA",
+      "away": "SPEZIA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
       "status": "In programma",
-      "time": "2026-10-18T12:30:00+02:00",
-      "eventDate": "2026-10-18T12:30:00+02:00",
+      "time": "2026-10-18T14:30:00+02:00",
+      "eventDate": "2026-10-18T14:30:00+02:00",
       "competition": "Serie C",
       "group": "Girone B",
       "source": "Lega Pro",
@@ -296,8 +310,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "RAVENNA",
-      "away": "SPEZIA",
+      "home": "COSENZA",
+      "away": "ALTAMURA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -305,7 +319,7 @@
       "time": "2026-10-18T14:30:00+02:00",
       "eventDate": "2026-10-18T14:30:00+02:00",
       "competition": "Serie C",
-      "group": "Girone B",
+      "group": "Girone C",
       "source": "Lega Pro",
       "sourceUrl": "https://www.seriec.com/calendario"
     },
@@ -338,20 +352,6 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "COSENZA",
-      "away": "ALTAMURA",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
-      "time": "2026-10-18T14:30:00+02:00",
-      "eventDate": "2026-10-18T14:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone C",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
       "home": "BARI",
       "away": "CROTONE",
       "homeScore": "",
@@ -366,8 +366,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "ALCIONE MILANO",
-      "away": "DESENZANO",
+      "home": "ALBINOLEFFE",
+      "away": "NOVARA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -394,8 +394,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "ALBINOLEFFE",
-      "away": "NOVARA",
+      "home": "ALCIONE MILANO",
+      "away": "DESENZANO",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -451,5 +451,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-17T16:48:05.378259+00:00"
+  "serieCUpdatedAt": "2026-10-17T17:09:09.828394+00:00"
 }

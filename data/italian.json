@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-18T19:04:01.755982+00:00",
+  "updatedAt": "2026-10-18T19:28:51.418175+00:00",
   "lba": [
     {
       "home": "BC Roma",
@@ -91,7 +91,7 @@
       "homeScore": 75,
       "awayScore": 89,
       "hasScore": true,
-      "status": "LIVE",
+      "status": "Finale",
       "time": "2026-10-18T19:00:00.000+02:00",
       "competition": "Serie A LBA",
       "source": "LBA",
@@ -128,10 +128,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "GUBBIO",
-      "away": "ATALANTA UNDER 23",
+      "home": "RAVENNA",
+      "away": "SPEZIA",
       "homeScore": 0,
-      "awayScore": 2,
+      "awayScore": 1,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-18T14:30:00+02:00",
@@ -142,10 +142,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "RAVENNA",
-      "away": "SPEZIA",
+      "home": "GUBBIO",
+      "away": "ATALANTA UNDER 23",
       "homeScore": 0,
-      "awayScore": 1,
+      "awayScore": 2,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-18T14:30:00+02:00",
@@ -296,6 +296,20 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
+      "home": "CITTADELLA",
+      "away": "ARZIGNANO V.",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-19T20:30:00+02:00",
+      "eventDate": "2026-10-19T20:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone A",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
       "home": "DOLOMITI BELLUNESI",
       "away": "TRENTO",
       "homeScore": "",
@@ -312,20 +326,6 @@
     {
       "home": "JUVENTUS NEXT GEN",
       "away": "RENATE",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
-      "time": "2026-10-19T20:30:00+02:00",
-      "eventDate": "2026-10-19T20:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone A",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
-      "home": "CITTADELLA",
-      "away": "ARZIGNANO V.",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -367,5 +367,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-18T19:04:01.755982+00:00"
+  "serieCUpdatedAt": "2026-10-18T19:28:51.418175+00:00"
 }

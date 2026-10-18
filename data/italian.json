@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-18T19:28:51.418175+00:00",
+  "updatedAt": "2026-10-18T19:55:11.042120+00:00",
   "lba": [
     {
       "home": "BC Roma",
@@ -100,10 +100,10 @@
   ],
   "serieC": [
     {
-      "home": "CAMPOBASSO",
-      "away": "PERUGIA",
+      "home": "LATINA",
+      "away": "VIS PESARO",
       "homeScore": 1,
-      "awayScore": 5,
+      "awayScore": 0,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-18T12:30:00+02:00",
@@ -114,10 +114,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "LATINA",
-      "away": "VIS PESARO",
+      "home": "CAMPOBASSO",
+      "away": "PERUGIA",
       "homeScore": 1,
-      "awayScore": 0,
+      "awayScore": 5,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-18T12:30:00+02:00",
@@ -367,5 +367,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-18T19:28:51.418175+00:00"
+  "serieCUpdatedAt": "2026-10-18T19:55:11.042120+00:00"
 }

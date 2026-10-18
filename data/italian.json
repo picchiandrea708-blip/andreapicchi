@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-18T07:47:53.309882+00:00",
+  "updatedAt": "2026-10-18T08:09:24.694326+00:00",
   "lba": [
     {
       "home": "BC Roma",
@@ -128,10 +128,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "REGGIANA",
-      "away": "TORRES",
-      "homeScore": 2,
-      "awayScore": 0,
+      "home": "GUIDONIA M.",
+      "away": "FORLÌ",
+      "homeScore": 3,
+      "awayScore": 2,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-17T14:30:00+02:00",
@@ -142,10 +142,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "GUIDONIA M.",
-      "away": "FORLÌ",
-      "homeScore": 3,
-      "awayScore": 2,
+      "home": "REGGIANA",
+      "away": "TORRES",
+      "homeScore": 2,
+      "awayScore": 0,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-17T14:30:00+02:00",
@@ -198,10 +198,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "SALERNITANA",
-      "away": "SCAFATESE",
+      "home": "POTENZA",
+      "away": "CATANIA",
       "homeScore": 2,
-      "awayScore": 2,
+      "awayScore": 1,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-17T17:30:00+02:00",
@@ -212,10 +212,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "POTENZA",
-      "away": "CATANIA",
+      "home": "SALERNITANA",
+      "away": "SCAFATESE",
       "homeScore": 2,
-      "awayScore": 1,
+      "awayScore": 2,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-17T17:30:00+02:00",
@@ -338,8 +338,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "ALBINOLEFFE",
-      "away": "NOVARA",
+      "home": "OSPITALETTO F.",
+      "away": "PERGOLETTESE",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -366,8 +366,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "OSPITALETTO F.",
-      "away": "PERGOLETTESE",
+      "home": "ALBINOLEFFE",
+      "away": "NOVARA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -423,5 +423,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-18T07:47:53.309882+00:00"
+  "serieCUpdatedAt": "2026-10-18T08:09:24.694326+00:00"
 }

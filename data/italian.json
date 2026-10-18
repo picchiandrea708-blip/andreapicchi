@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-18T17:10:55.146684+00:00",
+  "updatedAt": "2026-10-18T17:43:51.392156+00:00",
   "lba": [
     {
       "home": "BC Roma",
@@ -52,10 +52,10 @@
     {
       "home": "Pallacanestro Trieste",
       "away": "Acqua S.Bernardo Cantù",
-      "homeScore": 57,
-      "awayScore": 51,
+      "homeScore": 92,
+      "awayScore": 72,
       "hasScore": true,
-      "status": "LIVE",
+      "status": "Finale",
       "time": "2026-10-18T18:00:00.000+02:00",
       "competition": "Serie A LBA",
       "source": "LBA",
@@ -64,8 +64,8 @@
     {
       "home": "Tezenis Verona",
       "away": "UNA Hotels Reggio Emilia",
-      "homeScore": 57,
-      "awayScore": 49,
+      "homeScore": 84,
+      "awayScore": 74,
       "hasScore": true,
       "status": "LIVE",
       "time": "2026-10-18T18:00:00.000+02:00",
@@ -76,8 +76,8 @@
     {
       "home": "Virtus Costa Bologna",
       "away": "Longobardi Scafati Basket",
-      "homeScore": 48,
-      "awayScore": 33,
+      "homeScore": 63,
+      "awayScore": 52,
       "hasScore": true,
       "status": "LIVE",
       "time": "2026-10-18T18:30:00.000+02:00",
@@ -88,8 +88,8 @@
     {
       "home": "Bertram Derthona Tortona",
       "away": "Maxima Roma",
-      "homeScore": 7,
-      "awayScore": 3,
+      "homeScore": 32,
+      "awayScore": 43,
       "hasScore": true,
       "status": "LIVE",
       "time": "2026-10-18T19:00:00.000+02:00",
@@ -100,10 +100,10 @@
   ],
   "serieC": [
     {
-      "home": "CAMPOBASSO",
-      "away": "PERUGIA",
+      "home": "LATINA",
+      "away": "VIS PESARO",
       "homeScore": 1,
-      "awayScore": 5,
+      "awayScore": 0,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-18T12:30:00+02:00",
@@ -114,10 +114,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "LATINA",
-      "away": "VIS PESARO",
+      "home": "CAMPOBASSO",
+      "away": "PERUGIA",
       "homeScore": 1,
-      "awayScore": 0,
+      "awayScore": 5,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-18T12:30:00+02:00",
@@ -212,12 +212,26 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
+      "home": "ALCIONE MILANO",
+      "away": "DESENZANO",
+      "homeScore": 4,
+      "awayScore": 1,
+      "hasScore": true,
+      "status": "Risultato ufficiale",
+      "time": "2026-10-18T17:30:00+02:00",
+      "eventDate": "2026-10-18T17:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone A",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
       "home": "OSPITALETTO F.",
       "away": "PERGOLETTESE",
       "homeScore": 2,
-      "awayScore": 2,
+      "awayScore": 3,
       "hasScore": true,
-      "status": "LIVE",
+      "status": "Risultato ufficiale",
       "time": "2026-10-18T17:30:00+02:00",
       "eventDate": "2026-10-18T17:30:00+02:00",
       "competition": "Serie C",
@@ -228,24 +242,10 @@
     {
       "home": "ALBINOLEFFE",
       "away": "NOVARA",
-      "homeScore": 1,
+      "homeScore": 2,
       "awayScore": 2,
       "hasScore": true,
-      "status": "LIVE",
-      "time": "2026-10-18T17:30:00+02:00",
-      "eventDate": "2026-10-18T17:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone A",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
-      "home": "ALCIONE MILANO",
-      "away": "DESENZANO",
-      "homeScore": 4,
-      "awayScore": 1,
-      "hasScore": true,
-      "status": "LIVE",
+      "status": "Risultato ufficiale",
       "time": "2026-10-18T17:30:00+02:00",
       "eventDate": "2026-10-18T17:30:00+02:00",
       "competition": "Serie C",
@@ -259,7 +259,7 @@
       "homeScore": 2,
       "awayScore": 0,
       "hasScore": true,
-      "status": "LIVE",
+      "status": "Risultato ufficiale",
       "time": "2026-10-18T17:30:00+02:00",
       "eventDate": "2026-10-18T17:30:00+02:00",
       "competition": "Serie C",
@@ -273,7 +273,7 @@
       "homeScore": 1,
       "awayScore": 0,
       "hasScore": true,
-      "status": "LIVE",
+      "status": "Risultato ufficiale",
       "time": "2026-10-18T17:30:00+02:00",
       "eventDate": "2026-10-18T17:30:00+02:00",
       "competition": "Serie C",
@@ -287,7 +287,7 @@
       "homeScore": 0,
       "awayScore": 0,
       "hasScore": true,
-      "status": "LIVE",
+      "status": "Risultato ufficiale",
       "time": "2026-10-18T17:30:00+02:00",
       "eventDate": "2026-10-18T17:30:00+02:00",
       "competition": "Serie C",
@@ -297,5 +297,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-18T17:10:55.146684+00:00"
+  "serieCUpdatedAt": "2026-10-18T17:43:51.392156+00:00"
 }

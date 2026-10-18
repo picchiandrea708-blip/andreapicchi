@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-18T01:52:43.130392+00:00",
+  "updatedAt": "2026-10-18T02:31:30.720558+00:00",
   "lba": [
     {
       "home": "BC Roma",
@@ -142,10 +142,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "PIANESE",
-      "away": "PINETO",
-      "homeScore": 0,
-      "awayScore": 0,
+      "home": "VADO",
+      "away": "SAMBENEDETTESE",
+      "homeScore": 2,
+      "awayScore": 2,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-17T14:30:00+02:00",
@@ -156,10 +156,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "VADO",
-      "away": "SAMBENEDETTESE",
-      "homeScore": 2,
-      "awayScore": 2,
+      "home": "PIANESE",
+      "away": "PINETO",
+      "homeScore": 0,
+      "awayScore": 0,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-17T14:30:00+02:00",
@@ -226,20 +226,6 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "CAMPOBASSO",
-      "away": "PERUGIA",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
-      "time": "2026-10-18T12:30:00+02:00",
-      "eventDate": "2026-10-18T12:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone B",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
       "home": "LATINA",
       "away": "VIS PESARO",
       "homeScore": "",
@@ -254,14 +240,14 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "GUBBIO",
-      "away": "ATALANTA UNDER 23",
+      "home": "CAMPOBASSO",
+      "away": "PERUGIA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
       "status": "In programma",
-      "time": "2026-10-18T14:30:00+02:00",
-      "eventDate": "2026-10-18T14:30:00+02:00",
+      "time": "2026-10-18T12:30:00+02:00",
+      "eventDate": "2026-10-18T12:30:00+02:00",
       "competition": "Serie C",
       "group": "Girone B",
       "source": "Lega Pro",
@@ -282,8 +268,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "AUDACE CERIGNOLA",
-      "away": "SAVOIA",
+      "home": "GUBBIO",
+      "away": "ATALANTA UNDER 23",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -291,7 +277,7 @@
       "time": "2026-10-18T14:30:00+02:00",
       "eventDate": "2026-10-18T14:30:00+02:00",
       "competition": "Serie C",
-      "group": "Girone C",
+      "group": "Girone B",
       "source": "Lega Pro",
       "sourceUrl": "https://www.seriec.com/calendario"
     },
@@ -312,6 +298,20 @@
     {
       "home": "CAVESE",
       "away": "CASARANO",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-18T14:30:00+02:00",
+      "eventDate": "2026-10-18T14:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone C",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "AUDACE CERIGNOLA",
+      "away": "SAVOIA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -423,5 +423,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-18T01:52:43.130392+00:00"
+  "serieCUpdatedAt": "2026-10-18T02:31:30.720558+00:00"
 }

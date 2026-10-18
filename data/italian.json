@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-18T16:08:04.623422+00:00",
+  "updatedAt": "2026-10-18T16:49:06.615549+00:00",
   "lba": [
     {
       "home": "BC Roma",
@@ -28,10 +28,10 @@
     {
       "home": "Dolomiti Energia Trentino",
       "away": "Openjobmetis Varese",
-      "homeScore": 80,
-      "awayScore": 80,
+      "homeScore": 87,
+      "awayScore": 85,
       "hasScore": true,
-      "status": "LIVE",
+      "status": "Finale",
       "time": "2026-10-18T16:00:00.000+02:00",
       "competition": "Serie A LBA",
       "source": "LBA",
@@ -40,8 +40,8 @@
     {
       "home": "Nutribullet Treviso Basket",
       "away": "APU Old Wild West Udine",
-      "homeScore": 55,
-      "awayScore": 49,
+      "homeScore": 96,
+      "awayScore": 81,
       "hasScore": true,
       "status": "LIVE",
       "time": "2026-10-18T17:00:00.000+02:00",
@@ -52,8 +52,8 @@
     {
       "home": "Pallacanestro Trieste",
       "away": "Acqua S.Bernardo Cantù",
-      "homeScore": 1,
-      "awayScore": 5,
+      "homeScore": 44,
+      "awayScore": 38,
       "hasScore": true,
       "status": "LIVE",
       "time": "2026-10-18T18:00:00.000+02:00",
@@ -64,8 +64,8 @@
     {
       "home": "Tezenis Verona",
       "away": "UNA Hotels Reggio Emilia",
-      "homeScore": 7,
-      "awayScore": 4,
+      "homeScore": 53,
+      "awayScore": 43,
       "hasScore": true,
       "status": "LIVE",
       "time": "2026-10-18T18:00:00.000+02:00",
@@ -76,10 +76,10 @@
     {
       "home": "Virtus Costa Bologna",
       "away": "Longobardi Scafati Basket",
-      "homeScore": 0,
-      "awayScore": 0,
-      "hasScore": false,
-      "status": "In programma",
+      "homeScore": 27,
+      "awayScore": 15,
+      "hasScore": true,
+      "status": "LIVE",
       "time": "2026-10-18T18:30:00.000+02:00",
       "competition": "Serie A LBA",
       "source": "LBA",
@@ -128,10 +128,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "RAVENNA",
-      "away": "SPEZIA",
+      "home": "GUBBIO",
+      "away": "ATALANTA UNDER 23",
       "homeScore": 0,
-      "awayScore": 1,
+      "awayScore": 2,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-18T14:30:00+02:00",
@@ -142,10 +142,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "GUBBIO",
-      "away": "ATALANTA UNDER 23",
+      "home": "RAVENNA",
+      "away": "SPEZIA",
       "homeScore": 0,
-      "awayScore": 2,
+      "awayScore": 1,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-18T14:30:00+02:00",
@@ -212,10 +212,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "OSPITALETTO F.",
-      "away": "PERGOLETTESE",
+      "home": "ALBINOLEFFE",
+      "away": "NOVARA",
       "homeScore": 1,
-      "awayScore": 0,
+      "awayScore": 2,
       "hasScore": true,
       "status": "LIVE",
       "time": "2026-10-18T17:30:00+02:00",
@@ -228,6 +228,20 @@
     {
       "home": "ALCIONE MILANO",
       "away": "DESENZANO",
+      "homeScore": 3,
+      "awayScore": 0,
+      "hasScore": true,
+      "status": "LIVE",
+      "time": "2026-10-18T17:30:00+02:00",
+      "eventDate": "2026-10-18T17:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone A",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "OSPITALETTO F.",
+      "away": "PERGOLETTESE",
       "homeScore": 2,
       "awayScore": 0,
       "hasScore": true,
@@ -240,23 +254,9 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "ALBINOLEFFE",
-      "away": "NOVARA",
-      "homeScore": 0,
-      "awayScore": 1,
-      "hasScore": true,
-      "status": "LIVE",
-      "time": "2026-10-18T17:30:00+02:00",
-      "eventDate": "2026-10-18T17:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone A",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
       "home": "PESCARA",
       "away": "OSTIAMARE",
-      "homeScore": 0,
+      "homeScore": 2,
       "awayScore": 0,
       "hasScore": true,
       "status": "LIVE",
@@ -264,20 +264,6 @@
       "eventDate": "2026-10-18T17:30:00+02:00",
       "competition": "Serie C",
       "group": "Girone B",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
-      "home": "SORRENTO",
-      "away": "CASERTANA",
-      "homeScore": 0,
-      "awayScore": 0,
-      "hasScore": true,
-      "status": "LIVE",
-      "time": "2026-10-18T17:30:00+02:00",
-      "eventDate": "2026-10-18T17:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone C",
       "source": "Lega Pro",
       "sourceUrl": "https://www.seriec.com/calendario"
     },
@@ -294,8 +280,22 @@
       "group": "Girone C",
       "source": "Lega Pro",
       "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "SORRENTO",
+      "away": "CASERTANA",
+      "homeScore": 0,
+      "awayScore": 0,
+      "hasScore": true,
+      "status": "LIVE",
+      "time": "2026-10-18T17:30:00+02:00",
+      "eventDate": "2026-10-18T17:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone C",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-18T16:08:04.623422+00:00"
+  "serieCUpdatedAt": "2026-10-18T16:49:06.615549+00:00"
 }

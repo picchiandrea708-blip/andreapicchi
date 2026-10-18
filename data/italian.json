@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-18T20:29:02.619539+00:00",
+  "updatedAt": "2026-10-18T20:58:27.711272+00:00",
   "lba": [
     {
       "home": "BC Roma",
@@ -212,10 +212,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "ALBINOLEFFE",
-      "away": "NOVARA",
-      "homeScore": 2,
-      "awayScore": 2,
+      "home": "ALCIONE MILANO",
+      "away": "DESENZANO",
+      "homeScore": 4,
+      "awayScore": 1,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-18T17:30:00+02:00",
@@ -226,10 +226,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "ALCIONE MILANO",
-      "away": "DESENZANO",
-      "homeScore": 4,
-      "awayScore": 1,
+      "home": "ALBINOLEFFE",
+      "away": "NOVARA",
+      "homeScore": 2,
+      "awayScore": 2,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-18T17:30:00+02:00",
@@ -367,5 +367,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-18T20:29:02.619539+00:00"
+  "serieCUpdatedAt": "2026-10-18T20:58:27.711272+00:00"
 }

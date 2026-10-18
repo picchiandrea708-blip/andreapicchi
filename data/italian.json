@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-18T11:44:26.929056+00:00",
+  "updatedAt": "2026-10-18T12:06:45.955650+00:00",
   "lba": [
     {
       "home": "BC Roma",
@@ -16,8 +16,8 @@
     {
       "home": "Napoli Basketball",
       "away": "Armani Olimpia Milano",
-      "homeScore": 61,
-      "awayScore": 69,
+      "homeScore": 77,
+      "awayScore": 89,
       "hasScore": true,
       "status": "LIVE",
       "time": "2026-10-18T12:00:00.000+02:00",
@@ -114,10 +114,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "VADO",
-      "away": "SAMBENEDETTESE",
-      "homeScore": 2,
-      "awayScore": 2,
+      "home": "PIANESE",
+      "away": "PINETO",
+      "homeScore": 0,
+      "awayScore": 0,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-17T14:30:00+02:00",
@@ -128,10 +128,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "PIANESE",
-      "away": "PINETO",
-      "homeScore": 0,
-      "awayScore": 0,
+      "home": "VADO",
+      "away": "SAMBENEDETTESE",
+      "homeScore": 2,
+      "awayScore": 2,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-17T14:30:00+02:00",
@@ -198,20 +198,6 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "SALERNITANA",
-      "away": "SCAFATESE",
-      "homeScore": 2,
-      "awayScore": 2,
-      "hasScore": true,
-      "status": "FT",
-      "time": "2026-10-17T17:30:00+02:00",
-      "eventDate": "2026-10-17T17:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone C",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
       "home": "POTENZA",
       "away": "CATANIA",
       "homeScore": 2,
@@ -226,10 +212,24 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "LATINA",
-      "away": "VIS PESARO",
+      "home": "SALERNITANA",
+      "away": "SCAFATESE",
+      "homeScore": 2,
+      "awayScore": 2,
+      "hasScore": true,
+      "status": "FT",
+      "time": "2026-10-17T17:30:00+02:00",
+      "eventDate": "2026-10-17T17:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone C",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "CAMPOBASSO",
+      "away": "PERUGIA",
       "homeScore": 1,
-      "awayScore": 0,
+      "awayScore": 2,
       "hasScore": true,
       "status": "LIVE",
       "time": "2026-10-18T12:30:00+02:00",
@@ -240,10 +240,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "CAMPOBASSO",
-      "away": "PERUGIA",
+      "home": "LATINA",
+      "away": "VIS PESARO",
       "homeScore": 1,
-      "awayScore": 1,
+      "awayScore": 0,
       "hasScore": true,
       "status": "LIVE",
       "time": "2026-10-18T12:30:00+02:00",
@@ -282,20 +282,6 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "CAVESE",
-      "away": "CASARANO",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
-      "time": "2026-10-18T14:30:00+02:00",
-      "eventDate": "2026-10-18T14:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone C",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
       "home": "AUDACE CERIGNOLA",
       "away": "SAVOIA",
       "homeScore": "",
@@ -312,6 +298,20 @@
     {
       "home": "COSENZA",
       "away": "ALTAMURA",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-18T14:30:00+02:00",
+      "eventDate": "2026-10-18T14:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone C",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "CAVESE",
+      "away": "CASARANO",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -394,8 +394,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "SORRENTO",
-      "away": "CASERTANA",
+      "home": "BARLETTA",
+      "away": "PICERNO",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -408,8 +408,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "BARLETTA",
-      "away": "PICERNO",
+      "home": "SORRENTO",
+      "away": "CASERTANA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -423,5 +423,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-18T11:44:26.929056+00:00"
+  "serieCUpdatedAt": "2026-10-18T12:06:45.955650+00:00"
 }

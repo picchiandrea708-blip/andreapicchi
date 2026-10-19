@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-19T16:57:32.795579+00:00",
+  "updatedAt": "2026-10-19T17:33:32.271455+00:00",
   "lba": [
     {
       "home": "BC Roma",
@@ -128,8 +128,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "CITTADELLA",
-      "away": "ARZIGNANO V.",
+      "home": "GIANA ERMINIO",
+      "away": "UNION BRESCIA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -142,8 +142,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "GIANA ERMINIO",
-      "away": "UNION BRESCIA",
+      "home": "CITTADELLA",
+      "away": "ARZIGNANO V.",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -185,5 +185,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-19T16:57:32.795579+00:00"
+  "serieCUpdatedAt": "2026-10-19T17:33:32.271455+00:00"
 }

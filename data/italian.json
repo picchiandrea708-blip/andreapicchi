@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-19T04:56:32.975122+00:00",
+  "updatedAt": "2026-10-19T05:34:20.260393+00:00",
   "lba": [
     {
       "home": "BC Roma",
@@ -128,20 +128,6 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "RAVENNA",
-      "away": "SPEZIA",
-      "homeScore": 0,
-      "awayScore": 1,
-      "hasScore": true,
-      "status": "FT",
-      "time": "2026-10-18T14:30:00+02:00",
-      "eventDate": "2026-10-18T14:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone B",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
       "home": "GUBBIO",
       "away": "ATALANTA UNDER 23",
       "homeScore": 0,
@@ -156,10 +142,24 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "COSENZA",
-      "away": "ALTAMURA",
-      "homeScore": 1,
-      "awayScore": 3,
+      "home": "RAVENNA",
+      "away": "SPEZIA",
+      "homeScore": 0,
+      "awayScore": 1,
+      "hasScore": true,
+      "status": "FT",
+      "time": "2026-10-18T14:30:00+02:00",
+      "eventDate": "2026-10-18T14:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone B",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "AUDACE CERIGNOLA",
+      "away": "SAVOIA",
+      "homeScore": 4,
+      "awayScore": 0,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-18T14:30:00+02:00",
@@ -170,10 +170,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "AUDACE CERIGNOLA",
-      "away": "SAVOIA",
-      "homeScore": 4,
-      "awayScore": 0,
+      "home": "COSENZA",
+      "away": "ALTAMURA",
+      "homeScore": 1,
+      "awayScore": 3,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-18T14:30:00+02:00",
@@ -212,10 +212,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "ALCIONE MILANO",
-      "away": "DESENZANO",
-      "homeScore": 4,
-      "awayScore": 1,
+      "home": "OSPITALETTO F.",
+      "away": "PERGOLETTESE",
+      "homeScore": 2,
+      "awayScore": 3,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-18T17:30:00+02:00",
@@ -240,10 +240,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "OSPITALETTO F.",
-      "away": "PERGOLETTESE",
-      "homeScore": 2,
-      "awayScore": 3,
+      "home": "ALCIONE MILANO",
+      "away": "DESENZANO",
+      "homeScore": 4,
+      "awayScore": 1,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-18T17:30:00+02:00",
@@ -268,20 +268,6 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "SORRENTO",
-      "away": "CASERTANA",
-      "homeScore": 0,
-      "awayScore": 0,
-      "hasScore": true,
-      "status": "FT",
-      "time": "2026-10-18T17:30:00+02:00",
-      "eventDate": "2026-10-18T17:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone C",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
       "home": "BARLETTA",
       "away": "PICERNO",
       "homeScore": 1,
@@ -296,30 +282,16 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "JUVENTUS NEXT GEN",
-      "away": "RENATE",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
-      "time": "2026-10-19T20:30:00+02:00",
-      "eventDate": "2026-10-19T20:30:00+02:00",
+      "home": "SORRENTO",
+      "away": "CASERTANA",
+      "homeScore": 0,
+      "awayScore": 0,
+      "hasScore": true,
+      "status": "FT",
+      "time": "2026-10-18T17:30:00+02:00",
+      "eventDate": "2026-10-18T17:30:00+02:00",
       "competition": "Serie C",
-      "group": "Girone A",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
-      "home": "DOLOMITI BELLUNESI",
-      "away": "TRENTO",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
-      "time": "2026-10-19T20:30:00+02:00",
-      "eventDate": "2026-10-19T20:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone A",
+      "group": "Girone C",
       "source": "Lega Pro",
       "sourceUrl": "https://www.seriec.com/calendario"
     },
@@ -352,6 +324,34 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
+      "home": "JUVENTUS NEXT GEN",
+      "away": "RENATE",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-19T20:30:00+02:00",
+      "eventDate": "2026-10-19T20:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone A",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "DOLOMITI BELLUNESI",
+      "away": "TRENTO",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-19T20:30:00+02:00",
+      "eventDate": "2026-10-19T20:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone A",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
       "home": "GIUGLIANO",
       "away": "FOGGIA",
       "homeScore": "",
@@ -367,5 +367,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-19T04:56:32.975122+00:00"
+  "serieCUpdatedAt": "2026-10-19T05:34:20.260393+00:00"
 }

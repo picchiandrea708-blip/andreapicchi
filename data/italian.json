@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-19T21:05:22.246470+00:00",
+  "updatedAt": "2026-10-19T21:36:20.976539+00:00",
   "lba": [
     {
       "home": "BC Roma",
@@ -100,40 +100,12 @@
   ],
   "serieC": [
     {
-      "home": "JUVENTUS NEXT GEN",
-      "away": "RENATE",
-      "homeScore": 2,
-      "awayScore": 1,
-      "hasScore": true,
-      "status": "Risultato ufficiale",
-      "time": "2026-10-19T20:30:00+02:00",
-      "eventDate": "2026-10-19T20:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone A",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
-      "home": "CITTADELLA",
-      "away": "ARZIGNANO V.",
-      "homeScore": 1,
-      "awayScore": 0,
-      "hasScore": true,
-      "status": "Risultato ufficiale",
-      "time": "2026-10-19T20:30:00+02:00",
-      "eventDate": "2026-10-19T20:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone A",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
       "home": "GIANA ERMINIO",
       "away": "UNION BRESCIA",
       "homeScore": 2,
       "awayScore": 1,
       "hasScore": true,
-      "status": "Risultato ufficiale",
+      "status": "FT",
       "time": "2026-10-19T20:30:00+02:00",
       "eventDate": "2026-10-19T20:30:00+02:00",
       "competition": "Serie C",
@@ -147,7 +119,35 @@
       "homeScore": 0,
       "awayScore": 3,
       "hasScore": true,
-      "status": "Risultato ufficiale",
+      "status": "FT",
+      "time": "2026-10-19T20:30:00+02:00",
+      "eventDate": "2026-10-19T20:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone A",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "CITTADELLA",
+      "away": "ARZIGNANO V.",
+      "homeScore": 1,
+      "awayScore": 0,
+      "hasScore": true,
+      "status": "FT",
+      "time": "2026-10-19T20:30:00+02:00",
+      "eventDate": "2026-10-19T20:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone A",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "JUVENTUS NEXT GEN",
+      "away": "RENATE",
+      "homeScore": 2,
+      "awayScore": 1,
+      "hasScore": true,
+      "status": "FT",
       "time": "2026-10-19T20:30:00+02:00",
       "eventDate": "2026-10-19T20:30:00+02:00",
       "competition": "Serie C",
@@ -161,7 +161,7 @@
       "homeScore": 3,
       "awayScore": 1,
       "hasScore": true,
-      "status": "Risultato ufficiale",
+      "status": "FT",
       "time": "2026-10-19T20:30:00+02:00",
       "eventDate": "2026-10-19T20:30:00+02:00",
       "competition": "Serie C",
@@ -185,5 +185,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-19T21:05:22.246470+00:00"
+  "serieCUpdatedAt": "2026-10-19T21:36:20.976539+00:00"
 }

@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-19T15:37:06.871340+00:00",
+  "updatedAt": "2026-10-19T16:11:17.206021+00:00",
   "lba": [
     {
       "home": "BC Roma",
@@ -100,34 +100,6 @@
   ],
   "serieC": [
     {
-      "home": "CITTADELLA",
-      "away": "ARZIGNANO V.",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
-      "time": "2026-10-19T20:30:00+02:00",
-      "eventDate": "2026-10-19T20:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone A",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
-      "home": "JUVENTUS NEXT GEN",
-      "away": "RENATE",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
-      "time": "2026-10-19T20:30:00+02:00",
-      "eventDate": "2026-10-19T20:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone A",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
       "home": "GIANA ERMINIO",
       "away": "UNION BRESCIA",
       "homeScore": "",
@@ -144,6 +116,34 @@
     {
       "home": "DOLOMITI BELLUNESI",
       "away": "TRENTO",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-19T20:30:00+02:00",
+      "eventDate": "2026-10-19T20:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone A",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "CITTADELLA",
+      "away": "ARZIGNANO V.",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-19T20:30:00+02:00",
+      "eventDate": "2026-10-19T20:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone A",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "JUVENTUS NEXT GEN",
+      "away": "RENATE",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -185,5 +185,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-19T15:37:06.871340+00:00"
+  "serieCUpdatedAt": "2026-10-19T16:11:17.206021+00:00"
 }

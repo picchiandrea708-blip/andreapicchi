@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-19T16:11:17.206021+00:00",
+  "updatedAt": "2026-10-19T16:57:32.795579+00:00",
   "lba": [
     {
       "home": "BC Roma",
@@ -100,8 +100,8 @@
   ],
   "serieC": [
     {
-      "home": "GIANA ERMINIO",
-      "away": "UNION BRESCIA",
+      "home": "JUVENTUS NEXT GEN",
+      "away": "RENATE",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -142,8 +142,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "JUVENTUS NEXT GEN",
-      "away": "RENATE",
+      "home": "GIANA ERMINIO",
+      "away": "UNION BRESCIA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -185,5 +185,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-19T16:11:17.206021+00:00"
+  "serieCUpdatedAt": "2026-10-19T16:57:32.795579+00:00"
 }

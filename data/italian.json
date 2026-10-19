@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-19T18:03:04.645164+00:00",
+  "updatedAt": "2026-10-19T18:41:05.734362+00:00",
   "lba": [
     {
       "home": "BC Roma",
@@ -102,38 +102,10 @@
     {
       "home": "DOLOMITI BELLUNESI",
       "away": "TRENTO",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
-      "time": "2026-10-19T20:30:00+02:00",
-      "eventDate": "2026-10-19T20:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone A",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
-      "home": "GIANA ERMINIO",
-      "away": "UNION BRESCIA",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
-      "time": "2026-10-19T20:30:00+02:00",
-      "eventDate": "2026-10-19T20:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone A",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
-      "home": "CITTADELLA",
-      "away": "ARZIGNANO V.",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
+      "homeScore": 0,
+      "awayScore": 0,
+      "hasScore": true,
+      "status": "LIVE",
       "time": "2026-10-19T20:30:00+02:00",
       "eventDate": "2026-10-19T20:30:00+02:00",
       "competition": "Serie C",
@@ -144,10 +116,38 @@
     {
       "home": "JUVENTUS NEXT GEN",
       "away": "RENATE",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
+      "homeScore": 0,
+      "awayScore": 0,
+      "hasScore": true,
+      "status": "LIVE",
+      "time": "2026-10-19T20:30:00+02:00",
+      "eventDate": "2026-10-19T20:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone A",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "GIANA ERMINIO",
+      "away": "UNION BRESCIA",
+      "homeScore": 0,
+      "awayScore": 0,
+      "hasScore": true,
+      "status": "LIVE",
+      "time": "2026-10-19T20:30:00+02:00",
+      "eventDate": "2026-10-19T20:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone A",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "CITTADELLA",
+      "away": "ARZIGNANO V.",
+      "homeScore": 0,
+      "awayScore": 0,
+      "hasScore": true,
+      "status": "LIVE",
       "time": "2026-10-19T20:30:00+02:00",
       "eventDate": "2026-10-19T20:30:00+02:00",
       "competition": "Serie C",
@@ -158,10 +158,10 @@
     {
       "home": "GIUGLIANO",
       "away": "FOGGIA",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
+      "homeScore": 0,
+      "awayScore": 0,
+      "hasScore": true,
+      "status": "LIVE",
       "time": "2026-10-19T20:30:00+02:00",
       "eventDate": "2026-10-19T20:30:00+02:00",
       "competition": "Serie C",
@@ -185,5 +185,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-19T18:03:04.645164+00:00"
+  "serieCUpdatedAt": "2026-10-19T18:41:05.734362+00:00"
 }

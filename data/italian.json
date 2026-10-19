@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-19T05:34:20.260393+00:00",
+  "updatedAt": "2026-10-19T06:08:11.260245+00:00",
   "lba": [
     {
       "home": "BC Roma",
@@ -170,10 +170,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "COSENZA",
-      "away": "ALTAMURA",
-      "homeScore": 1,
-      "awayScore": 3,
+      "home": "CAVESE",
+      "away": "CASARANO",
+      "homeScore": 5,
+      "awayScore": 2,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-18T14:30:00+02:00",
@@ -184,10 +184,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "CAVESE",
-      "away": "CASARANO",
-      "homeScore": 5,
-      "awayScore": 2,
+      "home": "COSENZA",
+      "away": "ALTAMURA",
+      "homeScore": 1,
+      "awayScore": 3,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-18T14:30:00+02:00",
@@ -296,8 +296,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "CITTADELLA",
-      "away": "ARZIGNANO V.",
+      "home": "DOLOMITI BELLUNESI",
+      "away": "TRENTO",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -338,8 +338,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "DOLOMITI BELLUNESI",
-      "away": "TRENTO",
+      "home": "CITTADELLA",
+      "away": "ARZIGNANO V.",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -367,5 +367,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-19T05:34:20.260393+00:00"
+  "serieCUpdatedAt": "2026-10-19T06:08:11.260245+00:00"
 }

@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-19T08:05:38.368300+00:00",
+  "updatedAt": "2026-10-19T08:44:57.853644+00:00",
   "lba": [
     {
       "home": "BC Roma",
@@ -100,10 +100,10 @@
   ],
   "serieC": [
     {
-      "home": "LATINA",
-      "away": "VIS PESARO",
+      "home": "CAMPOBASSO",
+      "away": "PERUGIA",
       "homeScore": 1,
-      "awayScore": 0,
+      "awayScore": 5,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-18T12:30:00+02:00",
@@ -114,10 +114,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "CAMPOBASSO",
-      "away": "PERUGIA",
+      "home": "LATINA",
+      "away": "VIS PESARO",
       "homeScore": 1,
-      "awayScore": 5,
+      "awayScore": 0,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-18T12:30:00+02:00",
@@ -226,10 +226,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "OSPITALETTO F.",
-      "away": "PERGOLETTESE",
-      "homeScore": 2,
-      "awayScore": 3,
+      "home": "ALCIONE MILANO",
+      "away": "DESENZANO",
+      "homeScore": 4,
+      "awayScore": 1,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-18T17:30:00+02:00",
@@ -240,10 +240,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "ALCIONE MILANO",
-      "away": "DESENZANO",
-      "homeScore": 4,
-      "awayScore": 1,
+      "home": "OSPITALETTO F.",
+      "away": "PERGOLETTESE",
+      "homeScore": 2,
+      "awayScore": 3,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-18T17:30:00+02:00",
@@ -296,20 +296,6 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "GIANA ERMINIO",
-      "away": "UNION BRESCIA",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
-      "time": "2026-10-19T20:30:00+02:00",
-      "eventDate": "2026-10-19T20:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone A",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
       "home": "DOLOMITI BELLUNESI",
       "away": "TRENTO",
       "homeScore": "",
@@ -326,6 +312,20 @@
     {
       "home": "CITTADELLA",
       "away": "ARZIGNANO V.",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-19T20:30:00+02:00",
+      "eventDate": "2026-10-19T20:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone A",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "GIANA ERMINIO",
+      "away": "UNION BRESCIA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -367,5 +367,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-19T08:05:38.368300+00:00"
+  "serieCUpdatedAt": "2026-10-19T08:44:57.853644+00:00"
 }

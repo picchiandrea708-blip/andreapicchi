@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-19T04:13:10.108177+00:00",
+  "updatedAt": "2026-10-19T04:56:32.975122+00:00",
   "lba": [
     {
       "home": "BC Roma",
@@ -100,10 +100,10 @@
   ],
   "serieC": [
     {
-      "home": "LATINA",
-      "away": "VIS PESARO",
+      "home": "CAMPOBASSO",
+      "away": "PERUGIA",
       "homeScore": 1,
-      "awayScore": 0,
+      "awayScore": 5,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-18T12:30:00+02:00",
@@ -114,10 +114,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "CAMPOBASSO",
-      "away": "PERUGIA",
+      "home": "LATINA",
+      "away": "VIS PESARO",
       "homeScore": 1,
-      "awayScore": 5,
+      "awayScore": 0,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-18T12:30:00+02:00",
@@ -170,10 +170,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "CAVESE",
-      "away": "CASARANO",
-      "homeScore": 5,
-      "awayScore": 2,
+      "home": "AUDACE CERIGNOLA",
+      "away": "SAVOIA",
+      "homeScore": 4,
+      "awayScore": 0,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-18T14:30:00+02:00",
@@ -184,10 +184,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "AUDACE CERIGNOLA",
-      "away": "SAVOIA",
-      "homeScore": 4,
-      "awayScore": 0,
+      "home": "CAVESE",
+      "away": "CASARANO",
+      "homeScore": 5,
+      "awayScore": 2,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-18T14:30:00+02:00",
@@ -226,10 +226,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "OSPITALETTO F.",
-      "away": "PERGOLETTESE",
+      "home": "ALBINOLEFFE",
+      "away": "NOVARA",
       "homeScore": 2,
-      "awayScore": 3,
+      "awayScore": 2,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-18T17:30:00+02:00",
@@ -240,10 +240,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "ALBINOLEFFE",
-      "away": "NOVARA",
+      "home": "OSPITALETTO F.",
+      "away": "PERGOLETTESE",
       "homeScore": 2,
-      "awayScore": 2,
+      "awayScore": 3,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-18T17:30:00+02:00",
@@ -310,6 +310,20 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
+      "home": "DOLOMITI BELLUNESI",
+      "away": "TRENTO",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-19T20:30:00+02:00",
+      "eventDate": "2026-10-19T20:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone A",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
       "home": "CITTADELLA",
       "away": "ARZIGNANO V.",
       "homeScore": "",
@@ -338,20 +352,6 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "DOLOMITI BELLUNESI",
-      "away": "TRENTO",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
-      "time": "2026-10-19T20:30:00+02:00",
-      "eventDate": "2026-10-19T20:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone A",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
       "home": "GIUGLIANO",
       "away": "FOGGIA",
       "homeScore": "",
@@ -367,5 +367,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-19T04:13:10.108177+00:00"
+  "serieCUpdatedAt": "2026-10-19T04:56:32.975122+00:00"
 }

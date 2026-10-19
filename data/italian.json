@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-19T11:09:11.706282+00:00",
+  "updatedAt": "2026-10-19T11:56:05.409906+00:00",
   "lba": [
     {
       "home": "BC Roma",
@@ -100,10 +100,10 @@
   ],
   "serieC": [
     {
-      "home": "RAVENNA",
-      "away": "SPEZIA",
+      "home": "GUBBIO",
+      "away": "ATALANTA UNDER 23",
       "homeScore": 0,
-      "awayScore": 1,
+      "awayScore": 2,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-18T14:30:00+02:00",
@@ -114,10 +114,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "GUBBIO",
-      "away": "ATALANTA UNDER 23",
+      "home": "RAVENNA",
+      "away": "SPEZIA",
       "homeScore": 0,
-      "awayScore": 2,
+      "awayScore": 1,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-18T14:30:00+02:00",
@@ -142,10 +142,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "CAVESE",
-      "away": "CASARANO",
-      "homeScore": 5,
-      "awayScore": 2,
+      "home": "COSENZA",
+      "away": "ALTAMURA",
+      "homeScore": 1,
+      "awayScore": 3,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-18T14:30:00+02:00",
@@ -156,10 +156,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "COSENZA",
-      "away": "ALTAMURA",
-      "homeScore": 1,
-      "awayScore": 3,
+      "home": "CAVESE",
+      "away": "CASARANO",
+      "homeScore": 5,
+      "awayScore": 2,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-18T14:30:00+02:00",
@@ -184,10 +184,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "OSPITALETTO F.",
-      "away": "PERGOLETTESE",
-      "homeScore": 2,
-      "awayScore": 3,
+      "home": "ALCIONE MILANO",
+      "away": "DESENZANO",
+      "homeScore": 4,
+      "awayScore": 1,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-18T17:30:00+02:00",
@@ -212,10 +212,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "ALCIONE MILANO",
-      "away": "DESENZANO",
-      "homeScore": 4,
-      "awayScore": 1,
+      "home": "OSPITALETTO F.",
+      "away": "PERGOLETTESE",
+      "homeScore": 2,
+      "awayScore": 3,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-18T17:30:00+02:00",
@@ -240,20 +240,6 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "BARLETTA",
-      "away": "PICERNO",
-      "homeScore": 1,
-      "awayScore": 0,
-      "hasScore": true,
-      "status": "FT",
-      "time": "2026-10-18T17:30:00+02:00",
-      "eventDate": "2026-10-18T17:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone C",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
       "home": "SORRENTO",
       "away": "CASERTANA",
       "homeScore": 0,
@@ -268,8 +254,22 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "JUVENTUS NEXT GEN",
-      "away": "RENATE",
+      "home": "BARLETTA",
+      "away": "PICERNO",
+      "homeScore": 1,
+      "awayScore": 0,
+      "hasScore": true,
+      "status": "FT",
+      "time": "2026-10-18T17:30:00+02:00",
+      "eventDate": "2026-10-18T17:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone C",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "CITTADELLA",
+      "away": "ARZIGNANO V.",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -310,8 +310,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "CITTADELLA",
-      "away": "ARZIGNANO V.",
+      "home": "JUVENTUS NEXT GEN",
+      "away": "RENATE",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -339,5 +339,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-19T11:09:11.706282+00:00"
+  "serieCUpdatedAt": "2026-10-19T11:56:05.409906+00:00"
 }

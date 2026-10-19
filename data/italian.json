@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-19T12:43:37.891588+00:00",
+  "updatedAt": "2026-10-19T13:29:30.815002+00:00",
   "lba": [
     {
       "home": "BC Roma",
@@ -100,24 +100,10 @@
   ],
   "serieC": [
     {
-      "home": "BARI",
-      "away": "CROTONE",
-      "homeScore": 0,
-      "awayScore": 0,
-      "hasScore": true,
-      "status": "FT",
-      "time": "2026-10-18T15:00:00+02:00",
-      "eventDate": "2026-10-18T15:00:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone C",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
-      "home": "OSPITALETTO F.",
-      "away": "PERGOLETTESE",
+      "home": "ALBINOLEFFE",
+      "away": "NOVARA",
       "homeScore": 2,
-      "awayScore": 3,
+      "awayScore": 2,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-18T17:30:00+02:00",
@@ -142,10 +128,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "ALBINOLEFFE",
-      "away": "NOVARA",
+      "home": "OSPITALETTO F.",
+      "away": "PERGOLETTESE",
       "homeScore": 2,
-      "awayScore": 2,
+      "awayScore": 3,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-18T17:30:00+02:00",
@@ -170,9 +156,9 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "BARLETTA",
-      "away": "PICERNO",
-      "homeScore": 1,
+      "home": "SORRENTO",
+      "away": "CASERTANA",
+      "homeScore": 0,
       "awayScore": 0,
       "hasScore": true,
       "status": "FT",
@@ -184,9 +170,9 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "SORRENTO",
-      "away": "CASERTANA",
-      "homeScore": 0,
+      "home": "BARLETTA",
+      "away": "PICERNO",
+      "homeScore": 1,
       "awayScore": 0,
       "hasScore": true,
       "status": "FT",
@@ -212,8 +198,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "GIANA ERMINIO",
-      "away": "UNION BRESCIA",
+      "home": "DOLOMITI BELLUNESI",
+      "away": "TRENTO",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -240,8 +226,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "DOLOMITI BELLUNESI",
-      "away": "TRENTO",
+      "home": "GIANA ERMINIO",
+      "away": "UNION BRESCIA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -269,5 +255,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-19T12:43:37.891588+00:00"
+  "serieCUpdatedAt": "2026-10-19T13:29:30.815002+00:00"
 }

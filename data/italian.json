@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-20T06:45:05.804522+00:00",
+  "updatedAt": "2026-10-20T07:28:09.908342+00:00",
   "lba": [
     {
       "home": "BC Roma",
@@ -100,10 +100,10 @@
   ],
   "serieC": [
     {
-      "home": "GIANA ERMINIO",
-      "away": "UNION BRESCIA",
-      "homeScore": 2,
-      "awayScore": 1,
+      "home": "DOLOMITI BELLUNESI",
+      "away": "TRENTO",
+      "homeScore": 0,
+      "awayScore": 3,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-19T20:30:00+02:00",
@@ -128,10 +128,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "DOLOMITI BELLUNESI",
-      "away": "TRENTO",
-      "homeScore": 0,
-      "awayScore": 3,
+      "home": "CITTADELLA",
+      "away": "ARZIGNANO V.",
+      "homeScore": 1,
+      "awayScore": 0,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-19T20:30:00+02:00",
@@ -142,10 +142,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "CITTADELLA",
-      "away": "ARZIGNANO V.",
-      "homeScore": 1,
-      "awayScore": 0,
+      "home": "GIANA ERMINIO",
+      "away": "UNION BRESCIA",
+      "homeScore": 2,
+      "awayScore": 1,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-19T20:30:00+02:00",
@@ -185,5 +185,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-20T06:45:05.804522+00:00"
+  "serieCUpdatedAt": "2026-10-20T07:28:09.908342+00:00"
 }

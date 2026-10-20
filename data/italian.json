@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-20T16:13:44.231528+00:00",
+  "updatedAt": "2026-10-20T16:54:27.193388+00:00",
   "lba": [
     {
       "home": "BC Roma",
@@ -100,6 +100,20 @@
   ],
   "serieC": [
     {
+      "home": "DOLOMITI BELLUNESI",
+      "away": "TRENTO",
+      "homeScore": 0,
+      "awayScore": 3,
+      "hasScore": true,
+      "status": "FT",
+      "time": "2026-10-19T20:30:00+02:00",
+      "eventDate": "2026-10-19T20:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone A",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
       "home": "JUVENTUS NEXT GEN",
       "away": "RENATE",
       "homeScore": 2,
@@ -118,20 +132,6 @@
       "away": "ARZIGNANO V.",
       "homeScore": 1,
       "awayScore": 0,
-      "hasScore": true,
-      "status": "FT",
-      "time": "2026-10-19T20:30:00+02:00",
-      "eventDate": "2026-10-19T20:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone A",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
-      "home": "DOLOMITI BELLUNESI",
-      "away": "TRENTO",
-      "homeScore": 0,
-      "awayScore": 3,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-19T20:30:00+02:00",
@@ -175,7 +175,7 @@
       "homeScore": 2,
       "awayScore": 0,
       "hasScore": true,
-      "status": "Risultato ufficiale",
+      "status": "FT",
       "time": "2026-10-20T15:30:00+02:00",
       "eventDate": "2026-10-20T15:30:00+02:00",
       "competition": "Serie C",
@@ -185,5 +185,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-20T16:13:44.231528+00:00"
+  "serieCUpdatedAt": "2026-10-20T16:54:27.193388+00:00"
 }

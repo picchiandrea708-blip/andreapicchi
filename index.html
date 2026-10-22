@@ -144,7 +144,7 @@
 </head>
 <body>
   <header>
-    <div class="logo">SPORT<span>LIVE</span><small style="opacity:.45;font-size:.65rem"> v54</small></div>
+    <div class="logo">SPORT<span>LIVE</span><small style="opacity:.45;font-size:.65rem"> v55</small></div>
     <div class="status-bar">
       <div class="dot" id="liveDot"></div>
       <span id="lastUpdate">Connessione…</span>
@@ -295,7 +295,7 @@
           try {
             const j = JSON.parse(txt);
             if (name.includes('italian.json')) detail = `serieC: ${(j.serieC || []).length} partite, lba: ${(j.lba || []).length}${j.serieCApiError ? ', ERRORE API-Football: ' + JSON.stringify(j.serieCApiError).slice(0, 120) : ''}${j.updated ? ', aggiornato: ' + j.updated : ''}`;
-            else if (j && j.generatedAt) detail = `live: ${j.live} - pubblicato ${Math.round((Date.now() - Date.parse(j.generatedAt)) / 1000)} s fa${j.data && j.data.head ? ' - ' + (j.data.head.session_name || '?') + ', piloti: ' + Object.keys(j.data.rider || {}).length : ''}${j.test ? ' - FILE DI PROVA' : ''}${j.apiCheck ? ' - API MotoGP vista da GitHub: ' + JSON.stringify(j.apiCheck) : ''}`;
+            else if (j && j.generatedAt) detail = `live: ${j.live} - pubblicato ${Math.round((Date.now() - Date.parse(j.generatedAt)) / 1000)} s fa${j.data && j.data.head ? ' - ' + (j.data.head.session_name || '?') + ', piloti: ' + Object.keys(j.data.rider || {}).length : ''}${j.status ? ' - ultimo controllo Action: ' + JSON.stringify(j.status) : ''}${j.test ? ' - FILE DI PROVA' : ''}${j.apiCheck ? ' - API MotoGP vista da GitHub: ' + JSON.stringify(j.apiCheck) : ''}`;
             else if (j && j.head && j.rider) detail = `sessione: ${j.head.session_name || '?'} - stato: ${j.head.session_status_id || '?'} - piloti: ${Object.keys(j.rider).length} - tempo rimasto: ${j.head.remaining ?? '?'}`;
             else if (name.includes('ESPN')) detail = `${(j.events || []).length} eventi oggi`;
             else detail = Array.isArray(j) ? `${j.length} elementi` : 'JSON valido (' + Object.keys(j).slice(0, 4).join(', ') + ')';
@@ -1350,6 +1350,7 @@
 
     // ===== MOTOGP =====
     let motoIsLive = false;
+    let motoLastCheck = null;   // ultimo controllo dell'Action quando non c'è nessuna sessione live
     function motoWeekendActive() {
       const events = Array.isArray(MOTO_OFFLINE.events) ? MOTO_OFFLINE.events : [];
       const now = Date.now();
@@ -1369,12 +1370,16 @@
 
     async function fetchLive() {
       try {
+        motoLastCheck = null;
         if (!motoWeekendActive()) throw new Error('nessun weekend di gara');
         const snapRes = await fetch(`${LIVE_SNAPSHOT_URL}?t=${Date.now()}`, { cache: 'no-store' });
         if (!snapRes.ok) throw new Error('HTTP ' + snapRes.status);
         const snap = await snapRes.json();
         const snapAge = (Date.now() - Date.parse(snap.generatedAt)) / 1000;
-        if (!snap.live || !snap.data || !(snapAge < 180)) throw new Error('nessuna sessione live');
+        if (!snap.live || !snap.data || !(snapAge < 180)) {
+          if (snap.status) motoLastCheck = { ...snap.status, ageMin: Math.round(snapAge / 60) };
+          throw new Error('nessuna sessione live');
+        }
         const data = snap.data;
         const head = data.head || {};
         const riders = Object.values(data.rider || {}).sort((a, b) => {
@@ -1385,7 +1390,11 @@
         if (!riders.length) throw new Error('vuoto');
         const sessionStatus = String(head.session_status_id || '').toUpperCase();
         const hasRedFlagTiming = riders.some(r => Number(r.pos) > 0 && (Number(r.total_laps) > 0 || [r.lap_time, r.last_lap_time].some(t => t && !/^0+(\.0+)?$/.test(String(t)))));
-        if (sessionStatus !== 'S' && !(sessionStatus === 'R' && hasRedFlagTiming)) {
+        // Stessa regola dell'Action: avviata, oppure bandiera rossa/sospesa con tempi, oppure stato sconosciuto con tempo residuo.
+        const liveNow = sessionStatus === 'S'
+          || (['R', 'P'].includes(sessionStatus) && hasRedFlagTiming)
+          || (!['F', 'N', 'C'].includes(sessionStatus) && hasRedFlagTiming && Number(head.remaining) > 0);
+        if (!liveNow) {
           renderOfflineMotoLive();
           return;
         }
@@ -1441,7 +1450,8 @@
       document.getElementById('liveTitle').textContent = 'Livetiming';
       document.getElementById('liveStatus').textContent = 'NON LIVE';
       const l = document.getElementById('liveLoading');
-      l.textContent = 'Nessuna sessione MotoGP in corso. Le classifiche delle gare precedenti sono qui sotto.';
+      l.textContent = 'Nessuna sessione MotoGP in corso. Le classifiche delle gare precedenti sono qui sotto.'
+        + (motoLastCheck ? ` Ultimo controllo ${motoLastCheck.ageMin} min fa: ${motoLastCheck.session || 'nessuna sessione'}, stato ${motoLastCheck.code}.` : '');
       l.style.display = 'block';
       document.getElementById('liveDot').style.background = '#666';
     }

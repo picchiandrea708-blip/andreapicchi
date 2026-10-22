@@ -144,7 +144,7 @@
 </head>
 <body>
   <header>
-    <div class="logo">SPORT<span>LIVE</span><small style="opacity:.45;font-size:.65rem"> v56</small></div>
+    <div class="logo">SPORT<span>LIVE</span><small style="opacity:.45;font-size:.65rem"> v57</small></div>
     <div class="status-bar">
       <div class="dot" id="liveDot"></div>
       <span id="lastUpdate">Connessione…</span>
@@ -1394,7 +1394,7 @@
         // Stessa regola dell'Action: avviata, oppure bandiera rossa/sospesa con tempi, oppure stato sconosciuto con tempo residuo.
         const liveNow = sessionStatus === 'S'
           || (['R', 'P'].includes(sessionStatus) && hasRedFlagTiming)
-          || (!['F', 'N', 'C'].includes(sessionStatus) && hasRedFlagTiming && Number(head.remaining) > 0);
+          || (!['F', 'N'].includes(sessionStatus) && hasRedFlagTiming && Number(head.remaining) > 0);
         if (!liveNow) {
           renderOfflineMotoLive();
           return;

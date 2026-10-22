@@ -11,7 +11,7 @@ const API = process.env.MOTOGP_API || 'https://api.motogp.pulselive.com/motogp/v
 const POLL_MS = Number(process.env.POLL_S || 10) * 1000;        // ogni quanto interroga MotoGP
 const PUBLISH_MS = Number(process.env.PUBLISH_S || 20) * 1000;  // ogni quanto pubblica il file
 const MAX_MS = Number(process.env.MAX_MINUTES || 55) * 60_000;  // durata massima di una esecuzione
-const IDLE_POLLS = Number(process.env.IDLE_POLLS || 6);         // controlli "non live" di fila prima di fermarsi
+const IDLE_POLLS = Number(process.env.IDLE_POLLS || 12);        // controlli "non live" di fila prima di fermarsi
 const BRANCH = process.env.PUBLISH_BRANCH || 'live';
 const REMOTE = process.env.PUBLISH_REMOTE ||
   `https://x-access-token:${process.env.GITHUB_TOKEN}@github.com/${process.env.GITHUB_REPOSITORY}.git`;
@@ -58,8 +58,9 @@ function isLive(data) {
     [r.lap_time, r.last_lap_time].some(t => t && !/^0+(\.0+)?$/.test(String(t)))));
   if (status === 'S') return true;                                        // sessione avviata
   if ((status === 'R' || status === 'P') && hasTiming) return true;      // bandiera rossa / sospesa, con tempi
-  // Stato mai visto prima (non F=finita, N=non iniziata, C=chiusa): live solo se c'è tempo residuo e tempi validi.
-  return !['F', 'N', 'C'].includes(status) && hasTiming && Number(data?.head?.remaining) > 0;
+  // Qualunque altro stato (es. "C", mai documentato): live se c'è ancora tempo residuo e i tempi sono validi.
+  // Solo F (finita) e N (non iniziata) sono sicuramente non live.
+  return !['F', 'N'].includes(status) && hasTiming && Number(data?.head?.remaining) > 0;
 }
 
 // Cosa ha visto l'ultimo controllo (lo mostra la Diagnostica e il riquadro live del sito).
@@ -133,7 +134,7 @@ async function main() {
   if (!process.env.FORCE && !weekendActive()) { log('nessun weekend di gara: esco'); return; }
   const deadline = Date.now() + MAX_MS;
   const pub = makePublisher();
-  let wasLive = false, idle = 0, fails = 0, lastPublish = 0, published = 0;
+  let wasLive = false, idle = 0, fails = 0, lastPublish = 0, published = 0, lastCode = null;
 
   while (Date.now() < deadline) {
     let data;
@@ -143,6 +144,8 @@ async function main() {
       if (fails >= 6) throw new Error('MotoGP non raggiungibile: ' + e.message);
       await sleep(POLL_MS); continue;
     }
+    const code = String(data?.head?.session_status_id ?? '?');
+    if (code !== lastCode) { log(`stato sessione: ${lastCode ?? '-'} -> ${code} (residuo ${data?.head?.remaining ?? '?'}, live: ${isLive(data)})`); lastCode = code; }
     if (isLive(data)) {
       idle = 0;
       if (!wasLive) log(`sessione LIVE (stato ${data.head?.session_status_id || '?'}): ${data.head?.event_shortname || ''} ${data.head?.category || ''} ${data.head?.session_name || ''}`);

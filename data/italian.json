@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-22T18:39:07.901139+00:00",
+  "updatedAt": "2026-10-22T19:21:57.990835+00:00",
   "lba": [
     {
       "home": "Openjobmetis Varese",
@@ -100,6 +100,20 @@
   ],
   "serieC": [
     {
+      "home": "PERUGIA",
+      "away": "PESCARA",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-23T20:30:00+02:00",
+      "eventDate": "2026-10-23T20:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone B",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
       "home": "OSTIAMARE",
       "away": "VADO",
       "homeScore": "",
@@ -116,20 +130,6 @@
     {
       "home": "PINETO",
       "away": "GUBBIO",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
-      "time": "2026-10-23T20:30:00+02:00",
-      "eventDate": "2026-10-23T20:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone B",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
-      "home": "PERUGIA",
-      "away": "PESCARA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -171,5 +171,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-22T18:39:07.901139+00:00"
+  "serieCUpdatedAt": "2026-10-22T19:21:57.990835+00:00"
 }

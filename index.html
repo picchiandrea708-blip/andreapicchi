@@ -144,7 +144,7 @@
 </head>
 <body>
   <header>
-    <div class="logo">SPORT<span>LIVE</span><small style="opacity:.45;font-size:.65rem"> v55</small></div>
+    <div class="logo">SPORT<span>LIVE</span><small style="opacity:.45;font-size:.65rem"> v56</small></div>
     <div class="status-bar">
       <div class="dot" id="liveDot"></div>
       <span id="lastUpdate">Connessione…</span>
@@ -1194,9 +1194,9 @@
             f1State.active = true;
           } else {
             const detail = String(e?.message || 'servizio non disponibile').replace(/^.*?:\s*/, '');
-            if (/403/.test(detail)) {
+            if (/401|403/.test(detail)) {
               f1State.active = true;   // sessione in corso: il badge LIVE resta acceso anche se F1 non dà i dati
-              renderF1NoLive(box, 'Sessione di Formula 1 in corso, ma durante la sessione F1 non rende pubblici i dati di timing (errore 403). La classifica compare dopo la fine; le gare precedenti sono qui sotto.');
+              renderF1NoLive(box, 'Sessione di Formula 1 in corso, ma durante la sessione F1 non rende pubblici i dati di timing (errore 401/403). La classifica compare dopo la fine; le gare precedenti sono qui sotto.');
             } else {
               renderF1NoLive(box, `Live timing non raggiungibile in questo momento (${detail}). Le classifiche delle gare precedenti sono qui sotto.`);
             }
@@ -1304,7 +1304,8 @@
       let meetings;
       try { meetings = await getF1Index(); }
       catch (e) {
-        box.innerHTML = `<div class="error"><strong>Sessioni F1 temporaneamente non disponibili.</strong><br><span>${escapeHtml(String(e?.message || '').replace(/^.*?:\s*/, ''))}</span></div>`;
+        const why = String(e?.message || '').replace(/^.*?:\s*/, '');
+        box.innerHTML = `<div class="error"><strong>Sessioni F1 temporaneamente non disponibili.</strong><br><span>${/401|403/.test(why) ? 'F1 al momento non rende accessibile l\'archivio ufficiale (' + escapeHtml(why) + '). Le classifiche delle gare qui sopra restano disponibili.' : escapeHtml(why)}</span></div>`;
         return;
       }
       if (!meetings.length) { box.innerHTML = '<div class="empty">Nessuna sessione F1 conclusa disponibile.</div>'; return; }
@@ -1341,7 +1342,7 @@
       } catch (e) {
         if (reqId !== f1State.sessReq) return;
         const detail = String(e?.message || '');
-        out.innerHTML = `<div class="empty">${/403|404/.test(detail) ? 'Dati non ancora pubblicati da F1 per questa sessione: di solito compaiono dopo qualche ora dalla fine.' : 'Dati non disponibili in questo momento.'}</div>`;
+        out.innerHTML = `<div class="empty">${/401|403|404/.test(detail) ? 'F1 non rende accessibili i dati di questa sessione (errore ' + (detail.match(/40[134]/) || ['di accesso'])[0] + '). Di solito compaiono dopo qualche ora dalla fine, ma a volte F1 limita l\'accesso.' : 'Dati non disponibili in questo momento.'}</div>`;
         return;
       }
       if (reqId !== f1State.sessReq) return;

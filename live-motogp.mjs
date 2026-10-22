@@ -56,7 +56,33 @@ function isLive(data) {
   const status = String(data?.head?.session_status_id || '').toUpperCase();
   const hasTiming = riders.some(r => Number(r.pos) > 0 && (Number(r.total_laps) > 0 ||
     [r.lap_time, r.last_lap_time].some(t => t && !/^0+(\.0+)?$/.test(String(t)))));
-  return status === 'S' || (status === 'R' && hasTiming);
+  if (status === 'S') return true;                                        // sessione avviata
+  if ((status === 'R' || status === 'P') && hasTiming) return true;      // bandiera rossa / sospesa, con tempi
+  // Stato mai visto prima (non F=finita, N=non iniziata, C=chiusa): live solo se c'è tempo residuo e tempi validi.
+  return !['F', 'N', 'C'].includes(status) && hasTiming && Number(data?.head?.remaining) > 0;
+}
+
+// Cosa ha visto l'ultimo controllo (lo mostra la Diagnostica e il riquadro live del sito).
+function statusOf(data) {
+  const h = data?.head || {};
+  return { code: h.session_status_id ?? '?', session: [h.event_shortname, h.category, h.session_name].filter(Boolean).join(' '),
+           riders: Object.keys(data?.rider || {}).length, remaining: h.remaining ?? null };
+}
+async function remoteSnapshot() {
+  try {
+    const url = process.env.SNAPSHOT_URL || `https://raw.githubusercontent.com/${process.env.GITHUB_REPOSITORY}/${BRANCH}/moto-live.json?t=${Date.now()}`;
+    const r = await fetch(url);
+    return r.ok ? await r.json() : null;
+  } catch { return null; }
+}
+// Pubblica lo stato "non live" solo se è cambiato o è passato un po' di tempo: così non si fa un commit ogni 5 minuti.
+async function publishIdleIfNeeded(pub, data) {
+  const status = statusOf(data);
+  const prev = await remoteSnapshot();
+  const ageMin = prev?.generatedAt ? (Date.now() - Date.parse(prev.generatedAt)) / 60000 : Infinity;
+  const same = prev && !prev.live && prev.status && prev.status.code === status.code && prev.status.session === status.session;
+  if (same && ageMin < 20) return;
+  pub.publish({ generatedAt: new Date().toISOString(), live: false, status });
 }
 
 function makePublisher() {
@@ -119,17 +145,21 @@ async function main() {
     }
     if (isLive(data)) {
       idle = 0;
-      if (!wasLive) log(`sessione LIVE: ${data.head?.event_shortname || ''} ${data.head?.category || ''} ${data.head?.session_name || ''}`);
+      if (!wasLive) log(`sessione LIVE (stato ${data.head?.session_status_id || '?'}): ${data.head?.event_shortname || ''} ${data.head?.category || ''} ${data.head?.session_name || ''}`);
       wasLive = true;
       if (Date.now() - lastPublish >= PUBLISH_MS) {
         if (pub.publish({ generatedAt: new Date().toISOString(), live: true, data })) { lastPublish = Date.now(); published++; }
       }
     } else {
-      if (!wasLive) { log(`nessuna sessione in corso (stato ${data.head?.session_status_id || '?'}, piloti ${Object.keys(data.rider || {}).length}): esco`); return; }
+      if (!wasLive) {
+        log(`nessuna sessione in corso (stato ${data.head?.session_status_id || '?'}, piloti ${Object.keys(data.rider || {}).length}, sessione "${statusOf(data).session}"): esco`);
+        await publishIdleIfNeeded(pub, data);
+        return;
+      }
       idle++;
       if (idle >= IDLE_POLLS) {
         log('sessione terminata');
-        pub.publish({ generatedAt: new Date().toISOString(), live: false });
+        pub.publish({ generatedAt: new Date().toISOString(), live: false, status: statusOf(data) });
         return;
       }
     }

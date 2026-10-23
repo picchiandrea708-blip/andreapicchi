@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-23T18:15:17.915258+00:00",
+  "updatedAt": "2026-10-23T19:01:53.379004+00:00",
   "lba": [
     {
       "home": "Openjobmetis Varese",
@@ -102,10 +102,10 @@
     {
       "home": "PINETO",
       "away": "GUBBIO",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
+      "homeScore": 1,
+      "awayScore": 0,
+      "hasScore": true,
+      "status": "LIVE",
       "time": "2026-10-23T20:30:00+02:00",
       "eventDate": "2026-10-23T20:30:00+02:00",
       "competition": "Serie C",
@@ -116,10 +116,10 @@
     {
       "home": "OSTIAMARE",
       "away": "VADO",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
+      "homeScore": 0,
+      "awayScore": 0,
+      "hasScore": true,
+      "status": "LIVE",
       "time": "2026-10-23T20:30:00+02:00",
       "eventDate": "2026-10-23T20:30:00+02:00",
       "competition": "Serie C",
@@ -130,10 +130,10 @@
     {
       "home": "PERUGIA",
       "away": "PESCARA",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
+      "homeScore": 1,
+      "awayScore": 0,
+      "hasScore": true,
+      "status": "LIVE",
       "time": "2026-10-23T20:30:00+02:00",
       "eventDate": "2026-10-23T20:30:00+02:00",
       "competition": "Serie C",
@@ -144,10 +144,10 @@
     {
       "home": "CASERTANA",
       "away": "BARI",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
+      "homeScore": 0,
+      "awayScore": 0,
+      "hasScore": true,
+      "status": "LIVE",
       "time": "2026-10-23T20:30:00+02:00",
       "eventDate": "2026-10-23T20:30:00+02:00",
       "competition": "Serie C",
@@ -158,10 +158,10 @@
     {
       "home": "ALTAMURA",
       "away": "POTENZA",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
+      "homeScore": 1,
+      "awayScore": 1,
+      "hasScore": true,
+      "status": "LIVE",
       "time": "2026-10-23T20:30:00+02:00",
       "eventDate": "2026-10-23T20:30:00+02:00",
       "competition": "Serie C",
@@ -184,8 +184,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "SAMBENEDETTESE",
-      "away": "LIVORNO",
+      "home": "ATALANTA UNDER 23",
+      "away": "CAMPOBASSO",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -198,8 +198,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "ATALANTA UNDER 23",
-      "away": "CAMPOBASSO",
+      "home": "SAMBENEDETTESE",
+      "away": "LIVORNO",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -254,8 +254,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "ALCIONE MILANO",
-      "away": "CARPI",
+      "home": "UNION BRESCIA",
+      "away": "CITTADELLA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -268,8 +268,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "UNION BRESCIA",
-      "away": "CITTADELLA",
+      "home": "ALCIONE MILANO",
+      "away": "CARPI",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -311,5 +311,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-23T18:15:17.915258+00:00"
+  "serieCUpdatedAt": "2026-10-23T19:01:53.379004+00:00"
 }

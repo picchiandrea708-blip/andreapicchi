@@ -12,6 +12,8 @@ const POLL_MS = Number(process.env.POLL_S || 10) * 1000;        // ogni quanto i
 const PUBLISH_MS = Number(process.env.PUBLISH_S || 20) * 1000;  // ogni quanto pubblica il file
 const MAX_MS = Number(process.env.MAX_MINUTES || 55) * 60_000;  // durata massima di una esecuzione
 const IDLE_POLLS = Number(process.env.IDLE_POLLS || 12);        // controlli "non live" di fila prima di fermarsi
+const WAIT_MS = Number(process.env.WAIT_MINUTES || 0) * 60_000;       // avvio manuale: attende l'inizio della sessione per questi minuti
+const WAIT_POLL_MS = Number(process.env.WAIT_POLL_S || 15) * 1000;
 const BRANCH = process.env.PUBLISH_BRANCH || 'live';
 const REMOTE = process.env.PUBLISH_REMOTE ||
   `https://x-access-token:${process.env.GITHUB_TOKEN}@github.com/${process.env.GITHUB_REPOSITORY}.git`;
@@ -133,6 +135,8 @@ async function main() {
   }
   if (!process.env.FORCE && !weekendActive()) { log('nessun weekend di gara: esco'); return; }
   const deadline = Date.now() + MAX_MS;
+  const waitDeadline = Date.now() + WAIT_MS;
+  let waiting = false;
   const pub = makePublisher();
   let wasLive = false, idle = 0, fails = 0, lastPublish = 0, published = 0, lastCode = null;
 
@@ -155,7 +159,13 @@ async function main() {
       }
     } else {
       if (!wasLive) {
-        log(`nessuna sessione in corso (stato ${data.head?.session_status_id || '?'}, piloti ${Object.keys(data.rider || {}).length}, sessione "${statusOf(data).session}"): esco`);
+        const info = `stato ${data.head?.session_status_id || '?'}, piloti ${Object.keys(data.rider || {}).length}, sessione "${statusOf(data).session}"`;
+        if (Date.now() < waitDeadline) {           // avviata a mano: aspetta che la sessione cominci
+          if (!waiting) { log(`nessuna sessione in corso (${info}): resto in attesa dell'inizio`); waiting = true; await publishIdleIfNeeded(pub, data); }
+          await sleep(WAIT_POLL_MS);
+          continue;
+        }
+        log(`nessuna sessione in corso (${info}): esco`);
         await publishIdleIfNeeded(pub, data);
         return;
       }

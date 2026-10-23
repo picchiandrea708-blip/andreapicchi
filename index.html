@@ -144,7 +144,7 @@
 </head>
 <body>
   <header>
-    <div class="logo">SPORT<span>LIVE</span><small style="opacity:.45;font-size:.65rem"> v57</small></div>
+    <div class="logo">SPORT<span>LIVE</span><small style="opacity:.45;font-size:.65rem"> v58</small></div>
     <div class="status-bar">
       <div class="dot" id="liveDot"></div>
       <span id="lastUpdate">Connessione…</span>
@@ -265,6 +265,7 @@
           ['PROVA (?alt=) -> MotoGP livetiming', new URLSearchParams(location.search).get('alt').replace(/\/+$/, '') + '/?url=' + encodeURIComponent('https://api.motogp.pulselive.com/motogp/v1/timing-gateway/livetiming-lite')]
         ] : []),
         ['Live MotoGP pubblicato da GitHub (ramo live)', LIVE_SNAPSHOT_URL + '?t=' + Date.now()],
+        ['Live MotoGP via API GitHub (più aggiornato)', LIVE_API_URL + '&_=' + Date.now()],
         ['NUOVO Worker -> MotoGP stagioni', viaNew('https://api.motogp.pulselive.com/motogp/v1/results/seasons')],
         ['NUOVO Worker -> MotoGP livetiming', viaNew('https://api.motogp.pulselive.com/motogp/v1/timing-gateway/livetiming-lite')],
         ['NUOVO Worker -> F1 SessionInfo', viaNew(F1_OFFICIAL_STATIC + 'SessionInfo.json')],
@@ -426,6 +427,8 @@
     const LIVE_URL = PROXY + encodeURIComponent('https://api.motogp.pulselive.com/motogp/v1/timing-gateway/livetiming-lite');
     // Timing live pubblicato dalla GitHub Action "MotoGP live" sul ramo "live" del repository.
     const LIVE_SNAPSHOT_URL = 'https://raw.githubusercontent.com/picchiandrea708-blip/andreapicchi/live/moto-live.json';
+    // Stesso file letto dall'API di GitHub: più aggiornato (raw.githubusercontent.com conserva una copia fino a 5 minuti).
+    const LIVE_API_URL = 'https://api.github.com/repos/picchiandrea708-blip/andreapicchi/contents/moto-live.json?ref=live';
     const F1_REFRESH_MS = 60_000;
     const F1_LIVE_REFRESH_MS = 10_000;
     const F1_OFFICIAL_TIMING_URL = 'https://www.formula1.com/en/timing/f1-live';
@@ -1352,6 +1355,26 @@
     // ===== MOTOGP =====
     let motoIsLive = false;
     let motoLastCheck = null;   // ultimo controllo dell'Action quando non c'è nessuna sessione live
+    // L'API di GitHub senza account concede circa 60 richieste/ora per indirizzo: si usa al massimo ogni 65 secondi.
+    const motoApi = { at: 0, snap: null, blockedUntil: 0 };
+    async function fetchLiveSnapshot() {
+      if (Date.now() - motoApi.at >= 65_000 && Date.now() >= motoApi.blockedUntil) {
+        motoApi.at = Date.now();
+        try {
+          const r = await fetch(`${LIVE_API_URL}&_=${Date.now()}`, { headers: { Accept: 'application/vnd.github.raw+json' }, cache: 'no-store' });
+          if (r.ok) motoApi.snap = await r.json();
+          else if (r.status === 403 || r.status === 429) motoApi.blockedUntil = Date.now() + 10 * 60_000;   // limite raggiunto: si riprova più tardi
+        } catch (_) { /* si usa la copia raw */ }
+      }
+      let raw = null;
+      try {
+        const r = await fetch(`${LIVE_SNAPSHOT_URL}?t=${Date.now()}`, { cache: 'no-store' });
+        if (r.ok) raw = await r.json();
+        else if (!motoApi.snap) throw new Error('HTTP ' + r.status);
+      } catch (e) { if (!motoApi.snap) throw e; }
+      // Tra le due copie vale la più recente.
+      return [motoApi.snap, raw].filter(Boolean).sort((a, b) => Date.parse(b.generatedAt) - Date.parse(a.generatedAt))[0];
+    }
     function motoWeekendActive() {
       const events = Array.isArray(MOTO_OFFLINE.events) ? MOTO_OFFLINE.events : [];
       const now = Date.now();
@@ -1373,11 +1396,9 @@
       try {
         motoLastCheck = null;
         if (!motoWeekendActive()) throw new Error('nessun weekend di gara');
-        const snapRes = await fetch(`${LIVE_SNAPSHOT_URL}?t=${Date.now()}`, { cache: 'no-store' });
-        if (!snapRes.ok) throw new Error('HTTP ' + snapRes.status);
-        const snap = await snapRes.json();
+        const snap = await fetchLiveSnapshot();
         const snapAge = (Date.now() - Date.parse(snap.generatedAt)) / 1000;
-        if (!snap.live || !snap.data || !(snapAge < 180)) {
+        if (!snap.live || !snap.data || !(snapAge < 420)) {
           if (snap.status) motoLastCheck = { ...snap.status, ageMin: Math.round(snapAge / 60) };
           throw new Error('nessuna sessione live');
         }

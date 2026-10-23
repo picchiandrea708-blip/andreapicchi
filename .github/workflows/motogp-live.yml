@@ -26,4 +26,6 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TEST_PUBLISH: ${{ inputs.test && '1' || '' }}
+          UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
+          UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
           WAIT_MINUTES: ${{ github.event_name == 'workflow_dispatch' && '25' || '0' }}

@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-23T17:50:39.859050+00:00",
+  "updatedAt": "2026-10-23T18:15:17.915258+00:00",
   "lba": [
     {
       "home": "Openjobmetis Varese",
@@ -100,8 +100,8 @@
   ],
   "serieC": [
     {
-      "home": "PERUGIA",
-      "away": "PESCARA",
+      "home": "PINETO",
+      "away": "GUBBIO",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -128,8 +128,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "PINETO",
-      "away": "GUBBIO",
+      "home": "PERUGIA",
+      "away": "PESCARA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -142,8 +142,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "ALTAMURA",
-      "away": "POTENZA",
+      "home": "CASERTANA",
+      "away": "BARI",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -156,8 +156,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "CASERTANA",
-      "away": "BARI",
+      "home": "ALTAMURA",
+      "away": "POTENZA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -311,5 +311,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-23T17:50:39.859050+00:00"
+  "serieCUpdatedAt": "2026-10-23T18:15:17.915258+00:00"
 }

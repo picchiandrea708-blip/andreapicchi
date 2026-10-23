@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-23T11:07:52.477626+00:00",
+  "updatedAt": "2026-10-23T11:54:47.958201+00:00",
   "lba": [
     {
       "home": "Openjobmetis Varese",
@@ -114,8 +114,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "PINETO",
-      "away": "GUBBIO",
+      "home": "PERUGIA",
+      "away": "PESCARA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -128,8 +128,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "PERUGIA",
-      "away": "PESCARA",
+      "home": "PINETO",
+      "away": "GUBBIO",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -171,5 +171,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-23T11:07:52.477626+00:00"
+  "serieCUpdatedAt": "2026-10-23T11:54:47.958201+00:00"
 }

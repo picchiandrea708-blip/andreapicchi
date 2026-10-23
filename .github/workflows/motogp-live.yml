@@ -26,3 +26,4 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           TEST_PUBLISH: ${{ inputs.test && '1' || '' }}
+          WAIT_MINUTES: ${{ github.event_name == 'workflow_dispatch' && '25' || '0' }}

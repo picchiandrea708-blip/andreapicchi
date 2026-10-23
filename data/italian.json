@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-23T19:34:53.002634+00:00",
+  "updatedAt": "2026-10-23T20:02:49.634453+00:00",
   "lba": [
     {
       "home": "Openjobmetis Varese",
@@ -100,20 +100,6 @@
   ],
   "serieC": [
     {
-      "home": "OSTIAMARE",
-      "away": "VADO",
-      "homeScore": 0,
-      "awayScore": 0,
-      "hasScore": true,
-      "status": "LIVE",
-      "time": "2026-10-23T20:30:00+02:00",
-      "eventDate": "2026-10-23T20:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone B",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
       "home": "PINETO",
       "away": "GUBBIO",
       "homeScore": 1,
@@ -128,10 +114,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "PERUGIA",
-      "away": "PESCARA",
+      "home": "OSTIAMARE",
+      "away": "VADO",
       "homeScore": 1,
-      "awayScore": 0,
+      "awayScore": 1,
       "hasScore": true,
       "status": "LIVE",
       "time": "2026-10-23T20:30:00+02:00",
@@ -142,10 +128,24 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "CASERTANA",
-      "away": "BARI",
-      "homeScore": 0,
-      "awayScore": 0,
+      "home": "PERUGIA",
+      "away": "PESCARA",
+      "homeScore": 1,
+      "awayScore": 2,
+      "hasScore": true,
+      "status": "LIVE",
+      "time": "2026-10-23T20:30:00+02:00",
+      "eventDate": "2026-10-23T20:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone B",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "ALTAMURA",
+      "away": "POTENZA",
+      "homeScore": 2,
+      "awayScore": 1,
       "hasScore": true,
       "status": "LIVE",
       "time": "2026-10-23T20:30:00+02:00",
@@ -156,8 +156,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "ALTAMURA",
-      "away": "POTENZA",
+      "home": "CASERTANA",
+      "away": "BARI",
       "homeScore": 1,
       "awayScore": 1,
       "hasScore": true,
@@ -184,8 +184,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "ATALANTA UNDER 23",
-      "away": "CAMPOBASSO",
+      "home": "SPEZIA",
+      "away": "LATINA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -212,8 +212,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "SPEZIA",
-      "away": "LATINA",
+      "home": "ATALANTA UNDER 23",
+      "away": "CAMPOBASSO",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -311,5 +311,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-23T19:34:53.002634+00:00"
+  "serieCUpdatedAt": "2026-10-23T20:02:49.634453+00:00"
 }

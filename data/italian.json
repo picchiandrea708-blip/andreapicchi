@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-23T17:10:06.672062+00:00",
+  "updatedAt": "2026-10-23T17:50:39.859050+00:00",
   "lba": [
     {
       "home": "Openjobmetis Varese",
@@ -100,6 +100,20 @@
   ],
   "serieC": [
     {
+      "home": "PERUGIA",
+      "away": "PESCARA",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-23T20:30:00+02:00",
+      "eventDate": "2026-10-23T20:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone B",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
       "home": "OSTIAMARE",
       "away": "VADO",
       "homeScore": "",
@@ -128,22 +142,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "PERUGIA",
-      "away": "PESCARA",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
-      "time": "2026-10-23T20:30:00+02:00",
-      "eventDate": "2026-10-23T20:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone B",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
-      "home": "CASERTANA",
-      "away": "BARI",
+      "home": "ALTAMURA",
+      "away": "POTENZA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -156,8 +156,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "ALTAMURA",
-      "away": "POTENZA",
+      "home": "CASERTANA",
+      "away": "BARI",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -180,20 +180,6 @@
       "eventDate": "2026-10-24T14:30:00+02:00",
       "competition": "Serie C",
       "group": "Girone A",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
-      "home": "SPEZIA",
-      "away": "LATINA",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
-      "time": "2026-10-24T14:30:00+02:00",
-      "eventDate": "2026-10-24T14:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone B",
       "source": "Lega Pro",
       "sourceUrl": "https://www.seriec.com/calendario"
     },
@@ -226,8 +212,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "SCAFATESE",
-      "away": "BARLETTA",
+      "home": "SPEZIA",
+      "away": "LATINA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -235,7 +221,7 @@
       "time": "2026-10-24T14:30:00+02:00",
       "eventDate": "2026-10-24T14:30:00+02:00",
       "competition": "Serie C",
-      "group": "Girone C",
+      "group": "Girone B",
       "source": "Lega Pro",
       "sourceUrl": "https://www.seriec.com/calendario"
     },
@@ -254,8 +240,22 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "UNION BRESCIA",
-      "away": "CITTADELLA",
+      "home": "SCAFATESE",
+      "away": "BARLETTA",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-24T14:30:00+02:00",
+      "eventDate": "2026-10-24T14:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone C",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "ALCIONE MILANO",
+      "away": "CARPI",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -268,8 +268,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "ALCIONE MILANO",
-      "away": "CARPI",
+      "home": "UNION BRESCIA",
+      "away": "CITTADELLA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -311,5 +311,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-23T17:10:06.672062+00:00"
+  "serieCUpdatedAt": "2026-10-23T17:50:39.859050+00:00"
 }

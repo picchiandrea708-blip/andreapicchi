@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-23T19:01:53.379004+00:00",
+  "updatedAt": "2026-10-23T19:34:53.002634+00:00",
   "lba": [
     {
       "home": "Openjobmetis Varese",
@@ -100,9 +100,9 @@
   ],
   "serieC": [
     {
-      "home": "PINETO",
-      "away": "GUBBIO",
-      "homeScore": 1,
+      "home": "OSTIAMARE",
+      "away": "VADO",
+      "homeScore": 0,
       "awayScore": 0,
       "hasScore": true,
       "status": "LIVE",
@@ -114,9 +114,9 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "OSTIAMARE",
-      "away": "VADO",
-      "homeScore": 0,
+      "home": "PINETO",
+      "away": "GUBBIO",
+      "homeScore": 1,
       "awayScore": 0,
       "hasScore": true,
       "status": "LIVE",
@@ -254,8 +254,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "UNION BRESCIA",
-      "away": "CITTADELLA",
+      "home": "ALCIONE MILANO",
+      "away": "CARPI",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -268,8 +268,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "ALCIONE MILANO",
-      "away": "CARPI",
+      "home": "UNION BRESCIA",
+      "away": "CITTADELLA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -311,5 +311,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-23T19:01:53.379004+00:00"
+  "serieCUpdatedAt": "2026-10-23T19:34:53.002634+00:00"
 }

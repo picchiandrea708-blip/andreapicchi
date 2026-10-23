@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-23T15:37:46.256892+00:00",
+  "updatedAt": "2026-10-23T16:22:05.482929+00:00",
   "lba": [
     {
       "home": "Openjobmetis Varese",
@@ -184,20 +184,6 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "SAMBENEDETTESE",
-      "away": "LIVORNO",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
-      "time": "2026-10-24T14:30:00+02:00",
-      "eventDate": "2026-10-24T14:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone B",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
       "home": "ATALANTA UNDER 23",
       "away": "CAMPOBASSO",
       "homeScore": "",
@@ -214,6 +200,20 @@
     {
       "home": "SPEZIA",
       "away": "LATINA",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-24T14:30:00+02:00",
+      "eventDate": "2026-10-24T14:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone B",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "SAMBENEDETTESE",
+      "away": "LIVORNO",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -311,5 +311,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-23T15:37:46.256892+00:00"
+  "serieCUpdatedAt": "2026-10-23T16:22:05.482929+00:00"
 }

@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-23T23:14:18.789892+00:00",
+  "updatedAt": "2026-10-23T23:46:45.595495+00:00",
   "lba": [
     {
       "home": "Openjobmetis Varese",
@@ -100,8 +100,8 @@
   ],
   "serieC": [
     {
-      "home": "OSTIAMARE",
-      "away": "VADO",
+      "home": "PERUGIA",
+      "away": "PESCARA",
       "homeScore": 1,
       "awayScore": 2,
       "hasScore": true,
@@ -128,8 +128,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "PERUGIA",
-      "away": "PESCARA",
+      "home": "OSTIAMARE",
+      "away": "VADO",
       "homeScore": 1,
       "awayScore": 2,
       "hasScore": true,
@@ -184,8 +184,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "SAMBENEDETTESE",
-      "away": "LIVORNO",
+      "home": "ATALANTA UNDER 23",
+      "away": "CAMPOBASSO",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -198,8 +198,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "ATALANTA UNDER 23",
-      "away": "CAMPOBASSO",
+      "home": "SAMBENEDETTESE",
+      "away": "LIVORNO",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -254,8 +254,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "ALCIONE MILANO",
-      "away": "CARPI",
+      "home": "UNION BRESCIA",
+      "away": "CITTADELLA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -268,8 +268,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "UNION BRESCIA",
-      "away": "CITTADELLA",
+      "home": "ALCIONE MILANO",
+      "away": "CARPI",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -311,5 +311,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-23T23:14:18.789892+00:00"
+  "serieCUpdatedAt": "2026-10-23T23:46:45.595495+00:00"
 }

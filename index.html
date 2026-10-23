@@ -144,7 +144,7 @@
 </head>
 <body>
   <header>
-    <div class="logo">SPORT<span>LIVE</span><small style="opacity:.45;font-size:.65rem"> v58</small></div>
+    <div class="logo">SPORT<span>LIVE</span><small style="opacity:.45;font-size:.65rem"> v59</small></div>
     <div class="status-bar">
       <div class="dot" id="liveDot"></div>
       <span id="lastUpdate">Connessione…</span>
@@ -266,6 +266,7 @@
         ] : []),
         ['Live MotoGP pubblicato da GitHub (ramo live)', LIVE_SNAPSHOT_URL + '?t=' + Date.now()],
         ['Live MotoGP via API GitHub (più aggiornato)', LIVE_API_URL + '&_=' + Date.now()],
+        ...(upstashConfig() ? [['Live MotoGP via Upstash (veloce)', upstashConfig().url.replace(/\/+$/, '') + '/get/moto-live?_token=' + encodeURIComponent(upstashConfig().token)]] : []),
         ['NUOVO Worker -> MotoGP stagioni', viaNew('https://api.motogp.pulselive.com/motogp/v1/results/seasons')],
         ['NUOVO Worker -> MotoGP livetiming', viaNew('https://api.motogp.pulselive.com/motogp/v1/timing-gateway/livetiming-lite')],
         ['NUOVO Worker -> F1 SessionInfo', viaNew(F1_OFFICIAL_STATIC + 'SessionInfo.json')],
@@ -281,7 +282,7 @@
         ['File data/italian.json', `data/italian.json?t=${Date.now()}`],
         ['File moto-data.json', `moto-data.json?t=${Date.now()}`]
       ];
-      const lines = ['INFO   Pagina aperta da: ' + location.href.slice(0, 80)];
+      const lines = ['INFO   Pagina aperta da: ' + location.href.replace(/([?&]ut=)[^&]+/, '$1***').slice(0, 80), 'INFO   Upstash nel sito: ' + (upstashConfig() ? 'configurato' : 'NON configurato')];
       for (const [name, url] of tests) {
         const t0 = performance.now();
         let line;
@@ -296,6 +297,8 @@
           try {
             const j = JSON.parse(txt);
             if (name.includes('italian.json')) detail = `serieC: ${(j.serieC || []).length} partite, lba: ${(j.lba || []).length}${j.serieCApiError ? ', ERRORE API-Football: ' + JSON.stringify(j.serieCApiError).slice(0, 120) : ''}${j.updated ? ', aggiornato: ' + j.updated : ''}`;
+            else if (j && typeof j.result === 'string') { try { const u2 = JSON.parse(j.result); detail = `live: ${u2.live} - scritto ${Math.round((Date.now() - Date.parse(u2.generatedAt)) / 1000)} s fa${u2.status ? ' - ultimo controllo: ' + JSON.stringify(u2.status) : ''}${u2.data && u2.data.head ? ' - ' + (u2.data.head.session_name || '?') : ''}`; } catch (_) { detail = 'valore non valido'; } }
+            else if (j && j.result === null) detail = 'chiave vuota (la Action non ha ancora scritto, o è scaduta)';
             else if (j && j.generatedAt) detail = `live: ${j.live} - pubblicato ${Math.round((Date.now() - Date.parse(j.generatedAt)) / 1000)} s fa${j.data && j.data.head ? ' - ' + (j.data.head.session_name || '?') + ', piloti: ' + Object.keys(j.data.rider || {}).length : ''}${j.status ? ' - ultimo controllo Action: ' + JSON.stringify(j.status) : ''}${j.test ? ' - FILE DI PROVA' : ''}${j.apiCheck ? ' - API MotoGP vista da GitHub: ' + JSON.stringify(j.apiCheck) : ''}`;
             else if (j && j.head && j.rider) detail = `sessione: ${j.head.session_name || '?'} - stato: ${j.head.session_status_id || '?'} - piloti: ${Object.keys(j.rider).length} - tempo rimasto: ${j.head.remaining ?? '?'}`;
             else if (name.includes('ESPN')) detail = `${(j.events || []).length} eventi oggi`;
@@ -1355,9 +1358,37 @@
     // ===== MOTOGP =====
     let motoIsLive = false;
     let motoLastCheck = null;   // ultimo controllo dell'Action quando non c'è nessuna sessione live
+    // Upstash Redis: il file live arriva in pochi secondi. Incolla qui l'indirizzo e il token di SOLA LETTURA.
+    const UPSTASH_URL = '';
+    const UPSTASH_READ_TOKEN = '';
+    // In alternativa si può aprire il sito una volta con ?up=INDIRIZZO&ut=TOKEN: i valori restano salvati nel browser.
+    function upstashConfig() {
+      const q = new URLSearchParams(location.search);
+      if (q.get('up') && q.get('ut')) {
+        const cfg = { url: q.get('up'), token: q.get('ut') };
+        try { localStorage.setItem('sportlive.upstash', JSON.stringify(cfg)); } catch (_) {}
+        return cfg;
+      }
+      try { const c = JSON.parse(localStorage.getItem('sportlive.upstash') || 'null'); if (c && c.url && c.token) return c; } catch (_) {}
+      return UPSTASH_URL && UPSTASH_READ_TOKEN ? { url: UPSTASH_URL, token: UPSTASH_READ_TOKEN } : null;
+    }
     // L'API di GitHub senza account concede circa 60 richieste/ora per indirizzo: si usa al massimo ogni 65 secondi.
     const motoApi = { at: 0, snap: null, blockedUntil: 0 };
     async function fetchLiveSnapshot() {
+      const up = upstashConfig();
+      if (up) {
+        try {
+          const r = await fetch(`${up.url.replace(/\/+$/, '')}/get/moto-live?_token=${encodeURIComponent(up.token)}`, { cache: 'no-store' });
+          if (r.ok) {
+            const j = await r.json();
+            if (typeof j.result === 'string') {
+              const snap = JSON.parse(j.result);
+              const age = (Date.now() - Date.parse(snap.generatedAt)) / 1000;
+              if (age < 90 || (!snap.live && age < 600)) return snap;   // dato fresco: nessun'altra richiesta
+            }
+          }
+        } catch (_) { /* si passa alle altre fonti */ }
+      }
       if (Date.now() - motoApi.at >= 65_000 && Date.now() >= motoApi.blockedUntil) {
         motoApi.at = Date.now();
         try {

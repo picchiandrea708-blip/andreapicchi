@@ -25,6 +25,18 @@ const HEADERS = {
   'Referer': 'https://www.motogp.com/'
 };
 const sleep = ms => new Promise(r => setTimeout(r, ms));
+// Upstash Redis (facoltativo): il sito legge da qui in pochi secondi, senza la copia di 5 minuti di GitHub.
+const UP_URL = (process.env.UPSTASH_REDIS_REST_URL || '').replace(/\/+$/, '');
+const UP_TOKEN = process.env.UPSTASH_REDIS_REST_TOKEN || '';
+async function upstashSet(obj) {
+  if (!UP_URL || !UP_TOKEN) return null;
+  try {
+    const r = await fetch(UP_URL, { method: 'POST', headers: { Authorization: `Bearer ${UP_TOKEN}`, 'Content-Type': 'application/json' },
+      body: JSON.stringify(['SET', 'moto-live', JSON.stringify(obj), 'EX', '900']) });
+    if (!r.ok) { log(`Upstash: HTTP ${r.status}`); return false; }
+    return true;
+  } catch (e) { log('Upstash: ' + e.message); return false; }
+}
 const log = (...a) => console.log(new Date().toISOString().slice(11, 19), ...a);
 
 // Si lavora solo nel weekend di gara (dal calendario salvato in moto-data.json).
@@ -81,6 +93,7 @@ async function remoteSnapshot() {
 // Pubblica lo stato "non live" solo se è cambiato o è passato un po' di tempo: così non si fa un commit ogni 5 minuti.
 async function publishIdleIfNeeded(pub, data) {
   const status = statusOf(data);
+  await upstashSet({ generatedAt: new Date().toISOString(), live: false, status });
   const prev = await remoteSnapshot();
   const ageMin = prev?.generatedAt ? (Date.now() - Date.parse(prev.generatedAt)) / 60000 : Infinity;
   const same = prev && !prev.live && prev.status && prev.status.code === status.code && prev.status.session === status.session;
@@ -127,6 +140,8 @@ async function main() {
       info.piloti = Object.keys(d.rider || {}).length;
       info.sessione = [d.head?.event_shortname, d.head?.category, d.head?.session_name].filter(Boolean).join(' ');
     } catch (e) { info.api = 'errore: ' + e.message; }
+    if (UP_URL && UP_TOKEN) info.upstash = (await upstashSet({ generatedAt: new Date().toISOString(), live: false, test: true, apiCheck: info })) ? 'scrittura ok' : 'scrittura FALLITA';
+    else info.upstash = 'non configurato';
     log('controllo API MotoGP:', JSON.stringify(info));
     const ok = makePublisher().publish({ generatedAt: new Date().toISOString(), live: false, test: true, apiCheck: info });
     log(ok ? 'file di prova pubblicato sul ramo live' : 'pubblicazione NON riuscita');
@@ -154,6 +169,7 @@ async function main() {
       idle = 0;
       if (!wasLive) log(`sessione LIVE (stato ${data.head?.session_status_id || '?'}): ${data.head?.event_shortname || ''} ${data.head?.category || ''} ${data.head?.session_name || ''}`);
       wasLive = true;
+      await upstashSet({ generatedAt: new Date().toISOString(), live: true, data });
       if (Date.now() - lastPublish >= PUBLISH_MS) {
         if (pub.publish({ generatedAt: new Date().toISOString(), live: true, data })) { lastPublish = Date.now(); published++; }
       }
@@ -162,6 +178,7 @@ async function main() {
         const info = `stato ${data.head?.session_status_id || '?'}, piloti ${Object.keys(data.rider || {}).length}, sessione "${statusOf(data).session}"`;
         if (Date.now() < waitDeadline) {           // avviata a mano: aspetta che la sessione cominci
           if (!waiting) { log(`nessuna sessione in corso (${info}): resto in attesa dell'inizio`); waiting = true; await publishIdleIfNeeded(pub, data); }
+          await upstashSet({ generatedAt: new Date().toISOString(), live: false, status: statusOf(data) });
           await sleep(WAIT_POLL_MS);
           continue;
         }
@@ -172,6 +189,7 @@ async function main() {
       idle++;
       if (idle >= IDLE_POLLS) {
         log('sessione terminata');
+        await upstashSet({ generatedAt: new Date().toISOString(), live: false, status: statusOf(data) });
         pub.publish({ generatedAt: new Date().toISOString(), live: false, status: statusOf(data) });
         return;
       }

@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-23T20:02:49.634453+00:00",
+  "updatedAt": "2026-10-23T20:34:35.202824+00:00",
   "lba": [
     {
       "home": "Openjobmetis Varese",
@@ -310,6 +310,6 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     }
   ],
-  "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-23T20:02:49.634453+00:00"
+  "serieCError": "The read operation timed out",
+  "serieCSource": "Lega Pro"
 }

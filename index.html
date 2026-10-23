@@ -144,7 +144,7 @@
 </head>
 <body>
   <header>
-    <div class="logo">SPORT<span>LIVE</span><small style="opacity:.45;font-size:.65rem"> v59</small></div>
+    <div class="logo">SPORT<span>LIVE</span><small style="opacity:.45;font-size:.65rem"> v60</small></div>
     <div class="status-bar">
       <div class="dot" id="liveDot"></div>
       <span id="lastUpdate">Connessione…</span>
@@ -282,7 +282,7 @@
         ['File data/italian.json', `data/italian.json?t=${Date.now()}`],
         ['File moto-data.json', `moto-data.json?t=${Date.now()}`]
       ];
-      const lines = ['INFO   Pagina aperta da: ' + location.href.replace(/([?&]ut=)[^&]+/, '$1***').slice(0, 80), 'INFO   Upstash nel sito: ' + (upstashConfig() ? 'configurato' : 'NON configurato')];
+      const lines = ['INFO   Pagina aperta da: ' + location.href.replace(/([?&]ut=)[^&]+/, '$1***').slice(0, 80), 'INFO   Upstash nel sito: ' + (upstashConfig() ? 'configurato (' + (() => { try { return new URL(upstashConfig().url).host; } catch (_) { return 'indirizzo NON valido: ' + upstashConfig().url.slice(0, 40); } })() + ')' : 'NON configurato')];
       for (const [name, url] of tests) {
         const t0 = performance.now();
         let line;
@@ -1362,15 +1362,21 @@
     const UPSTASH_URL = '';
     const UPSTASH_READ_TOKEN = '';
     // In alternativa si può aprire il sito una volta con ?up=INDIRIZZO&ut=TOKEN: i valori restano salvati nel browser.
+    // Sistema l'indirizzo: toglie spazi e barra finale e aggiunge https:// se manca (Upstash mostra spesso solo "nome.upstash.io").
+    function normalizeUpstash(c) {
+      let url = String(c.url || '').trim().replace(/\/+$/, '');
+      if (url && !/^https?:\/\//i.test(url)) url = 'https://' + url;
+      return { url, token: String(c.token || '').trim() };
+    }
     function upstashConfig() {
       const q = new URLSearchParams(location.search);
       if (q.get('up') && q.get('ut')) {
-        const cfg = { url: q.get('up'), token: q.get('ut') };
+        const cfg = normalizeUpstash({ url: q.get('up'), token: q.get('ut') });
         try { localStorage.setItem('sportlive.upstash', JSON.stringify(cfg)); } catch (_) {}
         return cfg;
       }
-      try { const c = JSON.parse(localStorage.getItem('sportlive.upstash') || 'null'); if (c && c.url && c.token) return c; } catch (_) {}
-      return UPSTASH_URL && UPSTASH_READ_TOKEN ? { url: UPSTASH_URL, token: UPSTASH_READ_TOKEN } : null;
+      try { const c = JSON.parse(localStorage.getItem('sportlive.upstash') || 'null'); if (c && c.url && c.token) return normalizeUpstash(c); } catch (_) {}
+      return UPSTASH_URL && UPSTASH_READ_TOKEN ? normalizeUpstash({ url: UPSTASH_URL, token: UPSTASH_READ_TOKEN }) : null;
     }
     // L'API di GitHub senza account concede circa 60 richieste/ora per indirizzo: si usa al massimo ogni 65 secondi.
     const motoApi = { at: 0, snap: null, blockedUntil: 0 };

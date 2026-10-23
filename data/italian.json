@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-23T14:58:28.200953+00:00",
+  "updatedAt": "2026-10-23T15:37:46.256892+00:00",
   "lba": [
     {
       "home": "Openjobmetis Varese",
@@ -252,8 +252,64 @@
       "group": "Girone C",
       "source": "Lega Pro",
       "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "ALCIONE MILANO",
+      "away": "CARPI",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-24T17:30:00+02:00",
+      "eventDate": "2026-10-24T17:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone A",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "UNION BRESCIA",
+      "away": "CITTADELLA",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-24T17:30:00+02:00",
+      "eventDate": "2026-10-24T17:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone A",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "VIS PESARO",
+      "away": "RAVENNA",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-24T17:30:00+02:00",
+      "eventDate": "2026-10-24T17:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone B",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "SAVOIA",
+      "away": "COSENZA",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-24T17:30:00+02:00",
+      "eventDate": "2026-10-24T17:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone C",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-23T14:58:28.200953+00:00"
+  "serieCUpdatedAt": "2026-10-23T15:37:46.256892+00:00"
 }

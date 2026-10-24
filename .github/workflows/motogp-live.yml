@@ -14,7 +14,7 @@ concurrency:
 jobs:
   live:
     runs-on: ubuntu-latest
-    timeout-minutes: 62
+    timeout-minutes: 125
     permissions:
       contents: write
     steps:
@@ -28,4 +28,6 @@ jobs:
           TEST_PUBLISH: ${{ inputs.test && '1' || '' }}
           UPSTASH_REDIS_REST_URL: ${{ secrets.UPSTASH_REDIS_REST_URL }}
           UPSTASH_REDIS_REST_TOKEN: ${{ secrets.UPSTASH_REDIS_REST_TOKEN }}
+          MAX_MINUTES: '110'      # durata massima di una esecuzione (attesa + sessioni)
+          LOOKAHEAD_MIN: '60'     # se una sessione comincia entro 60 minuti, aspetta l'inizio
           WAIT_MINUTES: ${{ github.event_name == 'workflow_dispatch' && '25' || '0' }}

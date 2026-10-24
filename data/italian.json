@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-24T22:57:46.003558+00:00",
+  "updatedAt": "2026-10-24T23:26:19.744414+00:00",
   "lba": [
     {
       "home": "Openjobmetis Varese",
@@ -114,10 +114,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "SAMBENEDETTESE",
-      "away": "LIVORNO",
-      "homeScore": 2,
-      "awayScore": 1,
+      "home": "ATALANTA UNDER 23",
+      "away": "CAMPOBASSO",
+      "homeScore": 1,
+      "awayScore": 2,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-24T14:30:00+02:00",
@@ -128,10 +128,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "ATALANTA UNDER 23",
-      "away": "CAMPOBASSO",
-      "homeScore": 1,
-      "awayScore": 2,
+      "home": "SAMBENEDETTESE",
+      "away": "LIVORNO",
+      "homeScore": 2,
+      "awayScore": 1,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-24T14:30:00+02:00",
@@ -184,10 +184,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "ALCIONE MILANO",
-      "away": "CARPI",
-      "homeScore": 1,
-      "awayScore": 2,
+      "home": "UNION BRESCIA",
+      "away": "CITTADELLA",
+      "homeScore": 2,
+      "awayScore": 1,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-24T17:30:00+02:00",
@@ -198,10 +198,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "UNION BRESCIA",
-      "away": "CITTADELLA",
-      "homeScore": 2,
-      "awayScore": 1,
+      "home": "ALCIONE MILANO",
+      "away": "CARPI",
+      "homeScore": 1,
+      "awayScore": 2,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-24T17:30:00+02:00",
@@ -240,8 +240,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "TRENTO",
-      "away": "JUVENTUS NEXT GEN",
+      "home": "RENATE",
+      "away": "ALBINOLEFFE",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -254,8 +254,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "RENATE",
-      "away": "ALBINOLEFFE",
+      "home": "TRENTO",
+      "away": "JUVENTUS NEXT GEN",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -296,8 +296,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "FORLÌ",
-      "away": "PIANESE",
+      "home": "GROSSETO",
+      "away": "REGGIANA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -310,8 +310,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "GROSSETO",
-      "away": "REGGIANA",
+      "home": "FORLÌ",
+      "away": "PIANESE",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -394,8 +394,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "LECCO",
-      "away": "FOLGORE CARATESE",
+      "home": "ARZIGNANO V.",
+      "away": "NOVARA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -408,8 +408,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "ARZIGNANO V.",
-      "away": "NOVARA",
+      "home": "LECCO",
+      "away": "FOLGORE CARATESE",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -423,5 +423,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-24T22:57:46.003558+00:00"
+  "serieCUpdatedAt": "2026-10-24T23:26:19.744414+00:00"
 }

@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-23T23:46:45.595495+00:00",
+  "updatedAt": "2026-10-24T00:08:28.764402+00:00",
   "lba": [
     {
       "home": "Openjobmetis Varese",
@@ -226,8 +226,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "INTER UNDER 23",
-      "away": "SORRENTO",
+      "home": "SCAFATESE",
+      "away": "BARLETTA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -240,8 +240,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "SCAFATESE",
-      "away": "BARLETTA",
+      "home": "INTER UNDER 23",
+      "away": "SORRENTO",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -311,5 +311,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-23T23:46:45.595495+00:00"
+  "serieCUpdatedAt": "2026-10-24T00:08:28.764402+00:00"
 }

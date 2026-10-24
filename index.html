@@ -144,7 +144,7 @@
 </head>
 <body>
   <header>
-    <div class="logo">SPORT<span>LIVE</span><small style="opacity:.45;font-size:.65rem"> v65</small></div>
+    <div class="logo">SPORT<span>LIVE</span><small style="opacity:.45;font-size:.65rem"> v66</small></div>
     <div class="status-bar">
       <div class="dot" id="liveDot"></div>
       <span id="lastUpdate">Connessione…</span>
@@ -245,10 +245,35 @@
 
   <footer>Dati da fonti pubbliche: Live Timing ufficiale F1, Jolpica F1, SportScore, MotoGP PulseLive, ESPN. Non affiliato.
     <div style="margin-top:.6rem"><button id="btnDiag" style="background:var(--bg3);border:1px solid var(--border);color:var(--muted);padding:.3rem .7rem;border-radius:6px;cursor:pointer;font-size:.72rem">Diagnostica fonti dati</button></div>
+    <details style="margin-top:.6rem;text-align:left;max-width:560px;margin-left:auto;margin-right:auto">
+      <summary style="cursor:pointer;color:var(--muted);font-size:.72rem">Configura Upstash (facoltativo, per il live MotoGP più veloce)</summary>
+      <div style="display:grid;gap:.4rem;margin-top:.5rem">
+        <input id="upUrl" placeholder="Indirizzo, es. https://nome-del-database.upstash.io" style="padding:.45rem;border-radius:6px;border:1px solid var(--border);background:var(--bg3);color:var(--text)">
+        <input id="upTok" placeholder="Token di SOLA LETTURA (incolla quello vero, lungo)" autocomplete="off" style="padding:.45rem;border-radius:6px;border:1px solid var(--border);background:var(--bg3);color:var(--text)">
+        <div><button id="upSave" style="padding:.35rem .8rem;border-radius:6px;border:1px solid var(--border);background:var(--bg3);color:var(--text);cursor:pointer">Salva</button>
+        <button id="upClear" style="padding:.35rem .8rem;border-radius:6px;border:1px solid var(--border);background:var(--bg3);color:var(--muted);cursor:pointer">Rimuovi</button>
+        <span id="upMsg" style="font-size:.72rem;margin-left:.5rem;color:var(--muted)"></span></div>
+      </div>
+    </details>
     <pre id="diagOut" style="display:none;text-align:left;white-space:pre-wrap;word-break:break-word;max-width:900px;margin:.8rem auto 0;padding:.8rem 1rem;background:var(--card);border:1px solid var(--border);border-radius:8px;color:var(--text);font:12px/1.5 'JetBrains Mono',monospace"></pre>
   </footer>
   <script>
     // Diagnostica: prova ogni fonte dati e scrive il risultato a schermo (utile da telefono, senza Console).
+    // Modulo Upstash: salva indirizzo e token di sola lettura nel browser (parte a pagina caricata).
+    window.addEventListener('load', function () {
+      const cur = upstashConfig();
+      if (cur) document.getElementById('upUrl').value = cur.url;
+      const msg = t => { document.getElementById('upMsg').textContent = t; };
+      document.getElementById('upSave').addEventListener('click', () => {
+        const cfg = normalizeUpstash({ url: document.getElementById('upUrl').value, token: document.getElementById('upTok').value });
+        if (!/^https:\/\/[^/]+\.upstash\.io$/i.test(cfg.url)) return msg('Indirizzo non valido: deve essere del tipo https://nome.upstash.io');
+        if (UPSTASH_PLACEHOLDER.test(cfg.token)) return msg('Quello è il testo di esempio: incolla il token vero.');
+        if (cfg.token.length < 20) return msg('Token troppo corto: copialo con il pulsante di copia, tutto intero.');
+        try { localStorage.setItem('sportlive.upstash', JSON.stringify(cfg)); msg('Salvato. Ricarico…'); setTimeout(() => location.replace(location.pathname), 600); }
+        catch (_) { msg('Il browser non permette di salvare qui.'); }
+      });
+      document.getElementById('upClear').addEventListener('click', () => { try { localStorage.removeItem('sportlive.upstash'); } catch (_) {} msg('Rimosso. Ricarico…'); setTimeout(() => location.replace(location.pathname), 600); });
+    });
     document.getElementById('btnDiag').addEventListener('click', async () => {
       const out = document.getElementById('diagOut');
       out.style.display = 'block';
@@ -285,7 +310,7 @@
         ['File data/italian.json', `data/italian.json?t=${Date.now()}`],
         ['File moto-data.json', `moto-data.json?t=${Date.now()}`]
       ];
-      const lines = ['INFO   Pagina aperta da: ' + location.href.replace(/([?&]ut=)[^&]+/, '$1***').slice(0, 80), 'INFO   Upstash nel sito: ' + (upstashConfig() ? 'configurato (' + (() => { try { return new URL(upstashConfig().url).host; } catch (_) { return 'indirizzo NON valido: ' + upstashConfig().url.slice(0, 40); } })() + ') - ' + (() => { const t = upstashConfig().token; return `token: ${t.length} caratteri, inizia con "${t.slice(0, 2)}", finisce con "${t.slice(-2)}"${/[^A-Za-z0-9+/=_-]/.test(t) ? ' - ATTENZIONE: contiene caratteri strani (copia incompleta o con "…")' : ''}`; })() : 'NON configurato')];
+      const lines = ['INFO   Pagina aperta da: ' + location.href.replace(/([?&]ut=)[^&]+/, '$1***').slice(0, 80), 'INFO   Upstash nel sito: ' + (upstashConfig() ? 'configurato (' + (() => { try { return new URL(upstashConfig().url).host; } catch (_) { return 'indirizzo NON valido: ' + upstashConfig().url.slice(0, 40); } })() + ') - ' + (() => { const t = upstashConfig().token; return `token: ${t.length} caratteri, inizia con "${t.slice(0, 2)}", finisce con "${t.slice(-2)}"${/[^A-Za-z0-9+/=_-]/.test(t) ? ' - ATTENZIONE: contiene caratteri strani (copia incompleta o con "…")' : ''}`; })() : 'NON configurato' + (upstashRejected ? ' - nel browser era salvato il testo di esempio "' + upstashRejected + '": è stato cancellato, inserisci il token vero dal modulo Configura Upstash' : ''))];
       for (const [name, url] of tests) {
         const t0 = performance.now();
         let line;
@@ -1503,13 +1528,23 @@
       if (!m) return '';
       try { return decodeURIComponent(m[1]); } catch (_) { return m[1]; }
     }
+    const UPSTASH_PLACEHOLDER = /TOKEN_|SOLA_LETTURA|LETTURA|IL_TUO|INDIRIZZO|NUOVO_TOKEN/;
+    let upstashRejected = '';   // se nel browser c'era un testo di esempio, lo ricorda per la Diagnostica
     function upstashConfig() {
       if (rawQueryParam('up') && rawQueryParam('ut')) {
         const cfg = normalizeUpstash({ url: rawQueryParam('up'), token: rawQueryParam('ut') });
+        if (UPSTASH_PLACEHOLDER.test(cfg.token) || UPSTASH_PLACEHOLDER.test(cfg.url)) { upstashRejected = cfg.token.slice(0, 30); return null; }
         try { localStorage.setItem('sportlive.upstash', JSON.stringify(cfg)); } catch (_) {}
         return cfg;
       }
-      try { const c = JSON.parse(localStorage.getItem('sportlive.upstash') || 'null'); if (c && c.url && c.token) return normalizeUpstash(c); } catch (_) {}
+      try {
+        const c = JSON.parse(localStorage.getItem('sportlive.upstash') || 'null');
+        if (c && c.url && c.token) {
+          const n = normalizeUpstash(c);
+          if (UPSTASH_PLACEHOLDER.test(n.token) || UPSTASH_PLACEHOLDER.test(n.url)) { upstashRejected = n.token.slice(0, 30); localStorage.removeItem('sportlive.upstash'); return null; }
+          return n;
+        }
+      } catch (_) {}
       return UPSTASH_URL && UPSTASH_READ_TOKEN ? normalizeUpstash({ url: UPSTASH_URL, token: UPSTASH_READ_TOKEN }) : null;
     }
     // L'API di GitHub senza account concede circa 60 richieste/ora per indirizzo: si usa al massimo ogni 65 secondi.

@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-10-24T17:45:52.277267+00:00",
+  "updatedAt": "2026-10-24T18:07:41.871216+00:00",
   "lba": [
     {
       "home": "Openjobmetis Varese",
       "away": "BC Roma",
-      "homeScore": 0,
-      "awayScore": 0,
-      "hasScore": false,
-      "status": "In programma",
+      "homeScore": 6,
+      "awayScore": 10,
+      "hasScore": true,
+      "status": "LIVE",
       "time": "2026-10-24T20:00:00.000+02:00",
       "competition": "Serie A LBA",
       "source": "LBA",

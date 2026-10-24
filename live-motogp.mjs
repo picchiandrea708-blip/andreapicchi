@@ -27,8 +27,10 @@ const HEADERS = {
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 // Upstash Redis (facoltativo): il sito legge da qui in pochi secondi, senza la copia di 5 minuti di GitHub.
 // Sistema l'indirizzo: toglie spazi e barra finale e aggiunge https:// se manca.
-const UP_URL = (() => { const u = (process.env.UPSTASH_REDIS_REST_URL || '').trim().replace(/\/+$/, ''); return u && !/^https?:\/\//i.test(u) ? 'https://' + u : u; })();
-const UP_TOKEN = (process.env.UPSTASH_REDIS_REST_TOKEN || '').trim();
+// Toglie ciò che si copia per sbaglio: spazi, virgolette e il prefisso "NOME_VARIABILE=" della riga .env.
+const cleanSecret = v => String(v || '').trim().replace(/^UPSTASH_[A-Z_]+\s*=\s*/, '').replace(/^["']+|["']+$/g, '').trim();
+const UP_URL = (() => { const u = cleanSecret(process.env.UPSTASH_REDIS_REST_URL).replace(/\/+$/, ''); return u && !/^https?:\/\//i.test(u) ? 'https://' + u : u; })();
+const UP_TOKEN = cleanSecret(process.env.UPSTASH_REDIS_REST_TOKEN);
 async function upstashSet(obj) {
   if (!UP_URL || !UP_TOKEN) return null;
   try {
@@ -142,7 +144,7 @@ async function main() {
       info.sessione = [d.head?.event_shortname, d.head?.category, d.head?.session_name].filter(Boolean).join(' ');
     } catch (e) { info.api = 'errore: ' + e.message; }
     if (UP_URL && UP_TOKEN) info.upstash = (await upstashSet({ generatedAt: new Date().toISOString(), live: false, test: true, apiCheck: info })) ? 'scrittura ok' : 'scrittura FALLITA';
-    else info.upstash = 'non configurato';
+    else info.upstash = `non configurato (${[!UP_URL && 'indirizzo mancante', !UP_TOKEN && 'token mancante'].filter(Boolean).join(', ')}): controlla i segreti su GitHub e le righe UPSTASH nel file motogp-live.yml`;
     log('controllo API MotoGP:', JSON.stringify(info));
     const ok = makePublisher().publish({ generatedAt: new Date().toISOString(), live: false, test: true, apiCheck: info });
     log(ok ? 'file di prova pubblicato sul ramo live' : 'pubblicazione NON riuscita');

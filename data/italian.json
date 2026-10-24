@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-24T07:38:51.696796+00:00",
+  "updatedAt": "2026-10-24T08:11:23.985417+00:00",
   "lba": [
     {
       "home": "Openjobmetis Varese",
@@ -100,10 +100,10 @@
   ],
   "serieC": [
     {
-      "home": "OSTIAMARE",
-      "away": "VADO",
+      "home": "PINETO",
+      "away": "GUBBIO",
       "homeScore": 1,
-      "awayScore": 2,
+      "awayScore": 0,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-23T20:30:00+02:00",
@@ -128,10 +128,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "PINETO",
-      "away": "GUBBIO",
+      "home": "OSTIAMARE",
+      "away": "VADO",
       "homeScore": 1,
-      "awayScore": 0,
+      "awayScore": 2,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-23T20:30:00+02:00",
@@ -142,10 +142,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "CASERTANA",
-      "away": "BARI",
-      "homeScore": 1,
-      "awayScore": 1,
+      "home": "ALTAMURA",
+      "away": "POTENZA",
+      "homeScore": 2,
+      "awayScore": 2,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-23T20:30:00+02:00",
@@ -156,10 +156,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "ALTAMURA",
-      "away": "POTENZA",
-      "homeScore": 2,
-      "awayScore": 2,
+      "home": "CASERTANA",
+      "away": "BARI",
+      "homeScore": 1,
+      "awayScore": 1,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-23T20:30:00+02:00",
@@ -184,8 +184,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "SAMBENEDETTESE",
-      "away": "LIVORNO",
+      "home": "ATALANTA UNDER 23",
+      "away": "CAMPOBASSO",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -212,8 +212,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "ATALANTA UNDER 23",
-      "away": "CAMPOBASSO",
+      "home": "SAMBENEDETTESE",
+      "away": "LIVORNO",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -311,5 +311,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-24T07:38:51.696796+00:00"
+  "serieCUpdatedAt": "2026-10-24T08:11:23.985417+00:00"
 }

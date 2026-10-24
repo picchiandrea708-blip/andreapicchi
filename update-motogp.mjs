@@ -118,7 +118,8 @@ async function main() {
   if (!events.length) throw new Error('nessun evento ricevuto');
 
   const now = Date.now();
-  const started = events.filter(e => Date.parse(e.date_start) <= now).sort((a, b) => Date.parse(b.date_start) - Date.parse(a.date_start));
+  // Include anche il weekend che comincia entro 36 ore: servono subito gli orari delle sessioni (la prima può cadere prima della mezzanotte UTC).
+  const started = events.filter(e => Date.parse(e.date_start) <= now + 36 * 3_600_000).sort((a, b) => Date.parse(b.date_start) - Date.parse(a.date_start));
   const endOf = e => (Date.parse(e.date_end) || Date.parse(e.date_start)) + DAY;
   const recent = started.filter(e => endOf(e) + 2 * DAY >= now);   // weekend in corso o appena finito: si riscarica sempre
 

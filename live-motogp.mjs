@@ -13,6 +13,8 @@ const PUBLISH_MS = Number(process.env.PUBLISH_S || 20) * 1000;  // ogni quanto p
 const MAX_MS = Number(process.env.MAX_MINUTES || 55) * 60_000;  // durata massima di una esecuzione
 const IDLE_POLLS = Number(process.env.IDLE_POLLS || 12);        // controlli "non live" di fila prima di fermarsi
 const WAIT_MS = Number(process.env.WAIT_MINUTES || 0) * 60_000;       // avvio manuale: attende l'inizio della sessione per questi minuti
+const LOOKAHEAD_MS = Number(process.env.LOOKAHEAD_MIN || 60) * 60_000;   // se una sessione comincia entro questo tempo, la Action la aspetta
+const PRE_WAIT_MS = Number(process.env.PRE_WAIT_S || 30) * 1000;       // pausa tra un controllo dell'orologio e l'altro prima dell'inizio
 const WAIT_POLL_MS = Number(process.env.WAIT_POLL_S || 15) * 1000;
 const BRANCH = process.env.PUBLISH_BRANCH || 'live';
 const REMOTE = process.env.PUBLISH_REMOTE ||
@@ -31,14 +33,16 @@ const sleep = ms => new Promise(r => setTimeout(r, ms));
 const cleanSecret = v => String(v || '').trim().replace(/^UPSTASH_[A-Z_]+\s*=\s*/, '').replace(/^["']+|["']+$/g, '').trim();
 const UP_URL = (() => { const u = cleanSecret(process.env.UPSTASH_REDIS_REST_URL).replace(/\/+$/, ''); return u && !/^https?:\/\//i.test(u) ? 'https://' + u : u; })();
 const UP_TOKEN = cleanSecret(process.env.UPSTASH_REDIS_REST_TOKEN);
+let upLastError = '';
+const tokenHint = () => `token di ${UP_TOKEN.length} caratteri, inizia con "${UP_TOKEN.slice(0, 2)}", finisce con "${UP_TOKEN.slice(-2)}"`;
 async function upstashSet(obj) {
   if (!UP_URL || !UP_TOKEN) return null;
   try {
     const r = await fetch(UP_URL, { method: 'POST', headers: { Authorization: `Bearer ${UP_TOKEN}`, 'Content-Type': 'application/json' },
       body: JSON.stringify(['SET', 'moto-live', JSON.stringify(obj), 'EX', '900']) });
-    if (!r.ok) { log(`Upstash: HTTP ${r.status}`); return false; }
+    if (!r.ok) { upLastError = `HTTP ${r.status} (${tokenHint()})`; log('Upstash: ' + upLastError); return false; }
     return true;
-  } catch (e) { log('Upstash: ' + e.message); return false; }
+  } catch (e) { upLastError = e.message; log('Upstash: ' + e.message); return false; }
 }
 const log = (...a) => console.log(new Date().toISOString().slice(11, 19), ...a);
 
@@ -52,6 +56,21 @@ function weekendActive() {
       return Number.isFinite(s) && now >= s - 12 * 3_600_000 && now <= (Number.isFinite(en) ? en : s) + 36 * 3_600_000;
     });
   } catch { return true; } // calendario non leggibile: meglio controllare comunque
+}
+
+// Prossima sessione non ancora finita, dagli orari salvati in moto-data.json (aggiornato dall'altra Action).
+function nextSessionStart(ignoreUpTo = 0) {
+  try {
+    const d = JSON.parse(readFileSync('moto-data.json', 'utf8'));
+    const now = Date.now();
+    let best = Infinity;
+    for (const c of Object.values(d.byClass || {})) for (const sess of c.sessions || []) {
+      if (sess.status === 'FINISHED') continue;
+      const t = Date.parse(sess.date);
+      if (Number.isFinite(t) && t > now - 10 * 60_000 && t > ignoreUpTo && t < best) best = t;
+    }
+    return best === Infinity ? null : best;
+  } catch { return null; }
 }
 
 async function getLive() {
@@ -143,7 +162,7 @@ async function main() {
       info.piloti = Object.keys(d.rider || {}).length;
       info.sessione = [d.head?.event_shortname, d.head?.category, d.head?.session_name].filter(Boolean).join(' ');
     } catch (e) { info.api = 'errore: ' + e.message; }
-    if (UP_URL && UP_TOKEN) info.upstash = (await upstashSet({ generatedAt: new Date().toISOString(), live: false, test: true, apiCheck: info })) ? 'scrittura ok' : 'scrittura FALLITA';
+    if (UP_URL && UP_TOKEN) info.upstash = (await upstashSet({ generatedAt: new Date().toISOString(), live: false, test: true, apiCheck: info })) ? 'scrittura ok' : `scrittura FALLITA: ${upLastError}`;
     else info.upstash = `non configurato (${[!UP_URL && 'indirizzo mancante', !UP_TOKEN && 'token mancante'].filter(Boolean).join(', ')}): controlla i segreti su GitHub e le righe UPSTASH nel file motogp-live.yml`;
     log('controllo API MotoGP:', JSON.stringify(info));
     const ok = makePublisher().publish({ generatedAt: new Date().toISOString(), live: false, test: true, apiCheck: info });
@@ -153,12 +172,26 @@ async function main() {
   }
   if (!process.env.FORCE && !weekendActive()) { log('nessun weekend di gara: esco'); return; }
   const deadline = Date.now() + MAX_MS;
-  const waitDeadline = Date.now() + WAIT_MS;
-  let waiting = false;
+  let waitDeadline = Date.now() + WAIT_MS;
+  let waiting = false, scheduledStart = null, ignoreUpTo = 0;   // ignoreUpTo: le sessioni già seguite non si riaspettano
+  // Se una sessione comincia a breve, resta in attesa fino al suo inizio (anche per i controlli programmati).
+  const armSchedule = () => {
+    scheduledStart = nextSessionStart(ignoreUpTo);
+    if (scheduledStart && scheduledStart - Date.now() <= LOOKAHEAD_MS) {
+      waitDeadline = Math.max(waitDeadline, scheduledStart + 10 * 60_000);
+      const mins = Math.round((scheduledStart - Date.now()) / 60_000);
+      log(`prossima sessione alle ${new Date(scheduledStart).toISOString().slice(11, 16)} UTC (${mins >= 0 ? 'tra ' + mins : mins} min): resto in attesa`);
+      return true;
+    }
+    return false;
+  };
+  armSchedule();
   const pub = makePublisher();
   let wasLive = false, idle = 0, fails = 0, lastPublish = 0, published = 0, lastCode = null;
 
   while (Date.now() < deadline) {
+    // Prima dell'inizio previsto non serve interrogare MotoGP: basta guardare l'orologio.
+    if (!wasLive && scheduledStart && Date.now() < scheduledStart - 120_000 && Date.now() < waitDeadline) { await sleep(PRE_WAIT_MS); continue; }
     let data;
     try { data = await getLive(); fails = 0; }
     catch (e) {
@@ -194,6 +227,8 @@ async function main() {
         log('sessione terminata');
         await upstashSet({ generatedAt: new Date().toISOString(), live: false, status: statusOf(data) });
         pub.publish({ generatedAt: new Date().toISOString(), live: false, status: statusOf(data) });
+        wasLive = false; idle = 0; waiting = false; lastCode = null; ignoreUpTo = Date.now();
+        if (armSchedule()) continue;          // un'altra sessione è vicina: resta in attesa
         return;
       }
     }

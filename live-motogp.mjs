@@ -26,8 +26,9 @@ const HEADERS = {
 };
 const sleep = ms => new Promise(r => setTimeout(r, ms));
 // Upstash Redis (facoltativo): il sito legge da qui in pochi secondi, senza la copia di 5 minuti di GitHub.
-const UP_URL = (process.env.UPSTASH_REDIS_REST_URL || '').replace(/\/+$/, '');
-const UP_TOKEN = process.env.UPSTASH_REDIS_REST_TOKEN || '';
+// Sistema l'indirizzo: toglie spazi e barra finale e aggiunge https:// se manca.
+const UP_URL = (() => { const u = (process.env.UPSTASH_REDIS_REST_URL || '').trim().replace(/\/+$/, ''); return u && !/^https?:\/\//i.test(u) ? 'https://' + u : u; })();
+const UP_TOKEN = (process.env.UPSTASH_REDIS_REST_TOKEN || '').trim();
 async function upstashSet(obj) {
   if (!UP_URL || !UP_TOKEN) return null;
   try {

@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-24T03:04:50.405975+00:00",
+  "updatedAt": "2026-10-24T03:35:11.163527+00:00",
   "lba": [
     {
       "home": "Openjobmetis Varese",
@@ -198,20 +198,6 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "SAMBENEDETTESE",
-      "away": "LIVORNO",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
-      "time": "2026-10-24T14:30:00+02:00",
-      "eventDate": "2026-10-24T14:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone B",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
       "home": "ATALANTA UNDER 23",
       "away": "CAMPOBASSO",
       "homeScore": "",
@@ -226,8 +212,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "SCAFATESE",
-      "away": "BARLETTA",
+      "home": "SAMBENEDETTESE",
+      "away": "LIVORNO",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -235,7 +221,7 @@
       "time": "2026-10-24T14:30:00+02:00",
       "eventDate": "2026-10-24T14:30:00+02:00",
       "competition": "Serie C",
-      "group": "Girone C",
+      "group": "Girone B",
       "source": "Lega Pro",
       "sourceUrl": "https://www.seriec.com/calendario"
     },
@@ -254,8 +240,22 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "ALCIONE MILANO",
-      "away": "CARPI",
+      "home": "SCAFATESE",
+      "away": "BARLETTA",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-24T14:30:00+02:00",
+      "eventDate": "2026-10-24T14:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone C",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "UNION BRESCIA",
+      "away": "CITTADELLA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -268,8 +268,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "UNION BRESCIA",
-      "away": "CITTADELLA",
+      "home": "ALCIONE MILANO",
+      "away": "CARPI",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -311,5 +311,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-24T03:04:50.405975+00:00"
+  "serieCUpdatedAt": "2026-10-24T03:35:11.163527+00:00"
 }

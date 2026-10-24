@@ -1,11 +1,11 @@
 {
-  "updatedAt": "2026-10-24T18:07:41.871216+00:00",
+  "updatedAt": "2026-10-24T18:53:34.200305+00:00",
   "lba": [
     {
       "home": "Openjobmetis Varese",
       "away": "BC Roma",
-      "homeScore": 6,
-      "awayScore": 10,
+      "homeScore": 49,
+      "awayScore": 45,
       "hasScore": true,
       "status": "LIVE",
       "time": "2026-10-24T20:00:00.000+02:00",
@@ -16,10 +16,10 @@
     {
       "home": "Longobardi Scafati Basket",
       "away": "Dolomiti Energia Trentino",
-      "homeScore": 0,
-      "awayScore": 0,
-      "hasScore": false,
-      "status": "In programma",
+      "homeScore": 22,
+      "awayScore": 26,
+      "hasScore": true,
+      "status": "LIVE",
       "time": "2026-10-24T20:30:00.000+02:00",
       "competition": "Serie A LBA",
       "source": "LBA",

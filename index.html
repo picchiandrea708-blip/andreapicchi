@@ -144,7 +144,7 @@
 </head>
 <body>
   <header>
-    <div class="logo">SPORT<span>LIVE</span><small style="opacity:.45;font-size:.65rem"> v60</small></div>
+    <div class="logo">SPORT<span>LIVE</span><small style="opacity:.45;font-size:.65rem"> v64</small></div>
     <div class="status-bar">
       <div class="dot" id="liveDot"></div>
       <span id="lastUpdate">Connessione…</span>
@@ -188,8 +188,10 @@
     <div class="panel" id="panel-f1">
       <div class="section-title">Formula 1 — Livetiming <span class="badge" id="badge-f1" style="display:none">LIVE</span></div>
       <div id="f1-box"><div class="loading">Caricamento sessione F1…</div></div>
+      <div id="f1-next" style="margin-top:1.25rem"></div>
       <div id="f1-od" style="margin-top:1.25rem"></div>
       <div id="f1-sessions" style="margin-top:1.25rem"></div>
+      <div id="f1-standings" style="margin-top:1.25rem"></div>
     </div>
 
     <div class="panel" id="panel-moto">
@@ -274,6 +276,7 @@
         ['NUOVO Worker -> NCAA GLIAC', viaNew(`https://ncaa-api.henrygd.me/scoreboard/soccer-women/d2/${ncaaDay}`)],
         ['Proxy Worker -> F1 SessionInfo', viaProxy(F1_OFFICIAL_STATIC + 'SessionInfo.json')],
         ['Proxy Worker -> F1 archivio ' + year, viaProxy(F1_OFFICIAL_STATIC + year + '/Index.json')],
+        ['OpenF1 sessioni ' + year + ' (classifiche gratuite)', `https://api.openf1.org/v1/sessions?year=${year}`],
         ['Jolpica F1 calendario ' + year, `https://api.jolpi.ca/ergast/f1/${year}.json?limit=40`],
         ['Jolpica F1 ultimo risultato', `https://api.jolpi.ca/ergast/f1/${year}/last/results.json`],
         ['ESPN Serie C (ita.3)', `https://site.web.api.espn.com/apis/site/v2/sports/soccer/ita.3/scoreboard?dates=${d}&limit=40`],
@@ -287,10 +290,7 @@
         const t0 = performance.now();
         let line;
         try {
-          const ctrl = new AbortController();
-          const to = setTimeout(() => ctrl.abort(), 12000);
-          const res = await fetch(url, { signal: ctrl.signal });
-          clearTimeout(to);
+          const res = await fetchT(url, {}, 12000);
           const txt = await res.text();
           const ms = Math.round(performance.now() - t0);
           let detail = '';
@@ -298,6 +298,7 @@
             const j = JSON.parse(txt);
             if (name.includes('italian.json')) detail = `serieC: ${(j.serieC || []).length} partite, lba: ${(j.lba || []).length}${j.serieCApiError ? ', ERRORE API-Football: ' + JSON.stringify(j.serieCApiError).slice(0, 120) : ''}${j.updated ? ', aggiornato: ' + j.updated : ''}`;
             else if (j && typeof j.result === 'string') { try { const u2 = JSON.parse(j.result); detail = `live: ${u2.live} - scritto ${Math.round((Date.now() - Date.parse(u2.generatedAt)) / 1000)} s fa${u2.status ? ' - ultimo controllo: ' + JSON.stringify(u2.status) : ''}${u2.data && u2.data.head ? ' - ' + (u2.data.head.session_name || '?') : ''}`; } catch (_) { detail = 'valore non valido'; } }
+            else if (j && j.error) detail = `Upstash risponde: ${String(j.error).slice(0, 80)}${/WRONGPASS|Unauthorized|auth/i.test(String(j.error)) ? ' → il token di sola lettura nel sito è sbagliato: copialo con il pulsante di copia, senza virgolette' : ''}`;
             else if (j && j.result === null) detail = 'chiave vuota (la Action non ha ancora scritto, o è scaduta)';
             else if (j && j.generatedAt) detail = `live: ${j.live} - pubblicato ${Math.round((Date.now() - Date.parse(j.generatedAt)) / 1000)} s fa${j.data && j.data.head ? ' - ' + (j.data.head.session_name || '?') + ', piloti: ' + Object.keys(j.data.rider || {}).length : ''}${j.status ? ' - ultimo controllo Action: ' + JSON.stringify(j.status) : ''}${j.test ? ' - FILE DI PROVA' : ''}${j.apiCheck ? ' - API MotoGP vista da GitHub: ' + JSON.stringify(j.apiCheck) : ''}`;
             else if (j && j.head && j.rider) detail = `sessione: ${j.head.session_name || '?'} - stato: ${j.head.session_status_id || '?'} - piloti: ${Object.keys(j.rider).length} - tempo rimasto: ${j.head.remaining ?? '?'}`;
@@ -325,9 +326,7 @@
           else { const t = await r.json(); lines.push(`INFO   F1 TimingData.json: ${Object.keys(t.Lines || {}).length} piloti`); }
         } catch (e) { lines.push('INFO   F1 TimingData.json NON leggibile: ' + e.message); }
         try {
-          const ctrl = new AbortController();
-          const to = setTimeout(() => ctrl.abort(), 25000);
-          const r = await fetch(viaProxy(F1_OFFICIAL_STATIC + path + 'TimingData.jsonStream'), { signal: ctrl.signal });
+          const r = await fetchT(viaProxy(F1_OFFICIAL_STATIC + path + 'TimingData.jsonStream'), {}, 25000);
           if (!r.ok) lines.push(`INFO   F1 TimingData.jsonStream: HTTP ${r.status} (non disponibile)`);
           else {
             const reader = r.body.getReader();
@@ -343,7 +342,6 @@
               tail = (tail + chunk).slice(-400);
               if (bytes > 8e6) { cut = true; await reader.cancel(); break; }
             }
-            clearTimeout(to);
             const ts = txt => (String(txt).replace(/^\uFEFF/, '').match(/^\d{2}:\d{2}:\d{2}\.\d+/) || ['?'])[0];
             const lastLine = tail.trimEnd().split('\n').pop();
             lines.push(`INFO   F1 TimingData.jsonStream: HTTP 200 - ${(bytes / 1e6).toFixed(2)} MB - ${nl} righe - primo messaggio ${ts(head)}, ultimo ${ts(lastLine)}${cut ? " (letto solo l'inizio)" : ''}`);
@@ -532,17 +530,29 @@
     function apiError(label, response) {
       return new Error(`${label}: HTTP ${response.status}`);
     }
+    // fetch con timeout. Alcuni ambienti (anteprime, browser integrati) non accettano un AbortSignal:
+    // in quel caso la richiesta si ripete senza e il timeout si ottiene con una gara tra due promesse.
+    async function fetchT(url, options = {}, ms = 12_000) {
+      const ctrl = new AbortController();
+      const timer = setTimeout(() => ctrl.abort(), ms);
+      try {
+        return await fetch(url, { ...options, signal: ctrl.signal });
+      } catch (e) {
+        if (e?.name === 'DataCloneError' || /could not be cloned/i.test(String(e?.message))) {
+          let t;
+          const timeout = new Promise((_, rej) => { t = setTimeout(() => rej(Object.assign(new Error('timeout'), { name: 'AbortError' })), ms); });
+          try { return await Promise.race([fetch(url, options), timeout]); } finally { clearTimeout(t); }
+        }
+        throw e;
+      } finally { clearTimeout(timer); }
+    }
     async function fetchJson(url, label) {
-      const controller = new AbortController();
-      const timeout = setTimeout(() => controller.abort(), 12_000);
       let response;
       try {
-        response = await fetch(url, { headers: { Accept: 'application/json' }, signal: controller.signal });
+        response = await fetchT(url, { headers: { Accept: 'application/json' } }, 12_000);
       } catch (error) {
         if (error?.name === 'AbortError') throw new Error(`${label}: timeout dopo 12 secondi`);
         throw error;
-      } finally {
-        clearTimeout(timeout);
       }
       const text = await response.text();
       if (!response.ok) throw apiError(label, response);
@@ -657,14 +667,7 @@
       for (const date of dates) {
         try {
           const url = `https://site.web.api.espn.com/apis/site/v2/sports/${sport}/${league}/scoreboard?dates=${date}&limit=40`;
-          const controller = new AbortController();
-          const timeout = setTimeout(() => controller.abort(), 8_000);
-          let res;
-          try {
-            res = await fetch(url, { signal: controller.signal });
-          } finally {
-            clearTimeout(timeout);
-          }
+          const res = await fetchT(url, {}, 8_000);
           if (!res.ok) continue;
           const data = await res.json();
           for (const ev of (data.events || [])) {
@@ -1288,8 +1291,69 @@
       const toUtc = v => { const t = Date.parse(String(v || '') + 'Z'); return Number.isFinite(t) ? t - off : NaN; };
       return { start: toUtc(sess?.StartDate), end: toUtc(sess?.EndDate) };
     }
+    // OpenF1: classifiche gratuite delle sessioni già concluse (durante le sessioni live l'accesso è riservato).
+    const OPENF1 = 'https://api.openf1.org/v1';
+    async function getOpenF1Index() {
+      const year = new Date().getFullYear();
+      for (const y of [year, year - 1]) {
+        const [sessions, meets] = await Promise.all([
+          fetchJson(`${OPENF1}/sessions?year=${y}`, 'OpenF1 sessioni'),
+          fetchJson(`${OPENF1}/meetings?year=${y}`, 'OpenF1 weekend').catch(() => [])
+        ]);
+        const names = new Map((Array.isArray(meets) ? meets : []).map(m => [m.meeting_key, m.meeting_name || m.meeting_official_name]));
+        const groups = new Map();
+        for (const x of Array.isArray(sessions) ? sessions : []) {
+          const start = Date.parse(x.date_start), end = Date.parse(x.date_end);
+          if (!x.session_key || !Number.isFinite(end) || end > Date.now()) continue;
+          if (!groups.has(x.meeting_key)) groups.set(x.meeting_key, { name: names.get(x.meeting_key) || `${x.country_name || x.location || 'Gran Premio'} — ${x.circuit_short_name || ''}`.trim(), sessions: [] });
+          groups.get(x.meeting_key).sessions.push({ Path: 'of1:' + x.session_key, Name: x.session_name, Type: x.session_type, start, end, label: F1_SESSION_LABELS[x.session_name] || x.session_name || 'Sessione' });
+        }
+        const meetings = [...groups.values()].map(m => ({ ...m, sessions: m.sessions.sort((a, b) => a.start - b.start) })).filter(m => m.sessions.length).sort((a, b) => b.sessions[0].start - a.sessions[0].start);
+        if (meetings.length) return meetings;
+      }
+      return [];
+    }
+    function fmtOf1Time(v, longForm) {
+      if (Array.isArray(v)) v = [...v].reverse().find(x => x != null && x !== '');
+      if (v == null || v === '') return '';
+      if (typeof v === 'string') return v;
+      const sec = Number(v);
+      if (!Number.isFinite(sec) || sec <= 0) return '';
+      const h = Math.floor(sec / 3600), m = Math.floor((sec % 3600) / 60), r = (sec % 60).toFixed(3).padStart(6, '0');
+      return longForm && h > 0 ? `${h}:${String(m).padStart(2, '0')}:${r}` : `${h * 60 + m}:${r}`;
+    }
+    function fmtOf1Gap(v) {
+      if (Array.isArray(v)) v = [...v].reverse().find(x => x != null && x !== '');
+      if (v == null || v === '' || v === 0) return '';
+      return typeof v === 'string' ? v : `+${Number(v).toFixed(3)}`;
+    }
+    async function fetchOpenF1Result(meeting, session) {
+      const key = encodeURIComponent(String(session.Path).slice(4));
+      const [res, drv] = await Promise.all([
+        fetchJson(`${OPENF1}/session_result?session_key=${key}`, 'OpenF1 classifica'),
+        fetchJson(`${OPENF1}/drivers?session_key=${key}`, 'OpenF1 piloti').catch(() => [])
+      ]);
+      if (!Array.isArray(res) || !res.length) throw new Error('classifica non ancora disponibile');
+      const drivers = new Map((Array.isArray(drv) ? drv : []).map(d => [d.driver_number, d]));
+      const isRace = /^(race|sprint)$/i.test(session.Name || '');
+      const rows = [...res].sort((a, b) => (a.position ?? 999) - (b.position ?? 999)).map(r => {
+        const d = drivers.get(r.driver_number) || {};
+        const status = r.dsq ? 'SQUALIFICATO' : r.dns ? 'NON PARTITO' : r.dnf ? 'RITIRATO' : '';
+        const time = r.position === 1 && isRace ? fmtOf1Time(r.duration, true) : (isRace ? fmtOf1Gap(r.gap_to_leader) : fmtOf1Time(r.duration, false));
+        const gap = !isRace ? fmtOf1Gap(r.gap_to_leader) : '';
+        const pos = Number(r.position);
+        const pc = pos === 1 ? 'p1' : pos === 2 ? 'p2' : pos === 3 ? 'p3' : '';
+        return `<tr><td class="pos ${pc}">${escapeHtml(r.position ?? '—')}</td><td>${escapeHtml(r.driver_number ?? '—')}</td><td class="driver">${escapeHtml(d.full_name || d.name_acronym || '—')}</td><td class="gap">${escapeHtml(d.team_name || '—')}</td><td class="gap">${escapeHtml(status || time || '—')}</td><td class="gap">${escapeHtml(gap || '—')}</td><td class="gap">${escapeHtml(r.number_of_laps ?? '—')}</td></tr>`;
+      }).join('');
+      return `<div class="session-info"><div><label>Gran Premio</label><strong>${escapeHtml(meeting.name)}</strong></div><div><label>Sessione</label><strong>${escapeHtml(session.label)}</strong></div><div><label>Fonte</label><strong>OpenF1</strong></div></div><div style="max-height:560px;overflow:auto"><table class="timing-table"><thead><tr><th>Pos</th><th>#</th><th>Pilota</th><th>Team</th><th>${isRace ? 'Tempo / Distacco' : 'Miglior tempo'}</th><th>Distacco</th><th>Giri</th></tr></thead><tbody>${rows}</tbody></table></div>`;
+    }
+
     async function getF1Index() {
       if (f1State.index && Date.now() - f1State.indexAt < 30 * 60_000) return f1State.index;
+      try {   // prima OpenF1 (gratuito); se non risponde si prova l'archivio ufficiale F1
+        const of1 = await getOpenF1Index();
+        if (of1.length) { f1State.index = of1; f1State.indexAt = Date.now(); return of1; }
+      } catch (_) { /* ripiego sull'archivio ufficiale */ }
       const year = new Date().getFullYear();
       let meetings = [];
       for (const y of [year, year - 1]) {
@@ -1323,7 +1387,7 @@
       f1State.selSession = session.Path;
       const opts = meetings.map(m => `<option value="${escapeHtml(m.name + m.sessions[0].start)}" ${m === meeting ? 'selected' : ''}>${escapeHtml(new Date(m.sessions[0].start).toISOString().slice(0, 10))} · ${escapeHtml(m.name)}</option>`).join('');
       const chips = meeting.sessions.map(x => `<button class="f1-chip ${x.Path === session.Path ? 'active' : ''}" data-path="${escapeHtml(x.Path)}">${escapeHtml(x.label)}</button>`).join('');
-      box.innerHTML = `<div class="league-card" style="max-width:1100px"><div class="league-head"><span>Prove, qualifiche e gara — dati ufficiali F1</span><span class="count">ARCHIVIO</span></div><div style="padding:.85rem 1rem"><select id="f1MeetingSelect" style="width:100%;max-width:560px">${opts}</select><div id="f1SessionChips" style="margin-top:.6rem;display:flex;flex-wrap:wrap;gap:.4rem">${chips}</div></div><div id="f1SessionResults"><div class="loading">Caricamento sessione…</div></div></div>`;
+      box.innerHTML = `<div class="league-card" style="max-width:1100px"><div class="league-head"><span>Prove, qualifiche e gara — classifiche delle sessioni concluse</span><span class="count">ARCHIVIO</span></div><div style="padding:.85rem 1rem"><select id="f1MeetingSelect" style="width:100%;max-width:560px">${opts}</select><div id="f1SessionChips" style="margin-top:.6rem;display:flex;flex-wrap:wrap;gap:.4rem">${chips}</div></div><div id="f1SessionResults"><div class="loading">Caricamento sessione…</div></div></div>`;
       document.getElementById('f1MeetingSelect').addEventListener('change', e => { f1State.selMeeting = e.target.value; f1State.selSession = null; loadF1Sessions(); });
       document.querySelectorAll('#f1SessionChips .f1-chip').forEach(btn => btn.addEventListener('click', () => {
         f1State.selSession = btn.dataset.path;
@@ -1337,10 +1401,13 @@
       if (!out || !session) return;
       const reqId = ++f1State.sessReq;
       out.innerHTML = '<div class="loading">Caricamento sessione…</div>';
-      let official;
+      let official, html;
       try {
         const cached = f1State.sessCache.get(session.Path);
-        if (cached && Date.now() - cached.at < 10 * 60_000) official = cached.official;
+        if (String(session.Path).startsWith('of1:')) {
+          if (cached && Date.now() - cached.at < 10 * 60_000) html = cached.html;
+          else { html = await fetchOpenF1Result(meeting, session); f1State.sessCache.set(session.Path, { at: Date.now(), html }); }
+        } else if (cached && Date.now() - cached.at < 10 * 60_000) official = cached.official;
         else {
           official = await fetchF1OfficialSession(session.Path, { ...session, Meeting: { Name: meeting.name } }, true);
           f1State.sessCache.set(session.Path, { at: Date.now(), official });
@@ -1348,11 +1415,72 @@
       } catch (e) {
         if (reqId !== f1State.sessReq) return;
         const detail = String(e?.message || '');
+        if (String(session.Path).startsWith('of1:')) {
+          out.innerHTML = `<div class="empty">${/401|403|429/.test(detail) ? 'OpenF1 limita l\'accesso durante le sessioni live e quando arrivano troppe richieste: riprova tra qualche minuto.' : 'Classifica non ancora disponibile: OpenF1 la pubblica dopo la fine della sessione.'}</div>`;
+          return;
+        }
         out.innerHTML = `<div class="empty">${/401|403|404/.test(detail) ? 'F1 non rende accessibili i dati di questa sessione (errore ' + (detail.match(/40[134]/) || ['di accesso'])[0] + '). Di solito compaiono dopo qualche ora dalla fine, ma a volte F1 limita l\'accesso.' : 'Dati non disponibili in questo momento.'}</div>`;
         return;
       }
       if (reqId !== f1State.sessReq) return;
+      if (html) { out.innerHTML = html; return; }
       renderF1OfficialTiming(out, official, false);
+    }
+
+    // Prossime sessioni (orario nel fuso del browser) e classifica mondiale: dati di Jolpica/Ergast.
+    const F1_NEXT_KEYS = [['FirstPractice', 'Prove libere 1', 60], ['SecondPractice', 'Prove libere 2', 60], ['ThirdPractice', 'Prove libere 3', 60],
+      ['SprintQualifying', 'Qualifica Sprint', 45], ['SprintShootout', 'Qualifica Sprint', 45], ['Sprint', 'Sprint', 40], ['Qualifying', 'Qualifica', 60]];
+    Object.assign(f1State, { schedule: null, scheduleAt: 0, standingsAt: 0, cdTimer: null });
+    const f1At = (date, time) => Date.parse(`${date}T${String(time || '12:00:00Z').replace(/Z?$/, 'Z')}`);
+    async function getF1Schedule() {
+      if (f1State.schedule && Date.now() - f1State.scheduleAt < 6 * 3_600_000) return f1State.schedule;
+      const year = new Date().getFullYear();
+      const data = await fetchJson(`https://api.jolpi.ca/ergast/f1/${year}.json?limit=40`, 'Calendario F1');
+      const items = [];
+      for (const r of data?.MRData?.RaceTable?.Races || []) {
+        for (const [key, label, dur] of F1_NEXT_KEYS) if (r[key]?.date) items.push({ label, gp: r.raceName, at: f1At(r[key].date, r[key].time), dur });
+        if (r.date) items.push({ label: 'Gara', gp: r.raceName, at: f1At(r.date, r.time), dur: 120 });
+      }
+      f1State.schedule = items.filter(x => Number.isFinite(x.at)).sort((a, b) => a.at - b.at);
+      f1State.scheduleAt = Date.now();
+      return f1State.schedule;
+    }
+    function f1Countdown(at, dur) {
+      const ms = at - Date.now();
+      if (ms <= 0) return Date.now() < at + dur * 60_000 ? 'IN CORSO' : 'terminata';
+      const min = Math.floor(ms / 60_000), d = Math.floor(min / 1440), h = Math.floor((min % 1440) / 60), m = min % 60;
+      return d > 0 ? `tra ${d} g ${h} h` : h > 0 ? `tra ${h} h ${m} min` : `tra ${m} min`;
+    }
+    function updateF1Countdowns() {
+      document.querySelectorAll('#f1-next .f1cd').forEach(el => { el.textContent = f1Countdown(Number(el.dataset.at), Number(el.dataset.dur)); });
+    }
+    async function loadF1Next() {
+      const box = document.getElementById('f1-next');
+      if (!box) return;
+      let items;
+      try { items = await getF1Schedule(); } catch (_) { box.innerHTML = ''; return; }
+      const upcoming = items.filter(x => x.at + x.dur * 60_000 > Date.now()).slice(0, 6);
+      if (!upcoming.length) { box.innerHTML = ''; return; }
+      const fmt = new Intl.DateTimeFormat('it-IT', { weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
+      const rows = upcoming.map(x => `<div class="match-row" style="display:flex;justify-content:space-between;gap:1rem;padding:.6rem 1rem;border-top:1px solid var(--border)"><span><strong>${escapeHtml(x.label)}</strong> · ${escapeHtml(x.gp)}</span><span>${escapeHtml(fmt.format(new Date(x.at)))} · <strong class="f1cd" data-at="${x.at}" data-dur="${x.dur}">${escapeHtml(f1Countdown(x.at, x.dur))}</strong></span></div>`).join('');
+      box.innerHTML = `<div class="league-card" style="max-width:1100px"><div class="league-head"><span>Prossime sessioni</span><span class="count">ORARIO LOCALE</span></div>${rows}</div>`;
+      if (!f1State.cdTimer) f1State.cdTimer = setInterval(updateF1Countdowns, 30_000);
+    }
+    async function loadF1Standings() {
+      const box = document.getElementById('f1-standings');
+      if (!box || (f1State.standingsAt && Date.now() - f1State.standingsAt < 30 * 60_000)) return;
+      try {
+        const [d, c] = await Promise.all([
+          fetchJson('https://api.jolpi.ca/ergast/f1/current/driverStandings.json', 'Classifica piloti'),
+          fetchJson('https://api.jolpi.ca/ergast/f1/current/constructorStandings.json', 'Classifica costruttori')
+        ]);
+        const dl = d?.MRData?.StandingsTable?.StandingsLists?.[0], cl = c?.MRData?.StandingsTable?.StandingsLists?.[0];
+        if (!dl?.DriverStandings?.length) throw new Error('classifica vuota');
+        const drivers = dl.DriverStandings.map(x => `<tr><td class="pos">${escapeHtml(x.position)}</td><td class="driver">${escapeHtml([x.Driver?.givenName, x.Driver?.familyName].filter(Boolean).join(' '))}</td><td class="gap">${escapeHtml((x.Constructors || []).map(t => t.name).join(' / ') || '—')}</td><td class="gap">${escapeHtml(x.points)}</td><td class="gap">${escapeHtml(x.wins)}</td></tr>`).join('');
+        const teams = (cl?.ConstructorStandings || []).map(x => `<tr><td class="pos">${escapeHtml(x.position)}</td><td class="driver">${escapeHtml(x.Constructor?.name || '—')}</td><td class="gap">${escapeHtml(x.points)}</td><td class="gap">${escapeHtml(x.wins)}</td></tr>`).join('');
+        box.innerHTML = `<div class="league-card" style="max-width:1100px"><div class="league-head"><span>Campionato mondiale ${escapeHtml(dl.season || '')} — dopo ${escapeHtml(dl.round || '?')} gare</span><span class="count">PUNTI</span></div><div style="display:flex;flex-wrap:wrap;gap:1rem;padding:.5rem"><div style="flex:1 1 480px;overflow:auto"><table class="timing-table"><thead><tr><th>Pos</th><th>Pilota</th><th>Team</th><th>Punti</th><th>Vitt.</th></tr></thead><tbody>${drivers}</tbody></table></div>${teams ? `<div style="flex:1 1 320px;overflow:auto"><table class="timing-table"><thead><tr><th>Pos</th><th>Costruttore</th><th>Punti</th><th>Vitt.</th></tr></thead><tbody>${teams}</tbody></table></div>` : ''}</div></div>`;
+        f1State.standingsAt = Date.now();
+      } catch (_) { box.innerHTML = ''; }
     }
 
     // ===== MOTOGP =====
@@ -1363,15 +1491,21 @@
     const UPSTASH_READ_TOKEN = '';
     // In alternativa si può aprire il sito una volta con ?up=INDIRIZZO&ut=TOKEN: i valori restano salvati nel browser.
     // Sistema l'indirizzo: toglie spazi e barra finale e aggiunge https:// se manca (Upstash mostra spesso solo "nome.upstash.io").
+    function cleanUpstash(v) { return String(v || '').trim().replace(/^UPSTASH_[A-Z_]+\s*=\s*/, '').replace(/^["']+|["']+$/g, '').trim(); }
     function normalizeUpstash(c) {
-      let url = String(c.url || '').trim().replace(/\/+$/, '');
+      let url = cleanUpstash(c.url).replace(/\/+$/, '');
       if (url && !/^https?:\/\//i.test(url)) url = 'https://' + url;
-      return { url, token: String(c.token || '').trim() };
+      return { url, token: cleanUpstash(c.token) };
+    }
+    // Legge un parametro dall'indirizzo senza trasformare i "+" in spazi (un token può contenere "+").
+    function rawQueryParam(name) {
+      const m = location.search.match(new RegExp('[?&]' + name + '=([^&]*)'));
+      if (!m) return '';
+      try { return decodeURIComponent(m[1]); } catch (_) { return m[1]; }
     }
     function upstashConfig() {
-      const q = new URLSearchParams(location.search);
-      if (q.get('up') && q.get('ut')) {
-        const cfg = normalizeUpstash({ url: q.get('up'), token: q.get('ut') });
+      if (rawQueryParam('up') && rawQueryParam('ut')) {
+        const cfg = normalizeUpstash({ url: rawQueryParam('up'), token: rawQueryParam('ut') });
         try { localStorage.setItem('sportlive.upstash', JSON.stringify(cfg)); } catch (_) {}
         return cfg;
       }
@@ -1744,7 +1878,7 @@
       safePanelLoad(loadCalcio, 'grid-calcio', 'Calcio');
       safePanelLoad(loadBasket, 'grid-basket', 'Basket');
       safePanelLoad(loadUsa, 'grid-usa', 'Sport USA');
-      loadF1(true); loadF1OnDemand(); loadF1Sessions(); fetchLive();
+      loadF1(true); loadF1OnDemand(); loadF1Sessions(); loadF1Next(); loadF1Standings(); fetchLive();
     };
 
     // Avvio
@@ -1754,6 +1888,8 @@
     loadF1();
     loadF1OnDemand();
     loadF1Sessions();
+    loadF1Next();
+    loadF1Standings();
     fetchLive();
     loadSavedMoto().then(loadEvents);
     // MotoGP: ogni 15s solo se c'è una sessione live, altrimenti ogni 30s. Mai a scheda nascosta

@@ -144,7 +144,7 @@
 </head>
 <body>
   <header>
-    <div class="logo">SPORT<span>LIVE</span><small style="opacity:.45;font-size:.65rem"> v64</small></div>
+    <div class="logo">SPORT<span>LIVE</span><small style="opacity:.45;font-size:.65rem"> v65</small></div>
     <div class="status-bar">
       <div class="dot" id="liveDot"></div>
       <span id="lastUpdate">Connessione…</span>
@@ -285,7 +285,7 @@
         ['File data/italian.json', `data/italian.json?t=${Date.now()}`],
         ['File moto-data.json', `moto-data.json?t=${Date.now()}`]
       ];
-      const lines = ['INFO   Pagina aperta da: ' + location.href.replace(/([?&]ut=)[^&]+/, '$1***').slice(0, 80), 'INFO   Upstash nel sito: ' + (upstashConfig() ? 'configurato (' + (() => { try { return new URL(upstashConfig().url).host; } catch (_) { return 'indirizzo NON valido: ' + upstashConfig().url.slice(0, 40); } })() + ')' : 'NON configurato')];
+      const lines = ['INFO   Pagina aperta da: ' + location.href.replace(/([?&]ut=)[^&]+/, '$1***').slice(0, 80), 'INFO   Upstash nel sito: ' + (upstashConfig() ? 'configurato (' + (() => { try { return new URL(upstashConfig().url).host; } catch (_) { return 'indirizzo NON valido: ' + upstashConfig().url.slice(0, 40); } })() + ') - ' + (() => { const t = upstashConfig().token; return `token: ${t.length} caratteri, inizia con "${t.slice(0, 2)}", finisce con "${t.slice(-2)}"${/[^A-Za-z0-9+/=_-]/.test(t) ? ' - ATTENZIONE: contiene caratteri strani (copia incompleta o con "…")' : ''}`; })() : 'NON configurato')];
       for (const [name, url] of tests) {
         const t0 = performance.now();
         let line;

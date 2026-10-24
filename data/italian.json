@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-24T07:05:01.021441+00:00",
+  "updatedAt": "2026-10-24T07:38:51.696796+00:00",
   "lba": [
     {
       "home": "Openjobmetis Varese",
@@ -100,8 +100,8 @@
   ],
   "serieC": [
     {
-      "home": "PERUGIA",
-      "away": "PESCARA",
+      "home": "OSTIAMARE",
+      "away": "VADO",
       "homeScore": 1,
       "awayScore": 2,
       "hasScore": true,
@@ -114,8 +114,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "OSTIAMARE",
-      "away": "VADO",
+      "home": "PERUGIA",
+      "away": "PESCARA",
       "homeScore": 1,
       "awayScore": 2,
       "hasScore": true,
@@ -184,8 +184,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "SPEZIA",
-      "away": "LATINA",
+      "home": "SAMBENEDETTESE",
+      "away": "LIVORNO",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -198,8 +198,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "SAMBENEDETTESE",
-      "away": "LIVORNO",
+      "home": "SPEZIA",
+      "away": "LATINA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -226,8 +226,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "INTER UNDER 23",
-      "away": "SORRENTO",
+      "home": "SCAFATESE",
+      "away": "BARLETTA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -240,8 +240,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "SCAFATESE",
-      "away": "BARLETTA",
+      "home": "INTER UNDER 23",
+      "away": "SORRENTO",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -311,5 +311,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-24T07:05:01.021441+00:00"
+  "serieCUpdatedAt": "2026-10-24T07:38:51.696796+00:00"
 }

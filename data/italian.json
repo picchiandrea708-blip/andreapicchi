@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-24T20:28:59.094329+00:00",
+  "updatedAt": "2026-10-24T20:59:16.930027+00:00",
   "lba": [
     {
       "home": "Openjobmetis Varese",
@@ -19,7 +19,7 @@
       "homeScore": 87,
       "awayScore": 81,
       "hasScore": true,
-      "status": "LIVE",
+      "status": "Finale",
       "time": "2026-10-24T20:30:00.000+02:00",
       "competition": "Serie A LBA",
       "source": "LBA",
@@ -423,5 +423,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-24T20:28:59.094329+00:00"
+  "serieCUpdatedAt": "2026-10-24T20:59:16.930027+00:00"
 }

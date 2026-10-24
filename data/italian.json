@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-24T05:51:42.995944+00:00",
+  "updatedAt": "2026-10-24T06:17:02.363981+00:00",
   "lba": [
     {
       "home": "Openjobmetis Varese",
@@ -100,20 +100,6 @@
   ],
   "serieC": [
     {
-      "home": "OSTIAMARE",
-      "away": "VADO",
-      "homeScore": 1,
-      "awayScore": 2,
-      "hasScore": true,
-      "status": "FT",
-      "time": "2026-10-23T20:30:00+02:00",
-      "eventDate": "2026-10-23T20:30:00+02:00",
-      "competition": "Serie C",
-      "group": "Girone B",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
       "home": "PERUGIA",
       "away": "PESCARA",
       "homeScore": 1,
@@ -132,6 +118,20 @@
       "away": "GUBBIO",
       "homeScore": 1,
       "awayScore": 0,
+      "hasScore": true,
+      "status": "FT",
+      "time": "2026-10-23T20:30:00+02:00",
+      "eventDate": "2026-10-23T20:30:00+02:00",
+      "competition": "Serie C",
+      "group": "Girone B",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "OSTIAMARE",
+      "away": "VADO",
+      "homeScore": 1,
+      "awayScore": 2,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-23T20:30:00+02:00",
@@ -226,8 +226,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "SCAFATESE",
-      "away": "BARLETTA",
+      "home": "INTER UNDER 23",
+      "away": "SORRENTO",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -240,8 +240,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "INTER UNDER 23",
-      "away": "SORRENTO",
+      "home": "SCAFATESE",
+      "away": "BARLETTA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -311,5 +311,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-24T05:51:42.995944+00:00"
+  "serieCUpdatedAt": "2026-10-24T06:17:02.363981+00:00"
 }

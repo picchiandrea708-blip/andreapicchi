@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-25T09:35:37.496066+00:00",
+  "updatedAt": "2026-10-25T10:05:02.473004+00:00",
   "lba": [
     {
       "home": "Openjobmetis Varese",
@@ -114,9 +114,9 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "SPEZIA",
-      "away": "LATINA",
-      "homeScore": 1,
+      "home": "SAMBENEDETTESE",
+      "away": "LIVORNO",
+      "homeScore": 2,
       "awayScore": 1,
       "hasScore": true,
       "status": "FT",
@@ -142,9 +142,9 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "SAMBENEDETTESE",
-      "away": "LIVORNO",
-      "homeScore": 2,
+      "home": "SPEZIA",
+      "away": "LATINA",
+      "homeScore": 1,
       "awayScore": 1,
       "hasScore": true,
       "status": "FT",
@@ -156,10 +156,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "INTER UNDER 23",
-      "away": "SORRENTO",
+      "home": "SCAFATESE",
+      "away": "BARLETTA",
       "homeScore": 1,
-      "awayScore": 1,
+      "awayScore": 0,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-24T14:30:00+02:00",
@@ -170,10 +170,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "SCAFATESE",
-      "away": "BARLETTA",
+      "home": "INTER UNDER 23",
+      "away": "SORRENTO",
       "homeScore": 1,
-      "awayScore": 0,
+      "awayScore": 1,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-24T14:30:00+02:00",
@@ -240,8 +240,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "RENATE",
-      "away": "ALBINOLEFFE",
+      "home": "TRENTO",
+      "away": "JUVENTUS NEXT GEN",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -254,8 +254,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "TRENTO",
-      "away": "JUVENTUS NEXT GEN",
+      "home": "RENATE",
+      "away": "ALBINOLEFFE",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -380,8 +380,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "PRO VERCELLI",
-      "away": "OSPITALETTO F.",
+      "home": "ARZIGNANO V.",
+      "away": "NOVARA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -394,8 +394,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "ARZIGNANO V.",
-      "away": "NOVARA",
+      "home": "PRO VERCELLI",
+      "away": "OSPITALETTO F.",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -423,5 +423,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-25T09:35:37.496066+00:00"
+  "serieCUpdatedAt": "2026-10-25T10:05:02.473004+00:00"
 }

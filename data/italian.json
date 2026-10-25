@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-25T15:12:23.985702+00:00",
+  "updatedAt": "2026-10-25T15:50:19.924200+00:00",
   "lba": [
     {
       "home": "Openjobmetis Varese",
@@ -40,8 +40,8 @@
     {
       "home": "Armani Olimpia Milano",
       "away": "Virtus Costa Bologna",
-      "homeScore": 15,
-      "awayScore": 9,
+      "homeScore": 45,
+      "awayScore": 31,
       "hasScore": true,
       "status": "LIVE",
       "time": "2026-10-25T16:00:00.000+01:00",
@@ -52,10 +52,10 @@
     {
       "home": "Maxima Roma",
       "away": "APU Old Wild West Udine",
-      "homeScore": 0,
-      "awayScore": 0,
-      "hasScore": false,
-      "status": "In programma",
+      "homeScore": 22,
+      "awayScore": 19,
+      "hasScore": true,
+      "status": "LIVE",
       "time": "2026-10-25T16:30:00.000+01:00",
       "competition": "Serie A LBA",
       "source": "LBA",
@@ -203,7 +203,7 @@
       "homeScore": 1,
       "awayScore": 2,
       "hasScore": true,
-      "status": "LIVE",
+      "status": "Risultato ufficiale",
       "time": "2026-10-25T14:30:00+01:00",
       "eventDate": "2026-10-25T14:30:00+01:00",
       "competition": "Serie C",
@@ -217,7 +217,7 @@
       "homeScore": 2,
       "awayScore": 0,
       "hasScore": true,
-      "status": "LIVE",
+      "status": "Risultato ufficiale",
       "time": "2026-10-25T14:30:00+01:00",
       "eventDate": "2026-10-25T14:30:00+01:00",
       "competition": "Serie C",
@@ -231,7 +231,7 @@
       "homeScore": 0,
       "awayScore": 0,
       "hasScore": true,
-      "status": "LIVE",
+      "status": "Risultato ufficiale",
       "time": "2026-10-25T14:30:00+01:00",
       "eventDate": "2026-10-25T14:30:00+01:00",
       "competition": "Serie C",
@@ -245,7 +245,7 @@
       "homeScore": 2,
       "awayScore": 0,
       "hasScore": true,
-      "status": "LIVE",
+      "status": "Risultato ufficiale",
       "time": "2026-10-25T14:30:00+01:00",
       "eventDate": "2026-10-25T14:30:00+01:00",
       "competition": "Serie C",
@@ -256,10 +256,10 @@
     {
       "home": "FOGGIA",
       "away": "CAVESE",
-      "homeScore": 0,
+      "homeScore": 1,
       "awayScore": 0,
       "hasScore": true,
-      "status": "LIVE",
+      "status": "Risultato ufficiale",
       "time": "2026-10-25T14:30:00+01:00",
       "eventDate": "2026-10-25T14:30:00+01:00",
       "competition": "Serie C",
@@ -270,7 +270,7 @@
     {
       "home": "CATANIA",
       "away": "GIUGLIANO",
-      "homeScore": 3,
+      "homeScore": 6,
       "awayScore": 0,
       "hasScore": true,
       "status": "LIVE",
@@ -278,34 +278,6 @@
       "eventDate": "2026-10-25T15:00:00+01:00",
       "competition": "Serie C",
       "group": "Girone C",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
-      "home": "ARZIGNANO V.",
-      "away": "NOVARA",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
-      "time": "2026-10-25T17:30:00+01:00",
-      "eventDate": "2026-10-25T17:30:00+01:00",
-      "competition": "Serie C",
-      "group": "Girone A",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
-      "home": "PRO VERCELLI",
-      "away": "OSPITALETTO F.",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
-      "time": "2026-10-25T17:30:00+01:00",
-      "eventDate": "2026-10-25T17:30:00+01:00",
-      "competition": "Serie C",
-      "group": "Girone A",
       "source": "Lega Pro",
       "sourceUrl": "https://www.seriec.com/calendario"
     },
@@ -336,8 +308,36 @@
       "group": "Girone A",
       "source": "Lega Pro",
       "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "ARZIGNANO V.",
+      "away": "NOVARA",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-25T17:30:00+01:00",
+      "eventDate": "2026-10-25T17:30:00+01:00",
+      "competition": "Serie C",
+      "group": "Girone A",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "PRO VERCELLI",
+      "away": "OSPITALETTO F.",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-25T17:30:00+01:00",
+      "eventDate": "2026-10-25T17:30:00+01:00",
+      "competition": "Serie C",
+      "group": "Girone A",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-25T15:12:23.985702+00:00"
+  "serieCUpdatedAt": "2026-10-25T15:50:19.924200+00:00"
 }

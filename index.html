@@ -144,7 +144,7 @@
 </head>
 <body>
   <header>
-    <div class="logo">SPORT<span>LIVE</span><small style="opacity:.45;font-size:.65rem"> v67</small></div>
+    <div class="logo">SPORT<span>LIVE</span><small style="opacity:.45;font-size:.65rem"> v68</small></div>
     <div class="status-bar">
       <div class="dot" id="liveDot"></div>
       <span id="lastUpdate">Connessione…</span>
@@ -188,6 +188,17 @@
     <div class="panel" id="panel-f1">
       <div class="section-title">Formula 1 — Livetiming <span class="badge" id="badge-f1" style="display:none">LIVE</span></div>
       <div id="f1-box"><div class="loading">Caricamento sessione F1…</div></div>
+      <div class="league-card" style="max-width:1100px;margin-top:1.25rem">
+        <div class="league-head"><span>Live timing completo — Formula Live Pulse</span><span class="count">SITO ESTERNO</span></div>
+        <div style="padding:.85rem 1rem">
+          <div style="display:flex;flex-wrap:wrap;gap:.5rem;align-items:center">
+            <a href="https://app.f1livepulse.com/formula-1/live-timing" target="_blank" rel="noopener noreferrer" class="f1-chip" style="text-decoration:none">Apri in una nuova scheda</a>
+            <button id="f1ExtToggle" class="f1-chip" type="button">Mostra qui sotto</button>
+          </div>
+          <div id="f1ExtFrame" style="margin-top:.7rem"></div>
+          <div style="margin-top:.6rem;font-size:.72rem;color:var(--muted);line-height:1.5">Servizio di terzi, non ufficiale e non collegato a questo sito. I dati live non passano da qui. Se la finestra resta vuota, il servizio non ne permette l'incorporamento: usa "Apri in una nuova scheda".</div>
+        </div>
+      </div>
       <div id="f1-next" style="margin-top:1.25rem"></div>
       <div id="f1-od" style="margin-top:1.25rem"></div>
       <div id="f1-sessions" style="margin-top:1.25rem"></div>
@@ -1598,6 +1609,21 @@
         f1State.standingsAt = Date.now();
       } catch (_) { box.innerHTML = ''; }
     }
+
+    // Live timing esterno: la finestra incorporata si carica solo quando la chiedi.
+    document.getElementById('f1ExtToggle')?.addEventListener('click', () => {
+      const box = document.getElementById('f1ExtFrame'), btn = document.getElementById('f1ExtToggle');
+      if (box.firstChild) { box.innerHTML = ''; btn.textContent = 'Mostra qui sotto'; return; }
+      const fr = document.createElement('iframe');
+      fr.src = 'https://app.f1livepulse.com/formula-1/live-timing';
+      fr.title = 'Live timing Formula 1 (Formula Live Pulse)';
+      fr.loading = 'lazy';
+      fr.referrerPolicy = 'no-referrer';
+      fr.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-popups allow-forms');
+      fr.style.cssText = 'width:100%;height:720px;border:0;border-radius:8px;background:#000';
+      box.appendChild(fr);
+      btn.textContent = 'Nascondi';
+    });
 
     // ===== MOTOGP =====
     let motoIsLive = false;

@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-25T14:11:17.960213+00:00",
+  "updatedAt": "2026-10-25T14:50:09.471257+00:00",
   "lba": [
     {
       "home": "Openjobmetis Varese",
@@ -100,10 +100,10 @@
   ],
   "serieC": [
     {
-      "home": "UNION BRESCIA",
-      "away": "CITTADELLA",
-      "homeScore": 2,
-      "awayScore": 1,
+      "home": "ALCIONE MILANO",
+      "away": "CARPI",
+      "homeScore": 1,
+      "awayScore": 2,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-24T17:30:00+02:00",
@@ -114,10 +114,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "ALCIONE MILANO",
-      "away": "CARPI",
-      "homeScore": 1,
-      "awayScore": 2,
+      "home": "UNION BRESCIA",
+      "away": "CITTADELLA",
+      "homeScore": 2,
+      "awayScore": 1,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-24T17:30:00+02:00",
@@ -161,7 +161,7 @@
       "homeScore": 2,
       "awayScore": 1,
       "hasScore": true,
-      "status": "Risultato ufficiale",
+      "status": "FT",
       "time": "2026-10-25T12:30:00+01:00",
       "eventDate": "2026-10-25T12:30:00+01:00",
       "competition": "Serie C",
@@ -175,7 +175,7 @@
       "homeScore": 0,
       "awayScore": 0,
       "hasScore": true,
-      "status": "Risultato ufficiale",
+      "status": "FT",
       "time": "2026-10-25T12:30:00+01:00",
       "eventDate": "2026-10-25T12:30:00+01:00",
       "competition": "Serie C",
@@ -189,7 +189,7 @@
       "homeScore": 2,
       "awayScore": 0,
       "hasScore": true,
-      "status": "Risultato ufficiale",
+      "status": "FT",
       "time": "2026-10-25T12:30:00+01:00",
       "eventDate": "2026-10-25T12:30:00+01:00",
       "competition": "Serie C",
@@ -200,7 +200,7 @@
     {
       "home": "DESENZANO",
       "away": "GIANA ERMINIO",
-      "homeScore": 0,
+      "homeScore": 1,
       "awayScore": 1,
       "hasScore": true,
       "status": "LIVE",
@@ -212,9 +212,9 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "GROSSETO",
-      "away": "REGGIANA",
-      "homeScore": 1,
+      "home": "TORRES",
+      "away": "GUIDONIA M.",
+      "homeScore": 2,
       "awayScore": 0,
       "hasScore": true,
       "status": "LIVE",
@@ -226,8 +226,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "TORRES",
-      "away": "GUIDONIA M.",
+      "home": "GROSSETO",
+      "away": "REGGIANA",
       "homeScore": 1,
       "awayScore": 0,
       "hasScore": true,
@@ -270,7 +270,7 @@
     {
       "home": "CATANIA",
       "away": "GIUGLIANO",
-      "homeScore": 0,
+      "homeScore": 3,
       "awayScore": 0,
       "hasScore": true,
       "status": "LIVE",
@@ -278,20 +278,6 @@
       "eventDate": "2026-10-25T15:00:00+01:00",
       "competition": "Serie C",
       "group": "Girone C",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
-      "home": "LECCO",
-      "away": "FOLGORE CARATESE",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
-      "time": "2026-10-25T17:30:00+01:00",
-      "eventDate": "2026-10-25T17:30:00+01:00",
-      "competition": "Serie C",
-      "group": "Girone A",
       "source": "Lega Pro",
       "sourceUrl": "https://www.seriec.com/calendario"
     },
@@ -324,6 +310,20 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
+      "home": "LECCO",
+      "away": "FOLGORE CARATESE",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-25T17:30:00+01:00",
+      "eventDate": "2026-10-25T17:30:00+01:00",
+      "competition": "Serie C",
+      "group": "Girone A",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
       "home": "PERGOLETTESE",
       "away": "LUMEZZANE",
       "homeScore": "",
@@ -339,5 +339,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-25T14:11:17.960213+00:00"
+  "serieCUpdatedAt": "2026-10-25T14:50:09.471257+00:00"
 }

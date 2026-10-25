@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-25T15:50:19.924200+00:00",
+  "updatedAt": "2026-10-25T16:12:51.264854+00:00",
   "lba": [
     {
       "home": "Openjobmetis Varese",
@@ -40,8 +40,8 @@
     {
       "home": "Armani Olimpia Milano",
       "away": "Virtus Costa Bologna",
-      "homeScore": 45,
-      "awayScore": 31,
+      "homeScore": 52,
+      "awayScore": 37,
       "hasScore": true,
       "status": "LIVE",
       "time": "2026-10-25T16:00:00.000+01:00",
@@ -52,8 +52,8 @@
     {
       "home": "Maxima Roma",
       "away": "APU Old Wild West Udine",
-      "homeScore": 22,
-      "awayScore": 19,
+      "homeScore": 35,
+      "awayScore": 39,
       "hasScore": true,
       "status": "LIVE",
       "time": "2026-10-25T16:30:00.000+01:00",
@@ -212,20 +212,6 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "GROSSETO",
-      "away": "REGGIANA",
-      "homeScore": 2,
-      "awayScore": 0,
-      "hasScore": true,
-      "status": "Risultato ufficiale",
-      "time": "2026-10-25T14:30:00+01:00",
-      "eventDate": "2026-10-25T14:30:00+01:00",
-      "competition": "Serie C",
-      "group": "Girone B",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
       "home": "FORLÌ",
       "away": "PIANESE",
       "homeScore": 0,
@@ -242,6 +228,20 @@
     {
       "home": "TORRES",
       "away": "GUIDONIA M.",
+      "homeScore": 2,
+      "awayScore": 0,
+      "hasScore": true,
+      "status": "Risultato ufficiale",
+      "time": "2026-10-25T14:30:00+01:00",
+      "eventDate": "2026-10-25T14:30:00+01:00",
+      "competition": "Serie C",
+      "group": "Girone B",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "GROSSETO",
+      "away": "REGGIANA",
       "homeScore": 2,
       "awayScore": 0,
       "hasScore": true,
@@ -273,25 +273,11 @@
       "homeScore": 6,
       "awayScore": 0,
       "hasScore": true,
-      "status": "LIVE",
+      "status": "Risultato ufficiale",
       "time": "2026-10-25T15:00:00+01:00",
       "eventDate": "2026-10-25T15:00:00+01:00",
       "competition": "Serie C",
       "group": "Girone C",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
-      "home": "PERGOLETTESE",
-      "away": "LUMEZZANE",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
-      "time": "2026-10-25T17:30:00+01:00",
-      "eventDate": "2026-10-25T17:30:00+01:00",
-      "competition": "Serie C",
-      "group": "Girone A",
       "source": "Lega Pro",
       "sourceUrl": "https://www.seriec.com/calendario"
     },
@@ -310,8 +296,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "ARZIGNANO V.",
-      "away": "NOVARA",
+      "home": "PERGOLETTESE",
+      "away": "LUMEZZANE",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -336,8 +322,22 @@
       "group": "Girone A",
       "source": "Lega Pro",
       "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "ARZIGNANO V.",
+      "away": "NOVARA",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-25T17:30:00+01:00",
+      "eventDate": "2026-10-25T17:30:00+01:00",
+      "competition": "Serie C",
+      "group": "Girone A",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-25T15:50:19.924200+00:00"
+  "serieCUpdatedAt": "2026-10-25T16:12:51.264854+00:00"
 }

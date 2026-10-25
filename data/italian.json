@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-25T21:29:17.638736+00:00",
+  "updatedAt": "2026-10-25T21:58:09.837841+00:00",
   "lba": [
     {
       "home": "Openjobmetis Varese",
@@ -170,9 +170,9 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "GROSSETO",
-      "away": "REGGIANA",
-      "homeScore": 2,
+      "home": "FORLÌ",
+      "away": "PIANESE",
+      "homeScore": 0,
       "awayScore": 0,
       "hasScore": true,
       "status": "FT",
@@ -184,9 +184,9 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "FORLÌ",
-      "away": "PIANESE",
-      "homeScore": 0,
+      "home": "GROSSETO",
+      "away": "REGGIANA",
+      "homeScore": 2,
       "awayScore": 0,
       "hasScore": true,
       "status": "FT",
@@ -311,5 +311,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-25T21:29:17.638736+00:00"
+  "serieCUpdatedAt": "2026-10-25T21:58:09.837841+00:00"
 }

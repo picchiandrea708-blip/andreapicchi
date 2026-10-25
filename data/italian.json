@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-25T11:31:09.261494+00:00",
+  "updatedAt": "2026-10-25T11:59:52.942353+00:00",
   "lba": [
     {
       "home": "Openjobmetis Varese",
@@ -28,8 +28,8 @@
     {
       "home": "Bertram Derthona Tortona",
       "away": "Napoli Basketball",
-      "homeScore": 32,
-      "awayScore": 21,
+      "homeScore": 47,
+      "awayScore": 41,
       "hasScore": true,
       "status": "LIVE",
       "time": "2026-10-25T12:00:00.000+01:00",
@@ -242,10 +242,10 @@
     {
       "home": "RENATE",
       "away": "ALBINOLEFFE",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "Risultato non disponibile",
+      "homeScore": 0,
+      "awayScore": 0,
+      "hasScore": true,
+      "status": "LIVE",
       "time": "2026-10-25T12:30:00+01:00",
       "eventDate": "2026-10-25T12:30:00+01:00",
       "competition": "Serie C",
@@ -256,10 +256,10 @@
     {
       "home": "TRENTO",
       "away": "JUVENTUS NEXT GEN",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "Risultato non disponibile",
+      "homeScore": 0,
+      "awayScore": 0,
+      "hasScore": true,
+      "status": "LIVE",
       "time": "2026-10-25T12:30:00+01:00",
       "eventDate": "2026-10-25T12:30:00+01:00",
       "competition": "Serie C",
@@ -270,10 +270,10 @@
     {
       "home": "MONOPOLI",
       "away": "AUDACE CERIGNOLA",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "Risultato non disponibile",
+      "homeScore": 0,
+      "awayScore": 0,
+      "hasScore": true,
+      "status": "LIVE",
       "time": "2026-10-25T12:30:00+01:00",
       "eventDate": "2026-10-25T12:30:00+01:00",
       "competition": "Serie C",
@@ -423,5 +423,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-25T11:31:09.261494+00:00"
+  "serieCUpdatedAt": "2026-10-25T11:59:52.942353+00:00"
 }

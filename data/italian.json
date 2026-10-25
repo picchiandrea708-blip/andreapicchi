@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-25T20:28:20.916650+00:00",
+  "updatedAt": "2026-10-25T20:59:44.191683+00:00",
   "lba": [
     {
       "home": "Openjobmetis Varese",
@@ -100,10 +100,10 @@
   ],
   "serieC": [
     {
-      "home": "RENATE",
-      "away": "ALBINOLEFFE",
-      "homeScore": 0,
-      "awayScore": 0,
+      "home": "TRENTO",
+      "away": "JUVENTUS NEXT GEN",
+      "homeScore": 2,
+      "awayScore": 1,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-25T12:30:00+01:00",
@@ -114,10 +114,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "TRENTO",
-      "away": "JUVENTUS NEXT GEN",
-      "homeScore": 2,
-      "awayScore": 1,
+      "home": "RENATE",
+      "away": "ALBINOLEFFE",
+      "homeScore": 0,
+      "awayScore": 0,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-25T12:30:00+01:00",
@@ -226,10 +226,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "ARZIGNANO V.",
-      "away": "NOVARA",
+      "home": "PERGOLETTESE",
+      "away": "LUMEZZANE",
       "homeScore": 2,
-      "awayScore": 0,
+      "awayScore": 1,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-25T17:30:00+01:00",
@@ -254,10 +254,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "PERGOLETTESE",
-      "away": "LUMEZZANE",
+      "home": "ARZIGNANO V.",
+      "away": "NOVARA",
       "homeScore": 2,
-      "awayScore": 1,
+      "awayScore": 0,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-25T17:30:00+01:00",
@@ -282,8 +282,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "CROTONE",
-      "away": "CASARANO",
+      "home": "PICERNO",
+      "away": "SALERNITANA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -296,8 +296,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "PICERNO",
-      "away": "SALERNITANA",
+      "home": "CROTONE",
+      "away": "CASARANO",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -311,5 +311,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-25T20:28:20.916650+00:00"
+  "serieCUpdatedAt": "2026-10-25T20:59:44.191683+00:00"
 }

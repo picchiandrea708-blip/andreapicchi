@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-25T22:57:13.442780+00:00",
+  "updatedAt": "2026-10-25T23:26:47.719650+00:00",
   "lba": [
     {
       "home": "Openjobmetis Varese",
@@ -156,9 +156,9 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "FORLÌ",
-      "away": "PIANESE",
-      "homeScore": 0,
+      "home": "TORRES",
+      "away": "GUIDONIA M.",
+      "homeScore": 2,
       "awayScore": 0,
       "hasScore": true,
       "status": "FT",
@@ -170,9 +170,9 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "TORRES",
-      "away": "GUIDONIA M.",
-      "homeScore": 2,
+      "home": "FORLÌ",
+      "away": "PIANESE",
+      "homeScore": 0,
       "awayScore": 0,
       "hasScore": true,
       "status": "FT",
@@ -226,20 +226,6 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "PERGOLETTESE",
-      "away": "LUMEZZANE",
-      "homeScore": 2,
-      "awayScore": 1,
-      "hasScore": true,
-      "status": "FT",
-      "time": "2026-10-25T17:30:00+01:00",
-      "eventDate": "2026-10-25T17:30:00+01:00",
-      "competition": "Serie C",
-      "group": "Girone A",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
       "home": "ARZIGNANO V.",
       "away": "NOVARA",
       "homeScore": 2,
@@ -282,6 +268,20 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
+      "home": "PERGOLETTESE",
+      "away": "LUMEZZANE",
+      "homeScore": 2,
+      "awayScore": 1,
+      "hasScore": true,
+      "status": "FT",
+      "time": "2026-10-25T17:30:00+01:00",
+      "eventDate": "2026-10-25T17:30:00+01:00",
+      "competition": "Serie C",
+      "group": "Girone A",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
       "home": "CROTONE",
       "away": "CASARANO",
       "homeScore": "",
@@ -311,5 +311,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-25T22:57:13.442780+00:00"
+  "serieCUpdatedAt": "2026-10-25T23:26:47.719650+00:00"
 }

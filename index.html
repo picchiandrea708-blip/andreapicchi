@@ -144,7 +144,7 @@
 </head>
 <body>
   <header>
-    <div class="logo">SPORT<span>LIVE</span><small style="opacity:.45;font-size:.65rem"> v66</small></div>
+    <div class="logo">SPORT<span>LIVE</span><small style="opacity:.45;font-size:.65rem"> v67</small></div>
     <div class="status-bar">
       <div class="dot" id="liveDot"></div>
       <span id="lastUpdate">Connessione…</span>
@@ -254,6 +254,10 @@
         <button id="upClear" style="padding:.35rem .8rem;border-radius:6px;border:1px solid var(--border);background:var(--bg3);color:var(--muted);cursor:pointer">Rimuovi</button>
         <span id="upMsg" style="font-size:.72rem;margin-left:.5rem;color:var(--muted)"></span></div>
       </div>
+    </details>
+    <details id="newsAdmin" style="margin-top:.6rem;text-align:left;max-width:560px;margin-left:auto;margin-right:auto">
+      <summary style="cursor:pointer;color:var(--muted);font-size:.72rem">Gestione notizie (solo proprietario)</summary>
+      <div id="newsAdminBody" style="margin-top:.5rem;display:grid;gap:.5rem"></div>
     </details>
     <pre id="diagOut" style="display:none;text-align:left;white-space:pre-wrap;word-break:break-word;max-width:900px;margin:.8rem auto 0;padding:.8rem 1rem;background:var(--card);border:1px solid var(--border);border-radius:8px;color:var(--text);font:12px/1.5 'JetBrains Mono',monospace"></pre>
   </footer>
@@ -466,53 +470,46 @@
       'Calcio: Serie A, Serie B italiana, Serie C, coppe UEFA e competizioni internazionali.',
       'Basket: Serie A LBA, Eurolega e NBA. Aggiornamento automatico dei punteggi.'
     ];
-    const PUBLIC_NEWS_CSV_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vQjRds1NTcIHP2UVoqITB_coddMuBT7a6ekpRTXi86rReS7rviGoHEHnvEi4XDuntS5FubsiA7gYalS/pub?gid=0&single=true&output=csv';
-    const PUBLIC_NEWS_CACHE_KEY = 'sportlive.publicNews.cache.v1';
+    // Notizie: file data/news.json del repository, modificabile dall'area riservata in fondo alla pagina.
+    const NEWS_FILE_URL = 'data/news.json';
+    const PUBLIC_NEWS_CACHE_KEY = 'sportlive.publicNews.cache.v2';
     const PUBLIC_NEWS_FALLBACK = [
-      'Notizie sportive in aggiornamento',
-      'Segui risultati e sessioni live su SportLive'
+      { text: 'Notizie sportive in aggiornamento' },
+      { text: 'Segui risultati e sessioni live su SportLive' }
     ];
     let publicTickerNews = [];
     let tickerIndex = 0;
-    function parseCsvRows(csv) {
-      const rows = []; let row = []; let cell = ''; let quoted = false;
-      for (let i = 0; i < csv.length; i++) {
-        const ch = csv[i], next = csv[i + 1];
-        if (ch === '"' && quoted && next === '"') { cell += '"'; i++; continue; }
-        if (ch === '"') { quoted = !quoted; continue; }
-        if (ch === ',' && !quoted) { row.push(cell.trim()); cell = ''; continue; }
-        if ((ch === '\n' || ch === '\r') && !quoted) {
-          if (ch === '\r' && next === '\n') i++;
-          row.push(cell.trim()); if (row.some(Boolean)) rows.push(row); row = []; cell = ''; continue;
-        }
-        cell += ch;
-      }
-      row.push(cell.trim()); if (row.some(Boolean)) rows.push(row);
-      return rows;
+    let newsItems = [];
+    function safeNewsLink(u) { return /^https?:\/\/[^\s"'<>]+$/i.test(String(u || '').trim()) ? String(u).trim() : ''; }
+    function normalizeNews(raw) {
+      const arr = Array.isArray(raw) ? raw : [];
+      return arr.map(x => typeof x === 'string' ? { text: x } : x).filter(x => x && String(x.text || '').trim())
+        .map(x => ({ text: String(x.text).trim().slice(0, 200), link: safeNewsLink(x.link), at: x.at || '' })).slice(0, 20);
+    }
+    function renderPublicNews(items) {
+      const list = document.getElementById('publicNewsList');
+      newsItems = items;
+      publicTickerNews = items.map(i => i.text);
+      if (!list) return;
+      list.innerHTML = items.length
+        ? items.map(i => `<div class="public-news-item">${escapeHtml(i.text)}${i.link ? ` <a href="${escapeHtml(i.link)}" target="_blank" rel="noopener noreferrer" style="color:var(--accent)">leggi →</a>` : ''}</div>`).join('')
+        : '<div class="public-news-empty">Nessuna notizia pubblicata.</div>';
     }
     async function loadPublicNewsSection() {
-      const list = document.getElementById('publicNewsList');
-      if (!list) return;
-      const renderNews = rows => { publicTickerNews = rows.filter(Boolean); list.innerHTML = rows.length ? rows.map(text => `<div class="public-news-item">${escapeHtml(text)}</div>`).join('') : '<div class="public-news-empty">Nessuna notizia pubblicata.</div>'; rotateTicker(); };
-      renderNews(PUBLIC_NEWS_FALLBACK);
+      if (!document.getElementById('publicNewsList')) return;
+      if (!newsItems.length) renderPublicNews(normalizeNews(PUBLIC_NEWS_FALLBACK));
       try {
-        let response;
-        for (let attempt = 0; attempt < 3; attempt++) {
-          try {
-            response = await fetch(`${PUBLIC_NEWS_CSV_URL}&t=${Date.now()}`, { cache: 'no-store', mode: 'cors' });
-            if (response.ok) break;
-          } catch (_) { if (attempt === 2) throw _; }
-          await new Promise(resolve => setTimeout(resolve, 700 * (attempt + 1)));
-        }
+        const response = await fetch(`${NEWS_FILE_URL}?t=${Date.now()}`, { cache: 'no-store' });
         if (!response.ok) throw new Error('HTTP ' + response.status);
-        const rows = parseCsvRows(await response.text()).map(row => row[0]).filter(Boolean).slice(0, 20);
-        try { localStorage.setItem(PUBLIC_NEWS_CACHE_KEY, JSON.stringify(rows)); } catch (_) {}
-        renderNews(rows);
+        const data = await response.json();
+        const items = normalizeNews(Array.isArray(data) ? data : data.items);
+        try { localStorage.setItem(PUBLIC_NEWS_CACHE_KEY, JSON.stringify(items)); } catch (_) {}
+        renderPublicNews(items);
       } catch (_) {
         try {
-          const cached = JSON.parse(localStorage.getItem(PUBLIC_NEWS_CACHE_KEY) || '[]');
-          renderNews(cached.length ? cached : PUBLIC_NEWS_FALLBACK);
-        } catch (_) { renderNews(PUBLIC_NEWS_FALLBACK); }
+          const cached = normalizeNews(JSON.parse(localStorage.getItem(PUBLIC_NEWS_CACHE_KEY) || '[]'));
+          renderPublicNews(cached.length ? cached : normalizeNews(PUBLIC_NEWS_FALLBACK));
+        } catch (_) { renderPublicNews(normalizeNews(PUBLIC_NEWS_FALLBACK)); }
       }
     }
     function rotateTicker() {
@@ -528,6 +525,100 @@
     loadPublicNewsSection();
     setInterval(rotateTicker, 7_000);
     setInterval(loadPublicNewsSection, 5 * 60_000);
+
+    // ===== Area riservata: scrivi e pubblica le notizie dal sito (usa un token GitHub salvato solo in questo browser) =====
+    const GH_REPO = 'picchiandrea708-blip/andreapicchi';
+    const GH_NEWS_API = `https://api.github.com/repos/${GH_REPO}/contents/data/news.json`;
+    const GH_TOKEN_KEY = 'sportlive.ghToken';
+    let newsDraft = null;
+    const ghToken = () => { try { return localStorage.getItem(GH_TOKEN_KEY) || ''; } catch (_) { return ''; } };
+    const ghHeaders = () => ({ Authorization: `Bearer ${ghToken()}`, Accept: 'application/vnd.github+json', 'X-GitHub-Api-Version': '2022-11-28' });
+    function ghErrorText(status) {
+      if (status === 401) return 'Token non valido o scaduto: creane uno nuovo.';
+      if (status === 403) return 'Il token non può scrivere: deve avere il permesso "Contents: Read and write" su questo repository.';
+      if (status === 404) return 'Repository non trovato: il token deve avere accesso al repository andreapicchi.';
+      return `Errore GitHub (HTTP ${status}).`;
+    }
+    async function publishNews(items) {
+      const body = JSON.stringify({ updated: new Date().toISOString(), items }, null, 2) + '\n';
+      const content = btoa(unescape(encodeURIComponent(body)));
+      for (let attempt = 0; attempt < 2; attempt++) {
+        let sha;
+        const g = await fetchT(`${GH_NEWS_API}?ref=main&_=${Date.now()}`, { headers: ghHeaders(), cache: 'no-store' }, 15_000);
+        if (g.ok) sha = (await g.json()).sha;
+        else if (g.status !== 404) throw new Error(ghErrorText(g.status));
+        const p = await fetchT(GH_NEWS_API, { method: 'PUT', headers: { ...ghHeaders(), 'Content-Type': 'application/json' },
+          body: JSON.stringify({ message: 'Aggiorna notizie dal sito', content, branch: 'main', ...(sha ? { sha } : {}) }) }, 20_000);
+        if (p.ok) return true;
+        if (p.status === 409 || p.status === 422) continue;   // il file è cambiato nel frattempo: si rilegge e si riprova
+        throw new Error(ghErrorText(p.status));
+      }
+      throw new Error('Il file è stato modificato nel frattempo: riprova.');
+    }
+    function renderNewsAdmin() {
+      const box = document.getElementById('newsAdminBody');
+      if (!box) return;
+      const inputStyle = 'padding:.45rem;border-radius:6px;border:1px solid var(--border);background:var(--bg3);color:var(--text);width:100%;box-sizing:border-box';
+      const btnStyle = 'padding:.35rem .8rem;border-radius:6px;border:1px solid var(--border);background:var(--bg3);color:var(--text);cursor:pointer';
+      if (!ghToken()) {
+        box.innerHTML = `<div style="font-size:.74rem;color:var(--muted);line-height:1.5">Per pubblicare serve un token GitHub (una volta sola, resta solo in questo browser):<br>
+          1. GitHub → tua foto profilo → <b>Settings</b> → <b>Developer settings</b> → <b>Personal access tokens</b> → <b>Fine-grained tokens</b> → <b>Generate new token</b>.<br>
+          2. Repository access: <b>Only select repositories</b> → andreapicchi. Permissions → Repository permissions → <b>Contents: Read and write</b>.<br>
+          3. Genera e copia il token (inizia con <code>github_pat_</code>), poi incollalo qui sotto.</div>
+          <input id="ghTok" type="password" autocomplete="off" placeholder="github_pat_…" style="${inputStyle}">
+          <div><button id="ghSave" style="${btnStyle}">Salva token</button> <span id="newsMsg" style="font-size:.72rem;margin-left:.5rem;color:var(--muted)"></span></div>`;
+        document.getElementById('ghSave').addEventListener('click', () => {
+          const t = document.getElementById('ghTok').value.trim();
+          if (!/^(github_pat_|ghp_)/.test(t) || t.length < 30) { document.getElementById('newsMsg').textContent = 'Non sembra un token GitHub: deve iniziare con github_pat_ ed essere lungo.'; return; }
+          try { localStorage.setItem(GH_TOKEN_KEY, t); } catch (_) { document.getElementById('newsMsg').textContent = 'Il browser non permette di salvare qui.'; return; }
+          newsDraft = null; renderNewsAdmin();
+        });
+        return;
+      }
+      if (!newsDraft) newsDraft = newsItems.map(x => ({ ...x }));
+      const rows = newsDraft.map((n, i) => `<div style="display:flex;gap:.4rem;align-items:center;border-top:1px solid var(--border);padding:.4rem 0">
+          <span style="flex:1;font-size:.8rem">${escapeHtml(n.text)}${n.link ? ' 🔗' : ''}</span>
+          <button data-act="up" data-i="${i}" style="${btnStyle}" title="Sposta su">↑</button>
+          <button data-act="down" data-i="${i}" style="${btnStyle}" title="Sposta giù">↓</button>
+          <button data-act="del" data-i="${i}" style="${btnStyle}" title="Elimina">✕</button></div>`).join('');
+      box.innerHTML = `<input id="newsText" maxlength="200" placeholder="Scrivi la notizia (max 200 caratteri)" style="${inputStyle}">
+        <input id="newsLink" placeholder="Link (facoltativo), es. https://…" style="${inputStyle}">
+        <div><button id="newsAdd" style="${btnStyle}">Aggiungi in cima</button></div>
+        <div id="newsRows">${rows || '<div style="font-size:.78rem;color:var(--muted)">Nessuna notizia.</div>'}</div>
+        <div><button id="newsPublish" style="${btnStyle};border-color:var(--accent);color:var(--accent)">Pubblica</button>
+          <button id="ghForget" style="${btnStyle};color:var(--muted)">Rimuovi token da questo browser</button>
+          <span id="newsMsg" style="font-size:.72rem;margin-left:.5rem;color:var(--muted)"></span></div>`;
+      const msg = t => { const m = document.getElementById('newsMsg'); if (m) m.textContent = t; };
+      document.getElementById('newsAdd').addEventListener('click', () => {
+        const text = document.getElementById('newsText').value.trim();
+        if (!text) return msg('Scrivi prima il testo della notizia.');
+        const rawLink = document.getElementById('newsLink').value.trim();
+        if (rawLink && !safeNewsLink(rawLink)) return msg('Il link deve iniziare con http:// o https://');
+        newsDraft.unshift({ text: text.slice(0, 200), link: safeNewsLink(rawLink), at: new Date().toISOString() });
+        newsDraft = newsDraft.slice(0, 20); renderNewsAdmin();
+      });
+      document.getElementById('newsRows').addEventListener('click', e => {
+        const b = e.target.closest('button[data-act]'); if (!b) return;
+        const i = Number(b.dataset.i);
+        if (b.dataset.act === 'del') newsDraft.splice(i, 1);
+        if (b.dataset.act === 'up' && i > 0) [newsDraft[i - 1], newsDraft[i]] = [newsDraft[i], newsDraft[i - 1]];
+        if (b.dataset.act === 'down' && i < newsDraft.length - 1) [newsDraft[i + 1], newsDraft[i]] = [newsDraft[i], newsDraft[i + 1]];
+        renderNewsAdmin();
+      });
+      document.getElementById('ghForget').addEventListener('click', () => { try { localStorage.removeItem(GH_TOKEN_KEY); } catch (_) {} newsDraft = null; renderNewsAdmin(); });
+      document.getElementById('newsPublish').addEventListener('click', async () => {
+        const btn = document.getElementById('newsPublish'); btn.disabled = true; msg('Pubblico…');
+        try {
+          await publishNews(normalizeNews(newsDraft));
+          const done = normalizeNews(newsDraft);
+          try { localStorage.setItem(PUBLIC_NEWS_CACHE_KEY, JSON.stringify(done)); } catch (_) {}
+          renderPublicNews(done);
+          msg('Pubblicato. Per tutti i visitatori sarà online tra circa un minuto.');
+        } catch (e) { msg(e.name === 'AbortError' ? 'GitHub non risponde: riprova.' : e.message); }
+        finally { btn.disabled = false; }
+      });
+    }
+    document.getElementById('newsAdmin')?.addEventListener('toggle', e => { if (e.target.open) renderNewsAdmin(); });
 
     function api(path) {
       return PROXY + encodeURIComponent('https://api.motogp.pulselive.com/motogp/v1' + path);

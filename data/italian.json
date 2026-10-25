@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-25T06:03:28.402383+00:00",
+  "updatedAt": "2026-10-25T06:39:44.733255+00:00",
   "lba": [
     {
       "home": "Openjobmetis Varese",
@@ -240,8 +240,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "TRENTO",
-      "away": "JUVENTUS NEXT GEN",
+      "home": "RENATE",
+      "away": "ALBINOLEFFE",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -254,8 +254,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "RENATE",
-      "away": "ALBINOLEFFE",
+      "home": "TRENTO",
+      "away": "JUVENTUS NEXT GEN",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -366,20 +366,6 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "LECCO",
-      "away": "FOLGORE CARATESE",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
-      "time": "2026-10-25T17:30:00+01:00",
-      "eventDate": "2026-10-25T17:30:00+01:00",
-      "competition": "Serie C",
-      "group": "Girone A",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
       "home": "PERGOLETTESE",
       "away": "LUMEZZANE",
       "homeScore": "",
@@ -408,6 +394,20 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
+      "home": "LECCO",
+      "away": "FOLGORE CARATESE",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-25T17:30:00+01:00",
+      "eventDate": "2026-10-25T17:30:00+01:00",
+      "competition": "Serie C",
+      "group": "Girone A",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
       "home": "PRO VERCELLI",
       "away": "OSPITALETTO F.",
       "homeScore": "",
@@ -423,5 +423,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-25T06:03:28.402383+00:00"
+  "serieCUpdatedAt": "2026-10-25T06:39:44.733255+00:00"
 }

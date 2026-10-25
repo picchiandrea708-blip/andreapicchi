@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-25T22:26:43.371693+00:00",
+  "updatedAt": "2026-10-25T22:57:13.442780+00:00",
   "lba": [
     {
       "home": "Openjobmetis Varese",
@@ -282,8 +282,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "PICERNO",
-      "away": "SALERNITANA",
+      "home": "CROTONE",
+      "away": "CASARANO",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -296,8 +296,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "CROTONE",
-      "away": "CASARANO",
+      "home": "PICERNO",
+      "away": "SALERNITANA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -311,5 +311,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-25T22:26:43.371693+00:00"
+  "serieCUpdatedAt": "2026-10-25T22:57:13.442780+00:00"
 }

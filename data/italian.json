@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-26T13:39:27.638243+00:00",
+  "updatedAt": "2026-10-26T15:24:05.183523+00:00",
   "lba": [
     {
       "home": "Openjobmetis Varese",
@@ -100,24 +100,10 @@
   ],
   "serieC": [
     {
-      "home": "CATANIA",
-      "away": "GIUGLIANO",
-      "homeScore": 6,
-      "awayScore": 0,
-      "hasScore": true,
-      "status": "FT",
-      "time": "2026-10-25T15:00:00+01:00",
-      "eventDate": "2026-10-25T15:00:00+01:00",
-      "competition": "Serie C",
-      "group": "Girone C",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
-      "home": "LECCO",
-      "away": "FOLGORE CARATESE",
+      "home": "PRO VERCELLI",
+      "away": "OSPITALETTO F.",
       "homeScore": 2,
-      "awayScore": 2,
+      "awayScore": 1,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-25T17:30:00+01:00",
@@ -128,8 +114,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "PRO VERCELLI",
-      "away": "OSPITALETTO F.",
+      "home": "PERGOLETTESE",
+      "away": "LUMEZZANE",
       "homeScore": 2,
       "awayScore": 1,
       "hasScore": true,
@@ -156,10 +142,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "PERGOLETTESE",
-      "away": "LUMEZZANE",
+      "home": "LECCO",
+      "away": "FOLGORE CARATESE",
       "homeScore": 2,
-      "awayScore": 1,
+      "awayScore": 2,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-25T17:30:00+01:00",
@@ -213,5 +199,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-26T13:39:27.638243+00:00"
+  "serieCUpdatedAt": "2026-10-26T15:24:05.183523+00:00"
 }

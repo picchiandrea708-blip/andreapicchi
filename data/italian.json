@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-26T09:47:34.721243+00:00",
+  "updatedAt": "2026-10-26T10:25:53.984775+00:00",
   "lba": [
     {
       "home": "Openjobmetis Varese",
@@ -100,10 +100,10 @@
   ],
   "serieC": [
     {
-      "home": "TRENTO",
-      "away": "JUVENTUS NEXT GEN",
-      "homeScore": 2,
-      "awayScore": 1,
+      "home": "RENATE",
+      "away": "ALBINOLEFFE",
+      "homeScore": 0,
+      "awayScore": 0,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-25T12:30:00+01:00",
@@ -114,10 +114,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "RENATE",
-      "away": "ALBINOLEFFE",
-      "homeScore": 0,
-      "awayScore": 0,
+      "home": "TRENTO",
+      "away": "JUVENTUS NEXT GEN",
+      "homeScore": 2,
+      "awayScore": 1,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-25T12:30:00+01:00",
@@ -156,9 +156,9 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "TORRES",
-      "away": "GUIDONIA M.",
-      "homeScore": 2,
+      "home": "FORLÌ",
+      "away": "PIANESE",
+      "homeScore": 0,
       "awayScore": 0,
       "hasScore": true,
       "status": "FT",
@@ -170,9 +170,9 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "FORLÌ",
-      "away": "PIANESE",
-      "homeScore": 0,
+      "home": "TORRES",
+      "away": "GUIDONIA M.",
+      "homeScore": 2,
       "awayScore": 0,
       "hasScore": true,
       "status": "FT",
@@ -226,10 +226,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "ARZIGNANO V.",
-      "away": "NOVARA",
+      "home": "PERGOLETTESE",
+      "away": "LUMEZZANE",
       "homeScore": 2,
-      "awayScore": 0,
+      "awayScore": 1,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-25T17:30:00+01:00",
@@ -254,10 +254,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "PERGOLETTESE",
-      "away": "LUMEZZANE",
+      "home": "LECCO",
+      "away": "FOLGORE CARATESE",
       "homeScore": 2,
-      "awayScore": 1,
+      "awayScore": 2,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-25T17:30:00+01:00",
@@ -268,10 +268,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "LECCO",
-      "away": "FOLGORE CARATESE",
+      "home": "ARZIGNANO V.",
+      "away": "NOVARA",
       "homeScore": 2,
-      "awayScore": 2,
+      "awayScore": 0,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-25T17:30:00+01:00",
@@ -311,5 +311,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-26T09:47:34.721243+00:00"
+  "serieCUpdatedAt": "2026-10-26T10:25:53.984775+00:00"
 }

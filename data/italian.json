@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-26T03:36:23.809776+00:00",
+  "updatedAt": "2026-10-26T04:15:54.449632+00:00",
   "lba": [
     {
       "home": "Openjobmetis Varese",
@@ -100,10 +100,10 @@
   ],
   "serieC": [
     {
-      "home": "RENATE",
-      "away": "ALBINOLEFFE",
-      "homeScore": 0,
-      "awayScore": 0,
+      "home": "TRENTO",
+      "away": "JUVENTUS NEXT GEN",
+      "homeScore": 2,
+      "awayScore": 1,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-25T12:30:00+01:00",
@@ -114,10 +114,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "TRENTO",
-      "away": "JUVENTUS NEXT GEN",
-      "homeScore": 2,
-      "awayScore": 1,
+      "home": "RENATE",
+      "away": "ALBINOLEFFE",
+      "homeScore": 0,
+      "awayScore": 0,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-25T12:30:00+01:00",
@@ -254,20 +254,6 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "PERGOLETTESE",
-      "away": "LUMEZZANE",
-      "homeScore": 2,
-      "awayScore": 1,
-      "hasScore": true,
-      "status": "FT",
-      "time": "2026-10-25T17:30:00+01:00",
-      "eventDate": "2026-10-25T17:30:00+01:00",
-      "competition": "Serie C",
-      "group": "Girone A",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
       "home": "LECCO",
       "away": "FOLGORE CARATESE",
       "homeScore": 2,
@@ -282,16 +268,16 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "CROTONE",
-      "away": "CASARANO",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
-      "time": "2026-10-26T20:30:00+01:00",
-      "eventDate": "2026-10-26T20:30:00+01:00",
+      "home": "PERGOLETTESE",
+      "away": "LUMEZZANE",
+      "homeScore": 2,
+      "awayScore": 1,
+      "hasScore": true,
+      "status": "FT",
+      "time": "2026-10-25T17:30:00+01:00",
+      "eventDate": "2026-10-25T17:30:00+01:00",
       "competition": "Serie C",
-      "group": "Girone C",
+      "group": "Girone A",
       "source": "Lega Pro",
       "sourceUrl": "https://www.seriec.com/calendario"
     },
@@ -308,8 +294,22 @@
       "group": "Girone C",
       "source": "Lega Pro",
       "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "CROTONE",
+      "away": "CASARANO",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-26T20:30:00+01:00",
+      "eventDate": "2026-10-26T20:30:00+01:00",
+      "competition": "Serie C",
+      "group": "Girone C",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-26T03:36:23.809776+00:00"
+  "serieCUpdatedAt": "2026-10-26T04:15:54.449632+00:00"
 }

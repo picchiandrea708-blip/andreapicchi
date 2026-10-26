@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-26T11:14:38.018828+00:00",
+  "updatedAt": "2026-10-26T13:39:27.638243+00:00",
   "lba": [
     {
       "home": "Openjobmetis Varese",
@@ -100,118 +100,6 @@
   ],
   "serieC": [
     {
-      "home": "TRENTO",
-      "away": "JUVENTUS NEXT GEN",
-      "homeScore": 2,
-      "awayScore": 1,
-      "hasScore": true,
-      "status": "FT",
-      "time": "2026-10-25T12:30:00+01:00",
-      "eventDate": "2026-10-25T12:30:00+01:00",
-      "competition": "Serie C",
-      "group": "Girone A",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
-      "home": "RENATE",
-      "away": "ALBINOLEFFE",
-      "homeScore": 0,
-      "awayScore": 0,
-      "hasScore": true,
-      "status": "FT",
-      "time": "2026-10-25T12:30:00+01:00",
-      "eventDate": "2026-10-25T12:30:00+01:00",
-      "competition": "Serie C",
-      "group": "Girone A",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
-      "home": "MONOPOLI",
-      "away": "AUDACE CERIGNOLA",
-      "homeScore": 2,
-      "awayScore": 0,
-      "hasScore": true,
-      "status": "FT",
-      "time": "2026-10-25T12:30:00+01:00",
-      "eventDate": "2026-10-25T12:30:00+01:00",
-      "competition": "Serie C",
-      "group": "Girone C",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
-      "home": "DESENZANO",
-      "away": "GIANA ERMINIO",
-      "homeScore": 1,
-      "awayScore": 2,
-      "hasScore": true,
-      "status": "FT",
-      "time": "2026-10-25T14:30:00+01:00",
-      "eventDate": "2026-10-25T14:30:00+01:00",
-      "competition": "Serie C",
-      "group": "Girone A",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
-      "home": "TORRES",
-      "away": "GUIDONIA M.",
-      "homeScore": 2,
-      "awayScore": 0,
-      "hasScore": true,
-      "status": "FT",
-      "time": "2026-10-25T14:30:00+01:00",
-      "eventDate": "2026-10-25T14:30:00+01:00",
-      "competition": "Serie C",
-      "group": "Girone B",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
-      "home": "FORLÌ",
-      "away": "PIANESE",
-      "homeScore": 0,
-      "awayScore": 0,
-      "hasScore": true,
-      "status": "FT",
-      "time": "2026-10-25T14:30:00+01:00",
-      "eventDate": "2026-10-25T14:30:00+01:00",
-      "competition": "Serie C",
-      "group": "Girone B",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
-      "home": "GROSSETO",
-      "away": "REGGIANA",
-      "homeScore": 2,
-      "awayScore": 0,
-      "hasScore": true,
-      "status": "FT",
-      "time": "2026-10-25T14:30:00+01:00",
-      "eventDate": "2026-10-25T14:30:00+01:00",
-      "competition": "Serie C",
-      "group": "Girone B",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
-      "home": "FOGGIA",
-      "away": "CAVESE",
-      "homeScore": 1,
-      "awayScore": 0,
-      "hasScore": true,
-      "status": "FT",
-      "time": "2026-10-25T14:30:00+01:00",
-      "eventDate": "2026-10-25T14:30:00+01:00",
-      "competition": "Serie C",
-      "group": "Girone C",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
       "home": "CATANIA",
       "away": "GIUGLIANO",
       "homeScore": 6,
@@ -240,8 +128,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "PERGOLETTESE",
-      "away": "LUMEZZANE",
+      "home": "PRO VERCELLI",
+      "away": "OSPITALETTO F.",
       "homeScore": 2,
       "awayScore": 1,
       "hasScore": true,
@@ -268,8 +156,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "PRO VERCELLI",
-      "away": "OSPITALETTO F.",
+      "home": "PERGOLETTESE",
+      "away": "LUMEZZANE",
       "homeScore": 2,
       "awayScore": 1,
       "hasScore": true,
@@ -308,8 +196,22 @@
       "group": "Girone C",
       "source": "Lega Pro",
       "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "INTER UNDER 23",
+      "away": "SCAFATESE",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-27T14:30:00+01:00",
+      "eventDate": "2026-10-27T14:30:00+01:00",
+      "competition": "Serie C",
+      "group": "Girone C",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-26T11:14:38.018828+00:00"
+  "serieCUpdatedAt": "2026-10-26T13:39:27.638243+00:00"
 }

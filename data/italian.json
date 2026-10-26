@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-26T00:54:15.219078+00:00",
+  "updatedAt": "2026-10-26T01:46:59.812493+00:00",
   "lba": [
     {
       "home": "Openjobmetis Varese",
@@ -100,10 +100,10 @@
   ],
   "serieC": [
     {
-      "home": "RENATE",
-      "away": "ALBINOLEFFE",
-      "homeScore": 0,
-      "awayScore": 0,
+      "home": "TRENTO",
+      "away": "JUVENTUS NEXT GEN",
+      "homeScore": 2,
+      "awayScore": 1,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-25T12:30:00+01:00",
@@ -114,10 +114,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "TRENTO",
-      "away": "JUVENTUS NEXT GEN",
-      "homeScore": 2,
-      "awayScore": 1,
+      "home": "RENATE",
+      "away": "ALBINOLEFFE",
+      "homeScore": 0,
+      "awayScore": 0,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-25T12:30:00+01:00",
@@ -156,9 +156,9 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "GROSSETO",
-      "away": "REGGIANA",
-      "homeScore": 2,
+      "home": "FORLÌ",
+      "away": "PIANESE",
+      "homeScore": 0,
       "awayScore": 0,
       "hasScore": true,
       "status": "FT",
@@ -170,9 +170,9 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "FORLÌ",
-      "away": "PIANESE",
-      "homeScore": 0,
+      "home": "GROSSETO",
+      "away": "REGGIANA",
+      "homeScore": 2,
       "awayScore": 0,
       "hasScore": true,
       "status": "FT",
@@ -226,6 +226,20 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
+      "home": "ARZIGNANO V.",
+      "away": "NOVARA",
+      "homeScore": 2,
+      "awayScore": 0,
+      "hasScore": true,
+      "status": "FT",
+      "time": "2026-10-25T17:30:00+01:00",
+      "eventDate": "2026-10-25T17:30:00+01:00",
+      "competition": "Serie C",
+      "group": "Girone A",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
       "home": "LECCO",
       "away": "FOLGORE CARATESE",
       "homeScore": 2,
@@ -268,20 +282,6 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "ARZIGNANO V.",
-      "away": "NOVARA",
-      "homeScore": 2,
-      "awayScore": 0,
-      "hasScore": true,
-      "status": "FT",
-      "time": "2026-10-25T17:30:00+01:00",
-      "eventDate": "2026-10-25T17:30:00+01:00",
-      "competition": "Serie C",
-      "group": "Girone A",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
       "home": "PICERNO",
       "away": "SALERNITANA",
       "homeScore": "",
@@ -311,5 +311,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-26T00:54:15.219078+00:00"
+  "serieCUpdatedAt": "2026-10-26T01:46:59.812493+00:00"
 }

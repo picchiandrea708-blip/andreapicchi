@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-26T20:08:40.091611+00:00",
+  "updatedAt": "2026-10-26T20:56:07.618658+00:00",
   "lba": [
     {
       "home": "Openjobmetis Varese",
@@ -102,7 +102,7 @@
     {
       "home": "PICERNO",
       "away": "SALERNITANA",
-      "homeScore": 1,
+      "homeScore": 2,
       "awayScore": 0,
       "hasScore": true,
       "status": "LIVE",
@@ -143,5 +143,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-26T20:08:40.091611+00:00"
+  "serieCUpdatedAt": "2026-10-26T20:56:07.618658+00:00"
 }

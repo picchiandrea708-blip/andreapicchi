@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-26T19:28:57.568504+00:00",
+  "updatedAt": "2026-10-26T20:08:40.091611+00:00",
   "lba": [
     {
       "home": "Openjobmetis Varese",
@@ -102,10 +102,10 @@
     {
       "home": "PICERNO",
       "away": "SALERNITANA",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
+      "homeScore": 1,
+      "awayScore": 0,
+      "hasScore": true,
+      "status": "LIVE",
       "time": "2026-10-26T20:30:00+01:00",
       "eventDate": "2026-10-26T20:30:00+01:00",
       "competition": "Serie C",
@@ -116,10 +116,10 @@
     {
       "home": "CROTONE",
       "away": "CASARANO",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
+      "homeScore": 0,
+      "awayScore": 0,
+      "hasScore": true,
+      "status": "LIVE",
       "time": "2026-10-26T20:30:00+01:00",
       "eventDate": "2026-10-26T20:30:00+01:00",
       "competition": "Serie C",
@@ -143,5 +143,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-26T19:28:57.568504+00:00"
+  "serieCUpdatedAt": "2026-10-26T20:08:40.091611+00:00"
 }

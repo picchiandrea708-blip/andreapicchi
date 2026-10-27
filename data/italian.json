@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-27T16:49:57.547827+00:00",
+  "updatedAt": "2026-10-27T17:35:04.946277+00:00",
   "lba": [
     {
       "home": "Openjobmetis Varese",
@@ -100,10 +100,10 @@
   ],
   "serieC": [
     {
-      "home": "PICERNO",
-      "away": "SALERNITANA",
-      "homeScore": 3,
-      "awayScore": 0,
+      "home": "CROTONE",
+      "away": "CASARANO",
+      "homeScore": 0,
+      "awayScore": 1,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-26T20:30:00+01:00",
@@ -114,10 +114,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "CROTONE",
-      "away": "CASARANO",
-      "homeScore": 0,
-      "awayScore": 1,
+      "home": "PICERNO",
+      "away": "SALERNITANA",
+      "homeScore": 3,
+      "awayScore": 0,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-26T20:30:00+01:00",
@@ -140,8 +140,22 @@
       "group": "Girone C",
       "source": "Lega Pro",
       "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "ATALANTA UNDER 23",
+      "away": "VIS PESARO",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-28T18:00:00+01:00",
+      "eventDate": "2026-10-28T18:00:00+01:00",
+      "competition": "Serie C",
+      "group": "Girone B",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-27T16:49:57.547827+00:00"
+  "serieCUpdatedAt": "2026-10-27T17:35:04.946277+00:00"
 }

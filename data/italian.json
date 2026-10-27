@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-27T14:09:11.008016+00:00",
+  "updatedAt": "2026-10-27T15:07:34.118413+00:00",
   "lba": [
     {
       "home": "Openjobmetis Varese",
@@ -100,20 +100,6 @@
   ],
   "serieC": [
     {
-      "home": "PICERNO",
-      "away": "SALERNITANA",
-      "homeScore": 3,
-      "awayScore": 0,
-      "hasScore": true,
-      "status": "FT",
-      "time": "2026-10-26T20:30:00+01:00",
-      "eventDate": "2026-10-26T20:30:00+01:00",
-      "competition": "Serie C",
-      "group": "Girone C",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
       "home": "CROTONE",
       "away": "CASARANO",
       "homeScore": 0,
@@ -128,10 +114,24 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
+      "home": "PICERNO",
+      "away": "SALERNITANA",
+      "homeScore": 3,
+      "awayScore": 0,
+      "hasScore": true,
+      "status": "FT",
+      "time": "2026-10-26T20:30:00+01:00",
+      "eventDate": "2026-10-26T20:30:00+01:00",
+      "competition": "Serie C",
+      "group": "Girone C",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
       "home": "INTER UNDER 23",
       "away": "SCAFATESE",
-      "homeScore": 0,
-      "awayScore": 0,
+      "homeScore": 2,
+      "awayScore": 1,
       "hasScore": true,
       "status": "LIVE",
       "time": "2026-10-27T14:30:00+01:00",
@@ -143,5 +143,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-27T14:09:11.008016+00:00"
+  "serieCUpdatedAt": "2026-10-27T15:07:34.118413+00:00"
 }

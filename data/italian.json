@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-28T18:18:37.601734+00:00",
+  "updatedAt": "2026-10-28T19:15:17.271242+00:00",
   "lba": [
     {
       "home": "Openjobmetis Varese",
@@ -102,10 +102,10 @@
     {
       "home": "ATALANTA UNDER 23",
       "away": "VIS PESARO",
-      "homeScore": 1,
-      "awayScore": 0,
+      "homeScore": 2,
+      "awayScore": 1,
       "hasScore": true,
-      "status": "LIVE",
+      "status": "Risultato ufficiale",
       "time": "2026-10-28T18:00:00+01:00",
       "eventDate": "2026-10-28T18:00:00+01:00",
       "competition": "Serie C",
@@ -115,5 +115,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-28T18:18:37.601734+00:00"
+  "serieCUpdatedAt": "2026-10-28T19:15:17.271242+00:00"
 }

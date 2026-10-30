@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-30T19:41:03.435257+00:00",
+  "updatedAt": "2026-10-30T23:17:17.822061+00:00",
   "lba": [
     {
       "home": "BC Roma",
@@ -102,10 +102,10 @@
     {
       "home": "ALBINOLEFFE",
       "away": "PERGOLETTESE",
-      "homeScore": 0,
-      "awayScore": 0,
+      "homeScore": 3,
+      "awayScore": 2,
       "hasScore": true,
-      "status": "LIVE",
+      "status": "FT",
       "time": "2026-10-30T20:30:00+01:00",
       "eventDate": "2026-10-30T20:30:00+01:00",
       "competition": "Serie C",
@@ -116,10 +116,10 @@
     {
       "home": "REGGIANA",
       "away": "SAMBENEDETTESE",
-      "homeScore": 0,
+      "homeScore": 2,
       "awayScore": 0,
       "hasScore": true,
-      "status": "LIVE",
+      "status": "FT",
       "time": "2026-10-30T20:30:00+01:00",
       "eventDate": "2026-10-30T20:30:00+01:00",
       "competition": "Serie C",
@@ -156,8 +156,22 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "GIUGLIANO",
-      "away": "CASERTANA",
+      "home": "AUDACE CERIGNOLA",
+      "away": "CATANIA",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-31T14:30:00+01:00",
+      "eventDate": "2026-10-31T14:30:00+01:00",
+      "competition": "Serie C",
+      "group": "Girone C",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "SORRENTO",
+      "away": "ALTAMURA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -184,22 +198,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "AUDACE CERIGNOLA",
-      "away": "CATANIA",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
-      "time": "2026-10-31T14:30:00+01:00",
-      "eventDate": "2026-10-31T14:30:00+01:00",
-      "competition": "Serie C",
-      "group": "Girone C",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
-      "home": "SORRENTO",
-      "away": "ALTAMURA",
+      "home": "GIUGLIANO",
+      "away": "CASERTANA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -254,8 +254,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "CAVESE",
-      "away": "PICERNO",
+      "home": "BARLETTA",
+      "away": "MONOPOLI",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -268,8 +268,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "BARLETTA",
-      "away": "MONOPOLI",
+      "home": "CAVESE",
+      "away": "PICERNO",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -283,5 +283,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-30T19:41:03.435257+00:00"
+  "serieCUpdatedAt": "2026-10-30T23:17:17.822061+00:00"
 }

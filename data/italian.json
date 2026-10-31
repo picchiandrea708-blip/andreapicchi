@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-30T23:17:17.822061+00:00",
+  "updatedAt": "2026-10-31T02:30:49.244196+00:00",
   "lba": [
     {
       "home": "BC Roma",
@@ -184,8 +184,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "BARI",
-      "away": "SCAFATESE",
+      "home": "GIUGLIANO",
+      "away": "CASERTANA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -198,8 +198,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "GIUGLIANO",
-      "away": "CASERTANA",
+      "home": "BARI",
+      "away": "SCAFATESE",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -226,8 +226,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "GUIDONIA M.",
-      "away": "PERUGIA",
+      "home": "VADO",
+      "away": "GROSSETO",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -240,8 +240,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "VADO",
-      "away": "GROSSETO",
+      "home": "GUIDONIA M.",
+      "away": "PERUGIA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -283,5 +283,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-30T23:17:17.822061+00:00"
+  "serieCUpdatedAt": "2026-10-31T02:30:49.244196+00:00"
 }

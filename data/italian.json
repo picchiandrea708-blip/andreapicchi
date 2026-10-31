@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-31T02:30:49.244196+00:00",
+  "updatedAt": "2026-10-31T08:49:01.801847+00:00",
   "lba": [
     {
       "home": "BC Roma",
@@ -156,6 +156,20 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
+      "home": "GIUGLIANO",
+      "away": "CASERTANA",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-10-31T14:30:00+01:00",
+      "eventDate": "2026-10-31T14:30:00+01:00",
+      "competition": "Serie C",
+      "group": "Girone C",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
       "home": "AUDACE CERIGNOLA",
       "away": "CATANIA",
       "homeScore": "",
@@ -172,20 +186,6 @@
     {
       "home": "SORRENTO",
       "away": "ALTAMURA",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
-      "time": "2026-10-31T14:30:00+01:00",
-      "eventDate": "2026-10-31T14:30:00+01:00",
-      "competition": "Serie C",
-      "group": "Girone C",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
-      "home": "GIUGLIANO",
-      "away": "CASERTANA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -226,8 +226,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "VADO",
-      "away": "GROSSETO",
+      "home": "GUIDONIA M.",
+      "away": "PERUGIA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -240,8 +240,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "GUIDONIA M.",
-      "away": "PERUGIA",
+      "home": "VADO",
+      "away": "GROSSETO",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -283,5 +283,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-31T02:30:49.244196+00:00"
+  "serieCUpdatedAt": "2026-10-31T08:49:01.801847+00:00"
 }

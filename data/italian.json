@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-01T19:33:50.075769+00:00",
+  "updatedAt": "2026-11-01T23:01:45.030278+00:00",
   "lba": [
     {
       "home": "BC Roma",
@@ -128,10 +128,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "CITTADELLA",
-      "away": "TREVISO",
-      "homeScore": 1,
-      "awayScore": 0,
+      "home": "DOLOMITI BELLUNESI",
+      "away": "LECCO",
+      "homeScore": 0,
+      "awayScore": 4,
       "hasScore": true,
       "status": "FT",
       "time": "2026-11-01T14:30:00+01:00",
@@ -142,10 +142,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "DOLOMITI BELLUNESI",
-      "away": "LECCO",
-      "homeScore": 0,
-      "awayScore": 4,
+      "home": "CITTADELLA",
+      "away": "TREVISO",
+      "homeScore": 1,
+      "awayScore": 0,
       "hasScore": true,
       "status": "FT",
       "time": "2026-11-01T14:30:00+01:00",
@@ -240,6 +240,20 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
+      "home": "LIVORNO",
+      "away": "OSTIAMARE",
+      "homeScore": 1,
+      "awayScore": 0,
+      "hasScore": true,
+      "status": "FT",
+      "time": "2026-11-01T17:30:00+01:00",
+      "eventDate": "2026-11-01T17:30:00+01:00",
+      "competition": "Serie C",
+      "group": "Girone B",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
       "home": "CAMPOBASSO",
       "away": "FORLÌ",
       "homeScore": 2,
@@ -258,20 +272,6 @@
       "away": "PIANESE",
       "homeScore": 1,
       "awayScore": 1,
-      "hasScore": true,
-      "status": "FT",
-      "time": "2026-11-01T17:30:00+01:00",
-      "eventDate": "2026-11-01T17:30:00+01:00",
-      "competition": "Serie C",
-      "group": "Girone B",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
-      "home": "LIVORNO",
-      "away": "OSTIAMARE",
-      "homeScore": 1,
-      "awayScore": 0,
       "hasScore": true,
       "status": "FT",
       "time": "2026-11-01T17:30:00+01:00",
@@ -339,5 +339,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-11-01T19:33:50.075769+00:00"
+  "serieCUpdatedAt": "2026-11-01T23:01:45.030278+00:00"
 }

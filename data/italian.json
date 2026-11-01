@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-10-31T22:25:12.341856+00:00",
+  "updatedAt": "2026-11-01T01:25:41.632238+00:00",
   "lba": [
     {
       "home": "BC Roma",
@@ -198,10 +198,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "VADO",
-      "away": "GROSSETO",
-      "homeScore": 2,
-      "awayScore": 2,
+      "home": "GUIDONIA M.",
+      "away": "PERUGIA",
+      "homeScore": 1,
+      "awayScore": 1,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-31T17:30:00+01:00",
@@ -212,10 +212,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "GUIDONIA M.",
-      "away": "PERUGIA",
-      "homeScore": 1,
-      "awayScore": 1,
+      "home": "VADO",
+      "away": "GROSSETO",
+      "homeScore": 2,
+      "awayScore": 2,
       "hasScore": true,
       "status": "FT",
       "time": "2026-10-31T17:30:00+01:00",
@@ -310,8 +310,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "GUBBIO",
-      "away": "VIS PESARO",
+      "home": "RAVENNA",
+      "away": "PINETO",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -324,8 +324,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "RAVENNA",
-      "away": "PINETO",
+      "home": "GUBBIO",
+      "away": "VIS PESARO",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -366,8 +366,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "LUMEZZANE",
-      "away": "ARZIGNANO V.",
+      "home": "CARPI",
+      "away": "RENATE",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -380,8 +380,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "CARPI",
-      "away": "RENATE",
+      "home": "LUMEZZANE",
+      "away": "ARZIGNANO V.",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -408,8 +408,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "LIVORNO",
-      "away": "OSTIAMARE",
+      "home": "CAMPOBASSO",
+      "away": "FORLÌ",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -422,8 +422,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "CAMPOBASSO",
-      "away": "FORLÌ",
+      "home": "LIVORNO",
+      "away": "OSTIAMARE",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -451,5 +451,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-10-31T22:25:12.341856+00:00"
+  "serieCUpdatedAt": "2026-11-01T01:25:41.632238+00:00"
 }

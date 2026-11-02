@@ -144,7 +144,7 @@
 </head>
 <body>
   <header>
-    <div class="logo">SPORT<span>LIVE</span><small style="opacity:.45;font-size:.65rem"> v68</small></div>
+    <div class="logo">SPORT<span>LIVE</span><small style="opacity:.45;font-size:.65rem"> v69</small></div>
     <div class="status-bar">
       <div class="dot" id="liveDot"></div>
       <span id="lastUpdate">Connessione…</span>
@@ -193,10 +193,8 @@
         <div style="padding:.85rem 1rem">
           <div style="display:flex;flex-wrap:wrap;gap:.5rem;align-items:center">
             <a href="https://app.f1livepulse.com/formula-1/live-timing" target="_blank" rel="noopener noreferrer" class="f1-chip" style="text-decoration:none">Apri in una nuova scheda</a>
-            <button id="f1ExtToggle" class="f1-chip" type="button">Mostra qui sotto</button>
           </div>
-          <div id="f1ExtFrame" style="margin-top:.7rem"></div>
-          <div style="margin-top:.6rem;font-size:.72rem;color:var(--muted);line-height:1.5">Servizio di terzi, non ufficiale e non collegato a questo sito. I dati live non passano da qui. Se la finestra resta vuota, il servizio non ne permette l'incorporamento: usa "Apri in una nuova scheda".</div>
+          <div style="margin-top:.6rem;font-size:.72rem;color:var(--muted);line-height:1.5">Servizio di terzi, non ufficiale e non collegato a questo sito. I dati live non passano da qui. Si apre in una nuova scheda: dentro altre pagine non funziona (resta bloccato su "switching device").</div>
         </div>
       </div>
       <div id="f1-next" style="margin-top:1.25rem"></div>
@@ -754,7 +752,11 @@
           const scoreText = hasScore ? `${m.homeScore} – ${m.awayScore}` : displayMatchTime(m.time, m.originalTime);
           const home = escapeHtml(m.home || '—');
           const away = escapeHtml(m.away || '—');
-          const status = escapeHtml(m.status || '');
+          const clockTxt = (m.sport === 'soccer' && m.state === 'in' && !/\b(ht|half|interval|break|pen|ft|aet)\b/i.test(m.status || ''))
+            ? formatSoccerClock(m.clockSec, m.fetchedAt, m.period, m.displayClock) : null;
+          const status = clockTxt
+            ? `<span class="live-clock" data-sec="${escapeHtml(m.clockSec)}" data-t0="${escapeHtml(m.fetchedAt)}" data-period="${escapeHtml(m.period ?? '')}" data-disp="${escapeHtml(m.displayClock || '')}" style="font-variant-numeric:tabular-nums">${clockTxt}</span>`
+            : escapeHtml(m.status || '');
           const gameCenter = m.gameCenterUrl ? `<a href="${escapeHtml(m.gameCenterUrl)}" target="_blank" rel="noopener" class="game-center-link">Game Center</a>` : '';
           const homeLogo = m.homeLogo ? `<img src="${escapeHtml(m.homeLogo)}" alt="" onerror="this.style.display='none'">` : '';
           const awayLogo = m.awayLogo ? `<img src="${escapeHtml(m.awayLogo)}" alt="" onerror="this.style.display='none'">` : '';
@@ -813,12 +815,32 @@
               awayScore: away?.score ?? '',
               hasScore: st.state !== 'pre', state: st.state || '',
               status: st.state === 'pre' ? 'In programma' : (st.shortDetail || st.description || ''),
-              time: ev.date || '', eventDate: ev.date || '', originalTime: st.shortDetail || '', eventId: ev.id, league, scorers: []
+              time: ev.date || '', eventDate: ev.date || '', originalTime: st.shortDetail || '', eventId: ev.id, league, scorers: [],
+              sport, period: ev.status?.period ?? null, displayClock: ev.status?.displayClock || '',
+              clockSec: Number.isFinite(Number(ev.status?.clock)) ? Number(ev.status.clock) : null, fetchedAt: Date.now()
             });
           }
         } catch (_) {}
       }
       return out;
+    }
+    // Cronometro del calcio con i secondi: parte dall'ultimo dato ricevuto e avanza ogni secondo.
+    // (ESPN aggiorna il dato ogni 30-60 secondi: i secondi sono una stima, possono differire di poco dalla TV.)
+    function formatSoccerClock(sec, t0, period, disp, now = Date.now()) {
+      sec = Number(sec); t0 = Number(t0);
+      if (!Number.isFinite(sec) || sec <= 0 || !Number.isFinite(t0)) return null;
+      const age = (now - t0) / 1000;
+      if (age < 0 || age > 150) return null;                       // dato troppo vecchio: meglio il minuto fisso
+      const m = String(disp || '').match(/(\d+)'(?:\s*\+\s*(\d+)')?/);
+      if (m) {                                                    // controllo di coerenza con il minuto mostrato da ESPN
+        const shown = Number(m[1]) + Number(m[2] || 0);
+        const mins = Math.floor(sec / 60);
+        if (Math.abs(mins - shown) > 1 && Math.abs(mins - Number(m[1])) > 1) return null;
+      }
+      const el = sec + age;
+      const mmss = x => `${String(Math.floor(x / 60)).padStart(2, '0')}:${String(Math.floor(x % 60)).padStart(2, '0')}`;
+      const bound = [2700, 5400, 6300, 7200][Number(period) - 1];
+      return bound && el > bound ? `${bound / 60}:00 +${mmss(el - bound)}` : mmss(el);
     }
     function showPanelLoadError(containerId, label, error) {
       const el = document.getElementById(containerId);
@@ -1610,20 +1632,14 @@
       } catch (_) { box.innerHTML = ''; }
     }
 
-    // Live timing esterno: la finestra incorporata si carica solo quando la chiedi.
-    document.getElementById('f1ExtToggle')?.addEventListener('click', () => {
-      const box = document.getElementById('f1ExtFrame'), btn = document.getElementById('f1ExtToggle');
-      if (box.firstChild) { box.innerHTML = ''; btn.textContent = 'Mostra qui sotto'; return; }
-      const fr = document.createElement('iframe');
-      fr.src = 'https://app.f1livepulse.com/formula-1/live-timing';
-      fr.title = 'Live timing Formula 1 (Formula Live Pulse)';
-      fr.loading = 'lazy';
-      fr.referrerPolicy = 'no-referrer';
-      fr.setAttribute('sandbox', 'allow-scripts allow-same-origin allow-popups allow-forms');
-      fr.style.cssText = 'width:100%;height:720px;border:0;border-radius:8px;background:#000';
-      box.appendChild(fr);
-      btn.textContent = 'Nascondi';
-    });
+    // Fa avanzare ogni secondo i cronometri delle partite di calcio in corso.
+    setInterval(() => {
+      if (document.hidden) return;
+      document.querySelectorAll('.live-clock').forEach(el => {
+        const t = formatSoccerClock(el.dataset.sec, el.dataset.t0, el.dataset.period, el.dataset.disp);
+        if (t) el.textContent = t;
+      });
+    }, 1000);
 
     // ===== MOTOGP =====
     let motoIsLive = false;

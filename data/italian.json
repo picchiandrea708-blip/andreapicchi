@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-01T23:01:45.030278+00:00",
+  "updatedAt": "2026-11-02T02:23:08.268372+00:00",
   "lba": [
     {
       "home": "BC Roma",
@@ -156,10 +156,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "RAVENNA",
-      "away": "PINETO",
-      "homeScore": 2,
-      "awayScore": 1,
+      "home": "GUBBIO",
+      "away": "VIS PESARO",
+      "homeScore": 0,
+      "awayScore": 0,
       "hasScore": true,
       "status": "FT",
       "time": "2026-11-01T14:30:00+01:00",
@@ -170,10 +170,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "GUBBIO",
-      "away": "VIS PESARO",
-      "homeScore": 0,
-      "awayScore": 0,
+      "home": "RAVENNA",
+      "away": "PINETO",
+      "homeScore": 2,
+      "awayScore": 1,
       "hasScore": true,
       "status": "FT",
       "time": "2026-11-01T14:30:00+01:00",
@@ -339,5 +339,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-11-01T23:01:45.030278+00:00"
+  "serieCUpdatedAt": "2026-11-02T02:23:08.268372+00:00"
 }

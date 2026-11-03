@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-03T17:44:51.696231+00:00",
+  "updatedAt": "2026-11-03T22:34:55.174466+00:00",
   "lba": [
     {
       "home": "BC Roma",
@@ -98,50 +98,7 @@
       "sourceUrl": "https://www.legabasket.it/calendario/1/serie-a"
     }
   ],
-  "serieC": [
-    {
-      "home": "NOVARA",
-      "away": "DESENZANO",
-      "homeScore": 1,
-      "awayScore": 0,
-      "hasScore": true,
-      "status": "FT",
-      "time": "2026-11-02T20:30:00+01:00",
-      "eventDate": "2026-11-02T20:30:00+01:00",
-      "competition": "Serie C",
-      "group": "Girone A",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
-      "home": "JUVENTUS NEXT GEN",
-      "away": "PRO VERCELLI",
-      "homeScore": 1,
-      "awayScore": 1,
-      "hasScore": true,
-      "status": "FT",
-      "time": "2026-11-02T20:30:00+01:00",
-      "eventDate": "2026-11-02T20:30:00+01:00",
-      "competition": "Serie C",
-      "group": "Girone A",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
-      "home": "CASARANO",
-      "away": "FOGGIA",
-      "homeScore": 2,
-      "awayScore": 2,
-      "hasScore": true,
-      "status": "FT",
-      "time": "2026-11-02T20:30:00+01:00",
-      "eventDate": "2026-11-02T20:30:00+01:00",
-      "competition": "Serie C",
-      "group": "Girone C",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    }
-  ],
+  "serieC": [],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-11-03T17:44:51.696231+00:00"
+  "serieCUpdatedAt": "2026-11-03T22:34:55.174466+00:00"
 }

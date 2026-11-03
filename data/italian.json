@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-02T20:16:37.254234+00:00",
+  "updatedAt": "2026-11-03T02:27:23.573484+00:00",
   "lba": [
     {
       "home": "BC Roma",
@@ -76,10 +76,10 @@
     {
       "home": "Virtus Costa Bologna",
       "away": "Pallacanestro Trieste",
-      "homeScore": 63,
-      "awayScore": 58,
+      "homeScore": 93,
+      "awayScore": 100,
       "hasScore": true,
-      "status": "LIVE",
+      "status": "Finale",
       "time": "2026-11-02T20:00:00.000+01:00",
       "competition": "Serie A LBA",
       "source": "LBA",
@@ -88,10 +88,10 @@
     {
       "home": "Acqua S.Bernardo Cantù",
       "away": "Armani Olimpia Milano",
-      "homeScore": 37,
-      "awayScore": 40,
+      "homeScore": 82,
+      "awayScore": 95,
       "hasScore": true,
-      "status": "LIVE",
+      "status": "Finale",
       "time": "2026-11-02T20:30:00.000+01:00",
       "competition": "Serie A LBA",
       "source": "LBA",
@@ -100,12 +100,12 @@
   ],
   "serieC": [
     {
-      "home": "JUVENTUS NEXT GEN",
-      "away": "PRO VERCELLI",
+      "home": "NOVARA",
+      "away": "DESENZANO",
       "homeScore": 1,
       "awayScore": 0,
       "hasScore": true,
-      "status": "LIVE",
+      "status": "FT",
       "time": "2026-11-02T20:30:00+01:00",
       "eventDate": "2026-11-02T20:30:00+01:00",
       "competition": "Serie C",
@@ -114,12 +114,12 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "NOVARA",
-      "away": "DESENZANO",
+      "home": "JUVENTUS NEXT GEN",
+      "away": "PRO VERCELLI",
       "homeScore": 1,
-      "awayScore": 0,
+      "awayScore": 1,
       "hasScore": true,
-      "status": "LIVE",
+      "status": "FT",
       "time": "2026-11-02T20:30:00+01:00",
       "eventDate": "2026-11-02T20:30:00+01:00",
       "competition": "Serie C",
@@ -130,10 +130,10 @@
     {
       "home": "CASARANO",
       "away": "FOGGIA",
-      "homeScore": 0,
-      "awayScore": 1,
+      "homeScore": 2,
+      "awayScore": 2,
       "hasScore": true,
-      "status": "LIVE",
+      "status": "FT",
       "time": "2026-11-02T20:30:00+01:00",
       "eventDate": "2026-11-02T20:30:00+01:00",
       "competition": "Serie C",
@@ -143,5 +143,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-11-02T20:16:37.254234+00:00"
+  "serieCUpdatedAt": "2026-11-03T02:27:23.573484+00:00"
 }

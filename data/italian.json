@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-05T19:03:51.862709+00:00",
+  "updatedAt": "2026-11-06T00:08:55.876037+00:00",
   "lba": [
     {
       "home": "UNA Hotels Reggio Emilia",
@@ -98,7 +98,36 @@
       "sourceUrl": "https://www.legabasket.it/calendario/1/serie-a"
     }
   ],
-  "serieC": [],
+  "serieC": [
+    {
+      "home": "UNION BRESCIA",
+      "away": "ARZIGNANO V.",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-11-06T20:30:00+01:00",
+      "eventDate": "2026-11-06T20:30:00+01:00",
+      "competition": "Serie C",
+      "group": "Girone A",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "ALCIONE MILANO",
+      "away": "LUMEZZANE",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-11-06T20:30:00+01:00",
+      "eventDate": "2026-11-06T20:30:00+01:00",
+      "competition": "Serie C",
+      "group": "Girone A",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    }
+  ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-11-05T19:03:51.862709+00:00"
+  "serieCUpdatedAt": "2026-11-06T00:08:55.876037+00:00"
 }

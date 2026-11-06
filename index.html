@@ -144,7 +144,7 @@
 </head>
 <body>
   <header>
-    <div class="logo">SPORT<span>LIVE</span><small style="opacity:.45;font-size:.65rem"> v69</small></div>
+    <div class="logo">SPORT<span>LIVE</span><small style="opacity:.45;font-size:.65rem"> v70</small></div>
     <div class="status-bar">
       <div class="dot" id="liveDot"></div>
       <span id="lastUpdate">Connessione…</span>
@@ -205,6 +205,7 @@
 
     <div class="panel" id="panel-moto">
       <div class="section-title">Motomondiale / MotoGP <span class="badge" id="badge-moto" style="display:none">LIVE</span></div>
+      <div id="moto-next" style="max-width:1100px;margin-bottom:1.25rem"></div>
       <div class="league-card" style="max-width:1100px">
         <div class="league-head">
           <span id="liveTitle">Livetiming live</span>
@@ -1601,7 +1602,7 @@
       return d > 0 ? `tra ${d} g ${h} h` : h > 0 ? `tra ${h} h ${m} min` : `tra ${m} min`;
     }
     function updateF1Countdowns() {
-      document.querySelectorAll('#f1-next .f1cd').forEach(el => { el.textContent = f1Countdown(Number(el.dataset.at), Number(el.dataset.dur)); });
+      document.querySelectorAll('.f1cd').forEach(el => { el.textContent = f1Countdown(Number(el.dataset.at), Number(el.dataset.dur)); });
     }
     async function loadF1Next() {
       const box = document.getElementById('f1-next');
@@ -1642,6 +1643,32 @@
     }, 1000);
 
     // ===== MOTOGP =====
+    const MOTO_CLASS_NAMES = { 'e8c110ad-64aa-4e8e-8a86-f2f152f6a942': 'MotoGP', '549640b8-fd9c-4245-acfd-60e4bc38b25c': 'Moto2', '954f7e65-2ef2-4423-b949-4961cc603e45': 'Moto3' };
+    const MOTO_TYPE_LABELS = { FP: 'Prove libere', PR: 'Practice', Q1: 'Qualifica 1', Q2: 'Qualifica 2', Q: 'Qualifica', SPR: 'Sprint', RAC: 'Gara', WUP: 'Warm up' };
+    function loadMotoNext() {
+      const box = document.getElementById('moto-next');
+      if (!box) return;
+      const now = Date.now();
+      const items = [];
+      for (const [classId, pack] of Object.entries(MOTO_OFFLINE.byClass || {})) {
+        for (const sess of (pack && pack.sessions) || []) {
+          const at = Date.parse(sess.date);
+          const dur = sess.type === 'RAC' ? 50 : 45;
+          if (sess.status === 'FINISHED' || !Number.isFinite(at) || at + dur * 60_000 < now) continue;
+          const label = `${MOTO_TYPE_LABELS[sess.type] || sess.type || 'Sessione'}${sess.type === 'FP' && sess.number ? ' ' + sess.number : ''}`;
+          items.push({ cls: MOTO_CLASS_NAMES[classId] || 'Classe', label, at, dur });
+        }
+      }
+      items.sort((a, b) => a.at - b.at || a.cls.localeCompare(b.cls));
+      const upcoming = items.slice(0, 6);
+      if (!upcoming.length) { box.innerHTML = ''; return; }
+      const ev = (MOTO_OFFLINE.events || []).find(e => e.id === MOTO_OFFLINE.eventId);
+      const fmt = new Intl.DateTimeFormat('it-IT', { weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
+      const rows = upcoming.map(x => `<div style="display:flex;justify-content:space-between;gap:1rem;padding:.6rem 1rem;border-top:1px solid var(--border)"><span><strong>${escapeHtml(x.cls)}</strong> · ${escapeHtml(x.label)}</span><span>${escapeHtml(fmt.format(new Date(x.at)))} · <strong class="f1cd" data-at="${x.at}" data-dur="${x.dur}">${escapeHtml(f1Countdown(x.at, x.dur))}</strong></span></div>`).join('');
+      box.innerHTML = `<div class="league-card" style="max-width:1100px"><div class="league-head"><span>Prossime sessioni${ev ? ' — ' + escapeHtml(ev.name || '') : ''}</span><span class="count">ORARIO LOCALE</span></div>${rows}</div>`;
+      if (!f1State.cdTimer) f1State.cdTimer = setInterval(updateF1Countdowns, 30_000);
+    }
+
     let motoIsLive = false;
     let motoLastCheck = null;   // ultimo controllo dell'Action quando non c'è nessuna sessione live
     // Upstash Redis: il file live arriva in pochi secondi. Incolla qui l'indirizzo e il token di SOLA LETTURA.
@@ -1811,8 +1838,14 @@
       document.getElementById('liveTitle').textContent = 'Livetiming';
       document.getElementById('liveStatus').textContent = 'NON LIVE';
       const l = document.getElementById('liveLoading');
-      l.textContent = 'Nessuna sessione MotoGP in corso. Le classifiche delle gare precedenti sono qui sotto.'
-        + (motoLastCheck ? ` Ultimo controllo ${motoLastCheck.ageMin} min fa: ${motoLastCheck.session || 'nessuna sessione'}, stato ${motoLastCheck.code}.` : '');
+      let extra = '';
+      if (motoLastCheck) {
+        const c = motoLastCheck;
+        if (c.code === 'ATTESA' && c.nextStart) extra = ` La Action è in attesa: prossima sessione alle ${new Date(c.nextStart).toLocaleTimeString('it-IT', { hour: '2-digit', minute: '2-digit' })} (segnale di vita di ${c.ageMin} min fa).`;
+        else if (c.ageMin > 90) extra = ` Nessun segnale dalla Action da ${Math.round(c.ageMin / 60)} ore (ultimo stato: ${c.session || 'nessuna sessione'}, ${c.code}).`;
+        else extra = ` Ultimo controllo ${c.ageMin} min fa: ${c.session || 'nessuna sessione'}, stato ${c.code}.`;
+      }
+      l.textContent = 'Nessuna sessione MotoGP in corso. Le classifiche delle gare precedenti sono qui sotto.' + extra;
       l.style.display = 'block';
       document.getElementById('liveDot').style.background = '#666';
     }
@@ -2059,7 +2092,7 @@
     loadF1Next();
     loadF1Standings();
     fetchLive();
-    loadSavedMoto().then(loadEvents);
+    loadSavedMoto().then(() => { loadEvents(); loadMotoNext(); });
     // MotoGP: ogni 15s solo se c'è una sessione live, altrimenti ogni 30s. Mai a scheda nascosta
     // (il proxy Cloudflare gratuito ha un limite giornaliero di richieste).
     (function scheduleMotoLive() {

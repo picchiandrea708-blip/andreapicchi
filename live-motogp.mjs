@@ -14,6 +14,7 @@ const MAX_MS = Number(process.env.MAX_MINUTES || 55) * 60_000;  // durata massim
 const IDLE_POLLS = Number(process.env.IDLE_POLLS || 12);        // controlli "non live" di fila prima di fermarsi
 const WAIT_MS = Number(process.env.WAIT_MINUTES || 0) * 60_000;       // avvio manuale: attende l'inizio della sessione per questi minuti
 const LOOKAHEAD_MS = Number(process.env.LOOKAHEAD_MIN || 60) * 60_000;   // se una sessione comincia entro questo tempo, la Action la aspetta
+const BEAT_MS = Number(process.env.BEAT_MIN || 10) * 60_000;           // durante l'attesa scrive un segnale di vita ogni tot minuti
 const PRE_WAIT_MS = Number(process.env.PRE_WAIT_S || 30) * 1000;       // pausa tra un controllo dell'orologio e l'altro prima dell'inizio
 const WAIT_POLL_MS = Number(process.env.WAIT_POLL_S || 15) * 1000;
 const BRANCH = process.env.PUBLISH_BRANCH || 'live';
@@ -173,7 +174,7 @@ async function main() {
   if (!process.env.FORCE && !weekendActive()) { log('nessun weekend di gara: esco'); return; }
   const deadline = Date.now() + MAX_MS;
   let waitDeadline = Date.now() + WAIT_MS;
-  let waiting = false, scheduledStart = null, ignoreUpTo = 0;   // ignoreUpTo: le sessioni già seguite non si riaspettano
+  let waiting = false, scheduledStart = null, ignoreUpTo = 0, lastBeat = 0;   // ignoreUpTo: le sessioni già seguite non si riaspettano
   // Se una sessione comincia a breve, resta in attesa fino al suo inizio (anche per i controlli programmati).
   const armSchedule = () => {
     scheduledStart = nextSessionStart(ignoreUpTo);
@@ -191,7 +192,18 @@ async function main() {
 
   while (Date.now() < deadline) {
     // Prima dell'inizio previsto non serve interrogare MotoGP: basta guardare l'orologio.
-    if (!wasLive && scheduledStart && Date.now() < scheduledStart - 120_000 && Date.now() < waitDeadline) { await sleep(PRE_WAIT_MS); continue; }
+    if (!wasLive && scheduledStart && Date.now() < scheduledStart - 120_000 && Date.now() < waitDeadline) {
+      // In attesa: si scrive un segnale di vita, così il sito sa che la Action è viva e quando comincia la sessione.
+      if (Date.now() - lastBeat >= BEAT_MS) {
+        lastBeat = Date.now();
+        const beat = { generatedAt: new Date().toISOString(), live: false, status: { code: 'ATTESA', session: 'prossima sessione', riders: 0, remaining: null, nextStart: scheduledStart } };
+        await upstashSet(beat);
+        pub.publish(beat);
+        log('in attesa: segnale di vita pubblicato');
+      }
+      await sleep(PRE_WAIT_MS);
+      continue;
+    }
     let data;
     try { data = await getLive(); fails = 0; }
     catch (e) {
@@ -213,7 +225,7 @@ async function main() {
       if (!wasLive) {
         const info = `stato ${data.head?.session_status_id || '?'}, piloti ${Object.keys(data.rider || {}).length}, sessione "${statusOf(data).session}"`;
         if (Date.now() < waitDeadline) {           // avviata a mano: aspetta che la sessione cominci
-          if (!waiting) { log(`nessuna sessione in corso (${info}): resto in attesa dell'inizio`); waiting = true; await publishIdleIfNeeded(pub, data); }
+          if (!waiting || Date.now() - lastBeat >= BEAT_MS) { if (!waiting) log(`nessuna sessione in corso (${info}): resto in attesa dell'inizio`); waiting = true; lastBeat = Date.now(); await publishIdleIfNeeded(pub, data); }
           await upstashSet({ generatedAt: new Date().toISOString(), live: false, status: statusOf(data) });
           await sleep(WAIT_POLL_MS);
           continue;

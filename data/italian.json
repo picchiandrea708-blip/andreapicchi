@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-06T06:59:50.789618+00:00",
+  "updatedAt": "2026-11-06T14:57:07.006975+00:00",
   "lba": [
     {
       "home": "UNA Hotels Reggio Emilia",
@@ -100,6 +100,20 @@
   ],
   "serieC": [
     {
+      "home": "ALCIONE MILANO",
+      "away": "LUMEZZANE",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-11-06T20:30:00+01:00",
+      "eventDate": "2026-11-06T20:30:00+01:00",
+      "competition": "Serie C",
+      "group": "Girone A",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
       "home": "UNION BRESCIA",
       "away": "ARZIGNANO V.",
       "homeScore": "",
@@ -114,20 +128,90 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "ALCIONE MILANO",
-      "away": "LUMEZZANE",
+      "home": "PRO VERCELLI",
+      "away": "DOLOMITI BELLUNESI",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
       "status": "In programma",
-      "time": "2026-11-06T20:30:00+01:00",
-      "eventDate": "2026-11-06T20:30:00+01:00",
+      "time": "2026-11-07T14:30:00+01:00",
+      "eventDate": "2026-11-07T14:30:00+01:00",
       "competition": "Serie C",
       "group": "Girone A",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "OSTIAMARE",
+      "away": "SPEZIA",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-11-07T14:30:00+01:00",
+      "eventDate": "2026-11-07T14:30:00+01:00",
+      "competition": "Serie C",
+      "group": "Girone B",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "ATALANTA UNDER 23",
+      "away": "REGGIANA",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-11-07T14:30:00+01:00",
+      "eventDate": "2026-11-07T14:30:00+01:00",
+      "competition": "Serie C",
+      "group": "Girone B",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "INTER UNDER 23",
+      "away": "SALERNITANA",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-11-07T14:30:00+01:00",
+      "eventDate": "2026-11-07T14:30:00+01:00",
+      "competition": "Serie C",
+      "group": "Girone C",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "CROTONE",
+      "away": "GIUGLIANO",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-11-07T14:30:00+01:00",
+      "eventDate": "2026-11-07T14:30:00+01:00",
+      "competition": "Serie C",
+      "group": "Girone C",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "CASERTANA",
+      "away": "CASARANO",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-11-07T14:30:00+01:00",
+      "eventDate": "2026-11-07T14:30:00+01:00",
+      "competition": "Serie C",
+      "group": "Girone C",
       "source": "Lega Pro",
       "sourceUrl": "https://www.seriec.com/calendario"
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-11-06T06:59:50.789618+00:00"
+  "serieCUpdatedAt": "2026-11-06T14:57:07.006975+00:00"
 }

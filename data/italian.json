@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-06T14:57:07.006975+00:00",
+  "updatedAt": "2026-11-06T20:49:41.091813+00:00",
   "lba": [
     {
       "home": "UNA Hotels Reggio Emilia",
@@ -100,12 +100,12 @@
   ],
   "serieC": [
     {
-      "home": "ALCIONE MILANO",
-      "away": "LUMEZZANE",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
+      "home": "UNION BRESCIA",
+      "away": "ARZIGNANO V.",
+      "homeScore": 2,
+      "awayScore": 2,
+      "hasScore": true,
+      "status": "LIVE",
       "time": "2026-11-06T20:30:00+01:00",
       "eventDate": "2026-11-06T20:30:00+01:00",
       "competition": "Serie C",
@@ -114,12 +114,12 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "UNION BRESCIA",
-      "away": "ARZIGNANO V.",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
+      "home": "ALCIONE MILANO",
+      "away": "LUMEZZANE",
+      "homeScore": 0,
+      "awayScore": 0,
+      "hasScore": true,
+      "status": "LIVE",
       "time": "2026-11-06T20:30:00+01:00",
       "eventDate": "2026-11-06T20:30:00+01:00",
       "competition": "Serie C",
@@ -170,8 +170,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "INTER UNDER 23",
-      "away": "SALERNITANA",
+      "home": "CROTONE",
+      "away": "GIUGLIANO",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -184,8 +184,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "CROTONE",
-      "away": "GIUGLIANO",
+      "home": "INTER UNDER 23",
+      "away": "SALERNITANA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -210,8 +210,78 @@
       "group": "Girone C",
       "source": "Lega Pro",
       "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "PERGOLETTESE",
+      "away": "RENATE",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-11-07T17:30:00+01:00",
+      "eventDate": "2026-11-07T17:30:00+01:00",
+      "competition": "Serie C",
+      "group": "Girone A",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "TRENTO",
+      "away": "ALBINOLEFFE",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-11-07T17:30:00+01:00",
+      "eventDate": "2026-11-07T17:30:00+01:00",
+      "competition": "Serie C",
+      "group": "Girone A",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "VADO",
+      "away": "RAVENNA",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-11-07T17:30:00+01:00",
+      "eventDate": "2026-11-07T17:30:00+01:00",
+      "competition": "Serie C",
+      "group": "Girone B",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "FORLÌ",
+      "away": "GUBBIO",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-11-07T17:30:00+01:00",
+      "eventDate": "2026-11-07T17:30:00+01:00",
+      "competition": "Serie C",
+      "group": "Girone B",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "SCAFATESE",
+      "away": "AUDACE CERIGNOLA",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-11-07T17:30:00+01:00",
+      "eventDate": "2026-11-07T17:30:00+01:00",
+      "competition": "Serie C",
+      "group": "Girone C",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-11-06T14:57:07.006975+00:00"
+  "serieCUpdatedAt": "2026-11-06T20:49:41.091813+00:00"
 }

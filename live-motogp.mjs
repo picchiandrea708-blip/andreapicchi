@@ -18,6 +18,11 @@ const BEAT_MS = Number(process.env.BEAT_MIN || 10) * 60_000;           // durant
 const PRE_WAIT_MS = Number(process.env.PRE_WAIT_S || 30) * 1000;       // pausa tra un controllo dell'orologio e l'altro prima dell'inizio
 const WAIT_POLL_MS = Number(process.env.WAIT_POLL_S || 15) * 1000;
 const BRANCH = process.env.PUBLISH_BRANCH || 'live';
+
+// Le date delle sessioni MotoGP arrivano come ora LOCALE del circuito ma con etichetta "+00:00": qui le convertiamo in UTC vero.
+const MOTO_TZ = { THA:'Asia/Bangkok', BRA:'America/Sao_Paulo', USA:'America/Chicago', SPA:'Europe/Madrid', FRA:'Europe/Paris', CAT:'Europe/Madrid', ITA:'Europe/Rome', HUN:'Europe/Budapest', CZE:'Europe/Prague', NED:'Europe/Amsterdam', GER:'Europe/Berlin', GBR:'Europe/London', ARA:'Europe/Madrid', RSM:'Europe/Rome', AUT:'Europe/Vienna', JPN:'Asia/Tokyo', INA:'Asia/Makassar', AUS:'Australia/Melbourne', MAL:'Asia/Kuala_Lumpur', QAT:'Asia/Qatar', POR:'Europe/Lisbon', VAL:'Europe/Madrid' };
+function tzOffsetMs(ts, tz) { const p = Object.fromEntries(new Intl.DateTimeFormat('en-US',{timeZone:tz,hourCycle:'h23',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit'}).formatToParts(new Date(ts)).map(x=>[x.type,x.value])); return Date.UTC(+p.year,+p.month-1,+p.day,+p.hour,+p.minute,+p.second) - Math.floor(ts/1000)*1000; }
+function motoDateToUtc(str, tz) { const m = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})(?::(\d{2}))?(?:\.\d+)?\+00:?00$/.exec(String(str||'')); if (!m || !tz) return Date.parse(str); const wall = Date.UTC(+m[1],+m[2]-1,+m[3],+m[4],+m[5],+(m[6]||0)); let utc = wall - tzOffsetMs(wall, tz); utc = wall - tzOffsetMs(utc, tz); return utc; }
 const REMOTE = process.env.PUBLISH_REMOTE ||
   `https://x-access-token:${process.env.GITHUB_TOKEN}@github.com/${process.env.GITHUB_REPOSITORY}.git`;
 const HEADERS = {
@@ -65,9 +70,11 @@ function nextSessionStart(ignoreUpTo = 0) {
     const d = JSON.parse(readFileSync('moto-data.json', 'utf8'));
     const now = Date.now();
     let best = Infinity;
+    const ev = (d.events || []).find(x => x.id === d.eventId);
+    const tz = MOTO_TZ[ev?.short_name];
     for (const c of Object.values(d.byClass || {})) for (const sess of c.sessions || []) {
       if (sess.status === 'FINISHED') continue;
-      const t = Date.parse(sess.date);
+      const t = motoDateToUtc(sess.date, tz);
       if (Number.isFinite(t) && t > now - 10 * 60_000 && t > ignoreUpTo && t < best) best = t;
     }
     return best === Infinity ? null : best;

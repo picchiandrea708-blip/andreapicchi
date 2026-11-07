@@ -144,7 +144,7 @@
 </head>
 <body>
   <header>
-    <div class="logo">SPORT<span>LIVE</span><small style="opacity:.45;font-size:.65rem"> v70</small></div>
+    <div class="logo">SPORT<span>LIVE</span><small style="opacity:.45;font-size:.65rem"> v71</small></div>
     <div class="status-bar">
       <div class="dot" id="liveDot"></div>
       <span id="lastUpdate">Connessione…</span>
@@ -1663,9 +1663,11 @@
       const upcoming = items.slice(0, 6);
       if (!upcoming.length) { box.innerHTML = ''; return; }
       const ev = (MOTO_OFFLINE.events || []).find(e => e.id === MOTO_OFFLINE.eventId);
-      const fmt = new Intl.DateTimeFormat('it-IT', { weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
-      const rows = upcoming.map(x => `<div style="display:flex;justify-content:space-between;gap:1rem;padding:.6rem 1rem;border-top:1px solid var(--border)"><span><strong>${escapeHtml(x.cls)}</strong> · ${escapeHtml(x.label)}</span><span>${escapeHtml(fmt.format(new Date(x.at)))} · <strong class="f1cd" data-at="${x.at}" data-dur="${x.dur}">${escapeHtml(f1Countdown(x.at, x.dur))}</strong></span></div>`).join('');
-      box.innerHTML = `<div class="league-card" style="max-width:1100px"><div class="league-head"><span>Prossime sessioni${ev ? ' — ' + escapeHtml(ev.name || '') : ''}</span><span class="count">ORARIO LOCALE</span></div>${rows}</div>`;
+      const fmt = new Intl.DateTimeFormat('it-IT', { timeZone: 'Europe/Rome', weekday: 'short', day: 'numeric', month: 'short', hour: '2-digit', minute: '2-digit' });
+      const ctz = MOTO_TZ[ev && ev.short_name];
+      const lfmt = ctz ? new Intl.DateTimeFormat('it-IT', { timeZone: ctz, hour: '2-digit', minute: '2-digit' }) : null;
+      const rows = upcoming.map(x => `<div style="display:flex;justify-content:space-between;gap:1rem;padding:.6rem 1rem;border-top:1px solid var(--border)"><span><strong>${escapeHtml(x.cls)}</strong> · ${escapeHtml(x.label)}</span><span>${escapeHtml(fmt.format(new Date(x.at)))}${lfmt ? ' <small style="opacity:.7">(locale ' + escapeHtml(lfmt.format(new Date(x.at))) + ')</small>' : ''} · <strong class="f1cd" data-at="${x.at}" data-dur="${x.dur}">${escapeHtml(f1Countdown(x.at, x.dur))}</strong></span></div>`).join('');
+      box.innerHTML = `<div class="league-card" style="max-width:1100px"><div class="league-head"><span>Prossime sessioni${ev ? ' — ' + escapeHtml(ev.name || '') : ''}</span><span class="count">ORA ITALIANA</span></div>${rows}</div>`;
       if (!f1State.cdTimer) f1State.cdTimer = setInterval(updateF1Countdowns, 30_000);
     }
 
@@ -1913,6 +1915,24 @@
       return ordered.find(e => timeValue(e.date_start) <= now) || next || null;
     }
 
+// Le date delle sessioni MotoGP arrivano come ora LOCALE del circuito ma con etichetta "+00:00": qui le convertiamo in UTC vero.
+const MOTO_TZ = { THA:'Asia/Bangkok', BRA:'America/Sao_Paulo', USA:'America/Chicago', SPA:'Europe/Madrid', FRA:'Europe/Paris', CAT:'Europe/Madrid', ITA:'Europe/Rome', HUN:'Europe/Budapest', CZE:'Europe/Prague', NED:'Europe/Amsterdam', GER:'Europe/Berlin', GBR:'Europe/London', ARA:'Europe/Madrid', RSM:'Europe/Rome', AUT:'Europe/Vienna', JPN:'Asia/Tokyo', INA:'Asia/Makassar', AUS:'Australia/Melbourne', MAL:'Asia/Kuala_Lumpur', QAT:'Asia/Qatar', POR:'Europe/Lisbon', VAL:'Europe/Madrid' };
+function tzOffsetMs(ts, tz) { const p = Object.fromEntries(new Intl.DateTimeFormat('en-US',{timeZone:tz,hourCycle:'h23',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit'}).formatToParts(new Date(ts)).map(x=>[x.type,x.value])); return Date.UTC(+p.year,+p.month-1,+p.day,+p.hour,+p.minute,+p.second) - Math.floor(ts/1000)*1000; }
+function motoDateToUtc(str, tz) { const m = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})(?::(\d{2}))?(?:\.\d+)?\+00:?00$/.exec(String(str||'')); if (!m || !tz) return Date.parse(str); const wall = Date.UTC(+m[1],+m[2]-1,+m[3],+m[4],+m[5],+(m[6]||0)); let utc = wall - tzOffsetMs(wall, tz); utc = wall - tzOffsetMs(utc, tz); return utc; }
+
+    // Converte (una sola volta) le date "+00:00" in veri istanti UTC usando il fuso del circuito.
+    function normalizeMotoSessions(byClass, eventId) {
+      const ev = (MOTO_OFFLINE.events || []).find(e => e.id === eventId);
+      const tz = ev && MOTO_TZ[ev.short_name];
+      if (!tz || !byClass) return;
+      for (const pack of Object.values(byClass)) for (const sess of (pack && pack.sessions) || []) {
+        if (typeof sess.date === 'string' && /\+00:?00$/.test(sess.date)) {
+          const t = motoDateToUtc(sess.date, tz);
+          if (Number.isFinite(t)) sess.date = new Date(t).toISOString();
+        }
+      }
+    }
+
     async function loadSavedMoto() {
       try {
         const res = await fetch('moto-data.json?v=' + Date.now());
@@ -1923,6 +1943,7 @@
           MOTO_OFFLINE.eventId = data.eventId || MOTO_OFFLINE.eventId;
           MOTO_OFFLINE.byClass = data.byClass;
           motoOfflineUpdated = data.updated || data.updatedAt || null;
+          normalizeMotoSessions(MOTO_OFFLINE.byClass, MOTO_OFFLINE.eventId);
         }
       } catch (e) {}
     }
@@ -1936,7 +1957,7 @@
         const res = await fetch(`moto-archive/${encodeURIComponent(eventId)}.json?v=${Math.floor(Date.now() / 60000)}`);
         if (!res.ok) return null;
         const data = await res.json();
-        if (data && data.byClass) { motoArchiveCache.set(eventId, data); return data; }
+        if (data && data.byClass) { normalizeMotoSessions(data.byClass, eventId); motoArchiveCache.set(eventId, data); return data; }
       } catch (_) { /* archivio non ancora disponibile per questa gara */ }
       return null;
     }

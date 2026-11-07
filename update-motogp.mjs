@@ -9,6 +9,11 @@ const API = process.env.MOTOGP_API || 'https://api.motogp.pulselive.com/motogp/v
 const OUT = process.env.OUT_DIR || '.';
 const MAX_BACKFILL = Number(process.env.MAX_BACKFILL || 6); // gare vecchie scaricate per ogni esecuzione
 const DAY = 86_400_000;
+
+// Le date delle sessioni MotoGP arrivano come ora LOCALE del circuito ma con etichetta "+00:00": qui le convertiamo in UTC vero.
+const MOTO_TZ = { THA:'Asia/Bangkok', BRA:'America/Sao_Paulo', USA:'America/Chicago', SPA:'Europe/Madrid', FRA:'Europe/Paris', CAT:'Europe/Madrid', ITA:'Europe/Rome', HUN:'Europe/Budapest', CZE:'Europe/Prague', NED:'Europe/Amsterdam', GER:'Europe/Berlin', GBR:'Europe/London', ARA:'Europe/Madrid', RSM:'Europe/Rome', AUT:'Europe/Vienna', JPN:'Asia/Tokyo', INA:'Asia/Makassar', AUS:'Australia/Melbourne', MAL:'Asia/Kuala_Lumpur', QAT:'Asia/Qatar', POR:'Europe/Lisbon', VAL:'Europe/Madrid' };
+function tzOffsetMs(ts, tz) { const p = Object.fromEntries(new Intl.DateTimeFormat('en-US',{timeZone:tz,hourCycle:'h23',year:'numeric',month:'2-digit',day:'2-digit',hour:'2-digit',minute:'2-digit',second:'2-digit'}).formatToParts(new Date(ts)).map(x=>[x.type,x.value])); return Date.UTC(+p.year,+p.month-1,+p.day,+p.hour,+p.minute,+p.second) - Math.floor(ts/1000)*1000; }
+function motoDateToUtc(str, tz) { const m = /^(\d{4})-(\d{2})-(\d{2})T(\d{2}):(\d{2})(?::(\d{2}))?(?:\.\d+)?\+00:?00$/.exec(String(str||'')); if (!m || !tz) return Date.parse(str); const wall = Date.UTC(+m[1],+m[2]-1,+m[3],+m[4],+m[5],+(m[6]||0)); let utc = wall - tzOffsetMs(wall, tz); utc = wall - tzOffsetMs(utc, tz); return utc; }
 const CLASSES = {
   MotoGP: 'e8c110ad-64aa-4e8e-8a86-f2f152f6a942',
   Moto2: '549640b8-fd9c-4245-acfd-60e4bc38b25c',
@@ -59,9 +64,13 @@ const trimEvent = e => ({
   id: e.id, short_name: e.short_name ?? null, name: e.name ?? null,
   date_start: e.date_start ?? null, date_end: e.date_end ?? null, status: e.status ?? null
 });
-const trimSession = s => ({
-  id: s.id, type: s.type ?? null, number: s.number ?? null, status: s.status ?? null, date: s.date ?? null
-});
+const trimSession = (s, tz) => {
+  const t = s.date ? motoDateToUtc(s.date, tz) : NaN;
+  return {
+    id: s.id, type: s.type ?? null, number: s.number ?? null, status: s.status ?? null,
+    date: Number.isFinite(t) ? new Date(t).toISOString() : (s.date ?? null)
+  };
+};
 const trimRow = r => ({
   position: r.position ?? null,
   rider: { full_name: r.rider?.full_name ?? null, rider_number: r.rider?.number ?? r.rider?.rider_number ?? null },
@@ -69,11 +78,11 @@ const trimRow = r => ({
   total_laps: r.total_laps ?? null
 });
 
-async function fetchEventData(eventId) {
+async function fetchEventData(eventId, tz) {
   const byClass = {};
   for (const catId of Object.values(CLASSES)) {
     const raw = await api(`/results/sessions?eventUuid=${encodeURIComponent(eventId)}&categoryUuid=${encodeURIComponent(catId)}`);
-    const sessions = (Array.isArray(raw) ? raw : []).map(trimSession);
+    const sessions = (Array.isArray(raw) ? raw : []).map(s => trimSession(s, tz));
     const finished = sessions.filter(s => s.status === 'FINISHED');
     const rowsList = await mapLimit(finished, 3, async s => {
       try {
@@ -134,7 +143,7 @@ async function main() {
   for (const e of todo) {
     try {
       console.log(`Scarico ${e.short_name} (${e.date_start})…`);
-      const byClass = await fetchEventData(e.id);
+      const byClass = await fetchEventData(e.id, MOTO_TZ[e.short_name]);
       fresh.set(e.id, byClass);
       const changed = await writeIfChanged(`${OUT}/moto-archive/${e.id}.json`, { eventId: e.id, byClass });
       console.log(`  ${changed ? 'aggiornato' : 'invariato'}`);

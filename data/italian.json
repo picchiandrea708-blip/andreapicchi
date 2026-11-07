@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-11-07T18:15:44.871310+00:00",
+  "updatedAt": "2026-11-07T22:00:02.211575+00:00",
   "lba": [
     {
       "home": "UNA Hotels Reggio Emilia",
       "away": "Umana Reyer Venezia",
-      "homeScore": 0,
-      "awayScore": 0,
-      "hasScore": false,
-      "status": "In programma",
+      "homeScore": 78,
+      "awayScore": 83,
+      "hasScore": true,
+      "status": "Finale",
       "time": "2026-11-07T20:00:00.000+01:00",
       "competition": "Serie A LBA",
       "source": "LBA",
@@ -100,34 +100,6 @@
   ],
   "serieC": [
     {
-      "home": "UNION BRESCIA",
-      "away": "ARZIGNANO V.",
-      "homeScore": 3,
-      "awayScore": 2,
-      "hasScore": true,
-      "status": "FT",
-      "time": "2026-11-06T20:30:00+01:00",
-      "eventDate": "2026-11-06T20:30:00+01:00",
-      "competition": "Serie C",
-      "group": "Girone A",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
-      "home": "ALCIONE MILANO",
-      "away": "LUMEZZANE",
-      "homeScore": 0,
-      "awayScore": 1,
-      "hasScore": true,
-      "status": "FT",
-      "time": "2026-11-06T20:30:00+01:00",
-      "eventDate": "2026-11-06T20:30:00+01:00",
-      "competition": "Serie C",
-      "group": "Girone A",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
       "home": "PRO VERCELLI",
       "away": "DOLOMITI BELLUNESI",
       "homeScore": 4,
@@ -170,10 +142,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "CASERTANA",
-      "away": "CASARANO",
-      "homeScore": 1,
-      "awayScore": 0,
+      "home": "CROTONE",
+      "away": "GIUGLIANO",
+      "homeScore": 0,
+      "awayScore": 1,
       "hasScore": true,
       "status": "FT",
       "time": "2026-11-07T14:30:00+01:00",
@@ -198,10 +170,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "CROTONE",
-      "away": "GIUGLIANO",
-      "homeScore": 0,
-      "awayScore": 1,
+      "home": "CASERTANA",
+      "away": "CASARANO",
+      "homeScore": 1,
+      "awayScore": 0,
       "hasScore": true,
       "status": "FT",
       "time": "2026-11-07T14:30:00+01:00",
@@ -212,12 +184,12 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "PERGOLETTESE",
-      "away": "RENATE",
-      "homeScore": 1,
-      "awayScore": 2,
+      "home": "TRENTO",
+      "away": "ALBINOLEFFE",
+      "homeScore": 2,
+      "awayScore": 1,
       "hasScore": true,
-      "status": "LIVE",
+      "status": "FT",
       "time": "2026-11-07T17:30:00+01:00",
       "eventDate": "2026-11-07T17:30:00+01:00",
       "competition": "Serie C",
@@ -226,12 +198,12 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "TRENTO",
-      "away": "ALBINOLEFFE",
+      "home": "PERGOLETTESE",
+      "away": "RENATE",
       "homeScore": 2,
-      "awayScore": 1,
+      "awayScore": 3,
       "hasScore": true,
-      "status": "LIVE",
+      "status": "FT",
       "time": "2026-11-07T17:30:00+01:00",
       "eventDate": "2026-11-07T17:30:00+01:00",
       "competition": "Serie C",
@@ -243,9 +215,9 @@
       "home": "VADO",
       "away": "RAVENNA",
       "homeScore": 1,
-      "awayScore": 2,
+      "awayScore": 3,
       "hasScore": true,
-      "status": "LIVE",
+      "status": "FT",
       "time": "2026-11-07T17:30:00+01:00",
       "eventDate": "2026-11-07T17:30:00+01:00",
       "competition": "Serie C",
@@ -259,7 +231,7 @@
       "homeScore": 1,
       "awayScore": 0,
       "hasScore": true,
-      "status": "LIVE",
+      "status": "FT",
       "time": "2026-11-07T17:30:00+01:00",
       "eventDate": "2026-11-07T17:30:00+01:00",
       "competition": "Serie C",
@@ -273,7 +245,7 @@
       "homeScore": 4,
       "awayScore": 1,
       "hasScore": true,
-      "status": "LIVE",
+      "status": "FT",
       "time": "2026-11-07T17:30:00+01:00",
       "eventDate": "2026-11-07T17:30:00+01:00",
       "competition": "Serie C",
@@ -310,8 +282,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "GIANA ERMINIO",
-      "away": "CITTADELLA",
+      "home": "LECCO",
+      "away": "JUVENTUS NEXT GEN",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -324,8 +296,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "LECCO",
-      "away": "JUVENTUS NEXT GEN",
+      "home": "GIANA ERMINIO",
+      "away": "CITTADELLA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -352,20 +324,6 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "MONOPOLI",
-      "away": "COSENZA",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
-      "time": "2026-11-08T14:30:00+01:00",
-      "eventDate": "2026-11-08T14:30:00+01:00",
-      "competition": "Serie C",
-      "group": "Girone C",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
       "home": "SAVOIA",
       "away": "POTENZA",
       "homeScore": "",
@@ -382,6 +340,20 @@
     {
       "home": "CATANIA",
       "away": "SORRENTO",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-11-08T14:30:00+01:00",
+      "eventDate": "2026-11-08T14:30:00+01:00",
+      "competition": "Serie C",
+      "group": "Girone C",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "MONOPOLI",
+      "away": "COSENZA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -465,5 +437,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-11-07T18:15:44.871310+00:00"
+  "serieCUpdatedAt": "2026-11-07T22:00:02.211575+00:00"
 }

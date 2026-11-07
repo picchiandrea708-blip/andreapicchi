@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-06T20:49:41.091813+00:00",
+  "updatedAt": "2026-11-07T00:26:24.602113+00:00",
   "lba": [
     {
       "home": "UNA Hotels Reggio Emilia",
@@ -102,10 +102,10 @@
     {
       "home": "UNION BRESCIA",
       "away": "ARZIGNANO V.",
-      "homeScore": 2,
+      "homeScore": 3,
       "awayScore": 2,
       "hasScore": true,
-      "status": "LIVE",
+      "status": "FT",
       "time": "2026-11-06T20:30:00+01:00",
       "eventDate": "2026-11-06T20:30:00+01:00",
       "competition": "Serie C",
@@ -117,9 +117,9 @@
       "home": "ALCIONE MILANO",
       "away": "LUMEZZANE",
       "homeScore": 0,
-      "awayScore": 0,
+      "awayScore": 1,
       "hasScore": true,
-      "status": "LIVE",
+      "status": "FT",
       "time": "2026-11-06T20:30:00+01:00",
       "eventDate": "2026-11-06T20:30:00+01:00",
       "competition": "Serie C",
@@ -283,5 +283,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-11-06T20:49:41.091813+00:00"
+  "serieCUpdatedAt": "2026-11-07T00:26:24.602113+00:00"
 }

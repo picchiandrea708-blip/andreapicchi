@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-07T06:31:44.553897+00:00",
+  "updatedAt": "2026-11-07T13:29:18.094230+00:00",
   "lba": [
     {
       "home": "UNA Hotels Reggio Emilia",
@@ -184,8 +184,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "CASERTANA",
-      "away": "CASARANO",
+      "home": "CROTONE",
+      "away": "GIUGLIANO",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -198,8 +198,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "CROTONE",
-      "away": "GIUGLIANO",
+      "home": "CASERTANA",
+      "away": "CASARANO",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -240,8 +240,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "FORLÌ",
-      "away": "GUBBIO",
+      "home": "VADO",
+      "away": "RAVENNA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -254,8 +254,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "VADO",
-      "away": "RAVENNA",
+      "home": "FORLÌ",
+      "away": "GUBBIO",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -280,8 +280,36 @@
       "group": "Girone C",
       "source": "Lega Pro",
       "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "GROSSETO",
+      "away": "PESCARA",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-11-08T12:30:00+01:00",
+      "eventDate": "2026-11-08T12:30:00+01:00",
+      "competition": "Serie C",
+      "group": "Girone B",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "TORRES",
+      "away": "LATINA",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-11-08T12:30:00+01:00",
+      "eventDate": "2026-11-08T12:30:00+01:00",
+      "competition": "Serie C",
+      "group": "Girone B",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-11-07T06:31:44.553897+00:00"
+  "serieCUpdatedAt": "2026-11-07T13:29:18.094230+00:00"
 }

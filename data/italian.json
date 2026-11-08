@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-08T01:19:50.033244+00:00",
+  "updatedAt": "2026-11-08T07:32:09.111860+00:00",
   "lba": [
     {
       "home": "UNA Hotels Reggio Emilia",
@@ -114,6 +114,20 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
+      "home": "ATALANTA UNDER 23",
+      "away": "REGGIANA",
+      "homeScore": 4,
+      "awayScore": 3,
+      "hasScore": true,
+      "status": "FT",
+      "time": "2026-11-07T14:30:00+01:00",
+      "eventDate": "2026-11-07T14:30:00+01:00",
+      "competition": "Serie C",
+      "group": "Girone B",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
       "home": "OSTIAMARE",
       "away": "SPEZIA",
       "homeScore": 0,
@@ -128,16 +142,16 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "ATALANTA UNDER 23",
-      "away": "REGGIANA",
-      "homeScore": 4,
-      "awayScore": 3,
+      "home": "INTER UNDER 23",
+      "away": "SALERNITANA",
+      "homeScore": 1,
+      "awayScore": 0,
       "hasScore": true,
       "status": "FT",
       "time": "2026-11-07T14:30:00+01:00",
       "eventDate": "2026-11-07T14:30:00+01:00",
       "competition": "Serie C",
-      "group": "Girone B",
+      "group": "Girone C",
       "source": "Lega Pro",
       "sourceUrl": "https://www.seriec.com/calendario"
     },
@@ -158,20 +172,6 @@
     {
       "home": "CASERTANA",
       "away": "CASARANO",
-      "homeScore": 1,
-      "awayScore": 0,
-      "hasScore": true,
-      "status": "FT",
-      "time": "2026-11-07T14:30:00+01:00",
-      "eventDate": "2026-11-07T14:30:00+01:00",
-      "competition": "Serie C",
-      "group": "Girone C",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
-      "home": "INTER UNDER 23",
-      "away": "SALERNITANA",
       "homeScore": 1,
       "awayScore": 0,
       "hasScore": true,
@@ -212,10 +212,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "VADO",
-      "away": "RAVENNA",
+      "home": "FORLÌ",
+      "away": "GUBBIO",
       "homeScore": 1,
-      "awayScore": 3,
+      "awayScore": 0,
       "hasScore": true,
       "status": "FT",
       "time": "2026-11-07T17:30:00+01:00",
@@ -226,10 +226,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "FORLÌ",
-      "away": "GUBBIO",
+      "home": "VADO",
+      "away": "RAVENNA",
       "homeScore": 1,
-      "awayScore": 0,
+      "awayScore": 3,
       "hasScore": true,
       "status": "FT",
       "time": "2026-11-07T17:30:00+01:00",
@@ -254,20 +254,6 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "GROSSETO",
-      "away": "PESCARA",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
-      "time": "2026-11-08T12:30:00+01:00",
-      "eventDate": "2026-11-08T12:30:00+01:00",
-      "competition": "Serie C",
-      "group": "Girone B",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
       "home": "TORRES",
       "away": "LATINA",
       "homeScore": "",
@@ -282,8 +268,22 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "GIANA ERMINIO",
-      "away": "CITTADELLA",
+      "home": "GROSSETO",
+      "away": "PESCARA",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-11-08T12:30:00+01:00",
+      "eventDate": "2026-11-08T12:30:00+01:00",
+      "competition": "Serie C",
+      "group": "Girone B",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "LECCO",
+      "away": "JUVENTUS NEXT GEN",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -296,8 +296,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "LECCO",
-      "away": "JUVENTUS NEXT GEN",
+      "home": "GIANA ERMINIO",
+      "away": "CITTADELLA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -338,6 +338,20 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
+      "home": "SAVOIA",
+      "away": "POTENZA",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-11-08T14:30:00+01:00",
+      "eventDate": "2026-11-08T14:30:00+01:00",
+      "competition": "Serie C",
+      "group": "Girone C",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
       "home": "CATANIA",
       "away": "SORRENTO",
       "homeScore": "",
@@ -352,16 +366,16 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "SAVOIA",
-      "away": "POTENZA",
+      "home": "FOLGORE CARATESE",
+      "away": "CARPI",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
       "status": "In programma",
-      "time": "2026-11-08T14:30:00+01:00",
-      "eventDate": "2026-11-08T14:30:00+01:00",
+      "time": "2026-11-08T17:30:00+01:00",
+      "eventDate": "2026-11-08T17:30:00+01:00",
       "competition": "Serie C",
-      "group": "Girone C",
+      "group": "Girone A",
       "source": "Lega Pro",
       "sourceUrl": "https://www.seriec.com/calendario"
     },
@@ -394,8 +408,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "FOLGORE CARATESE",
-      "away": "CARPI",
+      "home": "PIANESE",
+      "away": "PERUGIA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -403,7 +417,7 @@
       "time": "2026-11-08T17:30:00+01:00",
       "eventDate": "2026-11-08T17:30:00+01:00",
       "competition": "Serie C",
-      "group": "Girone A",
+      "group": "Girone B",
       "source": "Lega Pro",
       "sourceUrl": "https://www.seriec.com/calendario"
     },
@@ -420,22 +434,8 @@
       "group": "Girone B",
       "source": "Lega Pro",
       "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
-      "home": "PIANESE",
-      "away": "PERUGIA",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
-      "time": "2026-11-08T17:30:00+01:00",
-      "eventDate": "2026-11-08T17:30:00+01:00",
-      "competition": "Serie C",
-      "group": "Girone B",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-11-08T01:19:50.033244+00:00"
+  "serieCUpdatedAt": "2026-11-08T07:32:09.111860+00:00"
 }

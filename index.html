@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Sport Live — Risultati & Livetiming</title>
   <meta name="description" content="Risultati live e livetiming di calcio, basket, sport USA, Formula 1 e MotoGP.">
-  <meta name="theme-color" content="#0b0f14">
+  <meta name="theme-color" content="#eef1f6">
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=JetBrains+Mono:wght@500;700&display=swap" rel="stylesheet">
   <style>
     :root {
@@ -140,11 +140,44 @@
     .public-news-list { display: grid; gap: 0; }
     .public-news-item { padding: .7rem 1rem; border-top: 1px solid var(--border); font-size: .88rem; line-height: 1.4; }
     .public-news-empty { padding: 1rem; color: var(--muted); font-size: .82rem; }
-  </style>
+
+    /* ===== Tema C: dashboard a tessere (chiaro) ===== */
+    :root { --bg:#eef1f6; --bg3:#e4e9f2; --card:#ffffff; --border:#d5dcea; --text:#1d2b4a; --muted:#5b6a87; --accent:#0057d9; --live:#c62828; --final:#1b7f3b; --radius:20px; }
+    body { font-family: 'Space Grotesk','Inter', system-ui, sans-serif; }
+    header { background: rgba(238,241,246,.94); }
+    .logo { font-family: 'Space Grotesk', sans-serif; font-weight: 700; font-size: 1.5rem; }
+    nav.cats { border-bottom: 0; padding: .9rem 1.25rem .2rem; max-width: 1200px; margin: 0 auto; }
+    nav.cats button { background:#fff; border:0; border-radius:10px; padding:.6rem 1rem; }
+    nav.cats button.active { background:#1d2b4a; color:#fff; }
+    nav.cats button:hover:not(.active) { background:#dfe6f5; }
+    .news-ticker { background:#1d2b4a; color:#fff; border-bottom:0; }
+    .news-ticker strong { color:#ffb454; }
+    .public-news-title { color:var(--accent); background:#f3f6fb; }
+    .league-card, .public-news-card, .my-news-card { border:0; box-shadow:0 1px 2px rgba(29,43,74,.06); }
+    .league-head { background:#f3f6fb; font-family:'Space Grotesk',sans-serif; font-size:1rem; padding:.9rem 1.25rem; }
+    .match { padding:.85rem 1.25rem; border-top:1px solid #e6ebf4; }
+    .score-box .score { font-family:'Space Grotesk',sans-serif; font-size:1.35rem; }
+    .score-box .status { font-size:.78rem; }
+    .section-title { font-family:'Space Grotesk',sans-serif; font-size:1.3rem; }
+    #grid-calcio, #grid-basket, #grid-usa { display:grid; grid-template-columns:repeat(auto-fill,minmax(min(100%,420px),1fr)); gap:1.25rem; align-items:start; }
+    #grid-calcio > .loading, #grid-calcio > .empty, #grid-calcio > .error,
+    #grid-basket > .loading, #grid-basket > .empty, #grid-basket > .error,
+    #grid-usa > .loading, #grid-usa > .empty, #grid-usa > .error { grid-column:1/-1; }
+    #grid-calcio .league-card, #grid-basket .league-card, #grid-usa .league-card { margin-bottom:0; }
+    /* pulsanti con sfondo blu: testo bianco */
+    .f1-chip.active, .f1-official-link, .f1-pulse-config button, .my-news-form button { color:#fff; }
+    .f1-pulse-config { background:#f3f6fb; }
+    .error { background:#fdecea; border-color:#f5c2be; color:#9a1c14; }
+    .timing-table th { background:#f3f6fb; }
+    .game-center-link { color:var(--accent); }
+    .pos.p1 { color:#b8860b; } .pos.p2 { color:#6b7280; } .pos.p3 { color:#a0522d; }
+    #btnRefresh { background:#fff !important; border:0 !important; }
+      </style>
+  <link rel="preconnect" href="https://fonts.googleapis.com"><link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;700&display=swap" rel="stylesheet">
 </head>
 <body>
   <header>
-    <div class="logo">SPORT<span>LIVE</span><small style="opacity:.45;font-size:.65rem"> v71</small></div>
+    <div class="logo">SPORT<span>LIVE</span><small style="opacity:.45;font-size:.65rem"> v72</small></div>
     <div class="status-bar">
       <div class="dot" id="liveDot"></div>
       <span id="lastUpdate">Connessione…</span>

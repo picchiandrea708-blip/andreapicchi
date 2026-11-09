@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-08T22:49:21.337248+00:00",
+  "updatedAt": "2026-11-09T02:06:52.535658+00:00",
   "lba": [
     {
       "home": "UNA Hotels Reggio Emilia",
@@ -170,10 +170,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "MONOPOLI",
-      "away": "COSENZA",
-      "homeScore": 0,
-      "awayScore": 0,
+      "home": "SAVOIA",
+      "away": "POTENZA",
+      "homeScore": 1,
+      "awayScore": 3,
       "hasScore": true,
       "status": "FT",
       "time": "2026-11-08T14:30:00+01:00",
@@ -184,10 +184,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "SAVOIA",
-      "away": "POTENZA",
-      "homeScore": 1,
-      "awayScore": 3,
+      "home": "MONOPOLI",
+      "away": "COSENZA",
+      "homeScore": 0,
+      "awayScore": 0,
       "hasScore": true,
       "status": "FT",
       "time": "2026-11-08T14:30:00+01:00",
@@ -212,6 +212,20 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
+      "home": "DESENZANO",
+      "away": "OSPITALETTO F.",
+      "homeScore": 0,
+      "awayScore": 1,
+      "hasScore": true,
+      "status": "FT",
+      "time": "2026-11-08T17:30:00+01:00",
+      "eventDate": "2026-11-08T17:30:00+01:00",
+      "competition": "Serie C",
+      "group": "Girone A",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
       "home": "FOLGORE CARATESE",
       "away": "CARPI",
       "homeScore": 0,
@@ -230,20 +244,6 @@
       "away": "NOVARA",
       "homeScore": 2,
       "awayScore": 0,
-      "hasScore": true,
-      "status": "FT",
-      "time": "2026-11-08T17:30:00+01:00",
-      "eventDate": "2026-11-08T17:30:00+01:00",
-      "competition": "Serie C",
-      "group": "Girone A",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
-      "home": "DESENZANO",
-      "away": "OSPITALETTO F.",
-      "homeScore": 0,
-      "awayScore": 1,
       "hasScore": true,
       "status": "FT",
       "time": "2026-11-08T17:30:00+01:00",
@@ -339,5 +339,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-11-08T22:49:21.337248+00:00"
+  "serieCUpdatedAt": "2026-11-09T02:06:52.535658+00:00"
 }

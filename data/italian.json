@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-10T02:47:42.590239+00:00",
+  "updatedAt": "2026-11-10T10:30:15.353721+00:00",
   "lba": [
     {
       "home": "UNA Hotels Reggio Emilia",
@@ -114,10 +114,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "FOGGIA",
-      "away": "BARLETTA",
-      "homeScore": 0,
-      "awayScore": 1,
+      "home": "ALTAMURA",
+      "away": "CAVESE",
+      "homeScore": 2,
+      "awayScore": 2,
       "hasScore": true,
       "status": "FT",
       "time": "2026-11-09T20:30:00+01:00",
@@ -128,10 +128,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "ALTAMURA",
-      "away": "CAVESE",
-      "homeScore": 2,
-      "awayScore": 2,
+      "home": "FOGGIA",
+      "away": "BARLETTA",
+      "homeScore": 0,
+      "awayScore": 1,
       "hasScore": true,
       "status": "FT",
       "time": "2026-11-09T20:30:00+01:00",
@@ -157,5 +157,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-11-10T02:47:42.590239+00:00"
+  "serieCUpdatedAt": "2026-11-10T10:30:15.353721+00:00"
 }

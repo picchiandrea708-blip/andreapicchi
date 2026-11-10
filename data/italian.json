@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-10T18:11:33.584378+00:00",
+  "updatedAt": "2026-11-10T23:32:39.757719+00:00",
   "lba": [
     {
       "home": "UNA Hotels Reggio Emilia",
@@ -98,64 +98,7 @@
       "sourceUrl": "https://www.legabasket.it/calendario/1/serie-a"
     }
   ],
-  "serieC": [
-    {
-      "home": "PINETO",
-      "away": "VIS PESARO",
-      "homeScore": 1,
-      "awayScore": 0,
-      "hasScore": true,
-      "status": "FT",
-      "time": "2026-11-09T20:30:00+01:00",
-      "eventDate": "2026-11-09T20:30:00+01:00",
-      "competition": "Serie C",
-      "group": "Girone B",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
-      "home": "ALTAMURA",
-      "away": "CAVESE",
-      "homeScore": 2,
-      "awayScore": 2,
-      "hasScore": true,
-      "status": "FT",
-      "time": "2026-11-09T20:30:00+01:00",
-      "eventDate": "2026-11-09T20:30:00+01:00",
-      "competition": "Serie C",
-      "group": "Girone C",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
-      "home": "FOGGIA",
-      "away": "BARLETTA",
-      "homeScore": 0,
-      "awayScore": 1,
-      "hasScore": true,
-      "status": "FT",
-      "time": "2026-11-09T20:30:00+01:00",
-      "eventDate": "2026-11-09T20:30:00+01:00",
-      "competition": "Serie C",
-      "group": "Girone C",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
-      "home": "PICERNO",
-      "away": "BARI",
-      "homeScore": 1,
-      "awayScore": 1,
-      "hasScore": true,
-      "status": "FT",
-      "time": "2026-11-09T20:45:00+01:00",
-      "eventDate": "2026-11-09T20:45:00+01:00",
-      "competition": "Serie C",
-      "group": "Girone C",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    }
-  ],
+  "serieC": [],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-11-10T18:11:33.584378+00:00"
+  "serieCUpdatedAt": "2026-11-10T23:32:39.757719+00:00"
 }

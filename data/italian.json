@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-12T16:25:33.484256+00:00",
+  "updatedAt": "2026-11-12T22:25:44.800681+00:00",
   "lba": [
     {
       "home": "UNA Hotels Reggio Emilia",
@@ -98,7 +98,36 @@
       "sourceUrl": "https://www.legabasket.it/calendario/1/serie-a"
     }
   ],
-  "serieC": [],
+  "serieC": [
+    {
+      "home": "OSPITALETTO F.",
+      "away": "DOLOMITI BELLUNESI",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-11-13T20:30:00+01:00",
+      "eventDate": "2026-11-13T20:30:00+01:00",
+      "competition": "Serie C",
+      "group": "Girone A",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "LATINA",
+      "away": "CAMPOBASSO",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-11-13T20:30:00+01:00",
+      "eventDate": "2026-11-13T20:30:00+01:00",
+      "competition": "Serie C",
+      "group": "Girone B",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    }
+  ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-11-12T16:25:33.484256+00:00"
+  "serieCUpdatedAt": "2026-11-12T22:25:44.800681+00:00"
 }

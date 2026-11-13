@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-13T18:15:18.324244+00:00",
+  "updatedAt": "2026-11-13T23:41:29.235396+00:00",
   "lba": [
     {
       "home": "UNA Hotels Reggio Emilia",
@@ -102,10 +102,10 @@
     {
       "home": "OSPITALETTO F.",
       "away": "DOLOMITI BELLUNESI",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
+      "homeScore": 1,
+      "awayScore": 0,
+      "hasScore": true,
+      "status": "FT",
       "time": "2026-11-13T20:30:00+01:00",
       "eventDate": "2026-11-13T20:30:00+01:00",
       "competition": "Serie C",
@@ -116,10 +116,10 @@
     {
       "home": "LATINA",
       "away": "CAMPOBASSO",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
+      "homeScore": 4,
+      "awayScore": 0,
+      "hasScore": true,
+      "status": "FT",
       "time": "2026-11-13T20:30:00+01:00",
       "eventDate": "2026-11-13T20:30:00+01:00",
       "competition": "Serie C",
@@ -212,8 +212,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "LUMEZZANE",
-      "away": "TRENTO",
+      "home": "CARPI",
+      "away": "GIANA ERMINIO",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -226,8 +226,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "CARPI",
-      "away": "GIANA ERMINIO",
+      "home": "LUMEZZANE",
+      "away": "TRENTO",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -269,5 +269,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-11-13T18:15:18.324244+00:00"
+  "serieCUpdatedAt": "2026-11-13T23:41:29.235396+00:00"
 }

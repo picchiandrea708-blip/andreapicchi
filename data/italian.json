@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-13T23:41:29.235396+00:00",
+  "updatedAt": "2026-11-14T03:38:29.910114+00:00",
   "lba": [
     {
       "home": "UNA Hotels Reggio Emilia",
@@ -128,8 +128,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "ARZIGNANO V.",
-      "away": "ALCIONE MILANO",
+      "home": "RENATE",
+      "away": "DESENZANO",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -142,8 +142,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "RENATE",
-      "away": "DESENZANO",
+      "home": "ARZIGNANO V.",
+      "away": "ALCIONE MILANO",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -269,5 +269,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-11-13T23:41:29.235396+00:00"
+  "serieCUpdatedAt": "2026-11-14T03:38:29.910114+00:00"
 }

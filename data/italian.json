@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-14T03:38:29.910114+00:00",
+  "updatedAt": "2026-11-14T10:59:15.919028+00:00",
   "lba": [
     {
       "home": "UNA Hotels Reggio Emilia",
@@ -212,8 +212,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "CARPI",
-      "away": "GIANA ERMINIO",
+      "home": "LUMEZZANE",
+      "away": "TRENTO",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -226,8 +226,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "LUMEZZANE",
-      "away": "TRENTO",
+      "home": "CARPI",
+      "away": "GIANA ERMINIO",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -269,5 +269,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-11-14T03:38:29.910114+00:00"
+  "serieCUpdatedAt": "2026-11-14T10:59:15.919028+00:00"
 }

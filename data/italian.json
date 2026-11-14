@@ -1,13 +1,13 @@
 {
-  "updatedAt": "2026-11-14T16:59:27.950042+00:00",
+  "updatedAt": "2026-11-14T21:23:09.473148+00:00",
   "lba": [
     {
       "home": "UNA Hotels Reggio Emilia",
       "away": "Openjobmetis Varese",
-      "homeScore": 0,
-      "awayScore": 0,
-      "hasScore": false,
-      "status": "In programma",
+      "homeScore": 84,
+      "awayScore": 99,
+      "hasScore": true,
+      "status": "Finale",
       "time": "2026-11-14T20:00:00.000+01:00",
       "competition": "Serie A LBA",
       "source": "LBA",
@@ -16,10 +16,10 @@
     {
       "home": "BC Roma",
       "away": "Tezenis Verona",
-      "homeScore": 0,
-      "awayScore": 0,
-      "hasScore": false,
-      "status": "In programma",
+      "homeScore": 88,
+      "awayScore": 89,
+      "hasScore": true,
+      "status": "LIVE",
       "time": "2026-11-14T20:30:00.000+01:00",
       "competition": "Serie A LBA",
       "source": "LBA",
@@ -100,38 +100,10 @@
   ],
   "serieC": [
     {
-      "home": "OSPITALETTO F.",
-      "away": "DOLOMITI BELLUNESI",
-      "homeScore": 1,
-      "awayScore": 0,
-      "hasScore": true,
-      "status": "FT",
-      "time": "2026-11-13T20:30:00+01:00",
-      "eventDate": "2026-11-13T20:30:00+01:00",
-      "competition": "Serie C",
-      "group": "Girone A",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
-      "home": "LATINA",
-      "away": "CAMPOBASSO",
-      "homeScore": 4,
-      "awayScore": 0,
-      "hasScore": true,
-      "status": "FT",
-      "time": "2026-11-13T20:30:00+01:00",
-      "eventDate": "2026-11-13T20:30:00+01:00",
-      "competition": "Serie C",
-      "group": "Girone B",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
-      "home": "RENATE",
-      "away": "DESENZANO",
+      "home": "ARZIGNANO V.",
+      "away": "ALCIONE MILANO",
       "homeScore": 3,
-      "awayScore": 3,
+      "awayScore": 2,
       "hasScore": true,
       "status": "FT",
       "time": "2026-11-14T14:30:00+01:00",
@@ -142,10 +114,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "ARZIGNANO V.",
-      "away": "ALCIONE MILANO",
+      "home": "RENATE",
+      "away": "DESENZANO",
       "homeScore": 3,
-      "awayScore": 2,
+      "awayScore": 3,
       "hasScore": true,
       "status": "FT",
       "time": "2026-11-14T14:30:00+01:00",
@@ -170,10 +142,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "VIS PESARO",
-      "away": "PIANESE",
-      "homeScore": 4,
-      "awayScore": 2,
+      "home": "REGGIANA",
+      "away": "LIVORNO",
+      "homeScore": 0,
+      "awayScore": 0,
       "hasScore": true,
       "status": "FT",
       "time": "2026-11-14T14:30:00+01:00",
@@ -184,10 +156,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "REGGIANA",
-      "away": "LIVORNO",
-      "homeScore": 0,
-      "awayScore": 0,
+      "home": "VIS PESARO",
+      "away": "PIANESE",
+      "homeScore": 4,
+      "awayScore": 2,
       "hasScore": true,
       "status": "FT",
       "time": "2026-11-14T14:30:00+01:00",
@@ -214,10 +186,10 @@
     {
       "home": "CARPI",
       "away": "GIANA ERMINIO",
-      "homeScore": 0,
-      "awayScore": 0,
+      "homeScore": 1,
+      "awayScore": 1,
       "hasScore": true,
-      "status": "LIVE",
+      "status": "FT",
       "time": "2026-11-14T17:30:00+01:00",
       "eventDate": "2026-11-14T17:30:00+01:00",
       "competition": "Serie C",
@@ -228,10 +200,10 @@
     {
       "home": "LUMEZZANE",
       "away": "TRENTO",
-      "homeScore": 0,
-      "awayScore": 0,
+      "homeScore": 1,
+      "awayScore": 2,
       "hasScore": true,
-      "status": "LIVE",
+      "status": "FT",
       "time": "2026-11-14T17:30:00+01:00",
       "eventDate": "2026-11-14T17:30:00+01:00",
       "competition": "Serie C",
@@ -242,10 +214,10 @@
     {
       "home": "GUBBIO",
       "away": "GROSSETO",
-      "homeScore": 2,
-      "awayScore": 1,
+      "homeScore": 3,
+      "awayScore": 2,
       "hasScore": true,
-      "status": "LIVE",
+      "status": "FT",
       "time": "2026-11-14T17:30:00+01:00",
       "eventDate": "2026-11-14T17:30:00+01:00",
       "competition": "Serie C",
@@ -256,10 +228,10 @@
     {
       "home": "BARI",
       "away": "FOGGIA",
-      "homeScore": 2,
-      "awayScore": 1,
+      "homeScore": 3,
+      "awayScore": 2,
       "hasScore": true,
-      "status": "LIVE",
+      "status": "FT",
       "time": "2026-11-14T17:30:00+01:00",
       "eventDate": "2026-11-14T17:30:00+01:00",
       "competition": "Serie C",
@@ -296,8 +268,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "PESCARA",
-      "away": "SAMBENEDETTESE",
+      "home": "SPEZIA",
+      "away": "VADO",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -310,8 +282,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "SPEZIA",
-      "away": "VADO",
+      "home": "PESCARA",
+      "away": "SAMBENEDETTESE",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -380,8 +352,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "CITTADELLA",
-      "away": "FOLGORE CARATESE",
+      "home": "JUVENTUS NEXT GEN",
+      "away": "TREVISO",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -394,8 +366,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "JUVENTUS NEXT GEN",
-      "away": "TREVISO",
+      "home": "CITTADELLA",
+      "away": "FOLGORE CARATESE",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -436,8 +408,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "BARLETTA",
-      "away": "ALTAMURA",
+      "home": "COSENZA",
+      "away": "CASERTANA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -450,8 +422,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "COSENZA",
-      "away": "CASERTANA",
+      "home": "BARLETTA",
+      "away": "ALTAMURA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -465,5 +437,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-11-14T16:59:27.950042+00:00"
+  "serieCUpdatedAt": "2026-11-14T21:23:09.473148+00:00"
 }

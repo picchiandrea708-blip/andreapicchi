@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-15T20:33:24.238808+00:00",
+  "updatedAt": "2026-11-16T00:19:54.865924+00:00",
   "lba": [
     {
       "home": "UNA Hotels Reggio Emilia",
@@ -142,20 +142,6 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "SPEZIA",
-      "away": "VADO",
-      "homeScore": 3,
-      "awayScore": 0,
-      "hasScore": true,
-      "status": "FT",
-      "time": "2026-11-15T14:30:00+01:00",
-      "eventDate": "2026-11-15T14:30:00+01:00",
-      "competition": "Serie C",
-      "group": "Girone B",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
       "home": "GUIDONIA M.",
       "away": "OSTIAMARE",
       "homeScore": 2,
@@ -170,16 +156,16 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "POTENZA",
-      "away": "SCAFATESE",
-      "homeScore": 4,
+      "home": "SPEZIA",
+      "away": "VADO",
+      "homeScore": 3,
       "awayScore": 0,
       "hasScore": true,
       "status": "FT",
       "time": "2026-11-15T14:30:00+01:00",
       "eventDate": "2026-11-15T14:30:00+01:00",
       "competition": "Serie C",
-      "group": "Girone C",
+      "group": "Girone B",
       "source": "Lega Pro",
       "sourceUrl": "https://www.seriec.com/calendario"
     },
@@ -212,10 +198,24 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "PERGOLETTESE",
-      "away": "PRO VERCELLI",
-      "homeScore": 0,
+      "home": "POTENZA",
+      "away": "SCAFATESE",
+      "homeScore": 4,
       "awayScore": 0,
+      "hasScore": true,
+      "status": "FT",
+      "time": "2026-11-15T14:30:00+01:00",
+      "eventDate": "2026-11-15T14:30:00+01:00",
+      "competition": "Serie C",
+      "group": "Girone C",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "CITTADELLA",
+      "away": "FOLGORE CARATESE",
+      "homeScore": 2,
+      "awayScore": 2,
       "hasScore": true,
       "status": "FT",
       "time": "2026-11-15T17:30:00+01:00",
@@ -226,10 +226,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "CITTADELLA",
-      "away": "FOLGORE CARATESE",
-      "homeScore": 2,
-      "awayScore": 2,
+      "home": "PERGOLETTESE",
+      "away": "PRO VERCELLI",
+      "homeScore": 0,
+      "awayScore": 0,
       "hasScore": true,
       "status": "FT",
       "time": "2026-11-15T17:30:00+01:00",
@@ -324,6 +324,7 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     }
   ],
+  "lbaError": "LBA: HTTP Error 500: Internal Server Error",
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-11-15T20:33:24.238808+00:00"
+  "serieCUpdatedAt": "2026-11-16T00:19:54.865924+00:00"
 }

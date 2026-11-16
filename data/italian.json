@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-16T00:19:54.865924+00:00",
+  "updatedAt": "2026-11-16T06:51:26.899439+00:00",
   "lba": [
     {
       "home": "UNA Hotels Reggio Emilia",
@@ -128,10 +128,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "PESCARA",
-      "away": "SAMBENEDETTESE",
+      "home": "SPEZIA",
+      "away": "VADO",
       "homeScore": 3,
-      "awayScore": 1,
+      "awayScore": 0,
       "hasScore": true,
       "status": "FT",
       "time": "2026-11-15T14:30:00+01:00",
@@ -156,10 +156,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "SPEZIA",
-      "away": "VADO",
+      "home": "PESCARA",
+      "away": "SAMBENEDETTESE",
       "homeScore": 3,
-      "awayScore": 0,
+      "awayScore": 1,
       "hasScore": true,
       "status": "FT",
       "time": "2026-11-15T14:30:00+01:00",
@@ -170,9 +170,9 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "SALERNITANA",
-      "away": "CATANIA",
-      "homeScore": 1,
+      "home": "POTENZA",
+      "away": "SCAFATESE",
+      "homeScore": 4,
       "awayScore": 0,
       "hasScore": true,
       "status": "FT",
@@ -198,9 +198,9 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "POTENZA",
-      "away": "SCAFATESE",
-      "homeScore": 4,
+      "home": "SALERNITANA",
+      "away": "CATANIA",
+      "homeScore": 1,
       "awayScore": 0,
       "hasScore": true,
       "status": "FT",
@@ -326,5 +326,5 @@
   ],
   "lbaError": "LBA: HTTP Error 500: Internal Server Error",
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-11-16T00:19:54.865924+00:00"
+  "serieCUpdatedAt": "2026-11-16T06:51:26.899439+00:00"
 }

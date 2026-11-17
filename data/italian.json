@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-16T16:37:44.415590+00:00",
+  "updatedAt": "2026-11-17T00:30:43.028038+00:00",
   "lba": [
     {
       "home": "UNA Hotels Reggio Emilia",
@@ -102,10 +102,10 @@
     {
       "home": "SORRENTO",
       "away": "MONOPOLI",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
+      "homeScore": 2,
+      "awayScore": 1,
+      "hasScore": true,
+      "status": "FT",
       "time": "2026-11-16T20:30:00+01:00",
       "eventDate": "2026-11-16T20:30:00+01:00",
       "competition": "Serie C",
@@ -116,10 +116,10 @@
     {
       "home": "PERUGIA",
       "away": "TORRES",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
+      "homeScore": 0,
+      "awayScore": 1,
+      "hasScore": true,
+      "status": "FT",
       "time": "2026-11-16T20:45:00+01:00",
       "eventDate": "2026-11-16T20:45:00+01:00",
       "competition": "Serie C",
@@ -129,5 +129,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-11-16T16:37:44.415590+00:00"
+  "serieCUpdatedAt": "2026-11-17T00:30:43.028038+00:00"
 }

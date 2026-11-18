@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-17T17:50:48.791628+00:00",
+  "updatedAt": "2026-11-18T00:08:26.383925+00:00",
   "lba": [
     {
       "home": "UNA Hotels Reggio Emilia",
@@ -98,36 +98,7 @@
       "sourceUrl": "https://www.legabasket.it/calendario/1/serie-a"
     }
   ],
-  "serieC": [
-    {
-      "home": "SORRENTO",
-      "away": "MONOPOLI",
-      "homeScore": 2,
-      "awayScore": 1,
-      "hasScore": true,
-      "status": "FT",
-      "time": "2026-11-16T20:30:00+01:00",
-      "eventDate": "2026-11-16T20:30:00+01:00",
-      "competition": "Serie C",
-      "group": "Girone C",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
-      "home": "PERUGIA",
-      "away": "TORRES",
-      "homeScore": 0,
-      "awayScore": 1,
-      "hasScore": true,
-      "status": "FT",
-      "time": "2026-11-16T20:45:00+01:00",
-      "eventDate": "2026-11-16T20:45:00+01:00",
-      "competition": "Serie C",
-      "group": "Girone B",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    }
-  ],
+  "serieC": [],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-11-17T17:50:48.791628+00:00"
+  "serieCUpdatedAt": "2026-11-18T00:08:26.383925+00:00"
 }

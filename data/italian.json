@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-21T00:21:48.790811+00:00",
+  "updatedAt": "2026-11-21T07:29:51.514305+00:00",
   "lba": [
     {
       "home": "Dolomiti Energia Trentino",
@@ -142,8 +142,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "OSTIAMARE",
-      "away": "ATALANTA UNDER 23",
+      "home": "VADO",
+      "away": "LATINA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -156,8 +156,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "VADO",
-      "away": "LATINA",
+      "home": "OSTIAMARE",
+      "away": "ATALANTA UNDER 23",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -297,5 +297,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-11-21T00:21:48.790811+00:00"
+  "serieCUpdatedAt": "2026-11-21T07:29:51.514305+00:00"
 }

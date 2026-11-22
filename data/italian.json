@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-22T01:13:07.736130+00:00",
+  "updatedAt": "2026-11-22T08:11:06.122924+00:00",
   "lba": [
     {
       "home": "Dolomiti Energia Trentino",
@@ -114,10 +114,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "VADO",
-      "away": "LATINA",
+      "home": "OSTIAMARE",
+      "away": "ATALANTA UNDER 23",
       "homeScore": 0,
-      "awayScore": 1,
+      "awayScore": 0,
       "hasScore": true,
       "status": "FT",
       "time": "2026-11-21T14:30:00+01:00",
@@ -128,10 +128,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "OSTIAMARE",
-      "away": "ATALANTA UNDER 23",
+      "home": "VADO",
+      "away": "LATINA",
       "homeScore": 0,
-      "awayScore": 0,
+      "awayScore": 1,
       "hasScore": true,
       "status": "FT",
       "time": "2026-11-21T14:30:00+01:00",
@@ -156,9 +156,9 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "AUDACE CERIGNOLA",
-      "away": "BARLETTA",
-      "homeScore": 1,
+      "home": "INTER UNDER 23",
+      "away": "POTENZA",
+      "homeScore": 2,
       "awayScore": 1,
       "hasScore": true,
       "status": "FT",
@@ -170,9 +170,9 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "INTER UNDER 23",
-      "away": "POTENZA",
-      "homeScore": 2,
+      "home": "AUDACE CERIGNOLA",
+      "away": "BARLETTA",
+      "homeScore": 1,
       "awayScore": 1,
       "hasScore": true,
       "status": "FT",
@@ -212,20 +212,6 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "PINETO",
-      "away": "PESCARA",
-      "homeScore": 1,
-      "awayScore": 1,
-      "hasScore": true,
-      "status": "FT",
-      "time": "2026-11-21T17:30:00+01:00",
-      "eventDate": "2026-11-21T17:30:00+01:00",
-      "competition": "Serie C",
-      "group": "Girone B",
-      "source": "Lega Pro",
-      "sourceUrl": "https://www.seriec.com/calendario"
-    },
-    {
       "home": "CAMPOBASSO",
       "away": "VIS PESARO",
       "homeScore": 3,
@@ -240,16 +226,16 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "SAVOIA",
-      "away": "SORRENTO",
-      "homeScore": 2,
+      "home": "PINETO",
+      "away": "PESCARA",
+      "homeScore": 1,
       "awayScore": 1,
       "hasScore": true,
       "status": "FT",
       "time": "2026-11-21T17:30:00+01:00",
       "eventDate": "2026-11-21T17:30:00+01:00",
       "competition": "Serie C",
-      "group": "Girone C",
+      "group": "Girone B",
       "source": "Lega Pro",
       "sourceUrl": "https://www.seriec.com/calendario"
     },
@@ -268,8 +254,22 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "UNION BRESCIA",
-      "away": "RENATE",
+      "home": "SAVOIA",
+      "away": "SORRENTO",
+      "homeScore": 2,
+      "awayScore": 1,
+      "hasScore": true,
+      "status": "FT",
+      "time": "2026-11-21T17:30:00+01:00",
+      "eventDate": "2026-11-21T17:30:00+01:00",
+      "competition": "Serie C",
+      "group": "Girone C",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "PRO VERCELLI",
+      "away": "NOVARA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -282,8 +282,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "PRO VERCELLI",
-      "away": "NOVARA",
+      "home": "UNION BRESCIA",
+      "away": "RENATE",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -465,5 +465,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-11-22T01:13:07.736130+00:00"
+  "serieCUpdatedAt": "2026-11-22T08:11:06.122924+00:00"
 }

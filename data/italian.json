@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-22T21:58:42.809967+00:00",
+  "updatedAt": "2026-11-23T02:34:55.053359+00:00",
   "lba": [
     {
       "home": "Dolomiti Energia Trentino",
@@ -156,10 +156,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "LIVORNO",
-      "away": "RAVENNA",
-      "homeScore": 1,
-      "awayScore": 2,
+      "home": "PIANESE",
+      "away": "GUBBIO",
+      "homeScore": 3,
+      "awayScore": 1,
       "hasScore": true,
       "status": "FT",
       "time": "2026-11-22T14:30:00+01:00",
@@ -170,10 +170,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "PIANESE",
-      "away": "GUBBIO",
-      "homeScore": 3,
-      "awayScore": 1,
+      "home": "LIVORNO",
+      "away": "RAVENNA",
+      "homeScore": 1,
+      "awayScore": 2,
       "hasScore": true,
       "status": "FT",
       "time": "2026-11-22T14:30:00+01:00",
@@ -226,10 +226,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "DOLOMITI BELLUNESI",
-      "away": "CARPI",
+      "home": "DESENZANO",
+      "away": "ALBINOLEFFE",
       "homeScore": 1,
-      "awayScore": 1,
+      "awayScore": 6,
       "hasScore": true,
       "status": "FT",
       "time": "2026-11-22T17:30:00+01:00",
@@ -240,10 +240,10 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "DESENZANO",
-      "away": "ALBINOLEFFE",
+      "home": "DOLOMITI BELLUNESI",
+      "away": "CARPI",
       "homeScore": 1,
-      "awayScore": 6,
+      "awayScore": 1,
       "hasScore": true,
       "status": "FT",
       "time": "2026-11-22T17:30:00+01:00",
@@ -325,5 +325,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-11-22T21:58:42.809967+00:00"
+  "serieCUpdatedAt": "2026-11-23T02:34:55.053359+00:00"
 }

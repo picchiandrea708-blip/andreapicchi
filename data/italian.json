@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-23T22:44:45.338199+00:00",
+  "updatedAt": "2026-11-24T06:30:29.968847+00:00",
   "lba": [
     {
       "home": "Dolomiti Energia Trentino",
@@ -119,7 +119,7 @@
       "homeScore": 1,
       "awayScore": 0,
       "hasScore": true,
-      "status": "Risultato ufficiale",
+      "status": "FT",
       "time": "2026-11-23T20:45:00+01:00",
       "eventDate": "2026-11-23T20:45:00+01:00",
       "competition": "Serie C",
@@ -129,5 +129,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-11-23T22:44:45.338199+00:00"
+  "serieCUpdatedAt": "2026-11-24T06:30:29.968847+00:00"
 }

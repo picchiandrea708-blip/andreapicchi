@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-25T11:43:02.130626+00:00",
+  "updatedAt": "2026-11-25T20:42:55.392254+00:00",
   "lba": [
     {
       "home": "Dolomiti Energia Trentino",
@@ -102,10 +102,10 @@
     {
       "home": "AUDACE CERIGNOLA",
       "away": "INTER UNDER 23",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
+      "homeScore": 3,
+      "awayScore": 0,
+      "hasScore": true,
+      "status": "FT",
       "time": "2026-11-25T14:30:00+01:00",
       "eventDate": "2026-11-25T14:30:00+01:00",
       "competition": "Serie C",
@@ -116,10 +116,10 @@
     {
       "home": "ATALANTA UNDER 23",
       "away": "PINETO",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
+      "homeScore": 1,
+      "awayScore": 1,
+      "hasScore": true,
+      "status": "FT",
       "time": "2026-11-25T18:00:00+01:00",
       "eventDate": "2026-11-25T18:00:00+01:00",
       "competition": "Serie C",
@@ -129,5 +129,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-11-25T11:43:02.130626+00:00"
+  "serieCUpdatedAt": "2026-11-25T20:42:55.392254+00:00"
 }

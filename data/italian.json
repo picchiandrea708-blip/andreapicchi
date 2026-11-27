@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-27T04:19:27.019838+00:00",
+  "updatedAt": "2026-11-27T14:01:47.591218+00:00",
   "lba": [
     {
       "home": "Dolomiti Energia Trentino",
@@ -126,8 +126,92 @@
       "group": "Girone C",
       "source": "Lega Pro",
       "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "CARPI",
+      "away": "LECCO",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-11-28T14:30:00+01:00",
+      "eventDate": "2026-11-28T14:30:00+01:00",
+      "competition": "Serie C",
+      "group": "Girone A",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "NOVARA",
+      "away": "ALCIONE MILANO",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-11-28T14:30:00+01:00",
+      "eventDate": "2026-11-28T14:30:00+01:00",
+      "competition": "Serie C",
+      "group": "Girone A",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "GUIDONIA M.",
+      "away": "CAMPOBASSO",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-11-28T14:30:00+01:00",
+      "eventDate": "2026-11-28T14:30:00+01:00",
+      "competition": "Serie C",
+      "group": "Girone B",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "GUBBIO",
+      "away": "VADO",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-11-28T14:30:00+01:00",
+      "eventDate": "2026-11-28T14:30:00+01:00",
+      "competition": "Serie C",
+      "group": "Girone B",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "PESCARA",
+      "away": "PIANESE",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-11-28T14:30:00+01:00",
+      "eventDate": "2026-11-28T14:30:00+01:00",
+      "competition": "Serie C",
+      "group": "Girone B",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "GIUGLIANO",
+      "away": "ALTAMURA",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-11-28T14:30:00+01:00",
+      "eventDate": "2026-11-28T14:30:00+01:00",
+      "competition": "Serie C",
+      "group": "Girone C",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-11-27T04:19:27.019838+00:00"
+  "serieCUpdatedAt": "2026-11-27T14:01:47.591218+00:00"
 }

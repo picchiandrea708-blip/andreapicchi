@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-27T14:01:47.591218+00:00",
+  "updatedAt": "2026-11-27T22:38:56.119637+00:00",
   "lba": [
     {
       "home": "Dolomiti Energia Trentino",
@@ -100,12 +100,12 @@
   ],
   "serieC": [
     {
-      "home": "CAVESE",
-      "away": "SCAFATESE",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
+      "home": "FOGGIA",
+      "away": "CASERTANA",
+      "homeScore": 0,
+      "awayScore": 3,
+      "hasScore": true,
+      "status": "FT",
       "time": "2026-11-27T20:30:00+01:00",
       "eventDate": "2026-11-27T20:30:00+01:00",
       "competition": "Serie C",
@@ -114,12 +114,12 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "FOGGIA",
-      "away": "CASERTANA",
-      "homeScore": "",
-      "awayScore": "",
-      "hasScore": false,
-      "status": "In programma",
+      "home": "CAVESE",
+      "away": "SCAFATESE",
+      "homeScore": 3,
+      "awayScore": 3,
+      "hasScore": true,
+      "status": "FT",
       "time": "2026-11-27T20:30:00+01:00",
       "eventDate": "2026-11-27T20:30:00+01:00",
       "competition": "Serie C",
@@ -156,8 +156,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "GUIDONIA M.",
-      "away": "CAMPOBASSO",
+      "home": "GUBBIO",
+      "away": "VADO",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -170,8 +170,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "GUBBIO",
-      "away": "VADO",
+      "home": "GUIDONIA M.",
+      "away": "CAMPOBASSO",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -210,8 +210,78 @@
       "group": "Girone C",
       "source": "Lega Pro",
       "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "PERGOLETTESE",
+      "away": "GIANA ERMINIO",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-11-28T17:30:00+01:00",
+      "eventDate": "2026-11-28T17:30:00+01:00",
+      "competition": "Serie C",
+      "group": "Girone A",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "LUMEZZANE",
+      "away": "DESENZANO",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-11-28T17:30:00+01:00",
+      "eventDate": "2026-11-28T17:30:00+01:00",
+      "competition": "Serie C",
+      "group": "Girone A",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "OSPITALETTO F.",
+      "away": "UNION BRESCIA",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-11-28T17:30:00+01:00",
+      "eventDate": "2026-11-28T17:30:00+01:00",
+      "competition": "Serie C",
+      "group": "Girone A",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "SALERNITANA",
+      "away": "MONOPOLI",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-11-28T17:30:00+01:00",
+      "eventDate": "2026-11-28T17:30:00+01:00",
+      "competition": "Serie C",
+      "group": "Girone C",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
+    },
+    {
+      "home": "SORRENTO",
+      "away": "COSENZA",
+      "homeScore": "",
+      "awayScore": "",
+      "hasScore": false,
+      "status": "In programma",
+      "time": "2026-11-28T17:30:00+01:00",
+      "eventDate": "2026-11-28T17:30:00+01:00",
+      "competition": "Serie C",
+      "group": "Girone C",
+      "source": "Lega Pro",
+      "sourceUrl": "https://www.seriec.com/calendario"
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-11-27T14:01:47.591218+00:00"
+  "serieCUpdatedAt": "2026-11-27T22:38:56.119637+00:00"
 }

@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-11-26T22:15:11.130017+00:00",
+  "updatedAt": "2026-11-27T04:19:27.019838+00:00",
   "lba": [
     {
       "home": "Dolomiti Energia Trentino",
@@ -100,8 +100,8 @@
   ],
   "serieC": [
     {
-      "home": "FOGGIA",
-      "away": "CASERTANA",
+      "home": "CAVESE",
+      "away": "SCAFATESE",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -114,8 +114,8 @@
       "sourceUrl": "https://www.seriec.com/calendario"
     },
     {
-      "home": "CAVESE",
-      "away": "SCAFATESE",
+      "home": "FOGGIA",
+      "away": "CASERTANA",
       "homeScore": "",
       "awayScore": "",
       "hasScore": false,
@@ -129,5 +129,5 @@
     }
   ],
   "serieCSource": "Lega Pro",
-  "serieCUpdatedAt": "2026-11-26T22:15:11.130017+00:00"
+  "serieCUpdatedAt": "2026-11-27T04:19:27.019838+00:00"
 }
